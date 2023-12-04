@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat Count!</title>
+  <style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    p {
+        
+    }
+    
+    html, body {
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin: 0;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    #instructions {
+    font-size: 150%;
+      margin: 50px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    #imageContainer {
+        display: none;
+        position: relative;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .clickableArea {
+      position: absolute;
+      cursor: pointer;
+    }
+
+    #counter {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 18px;
+      padding: 5px 10px;
+      border-radius: 10px;
+      background-color: #3498db; /* Change the background color as desired */
+      color: #fff; /* Change the text color as desired */
+      font-weight: bold;
+    }
+
+    .controlButton {
+      display: none;
+      position: absolute;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    #goToBedroomButton {
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1; /* Set a higher z-index value */
+      background-color: #3498db; /* Change the background color as desired */
+      color: #fff; /* Change the text color as desired */
+    }
+
+    #goToKitchenButton {
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1; /* Set a higher z-index value */
+      background-color: #3498db; /* Change the background color as desired */
+      color: #fff; /* Change the text color as desired */
+    }
+
+    .controlButton:hover {
+      background-color: #2980b9; /* Change the background color on hover as desired */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Buttons-->
+<div id="goToBedroomButton" class="controlButton" onclick="goToBedroom()">&#9666; To the Bedroom </div>
+<div id="goToKitchenButton" class="controlButton" onclick="goToKitchen()">&#9656; To the Kitchen </div>
+
+<div id="instructions">
+  <h1>Find Your Cats!</h1>
+  <p>You are about to leave for work in a hurry...</p>
+  <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
+  <p>Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b></p>
+  <button onclick="startGame()" font-size="200%">Start Searching</button>
+</div>
+
+<div id="imageContainer">
+  <span id="counter">Clicks: 0</span>
+  <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage">
+
+  <!-- Define clickable areas -->
+  <!-- Clickable areas: Kitchen -->
+  <!-- <div class="clickableArea" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
+  <div class="clickableArea" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;">Area 1</div>
+  <div class="clickableArea" id="area_2" style="top: 22em; left: 37em; width: 14em; height: 31em;" onclick="handleClick('that cupboard.')">Area 2</div>
+  <div class="clickableArea" id="area_3" style="top: 22em; left: 53em; width: 16em; height: 31em;" onclick="handleClick('that cupboard.')">Area 3</div>
+  <div class="clickableArea" id="area_4" style="top: 80.5em; left: 35em; width: 38em; height: 6em;" onclick="handleClick('that drawer.')">Area 4</div>
+  <div class="clickableArea" id="area_5" style="top: 87em; left: 15.5em; width: 18em; height: 31em;" onclick="handleClick('the dishwasher.')">Area 5</div>
+  <div class="clickableArea" id="area_6" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;" onclick="handleClick('that cupboard.')">Area 6</div>
+  <!-- <div class="clickableArea" id="area_7" style="top: 87em; left: 15.5em; width: 18em; height: 31em;" onclick="handleClick('that cupboard.')">Area 7</div>
+  <div class="clickableArea" id="area_8" style="top: 87em; left: 15.5em; width: 18em; height: 31em;" onclick="handleClick('that teal cupboard.')">Area 8</div>
+  <div class="clickableArea" id="area_9" style="top: 87em; left: 15.5em; width: 18em; height: 31em;" onclick="handleClick('that cupboard.')">Area 9</div>
+  <div class="clickableArea" id="area_10" style="top: 87em; left: 15.5em; width: 18em; height: 31em;" onclick="handleClick('that drawer.')">Area 10</div>
+  <div class="clickableArea" id="area_11" style="top: 87em; left: 15.5em; width: 18em; height: 31em;" onclick="handleClick('that drawer.')">Area 11</div>
+  <div class="clickableArea" id="area_12" style="top: 87em; left: 15.5em; width: 18em; height: 31em;" onclick="handleClick('that drawer.')">Area 12</div>
+  <div class="clickableArea" id="area_13" style="top: 87em; left: 15.5em; width: 18em; height: 31em;" onclick="handleClick('that drawer.')">Area 13</div>
+  <div class="clickableArea" id="area_14" style="top: 87em; left: 15.5em; width: 18em; height: 31em;" onclick="handleClick('that drawer.')">Area 14</div> -->
+
+  <!-- Clickable areas: Bedroom -->
+
+</div>
+
+<script>
+  var clickCounter = 0;
+  var clickedAreas = [];
+  var allAreas = [area_1, area_2, area_3, area_4, area_5];
+  var catsFound = 0;
+  var areaNames = ['that cupboard', 'that drawer', 'the sink', 'the curtain'];
+
+
+  // const clickArea = document.getElementById('area_1').addEventListener("click", handleClick);
+  const clickArea = document.getElementById('area_1');
+  clickArea.addEventListener("click", handleClick);
+
+  function handleClick(e) {
+    //var area = e.target.id;
+
+
+
+  // //function handleClick(e, area) {
+  //   if (clickedAreas.includes(area)) {
+  //     alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
+  //   } else {
+  //     clickedAreas.push(area);
+  //     clickCounter++;
+  //     document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
+  //     alert('Clicked on ' + area);
+  //     // You can replace the alert with any other action you want
+      // console.log(e.target.id);
+       console.log(e.currentTarget.id);
+      //console.log(e.srcElement.id);
+    //console.log(area);
+  //   }
+  }
+
+
+
+  // function handleClick(e) {
+  // //function handleClick(e, area) {
+  //   if (clickedAreas.includes(area)) {
+  //     alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
+  //   } else {
+  //     clickedAreas.push(area);
+  //     clickCounter++;
+  //     document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
+  //     alert('Clicked on ' + area);
+  //     // You can replace the alert with any other action you want
+  //     console.log(e);
+  //   }
+  // }
+
+
+//   function handleClick(area) {
+//     if (clickedAreas.includes(area)) {
+//       alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
+//     } else {
+//       clickedAreas.push(area);
+//       clickCounter++;
+//       document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
+//       alert('Clicked on ' + area);
+//       // You can replace the alert with any other action you want
+//     }
+//   }
+
+
+
+function goToKitchen() {
+    var goToBedroomButton = document.getElementById('goToBedroomButton');
+    var goToKitchenButton = document.getElementById('goToKitchenButton');
+    
+    // Hide the existing goToBedroomButton
+    goToBedroomButton.style.display = 'block';
+    
+    // Show the goToKitchenButton
+    goToKitchenButton.style.display = 'none';
+    changeImage('kitchen');
+}
+
+
+function goToBedroom() {
+  var goToBedroomButton = document.getElementById('goToBedroomButton');
+  var goToKitchenButton = document.getElementById('goToKitchenButton');
+
+  // Hide the existing goToBedroomButton
+  goToBedroomButton.style.display = 'none';
+
+  // Show the goToKitchenButton
+  goToKitchenButton.style.display = 'block';
+
+  changeImage('bedroom');
+
+}
+
+function startGame() {
+    var instructions = document.getElementById('instructions');
+    var imageContainer = document.getElementById('imageContainer');
+    var goToBedroomButton = document.getElementById('goToBedroomButton');
+    var goToKitchenButton = document.getElementById('goToKitchenButton');
+
+    instructions.style.opacity = 0;
+
+    setTimeout(function () {
+      instructions.style.display = 'none';
+
+      imageContainer.style.display = 'block';
+      imageContainer.style.opacity = 1;
+
+      goToBedroomButton.style.display = 'block';
+    }, 500); // Set the duration of the transition
+  }
+
+  <!-- Add functionality to swap the clickable areas of the image.-->
+  function changeImage(location) {
+    if (location == 'bedroom') {
+        document.getElementById('kitchenImage').src = 'img/bedroom.jpg';
+    } else if (location == 'kitchen') {
+        document.getElementById('bedroomImage').src = 'img/kitchen.jpg';
+    }
+}
+</script>
+</body>
+</html>
