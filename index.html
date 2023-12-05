@@ -252,33 +252,87 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// function goToKitchen() {
+//     var goToBedroomButton = document.getElementById('goToBedroomButton');
+//     var goToKitchenButton = document.getElementById('goToKitchenButton');
+    
+//     // Hide the existing goToBedroomButton
+//     goToBedroomButton.style.display = 'block';
+    
+//     // Show the goToKitchenButton
+//     goToKitchenButton.style.display = 'none';
+//     // changeImage('kitchen');
+//     changeLocation('kitchen');
+// }
+
+// TODO: get this working; at present, the fade to kitchen.jpg doesnt work.
+// TODO: pull the repeated declarations of goToXButton out and move them up.
 function goToKitchen() {
-    var goToBedroomButton = document.getElementById('goToBedroomButton');
-    var goToKitchenButton = document.getElementById('goToKitchenButton');
+//     var goToBedroomButton = document.getElementById('goToBedroomButton');
+//     var goToKitchenButton = document.getElementById('goToKitchenButton');
     
-    // Hide the existing goToBedroomButton
+//     // Hide the existing goToBedroomButton
+//     goToBedroomButton.style.display = 'block';
+    
+//     // Show the goToKitchenButton
+//     goToKitchenButton.style.display = 'none';
+//     // changeImage('kitchen');
+//     changeLocation('kitchen');
+  var goToBedroomButton = document.getElementById('goToBedroomButton');
+  var goToKitchenButton = document.getElementById('goToKitchenButton');
+  var imageContainer = document.getElementById('imageContainer');
+
+  // Apply fade-out animation to the image container
+  imageContainer.style.animation = 'fadeOut 0.5s ease-in-out forwards';
+
+  // Hide the existing goToKitchenButton
+  goToKitchenButton.style.display = 'none';
+
+  // Show the goToKitchenButton after a delay
+  setTimeout(function () {
     goToBedroomButton.style.display = 'block';
-    
-    // Show the goToKitchenButton
-    goToKitchenButton.style.display = 'none';
-    // changeImage('kitchen');
-    changeLocation('kitchen');
+  }, 500);
+
+  // Change the image source after a delay to synchronize with the fade-out animation
+  setTimeout(function () {
+    // Change the image source after fade-out is complete
+    document.getElementById('bedroomImage').src = 'img/kitchen.jpg';
+
+    // Apply fade-in animation to the image container
+    imageContainer.style.animation = 'fadeIn 0.5s ease-in-out forwards';
+  }, 10);
+
+
 }
+
+
+
 
 
 function goToBedroom() {
   var goToBedroomButton = document.getElementById('goToBedroomButton');
   var goToKitchenButton = document.getElementById('goToKitchenButton');
+  var imageContainer = document.getElementById('imageContainer');
+
+  // Apply fade-out animation to the image container
+  imageContainer.style.animation = 'fadeOut 0.5s ease-in-out forwards';
 
   // Hide the existing goToBedroomButton
   goToBedroomButton.style.display = 'none';
 
-  // Show the goToKitchenButton
-  goToKitchenButton.style.display = 'block';
+  // Show the goToKitchenButton after a delay
+  setTimeout(function () {
+    goToKitchenButton.style.display = 'block';
+  }, 500);
 
-  // changeImage('bedroom');
-  changeLocation('bedroom');
-  document.getElementById('kitchenImage').src = 'img/bedroom.jpg';
+  // Change the image source after a delay to synchronize with the fade-out animation
+  setTimeout(function () {
+    // Change the image source after fade-out is complete
+    document.getElementById('kitchenImage').src = 'img/bedroom.jpg';
+
+    // Apply fade-in animation to the image container
+    imageContainer.style.animation = 'fadeIn 0.5s ease-in-out forwards';
+  }, 10);
 }
 
 function startGame() {
