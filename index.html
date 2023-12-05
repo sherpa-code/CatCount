@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!--
+  author: Jo Crane
+ -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -35,8 +38,17 @@
       }
     }
 
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
     #instructions {
-    font-size: 150%;
+      font-size: 150%;
       margin: 8em;
       padding: 2em;
       background-color: #ddd;
@@ -60,7 +72,7 @@
       cursor: pointer;
     }
 
- #counter {
+    #counter {
       position: absolute;
       top: 2em;
       right: 2em;
@@ -128,7 +140,7 @@
 <div id="goToKitchenButton" class="controlButton" onclick="goToKitchen()">&#9656; To the Kitchen </div>
 
 <div id="instructions">
-  <h1>Find Your Cats!</h1>
+  <h1>Find Your Kitties!</h1>
   <p>You are about to leave for work in a hurry...</p>
   <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
   <p>Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b></p>
@@ -146,12 +158,17 @@
   <div class="clickableArea kitchen" id="area_2_kit" style="top: 22em; left: 37em; width: 14em; height: 31em;">Area 2</div>
   <div class="clickableArea kitchen" id="area_3_kit" style="top: 22em; left: 53em; width: 16em; height: 31em;">Area 3</div>
   <div class="clickableArea kitchen" id="area_4_kit" style="top: 80.5em; left: 35em; width: 38em; height: 6em;">Area 4</div>
-  <div class="clickableArea kitchen" id="area_5_kit" style="top: 87em; left: 15.5em; width: 18em; height: 31em;">Area 5</div>
-  <div class="clickableArea kitchen" id="area_6_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 6</div>
-  <!-- <div class="clickableArea kitchen" id="area_7_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 7</div>
-  <div class="clickableArea kitchen" id="area_8_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 8</div>
-  <div class="clickableArea kitchen" id="area_9_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 9</div>
-  <div class="clickableArea kitchen" id="area_10_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 10</div>
+  <div class="clickableArea kitchen" id="area_5_kit" style="top: 88em; left: 15.5em; width: 18em; height: 30.75em;">Area 5</div>
+  <div class="clickableArea kitchen" id="area_6_kit" style="top: 87.5em; left: 35em; width: 15.5em; height: 27em;">Area 6</div>
+  <div class="clickableArea kitchen" id="area_7_kit" style="top: 87.5em; left: 52.5em; width: 19.5em; height: 27em;">Area 7</div>
+  <div class="clickableArea kitchen" id="area_8_kit" style="top: 80.5em; left: 75.75em; width: 20.25em; height: 11.5em;">Area 8</div>
+  <div class="clickableArea kitchen" id="area_9_kit" style="top: 93em; left: 75em; width: 21em; height: 20em;">Area 9</div>
+  <div class="clickableArea kitchen" id="area_10_kit" style="top: 80em; left: 101em; width: 15.5em; height: 4.5em;">Area 10</div>
+  <div class="clickableArea kitchen" id="area_11_kit" style="top: 85em; left: 101em; width: 15.5em; height: 7em;">Area 11</div>
+  <div class="clickableArea kitchen" id="area_12_kit" style="top: 93em; left: 101em; width: 15.5em; height: 8em;">Area 12</div>
+  <div class="clickableArea kitchen" id="area_13_kit" style="top: 103em; left: 101em; width: 15.5em; height: 11em;">Area 13</div>
+  <div class="clickableArea kitchen" id="area_14_kit" style="top: 64em; left: 81em; width: 13em; height: 12em;">Area 14</div>
+  <!--
   <div class="clickableArea kitchen" id="area_11_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 11</div>
   <div class="clickableArea kitchen" id="area_12_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 12</div>
   <div class="clickableArea kitchen" id="area_13_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 13</div>
@@ -177,16 +194,36 @@
   var clickCounter = 0;
   var clickedAreas = [];
   // var allAreas = [area_1, area_2, area_3, area_4, area_5];
-  var allAreas = [area_1_kit, area_2_kit, area_3_kit, area_4_kit, area_5_kit, area_6_kit];
+  var allAreas = [area_1_kit, area_2_kit, area_3_kit, area_4_kit, area_5_kit, area_6_kit, area_7_kit,
+                  area_8_kit, area_9_kit, area_10_kit, area_11_kit, area_12_kit, area_13_kit, area_14_kit,
+                  area_1_bed, area_2_bed, area_3_bed, area_4_bed, area_5_bed, area_6_bed, area_7_bed,
+                  area_8_bed, area_9_bed, area_10_bed];
+  var allAreaIds = []
   var catLocations = [];
   var catsFound = 0;
   var areaNames = ['that cupboard', 'that drawer', 'the sink', 'the curtain'];
   var timer = 90;
 
 
-  // const clickArea = document.getElementById('area_1').addEventListener("click", handleClick);
-  const clickArea = document.getElementById('area_1_kit');
-  clickArea.addEventListener("click", handleClick);
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function () {
+  // Select all elements with id starting with "area_"
+  allAreaIds = document.querySelectorAll('[id^="area_"]');
+
+  // Convert NodeList to Array (for better manipulation)
+  var arrayFromElements = Array.from(allAreaIds);
+
+  // Display the array in the console (optional)
+  //console.log(arrayFromElements);
+  console.log(allAreaIds);
+});
+
+
+
+
+
+
+
 
   function handleClick(e) {
     //var area = e.target.id;
