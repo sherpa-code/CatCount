@@ -3,314 +3,337 @@
   author: Jo Crane
 -->
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Cat Count!</title>
-        
-        <!-- CSS -->
-        <!-- <link rel="stylesheet" href="styles.css" /> -->
-        <style>
-            /* CSS Reset */
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat Count!</title>
 
-            * {
-                margin: 0;
-            }
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <style>
+      /* CSS Reset */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
 
-            img,
-            picture,
-            video,
-            canvas,
-            svg {
-                display: block;
-                max-width: 100%;
-            }
-            /* CSS Reset ends */
+      * {
+        margin: 0;
+      }
 
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
-            }
+      img,
+      picture,
+      video,
+      canvas,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      /* CSS Reset ends */
 
-            @keyframes fadeOut {
-                from {
-                    opacity: 1;
-                }
-                to {
-                    opacity: 0;
-                }
-            }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
 
-            #imageContainer {
-                margin: auto;
-                max-width: 100vh;
-                position: relative;
-                transition: opacity 0.5s ease-in-out;
-                display: block;
-                max-height: 100vh;
-                min-height: 100vh;
-                height: 100vh;
-            }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
 
-            #imageContainer img { 
-                position: absolute;
-                z-index: -1;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-            }
+      #imageContainer {
+        margin: auto;
+        max-width: 100vh;
+        position: relative;
+        transition: opacity 0.5s ease-in-out;
+        display: block;
+        max-height: 100vh;
+        min-height: 100vh;
+        height: 100vh;
+      }
 
-            .area--clickable {
-                cursor: pointer;
-            }
+      #imageContainer img {
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
 
-            .row {
-                border: 1px solid blue;
-                background-color: #ffffff80;
-                align-self: center;
-            }
+      .area--clickable {
+        cursor: pointer;
+      }
 
-            .row__stats {
-                height: 6vh;
-                /* flex-grow: 0; */
-            }
-            
-            .row__upper {
-                display: flex;
-                padding-top: 6.25vh;
-                align-self: center;
-                /* margin: 0 8vh; */
-                column-gap: 1.5vh;
-                
-            }
+      .row {
+        border: 1px solid blue;
+        background-color: #ffffff80;
+        align-self: center;
+      }
 
-            .row__upper .area--clickable {
-                height: 29vh;
-                border: 1px solid red;
-                background-color: #ffffff80;
-                align-self: center;
-            }
+      .row__stats {
+        height: 6vh;
+        /* flex-grow: 0; */
+      }
 
-            .row__middle {
-                /* padding: 0% 13% 0 25%; */
-                /* padding-top: 13%; */
-                /* padding: 0rem 13vw 0rem 13vw; */
-                display: flex;
-                /* margin: 0; */
-                column-gap: 0.75rem;
-            }
+      .row__upper {
+        display: flex;
+        padding-top: 6.25vh;
+        align-self: center;
+        /* margin: 0 8vh; */
+        column-gap: 1.5vh;
+      }
 
-            .row__middle .area--clickable {
-                /* padding-top: 13%; */
-                /* margin: 0 8%; */
-                column-gap: 0.75rem;
-            }
+      .row__upper .area--clickable {
+        height: 29vh;
+        border: 1px solid red;
+        background-color: #ffffff80;
+        align-self: center;
+      }
 
-            .row__bottom {
-                padding-top: 13%;
-                /* margin: 0 8%; */
-                column-gap: 0.75vh;
-            }
+      .row__middle {
+        /* padding: 0% 13% 0 25%; */
+        /* padding-top: 13%; */
+        /* padding: 0rem 13vw 0rem 13vw; */
+        display: flex;
+        /* margin: 0; */
+        column-gap: 0.75rem;
+      }
 
-            .row__bottom .area--clickable {
-                /* padding-top: 13%; */
-                /* margin: 0 8%; */
-                align-self: center;
-                /* column-gap: 0.75rem; */
-            }
+      .row__middle .area--clickable {
+        /* padding-top: 13%; */
+        /* margin: 0 8%; */
+        column-gap: 0.75rem;
+      }
 
-            #area_kitchen_1 {
-                width: 10.35rem;
-                /* width: 8vw; */
-            }
+      .row__bottom {
+        padding-top: 13%;
+        /* margin: 0 8%; */
+        column-gap: 0.75vh;
+      }
 
-            #area_kitchen_2 {
-                width: 14vh;
-            }
+      .row__bottom .area--clickable {
+        /* padding-top: 13%; */
+        /* margin: 0 8%; */
+        align-self: center;
+        /* column-gap: 0.75rem; */
+      }
 
-            #area_kitchen_3 {
-                width: 9rem;
-                /* margin-right: 3%; */
-            }
+      #area_kitchen_1 {
+        width: 10.35rem;
+        /* width: 8vw; */
+      }
 
-            #area_kitchen_4,
-            #area_kitchen_5 {
-                width: 10em;
-                height: 26rem;
-            }
+      #area_kitchen_2 {
+        width: 14vh;
+      }
 
-            #area_kitchen_6 {
-                width: 1vw;
-                height: 2vw;
-                margin: 2vw;
-            }
-            
-            #area_kitchen_7 {
-                width: 0vw;
-                /* height: 4vw; */
-            }
+      #area_kitchen_3 {
+        width: 9rem;
+        /* margin-right: 3%; */
+      }
 
-            body {
-                line-height: 1.5;
-                -webkit-font-smoothing: antialiased;
-                font-family: Arial, sans-serif;
-                text-align: center;
-                background-color: #aaa;
-                margin: 0;
-                opacity: 0;
-                animation: fadeIn 1.5s ease-in-out forwards;
-            }
+      #area_kitchen_4,
+      #area_kitchen_5 {
+        width: 10em;
+        height: 26rem;
+      }
 
-            img {
-                height: auto;
-            }
-            
-            #instructions {
-                font-size: 150%;
-                margin: 8em;
-                padding: 2em;
-                background-color: #ddd;
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
-                display: none;
-            }
+      #area_kitchen_6 {
+        width: 1vw;
+        height: 2vw;
+        margin: 2vw;
+      }
 
-            #counter {
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-                font-size: 18px;
-                padding: 5px 10px;
-                border-radius: 10px;
-                background-color: #3498db;
-                color: #fff;
-                font-weight: bold;
-            }
+      #area_kitchen_7 {
+        width: 0vw;
+        /* height: 4vw; */
+      }
 
-            #timer {
-                position: absolute;
-                top: 1rem;
-                right: 8rem;
-                font-size: 18px;
-                padding: 5px 10px;
-                border-radius: 10px;
-                background-color: #3498db;
-                color: #fff;
-                font-weight: bold;
-            }
+      body {
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #aaa;
+        margin: 0;
+        opacity: 0;
+        animation: fadeIn 1.5s ease-in-out forwards;
+      }
 
-            #foundCounter {
-                position: absolute;
-                top: 1rem;
-                right: 15.25rem;
-                font-size: 18px;
-                padding: 5px 10px;
-                border-radius: 10px;
-                background-color: #3498db;
-                color: #fff;
-                font-weight: bold;
-            }
+      img {
+        height: auto;
+      }
 
-            .area--clickable {
-                cursor: pointer;
-            }
+      #instructions {
+        font-size: 150%;
+        margin: 8em;
+        padding: 2em;
+        background-color: #ddd;
+        border-radius: 1em;
+        box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
+        transition: opacity 0.5s ease-in-out;
+        display: none;
+      }
 
-            /* Styles the 'To the Bedroom' and 'To the Kitchen' buttons */
-            .controlButton {
-                display: none;
-                position: absolute;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                transition: background-color 0.3s ease-in-out;
-            }
+      #counter {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 18px;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background-color: #3498db;
+        color: #fff;
+        font-weight: bold;
+      }
 
-            /* TODO: adjust the left placement so that it always overlaps the kitchen image */
-            #goToBedroomButton {
-                left: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 1;
-                background-color: #3498db;
-                color: #fff;
-            }
+      #timer {
+        position: absolute;
+        top: 1rem;
+        right: 8rem;
+        font-size: 18px;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background-color: #3498db;
+        color: #fff;
+        font-weight: bold;
+      }
 
-            /* TODO: adjust the right placement so that it always overlaps the bedroom image */
-            #goToKitchenButton {
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 1;
-                background-color: #3498db;
-                color: #fff;
-            }
-        </style>
-    </head>
+      #foundCounter {
+        position: absolute;
+        top: 1rem;
+        right: 15.25rem;
+        font-size: 18px;
+        padding: 5px 10px;
+        border-radius: 10px;
+        background-color: #3498db;
+        color: #fff;
+        font-weight: bold;
+      }
 
-    <body>
-        <!-- Navigation Buttons-->
-        <!-- <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToBedroom()">&#9666; To the Bedroom</div>
+      .area--clickable {
+        cursor: pointer;
+      }
+
+      /* Styles the 'To the Bedroom' and 'To the Kitchen' buttons */
+      .controlButton {
+        display: none;
+        position: absolute;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      /* TODO: adjust the left placement so that it always overlaps the kitchen image */
+      #goToBedroomButton {
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        background-color: #3498db;
+        color: #fff;
+      }
+
+      /* TODO: adjust the right placement so that it always overlaps the bedroom image */
+      #goToKitchenButton {
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        background-color: #3498db;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation Buttons-->
+    <!-- <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToBedroom()">&#9666; To the Bedroom</div>
         <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToKitchen()">To the Kitchen &#9656;</div> -->
-        <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div>
-        <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
+    <div
+      id="goToBedroomButton"
+      class="controlButton area--clickable"
+      onclick="goToLocation('bedroom')"
+    >
+      &#9666; To the Bedroom
+    </div>
+    <div
+      id="goToKitchenButton"
+      class="controlButton area--clickable"
+      onclick="goToLocation('kitchen')"
+    >
+      To the Kitchen &#9656;
+    </div>
 
-        <div id="instructions">
-            <h1>Find Your Kitties!</h1>
-            <p>You are about to leave for work in a hurry...</p>
-            <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
-            <p>
-                Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
-            </p>
-            <button onclick="startGame()" font-size="200%">Start Searching</button>
-        </div>
+    <div id="instructions">
+      <h1>Find Your Kitties!</h1>
+      <p>You are about to leave for work in a hurry...</p>
+      <p>
+        but you haven't made sure all your cats haven't gotten into sticky
+        situations!
+      </p>
+      <p>
+        Check every place they could be hiding before the clock runs out or you
+        might be <b><u>late for work!</u></b>
+      </p>
+      <button onclick="startGame()" font-size="200%">Start Searching</button>
+    </div>
 
-        <div id="imageContainer">
-            <div class="row row__stats">
-                <span id="timer"><span id="timerTitle">Timer: </span><span id="timerValue">90</span></span>
-                <span id="counter"><span id="clickCounterTitle">Clicks: </span><span id="clickCounterValue">0</span></span>
-                <span id="foundCounter"><span id="foundCounterTitle">Found: </span><span id="foundCounterValue">0</span>/3</span>
-            </div>
-            <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" />
-            <!-- Clickable areas: Kitchen -->
-            <div class="row row__upper">
-                <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
-                <div class="area--clickable kitchen" id="area_kitchen_1">Area 1</div>
-                <div class="area--clickable kitchen" id="area_kitchen_2">Area 2</div>
-                <div class="area--clickable kitchen" id="area_kitchen_3">Area 3</div>
-                <div class="area--clickable kitchen" id="area_kitchen_4">Area 4</div>
-                <div class="area--clickable kitchen" id="area_kitchen_5">Area 5</div>
-            </div>
-            <div class="row row__middle">
-                <div class="area--clickable kitchen" id="area_kitchen_6">Area 6</div>
-                <div class="area--clickable kitchen" id="area_kitchen_7">Area 7</div>
-            </div>
-            <div class="row row__bottom">
-                <div class="area--clickable kitchen" id="area_kitchen_8">Area 8</div>
-                <div class="area--clickable kitchen" id="area_kitchen_9">Area 9</div>
-                <div class="area--clickable kitchen" id="area_kitchen_10">Area 10</div>
-                <div class="area--clickable kitchen" id="area_kitchen_11">Area 11</div>
-                <div class="area--clickable kitchen" id="area_kitchen_12">Area 12</div>
-                <div class="area--clickable kitchen" id="area_kitchen_13">Area 13</div>
-                <div class="area--clickable kitchen" id="area_kitchen_14">Area 14</div>
-                <div class="area--clickable kitchen" id="area_kitchen_15">Area 15</div>
-                <div class="area--clickable kitchen" id="area_kitchen_16">Area 16</div>
-                <div class="area--clickable kitchen" id="area_kitchen_17">Area 17</div>
-                <div class="area--clickable kitchen" id="area_kitchen_18">Area 18</div>
-                
-            </div>
-                <!-- <div
+    <div id="imageContainer">
+      <div class="row row__stats">
+        <span id="timer"
+          ><span id="timerTitle">Timer: </span
+          ><span id="timerValue">90</span></span
+        >
+        <span id="counter"
+          ><span id="clickCounterTitle">Clicks: </span
+          ><span id="clickCounterValue">0</span></span
+        >
+        <span id="foundCounter"
+          ><span id="foundCounterTitle">Found: </span
+          ><span id="foundCounterValue">0</span>/3</span
+        >
+      </div>
+      <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" />
+      <!-- Clickable areas: Kitchen -->
+      <div class="row row__upper">
+        <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
+        <!-- <div class="area--clickable kitchen" id="area_kitchen_1">Area 1</div>
+        <div class="area--clickable kitchen" id="area_kitchen_2">Area 2</div>
+        <div class="area--clickable kitchen" id="area_kitchen_3">Area 3</div>
+        <div class="area--clickable kitchen" id="area_kitchen_4">Area 4</div>
+        <div class="area--clickable kitchen" id="area_kitchen_5">Area 5</div> -->
+      </div>
+      <div class="row row__middle">
+        <!-- <div class="area--clickable kitchen" id="area_kitchen_6">Area 6</div>
+        <div class="area--clickable kitchen" id="area_kitchen_7">Area 7</div> -->
+      </div>
+      <div class="row row__bottom">
+        <!-- <div class="area--clickable kitchen" id="area_kitchen_8">Area 8</div>
+        <div class="area--clickable kitchen" id="area_kitchen_9">Area 9</div>
+        <div class="area--clickable kitchen" id="area_kitchen_10">Area 10</div>
+        <div class="area--clickable kitchen" id="area_kitchen_11">Area 11</div>
+        <div class="area--clickable kitchen" id="area_kitchen_12">Area 12</div>
+        <div class="area--clickable kitchen" id="area_kitchen_13">Area 13</div>
+        <div class="area--clickable kitchen" id="area_kitchen_14">Area 14</div>
+        <div class="area--clickable kitchen" id="area_kitchen_15">Area 15</div>
+        <div class="area--clickable kitchen" id="area_kitchen_16">Area 16</div>
+        <div class="area--clickable kitchen" id="area_kitchen_17">Area 17</div>
+        <div class="area--clickable kitchen" id="area_kitchen_18">Area 18</div> -->
+      </div>
+      <!-- <div
           class="area--clickable kitchen"
           id="area_4_kit"
           style="top: 80.5em; left: 35em; width: 38em; height: 6em"
@@ -387,368 +410,396 @@
         >
           Area 14
         </div> -->
-                <!--
+      <!--
         <div class="area--clickable kitchen" id="area_11_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 11</div>
         <div class="area--clickable kitchen" id="area_12_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 12</div>
         <div class="area--clickable kitchen" id="area_13_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 13</div>
         <div class="area--clickable kitchen" id="area_14_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 14</div> -->
-            <!-- </div> -->
-
-        <!-- Clickable areas: Bedroom -->
-        </div>
-
-        <script>
-            // Statistics
-            var clickCounter = 0;
-            var timer = 90;
-
-            // Areas
-            var clickedAreas = [];
-            var allAreas = [
-                area_kitchen_1,
-                area_kitchen_2,
-                area_kitchen_3,
-                area_kitchen_4,
-                area_kitchen_5,
-            ];
-            var allAreaIds = [];
-            var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
-            var catLocations = [];
-            var catsFound = 0;
-
-            // Graphics and UI
-            var imageContainer = document.getElementById("imageContainer");
-            var instructions = document.getElementById("instructions");
-            
-            // Interactables
-            var goToBedroomButton = document.getElementById("goToBedroomButton");
-            var goToKitchenButton = document.getElementById("goToKitchenButton");
-                        
-            // When DOM is fully loaded
-            document.addEventListener("DOMContentLoaded", function () {
-                allAreaIds = document.querySelectorAll('[id^="area_"]'); // Into allAreaIds NodeList, place all elements with id starting with "area_"
-                var arrayFromElements = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
-                //console.log(allAreaIds);
-                console.log('Elements with id beginning "area_" converted from NodeList to an array ' + arrayFromElements);
-                startGame();
-            });
-
-            function handleClick(e) {
-                //var area = e.target.id;
-                if (!clickedAreas.includes(e.currentTarget.id)) {
-                    clickedAreas.push(e.currentTarget.id);
-                    console.log(e.currentTarget.id);
-                }
-            }
-
-            // //function handleClick(e, area) {
-            //   if (clickedAreas.includes(area)) {
-            //     alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
-            //   } else {
-            //     clickedAreas.push(area);
-            //     clickCounter++;
-            //     document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
-            //     alert('Clicked on ' + area);
-            //     // You can replace the alert with any other action you want
-            // console.log(e.target.id);
-            //  console.log(e.currentTarget.id);
-
-            //console.log(e.srcElement.id);
-            //console.log(area);
-            //   }
-
-            // function handleClick(e) {
-            //   //var area = e.target.id;
-
-            //   //function handleClick(e, area) {
-            //   // if (clickedAreas.includes(area)) {
-            //   //   alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
-            //   // } else {
-            //   //   clickedAreas.push(area);
-            //   //   clickCounter++;
-            //   //   document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
-            //   //   alert('Clicked on ' + area);
-            //   //   // You can replace the alert with any other action you want
-            //   // console.log(e.target.id);
-            //   // console.log(e.currentTarget.id);
-
-            //   alert(e.currentTarget);
-            //   if (!clickedAreas.includes(e.currentTarget.id)) {
-            //     clickedAreas.push(e.currentTarget.id);
-            //     console.log(e.currentTarget.id);
-            //   }
-
-            //   console.log(e.srcElement.id);
-            //   console.log(area);
-            //   //   }
-            //   // }
-            // }
-
-            // function goToKitchen() {
-            //     var goToBedroomButton = document.getElementById('goToBedroomButton');
-            //     var goToKitchenButton = document.getElementById('goToKitchenButton');
-
-            //     // Hide the existing goToBedroomButton
-            //     goToBedroomButton.style.display = 'block';
-
-            //     // Show the goToKitchenButton
-            //     goToKitchenButton.style.display = 'none';
-            //     // changeImage('kitchen');
-            //     goToLocation('kitchen');
-            // }
-            
-            function startGame() {
-                console.log("startGame() fired");
-                
-                console.log(
-                    instructions,
-                    imageContainer,
-                    goToBedroomButton,
-                    goToKitchenButton
-                );
-
-                instructions.style.opacity = 0;
-
-                setTimeout(function () {
-                    instructions.style.display = "none";
-
-                    imageContainer.style.display = "block";
-                    imageContainer.style.opacity = 1;
-
-                    goToBedroomButton.style.display = "block";
-                }, 500); // Set the duration of the transition
-                
-                allAreaIds.forEach(element => {
-                    console.log(element);
-                });
-                
-                //startTimer();
-            }
-
-            // TODO: get this working; at present, the fade to kitchen.jpg doesnt work.
-            // TODO: pull the repeated declarations of goToXButton out and move them up.
-            function goToKitchen() {
-                var goToBedroomButton = document.getElementById("goToBedroomButton");
-                    var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-                    // Apply fade-out animation to the image container
-                    imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-
-                    // Hide the existing goToBedroomButton
-                    goToKitchenButton.style.display = "none";
-
-                    // Show the goToKitchenButton after a delay
-                    setTimeout(function () {
-                        goToBedroomButton.style.display = "block";
-                    }, 500);
-
-                    // Change the image source after a delay to synchronize with the fade-out animation
-                    setTimeout(function () {
-                        // Change the image source after fade-out is complete
-                        // document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-                        document.getElementById("kitchenImage").src = "img/kitchen.jpg";
-
-                        // Apply fade-in animation to the image container
-                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-                    }, 10);
-            }
-            
-            // function goToKitchen() {
-            //     var imageContainer = document.getElementById("imageContainer");
-            //     var goToBedroomButton = document.getElementById("goToBedroomButton");
-            //     var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-            //     //     // Show the goToKitchenButton
-            //     //     goToKitchenButton.style.display = 'none';
-            //     //     // changeImage('kitchen');
-            //     //     goToLocation('kitchen');
-            //     var imageContainer = document.getElementById("imageContainer");
-
-            //     // Apply fade-out animation to the image container
-            //     imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-
-            //     // Hide the existing goToKitchenButton
-            //     goToKitchenButton.style.display = "none";
-
-            //     // Show the goToKitchenButton after a delay
-            //     setTimeout(function () {
-            //         goToBedroomButton.style.display = "block";
-            //     }, 500);
-
-            //     // Change the image source after a delay to synchronize with the fade-out animation
-            //     setTimeout(function () {
-            //         // Change the image source after fade-out is complete
-            //         document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-
-            //         // Apply fade-in animation to the image container
-            //         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-            //     }, 10);
-            // }
-
-            function goToBedroom() {
-                var goToBedroomButton = document.getElementById("goToBedroomButton");
-                    var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-                    // Apply fade-out animation to the image container
-                    imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-
-                    // Hide the existing goToBedroomButton
-                    goToBedroomButton.style.display = "none";
-
-                    // Show the goToKitchenButton after a delay
-                    setTimeout(function () {
-                        goToKitchenButton.style.display = "block";
-                    }, 500);
-
-                    // Change the image source after a delay to synchronize with the fade-out animation
-                    setTimeout(function () {
-                        // Change the image source after fade-out is complete
-                        document.getElementById("kitchenImage").src = "img/bedroom.jpg";
-
-                        // Apply fade-in animation to the image container
-                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-                    }, 10);
-            }
-
-            // function goToBedroom() {
-            //     var imageContainer = document.getElementById("imageContainer");
-            //     var goToBedroomButton = document.getElementById("goToBedroomButton");
-            //     var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-            //     // Apply fade-out animation to the image container
-            //     imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-
-            //     // Hide the existing goToBedroomButton
-            //     goToBedroomButton.style.display = "none";
-
-            //     // Show the goToKitchenButton after a delay
-            //     setTimeout(function () {
-            //         goToKitchenButton.style.display = "block";
-            //     }, 500);
-
-            //     // Change the image source after a delay to synchronize with the fade-out animation
-            //     setTimeout(function () {
-            //         // Change the image source after fade-out is complete
-            //         document.getElementById("kitchenImage").src = "img/bedroom.jpg";
-
-            //         // Apply fade-in animation to the image container
-            //         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-            //     }, 10);
-            // }
-            
-            function goToLocation(location) {
-                console.log("goToLocation fired: " + location);
-                var imageContainer = document.getElementById("imageContainer");
-                if (location === "bedroom") {
-                    var goToBedroomButton = document.getElementById("goToBedroomButton");
-                    var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-                    imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards"; // Apply fade-out animation to the image container
-
-                    goToBedroomButton.style.display = "none"; // Hides the goToBedroomButton
-
-                    // Show the goToKitchenButton after a delay
-                    setTimeout(function () {
-                        goToKitchenButton.style.display = "block";
-                    }, 500);
-
-                    // Change the image source after a delay to synchronize with the fade-out animation
-                    setTimeout(function () {
-                        document.getElementById("kitchenImage").src = "img/bedroom.jpg"; // Change the image source after fade-out is complete
-
-                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards"; // Apply fade-in animation to the image container
-                    }, 10);
-                    updateClickableAreas("bedroom");
-                } else if (location === "kitchen") {
-                    goToKitchen();
-                    updateClickableAreas("kitchen");
-                } else {
-                    alert("Failed to goToLocation() with an invalid value.");
-                }
-            }
-
-            function updateClickableAreas(location) {
-                if (location === "bedroom") {
-                    
-                } else if (location === "kitchen") {
-
-                } else {
-                    alert("Failed to update ClickableAreas to an invalid location.")
-                }
-            }
-
-            // function goToLocation(location) {
-            //     console.log("goToLocation fired: " + location);
-            //     if (location === "bedroom") {
-            //         var imageContainer = document.getElementById("imageContainer");
-
-            //         // Apply fade-out animation to the image container
-            //         imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-
-            //         // Hide the existing goToKitchenButton
-            //         goToKitchenButton.style.display = "none";
-
-            //         // Show the goToKitchenButton after a delay
-            //         setTimeout(function () {
-            //             goToBedroomButton.style.display = "block";
-            //         }, 500);
-
-            //         // Change the image source after a delay to synchronize with the fade-out animation
-            //         setTimeout(function () {
-            //             // Apply fade-in animation to the image container
-            //             imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-
-            //             // Change the image source after fade-out is complete
-            //             document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-            //         }, 10);
-            //     } else if (location === "kitchen") {
-            //         document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-            //     } else {
-            //         alert("location was an invalid parameter.");
-            //     }
-            // }
-
-
-            // Add functionality to swap the clickable areas of the image.
-            function changeImage(location) {
-                if (location == "bedroom") {
-                    document.getElementById("kitchenImage").src = "img/bedroom.jpg";
-                } else if (location == "kitchen") {
-                    document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-                }
-            }
-
-            function gameOver(success) {
-                if (success === true) {
-                    successful();
-                } else {
-                    failure();
-                }
-            }
-
-            // TODO: Change background image to a success image
-            // TODO: Show a card similar to the 'instructions' that indicates you were successful and presents your final stats
-            // function successful() {
-
-            // }
-
-            // TODO: Change background image to a failure image
-            // TODO: Show a card similar to the 'instructions' that indicates you failed and presents your final stats
-            // function failure() {
-
-            // }
-
-            // function stopTimer() {
-
-            // }
-
-            // TODO: implement a visual element for this
-            // function startTimer() {
-            //   var interval = window.setInterval(function(){
-            //     timer--;
-            //     console.log(timer);
-            //   }, 1100);
-            // }
-        </script>
-    </body>
+      <!-- </div> -->
+
+      <!-- Clickable areas: Bedroom -->
+    </div>
+
+    <script>
+      const topRow = document.querySelector('.row__upper');
+      const middleRow = document.querySelector('.row__middle');
+      const bottomRow = document.querySelector('.row__bottom');
+
+      const areas = [...Array(18)].map((_, i) => {
+        return `<div class="area--clickable kitchen" id="area_kitchen_${
+          i + 1
+        }">Area ${i + 1}</div>`;
+      });
+
+      console.log(`AREAS: `, areas);
+
+      areas.forEach((area, index) => {
+        if (index < 5) {
+          topRow.innerHTML += area;
+        } else if (index < 7) {
+          middleRow.innerHTML += area;
+        } else {
+          bottomRow.innerHTML += area;
+        }
+      });
+
+      // Statistics
+      var clickCounter = 0;
+      var timer = 90;
+
+      // Areas
+      var clickedAreas = [];
+      var allAreas = [
+        area_kitchen_1,
+        area_kitchen_2,
+        area_kitchen_3,
+        area_kitchen_4,
+        area_kitchen_5,
+      ];
+      var allAreaIds = [];
+      var areaNames = [
+        'that cupboard',
+        'that drawer',
+        'the sink',
+        'the curtain',
+        'the closet',
+      ];
+      var catLocations = [];
+      var catsFound = 0;
+
+      // Graphics and UI
+      var imageContainer = document.getElementById('imageContainer');
+      var instructions = document.getElementById('instructions');
+
+      // Interactables
+      var goToBedroomButton = document.getElementById('goToBedroomButton');
+      var goToKitchenButton = document.getElementById('goToKitchenButton');
+
+      // When DOM is fully loaded
+      document.addEventListener('DOMContentLoaded', function () {
+        allAreaIds = document.querySelectorAll('[id^="area_"]'); // Into allAreaIds NodeList, place all elements with id starting with "area_"
+        var arrayFromElements = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
+        //console.log(allAreaIds);
+        console.log(
+          'Elements with id beginning "area_" converted from NodeList to an array ' +
+            arrayFromElements
+        );
+        startGame();
+      });
+
+      function handleClick(e) {
+        //var area = e.target.id;
+        if (!clickedAreas.includes(e.currentTarget.id)) {
+          clickedAreas.push(e.currentTarget.id);
+          console.log(e.currentTarget.id);
+        }
+      }
+
+      // //function handleClick(e, area) {
+      //   if (clickedAreas.includes(area)) {
+      //     alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
+      //   } else {
+      //     clickedAreas.push(area);
+      //     clickCounter++;
+      //     document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
+      //     alert('Clicked on ' + area);
+      //     // You can replace the alert with any other action you want
+      // console.log(e.target.id);
+      //  console.log(e.currentTarget.id);
+
+      //console.log(e.srcElement.id);
+      //console.log(area);
+      //   }
+
+      // function handleClick(e) {
+      //   //var area = e.target.id;
+
+      //   //function handleClick(e, area) {
+      //   // if (clickedAreas.includes(area)) {
+      //   //   alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
+      //   // } else {
+      //   //   clickedAreas.push(area);
+      //   //   clickCounter++;
+      //   //   document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
+      //   //   alert('Clicked on ' + area);
+      //   //   // You can replace the alert with any other action you want
+      //   // console.log(e.target.id);
+      //   // console.log(e.currentTarget.id);
+
+      //   alert(e.currentTarget);
+      //   if (!clickedAreas.includes(e.currentTarget.id)) {
+      //     clickedAreas.push(e.currentTarget.id);
+      //     console.log(e.currentTarget.id);
+      //   }
+
+      //   console.log(e.srcElement.id);
+      //   console.log(area);
+      //   //   }
+      //   // }
+      // }
+
+      // function goToKitchen() {
+      //     var goToBedroomButton = document.getElementById('goToBedroomButton');
+      //     var goToKitchenButton = document.getElementById('goToKitchenButton');
+
+      //     // Hide the existing goToBedroomButton
+      //     goToBedroomButton.style.display = 'block';
+
+      //     // Show the goToKitchenButton
+      //     goToKitchenButton.style.display = 'none';
+      //     // changeImage('kitchen');
+      //     goToLocation('kitchen');
+      // }
+
+      function startGame() {
+        console.log('startGame() fired');
+
+        console.log(
+          instructions,
+          imageContainer,
+          goToBedroomButton,
+          goToKitchenButton
+        );
+
+        instructions.style.opacity = 0;
+
+        setTimeout(function () {
+          instructions.style.display = 'none';
+
+          imageContainer.style.display = 'block';
+          imageContainer.style.opacity = 1;
+
+          goToBedroomButton.style.display = 'block';
+        }, 500); // Set the duration of the transition
+
+        allAreaIds.forEach((element) => {
+          console.log(element);
+        });
+
+        //startTimer();
+      }
+
+      // TODO: get this working; at present, the fade to kitchen.jpg doesnt work.
+      // TODO: pull the repeated declarations of goToXButton out and move them up.
+      function goToKitchen() {
+        var goToBedroomButton = document.getElementById('goToBedroomButton');
+        var goToKitchenButton = document.getElementById('goToKitchenButton');
+
+        // Apply fade-out animation to the image container
+        imageContainer.style.animation = 'fadeOut 0.5s ease-in-out forwards';
+
+        // Hide the existing goToBedroomButton
+        goToKitchenButton.style.display = 'none';
+
+        // Show the goToKitchenButton after a delay
+        setTimeout(function () {
+          goToBedroomButton.style.display = 'block';
+        }, 500);
+
+        // Change the image source after a delay to synchronize with the fade-out animation
+        setTimeout(function () {
+          // Change the image source after fade-out is complete
+          // document.getElementById("bedroomImage").src = "img/kitchen.jpg";
+          document.getElementById('kitchenImage').src = 'img/kitchen.jpg';
+
+          // Apply fade-in animation to the image container
+          imageContainer.style.animation = 'fadeIn 0.5s ease-in-out forwards';
+        }, 10);
+      }
+
+      // function goToKitchen() {
+      //     var imageContainer = document.getElementById("imageContainer");
+      //     var goToBedroomButton = document.getElementById("goToBedroomButton");
+      //     var goToKitchenButton = document.getElementById("goToKitchenButton");
+
+      //     //     // Show the goToKitchenButton
+      //     //     goToKitchenButton.style.display = 'none';
+      //     //     // changeImage('kitchen');
+      //     //     goToLocation('kitchen');
+      //     var imageContainer = document.getElementById("imageContainer");
+
+      //     // Apply fade-out animation to the image container
+      //     imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
+
+      //     // Hide the existing goToKitchenButton
+      //     goToKitchenButton.style.display = "none";
+
+      //     // Show the goToKitchenButton after a delay
+      //     setTimeout(function () {
+      //         goToBedroomButton.style.display = "block";
+      //     }, 500);
+
+      //     // Change the image source after a delay to synchronize with the fade-out animation
+      //     setTimeout(function () {
+      //         // Change the image source after fade-out is complete
+      //         document.getElementById("bedroomImage").src = "img/kitchen.jpg";
+
+      //         // Apply fade-in animation to the image container
+      //         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
+      //     }, 10);
+      // }
+
+      function goToBedroom() {
+        var goToBedroomButton = document.getElementById('goToBedroomButton');
+        var goToKitchenButton = document.getElementById('goToKitchenButton');
+
+        // Apply fade-out animation to the image container
+        imageContainer.style.animation = 'fadeOut 0.5s ease-in-out forwards';
+
+        // Hide the existing goToBedroomButton
+        goToBedroomButton.style.display = 'none';
+
+        // Show the goToKitchenButton after a delay
+        setTimeout(function () {
+          goToKitchenButton.style.display = 'block';
+        }, 500);
+
+        // Change the image source after a delay to synchronize with the fade-out animation
+        setTimeout(function () {
+          // Change the image source after fade-out is complete
+          document.getElementById('kitchenImage').src = 'img/bedroom.jpg';
+
+          // Apply fade-in animation to the image container
+          imageContainer.style.animation = 'fadeIn 0.5s ease-in-out forwards';
+        }, 10);
+      }
+
+      // function goToBedroom() {
+      //     var imageContainer = document.getElementById("imageContainer");
+      //     var goToBedroomButton = document.getElementById("goToBedroomButton");
+      //     var goToKitchenButton = document.getElementById("goToKitchenButton");
+
+      //     // Apply fade-out animation to the image container
+      //     imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
+
+      //     // Hide the existing goToBedroomButton
+      //     goToBedroomButton.style.display = "none";
+
+      //     // Show the goToKitchenButton after a delay
+      //     setTimeout(function () {
+      //         goToKitchenButton.style.display = "block";
+      //     }, 500);
+
+      //     // Change the image source after a delay to synchronize with the fade-out animation
+      //     setTimeout(function () {
+      //         // Change the image source after fade-out is complete
+      //         document.getElementById("kitchenImage").src = "img/bedroom.jpg";
+
+      //         // Apply fade-in animation to the image container
+      //         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
+      //     }, 10);
+      // }
+
+      function goToLocation(location) {
+        console.log('goToLocation fired: ' + location);
+        var imageContainer = document.getElementById('imageContainer');
+        if (location === 'bedroom') {
+          var goToBedroomButton = document.getElementById('goToBedroomButton');
+          var goToKitchenButton = document.getElementById('goToKitchenButton');
+
+          imageContainer.style.animation = 'fadeOut 0.5s ease-in-out forwards'; // Apply fade-out animation to the image container
+
+          goToBedroomButton.style.display = 'none'; // Hides the goToBedroomButton
+
+          // Show the goToKitchenButton after a delay
+          setTimeout(function () {
+            goToKitchenButton.style.display = 'block';
+          }, 500);
+
+          // Change the image source after a delay to synchronize with the fade-out animation
+          setTimeout(function () {
+            document.getElementById('kitchenImage').src = 'img/bedroom.jpg'; // Change the image source after fade-out is complete
+
+            imageContainer.style.animation = 'fadeIn 0.5s ease-in-out forwards'; // Apply fade-in animation to the image container
+          }, 10);
+          updateClickableAreas('bedroom');
+        } else if (location === 'kitchen') {
+          goToKitchen();
+          updateClickableAreas('kitchen');
+        } else {
+          alert('Failed to goToLocation() with an invalid value.');
+        }
+      }
+
+      function updateClickableAreas(location) {
+        if (location === 'bedroom') {
+        } else if (location === 'kitchen') {
+        } else {
+          alert('Failed to update ClickableAreas to an invalid location.');
+        }
+      }
+
+      // function goToLocation(location) {
+      //     console.log("goToLocation fired: " + location);
+      //     if (location === "bedroom") {
+      //         var imageContainer = document.getElementById("imageContainer");
+
+      //         // Apply fade-out animation to the image container
+      //         imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
+
+      //         // Hide the existing goToKitchenButton
+      //         goToKitchenButton.style.display = "none";
+
+      //         // Show the goToKitchenButton after a delay
+      //         setTimeout(function () {
+      //             goToBedroomButton.style.display = "block";
+      //         }, 500);
+
+      //         // Change the image source after a delay to synchronize with the fade-out animation
+      //         setTimeout(function () {
+      //             // Apply fade-in animation to the image container
+      //             imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
+
+      //             // Change the image source after fade-out is complete
+      //             document.getElementById("bedroomImage").src = "img/kitchen.jpg";
+      //         }, 10);
+      //     } else if (location === "kitchen") {
+      //         document.getElementById("bedroomImage").src = "img/kitchen.jpg";
+      //     } else {
+      //         alert("location was an invalid parameter.");
+      //     }
+      // }
+
+      // Add functionality to swap the clickable areas of the image.
+      function changeImage(location) {
+        if (location == 'bedroom') {
+          document.getElementById('kitchenImage').src = 'img/bedroom.jpg';
+        } else if (location == 'kitchen') {
+          document.getElementById('bedroomImage').src = 'img/kitchen.jpg';
+        }
+      }
+
+      function gameOver(success) {
+        if (success === true) {
+          successful();
+        } else {
+          failure();
+        }
+      }
+
+      // TODO: Change background image to a success image
+      // TODO: Show a card similar to the 'instructions' that indicates you were successful and presents your final stats
+      // function successful() {
+
+      // }
+
+      // TODO: Change background image to a failure image
+      // TODO: Show a card similar to the 'instructions' that indicates you failed and presents your final stats
+      // function failure() {
+
+      // }
+
+      // function stopTimer() {
+
+      // }
+
+      // TODO: implement a visual element for this
+      // function startTimer() {
+      //   var interval = window.setInterval(function(){
+      //     timer--;
+      //     console.log(timer);
+      //   }, 1100);
+      // }
+    </script>
+  </body>
 </html>
