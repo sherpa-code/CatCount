@@ -77,28 +77,31 @@
             .row {
                 border: 1px solid blue;
                 background-color: #ffffff80;
-                align-self: center;
+                /* align-self: center; */
+                justify-content: center;
             }
 
             .row__stats {
-                height: 6vh;
+                height: 4rem;
                 /* flex-grow: 0; */
             }
             
             .row__upper {
                 display: flex;
-                padding-top: 6.25vh;
-                align-self: center;
+                padding-top: 5rem;
+                /* align-self: center; */
+                justify-content: center;
                 /* margin: 0 8vh; */
-                column-gap: 1.5vh;
-                
+                column-gap: 1.5rem;    
             }
-
+            
             .row__upper .area--clickable {
-                height: 29vh;
+                height: 17rem;
                 border: 1px solid red;
                 background-color: #ffffff80;
-                align-self: center;
+                /* align-self: center; */
+                justify-content: center;
+                /* padding: 0 7rem 0 7rem; */
             }
 
             .row__middle {
@@ -117,15 +120,17 @@
             }
 
             .row__bottom {
-                padding-top: 13%;
+                /* padding-top: 13%; */
                 /* margin: 0 8%; */
-                column-gap: 0.75vh;
+                column-gap: 0.75rem;
+
             }
 
             .row__bottom .area--clickable {
                 /* padding-top: 13%; */
                 /* margin: 0 8%; */
-                align-self: center;
+                /* align-self: center; */
+                justify-content: center;
                 /* column-gap: 0.75rem; */
             }
 
@@ -135,7 +140,8 @@
             }
 
             #area_kitchen_2 {
-                width: 14vh;
+                /* width: 14vh; */
+                width: 9rem;
             }
 
             #area_kitchen_3 {
@@ -145,18 +151,18 @@
 
             #area_kitchen_4,
             #area_kitchen_5 {
-                width: 10em;
+                width: 11rem;
                 height: 26rem;
             }
 
             #area_kitchen_6 {
-                width: 1vw;
-                height: 2vw;
-                margin: 2vw;
+                /* width: 1rem; */
+                height: 2rem;
+                /* margin: 2rem; */
             }
             
             #area_kitchen_7 {
-                width: 0vw;
+                /* width: 0vw; */
                 /* height: 4vw; */
             }
 
@@ -174,52 +180,30 @@
             img {
                 height: auto;
             }
-            
-            #instructions {
-                font-size: 150%;
-                margin: 8em;
-                padding: 2em;
-                background-color: #ddd;
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
-                display: none;
+
+            .stats--display {
+                position: absolute;
+                padding: 0.15rem 0.65rem;
+                border-radius: 0.5rem;
+                background-color: #3498db;
+                color: #fff;
+                font-weight: bold;
+                font-size: 1.15rem;
             }
 
             #counter {
-                position: absolute;
                 top: 1rem;
                 right: 1rem;
-                font-size: 18px;
-                padding: 5px 10px;
-                border-radius: 10px;
-                background-color: #3498db;
-                color: #fff;
-                font-weight: bold;
             }
 
             #timer {
-                position: absolute;
                 top: 1rem;
                 right: 8rem;
-                font-size: 18px;
-                padding: 5px 10px;
-                border-radius: 10px;
-                background-color: #3498db;
-                color: #fff;
-                font-weight: bold;
             }
 
             #foundCounter {
-                position: absolute;
                 top: 1rem;
                 right: 15.25rem;
-                font-size: 18px;
-                padding: 5px 10px;
-                border-radius: 10px;
-                background-color: #3498db;
-                color: #fff;
-                font-weight: bold;
             }
 
             .area--clickable {
@@ -239,7 +223,7 @@
 
             /* TODO: adjust the left placement so that it always overlaps the kitchen image */
             #goToBedroomButton {
-                left: 10px;
+                left: 10rem;
                 top: 50%;
                 transform: translateY(-50%);
                 z-index: 1;
@@ -256,6 +240,29 @@
                 background-color: #3498db;
                 color: #fff;
             }
+
+            #instructions {
+                font-size: 150%;
+                margin: 8em;
+                padding: 2em;
+                background-color: #ddd;
+                border-radius: 1em;
+                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
+                transition: opacity 0.5s ease-in-out;
+                display: none;
+            }
+
+            @media screen and (max-width: 1023px) {
+                .row__upper {
+                    flex-direction: column;
+                }
+            }
+
+            /* @media screen and (min-width: 1023px) {
+                .row__upper {
+                    flex-direction: column;
+                }
+            } */
         </style>
     </head>
 
@@ -278,13 +285,13 @@
 
         <div id="imageContainer">
             <div class="row row__stats">
-                <span id="timer"><span id="timerTitle">Timer: </span><span id="timerValue">90</span></span>
-                <span id="counter"><span id="clickCounterTitle">Clicks: </span><span id="clickCounterValue">0</span></span>
-                <span id="foundCounter"><span id="foundCounterTitle">Found: </span><span id="foundCounterValue">0</span>/3</span>
+                <span id="timer" class="stats--display"><span id="timerTitle">Timer: </span><span id="timerValue">90</span></span>
+                <span id="counter" class="stats--display"><span id="clickCounterTitle">Clicks: </span><span id="clickCounterValue">0</span></span>
+                <span id="foundCounter" class="stats--display"><span id="foundCounterTitle">Found: </span><span id="foundCounterValue">0</span>/3</span>
             </div>
             <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" />
             <!-- Clickable areas: Kitchen -->
-            <div class="row row__upper">
+            <div class="row row__upper"> <!-- remove kitchen from child divs and put here -->
                 <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
                 <div class="area--clickable kitchen" id="area_kitchen_1">Area 1</div>
                 <div class="area--clickable kitchen" id="area_kitchen_2">Area 2</div>
