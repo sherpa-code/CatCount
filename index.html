@@ -79,6 +79,7 @@
                 justify-content: center;
                 padding-left: 4rem;
                 padding-right: 4rem;
+                flex-grow: 1;
             }
 
             .row__stats {
@@ -90,7 +91,7 @@
                 padding-top: 4rem;
             }
             
-            /* TODO: remove the background color in the final version */
+            /* TODO: dev-only - remove background-color in final version*/
             .row__upper .area--clickable {
                 height: 17rem;
                 background-color: #ffffff80;
@@ -106,7 +107,9 @@
 
             .row__bottom {
                 column-gap: 0.75rem;
-
+                flex-grow: 1;
+                overflow: hidden;
+                flex-direction: column;
             }
 
             .row__bottom .area--clickable {
@@ -153,6 +156,7 @@
                 right: 10rem;
             }
 
+             /* TODO: turn this back on in the final version */
             #instructions {
                 font-size: 150%;
                 margin: 8em;
@@ -161,18 +165,19 @@
                 border-radius: 1em;
                 box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
                 transition: opacity 0.5s ease-in-out;
-                display: none; /* TODO: turn this back on in the final version */
+                display: none;
             }
             
             #imageContainer {
                 margin: auto;
                 position: relative;
                 transition: opacity 0.5s ease-in-out;
-                display: block;
+                display: flex;
+                flex-direction: column;
                 max-width: 100vh;
                 max-height: 100%;
                 min-height: 100%;
-                height: 100%;
+                height: 100vh;
             }
             
             #imageContainer img { 
@@ -211,13 +216,20 @@
             #area_kitchen_4,
             #area_kitchen_5 {
                 width: 11rem;
-                height: 26rem;
+                height: 20rem;
             }
 
             #area_kitchen_6 {
+                width: 10rem;
+                height: 4rem;
+                align-self: flex-end;
             }
             
             #area_kitchen_7 {
+                width: 7rem;
+                height: 8rem;
+                padding-top: 1rem;
+                align-self: flex-end;
             }
 
             @media screen and (max-width: 1023px) {
@@ -396,7 +408,7 @@
                     console.log(element);
                 });
                 
-                //startTimer();
+                //startTimer(); // TODO: Reenable in the final version
             }
 
             // TODO: get this working; at present, the fade to kitchen.jpg doesnt work.
@@ -405,12 +417,10 @@
                 var goToBedroomButton = document.getElementById("goToBedroomButton");
                     var goToKitchenButton = document.getElementById("goToKitchenButton");
 
-                    // Apply fade-out animation to the image container
-                    imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-
+                    
                     // Hide the existing goToBedroomButton
                     goToKitchenButton.style.display = "none";
-
+                    
                     // Show the goToKitchenButton after a delay
                     setTimeout(function () {
                         goToBedroomButton.style.display = "block";
@@ -421,7 +431,7 @@
                         // Change the image source after fade-out is complete
                         // document.getElementById("bedroomImage").src = "img/kitchen.jpg";
                         document.getElementById("kitchenImage").src = "img/kitchen.jpg";
-
+                        
                         // Apply fade-in animation to the image container
                         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
                     }, 10);
@@ -429,10 +439,7 @@
 
             function goToBedroom() {
                 var goToBedroomButton = document.getElementById("goToBedroomButton");
-                    var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-                    // Apply fade-out animation to the image container
-                    imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
+                var goToKitchenButton = document.getElementById("goToKitchenButton");
 
                     // Hide the existing goToBedroomButton
                     goToBedroomButton.style.display = "none";
@@ -455,12 +462,10 @@
             function goToLocation(location) {
                 console.log("goToLocation fired: " + location);
                 var imageContainer = document.getElementById("imageContainer");
+                
+                // Apply fade-out animation to the image container
+                imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
                 if (location === "bedroom") {
-                    var goToBedroomButton = document.getElementById("goToBedroomButton");
-                    var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-                    imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards"; // Apply fade-out animation to the image container
-
                     goToBedroomButton.style.display = "none"; // Hides the goToBedroomButton
 
                     // Show the goToKitchenButton after a delay
