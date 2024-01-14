@@ -50,135 +50,67 @@
                 }
             }
 
-            #imageContainer {
-                margin: auto;
-                max-width: 100vh;
-                position: relative;
-                transition: opacity 0.5s ease-in-out;
-                display: block;
-                max-height: 100vh;
-                min-height: 100vh;
-                height: 100vh;
+            img {
+                height: auto;
             }
 
-            #imageContainer img { 
-                position: absolute;
-                z-index: -1;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-            }
-
-            .area--clickable {
-                cursor: pointer;
-            }
-
-            .row {
-                border: 1px solid blue;
-                background-color: #ffffff80;
-                /* align-self: center; */
-                justify-content: center;
-            }
-
-            .row__stats {
-                height: 4rem;
-                /* flex-grow: 0; */
-            }
-            
-            .row__upper {
-                display: flex;
-                padding-top: 5rem;
-                /* align-self: center; */
-                justify-content: center;
-                /* margin: 0 8vh; */
-                column-gap: 1.5rem;    
-            }
-            
-            .row__upper .area--clickable {
-                height: 17rem;
-                border: 1px solid red;
-                background-color: #ffffff80;
-                /* align-self: center; */
-                justify-content: center;
-                /* padding: 0 7rem 0 7rem; */
-            }
-
-            .row__middle {
-                /* padding: 0% 13% 0 25%; */
-                /* padding-top: 13%; */
-                /* padding: 0rem 13vw 0rem 13vw; */
-                display: flex;
-                /* margin: 0; */
-                column-gap: 0.75rem;
-            }
-
-            .row__middle .area--clickable {
-                /* padding-top: 13%; */
-                /* margin: 0 8%; */
-                column-gap: 0.75rem;
-            }
-
-            .row__bottom {
-                /* padding-top: 13%; */
-                /* margin: 0 8%; */
-                column-gap: 0.75rem;
-
-            }
-
-            .row__bottom .area--clickable {
-                /* padding-top: 13%; */
-                /* margin: 0 8%; */
-                /* align-self: center; */
-                justify-content: center;
-                /* column-gap: 0.75rem; */
-            }
-
-            #area_kitchen_1 {
-                width: 10.35rem;
-                /* width: 8vw; */
-            }
-
-            #area_kitchen_2 {
-                /* width: 14vh; */
-                width: 9rem;
-            }
-
-            #area_kitchen_3 {
-                width: 9rem;
-                /* margin-right: 3%; */
-            }
-
-            #area_kitchen_4,
-            #area_kitchen_5 {
-                width: 11rem;
-                height: 26rem;
-            }
-
-            #area_kitchen_6 {
-                /* width: 1rem; */
-                height: 2rem;
-                /* margin: 2rem; */
-            }
-            
-            #area_kitchen_7 {
-                /* width: 0vw; */
-                /* height: 4vw; */
-            }
-
+            /* TODO: background will be one of a few blurred background images of cats to fill the negative space */
             body {
                 line-height: 1.5;
                 -webkit-font-smoothing: antialiased;
                 font-family: Arial, sans-serif;
                 text-align: center;
-                background-color: #aaa;
+                background-color: #4d4d4d;
                 margin: 0;
                 opacity: 0;
                 animation: fadeIn 1.5s ease-in-out forwards;
             }
 
-            img {
-                height: auto;
+            .area--clickable {
+                cursor: pointer;
+                border: 1px solid red;
+            }
+
+            /* TODO: remove the styling other than justify in the final version */
+            .row {
+                display: flex;
+                border: 1px solid blue;
+                background-color: #ffffff80;
+                justify-content: center;
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+
+            .row__stats {
+                height: 4rem;
+            }
+            
+            .row__upper {
+                column-gap: 1.5rem;
+                padding-top: 4rem;
+            }
+            
+            /* TODO: remove the background color in the final version */
+            .row__upper .area--clickable {
+                height: 17rem;
+                background-color: #ffffff80;
+            }
+
+            .row__middle {
+                column-gap: 2rem;
+            }
+
+            .row__middle .area--clickable {
+                column-gap: 0.75rem;
+            }
+
+            .row__bottom {
+                column-gap: 0.75rem;
+
+            }
+
+            .row__bottom .area--clickable {
+
             }
 
             .stats--display {
@@ -191,7 +123,65 @@
                 font-size: 1.15rem;
             }
 
-            #counter {
+            .area--clickable {
+                cursor: pointer;
+            }
+
+            /* Styles the 'To the Bedroom' and 'To the Kitchen' buttons */
+            .controlButton {
+                display: none;
+                position: absolute;
+                top: 50%;
+                padding: 0.4rem;
+                border: none;
+                border-radius: 0.35rem;
+                font-size: 1rem;
+                transition: background-color 0.3s ease-in-out;
+                transform: translateY(-50%);
+                z-index: 1;
+                background-color: #3498db;
+                color: #fff;
+            }
+
+            /* TODO: adjust the left placement so that it always overlaps the kitchen image */
+            #goToBedroomButton {
+                left: 10rem;
+            }
+
+            /* TODO: adjust the right placement so that it always overlaps the bedroom image */
+            #goToKitchenButton {
+                right: 10rem;
+            }
+
+            #instructions {
+                font-size: 150%;
+                margin: 8em;
+                padding: 2em;
+                background-color: #ddd;
+                border-radius: 1em;
+                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
+                transition: opacity 0.5s ease-in-out;
+                display: none; /* TODO: turn this back on in the final version */
+            }
+            
+            #imageContainer {
+                margin: auto;
+                position: relative;
+                transition: opacity 0.5s ease-in-out;
+                display: block;
+                max-width: 100vh;
+                max-height: 100%;
+                min-height: 100%;
+                height: 100%;
+            }
+            
+            #imageContainer img { 
+                position: absolute;
+                z-index: -1;
+                inset: 0;
+            }
+
+            #clickCounter {
                 top: 1rem;
                 right: 1rem;
             }
@@ -206,50 +196,28 @@
                 right: 15.25rem;
             }
 
-            .area--clickable {
-                cursor: pointer;
+            #area_kitchen_1 {
+                width: 10.35rem;
             }
 
-            /* Styles the 'To the Bedroom' and 'To the Kitchen' buttons */
-            .controlButton {
-                display: none;
-                position: absolute;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                transition: background-color 0.3s ease-in-out;
+            #area_kitchen_2 {
+                width: 9rem;
             }
 
-            /* TODO: adjust the left placement so that it always overlaps the kitchen image */
-            #goToBedroomButton {
-                left: 10rem;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 1;
-                background-color: #3498db;
-                color: #fff;
+            #area_kitchen_3 {
+                width: 9rem;
             }
 
-            /* TODO: adjust the right placement so that it always overlaps the bedroom image */
-            #goToKitchenButton {
-                right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 1;
-                background-color: #3498db;
-                color: #fff;
+            #area_kitchen_4,
+            #area_kitchen_5 {
+                width: 11rem;
+                height: 26rem;
             }
 
-            #instructions {
-                font-size: 150%;
-                margin: 8em;
-                padding: 2em;
-                background-color: #ddd;
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
-                display: none;
+            #area_kitchen_6 {
+            }
+            
+            #area_kitchen_7 {
             }
 
             @media screen and (max-width: 1023px) {
@@ -257,19 +225,17 @@
                     flex-direction: column;
                 }
             }
-
+            
             /* @media screen and (min-width: 1023px) {
                 .row__upper {
                     flex-direction: column;
                 }
             } */
-        </style>
+            </style>
     </head>
-
+    
     <body>
-        <!-- Navigation Buttons-->
-        <!-- <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToBedroom()">&#9666; To the Bedroom</div>
-        <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToKitchen()">To the Kitchen &#9656;</div> -->
+        <!-- goToLocation Buttons -->
         <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div>
         <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
 
@@ -284,12 +250,12 @@
         </div>
 
         <div id="imageContainer">
-            <div class="row row__stats">
-                <span id="timer" class="stats--display"><span id="timerTitle">Timer: </span><span id="timerValue">90</span></span>
-                <span id="counter" class="stats--display"><span id="clickCounterTitle">Clicks: </span><span id="clickCounterValue">0</span></span>
-                <span id="foundCounter" class="stats--display"><span id="foundCounterTitle">Found: </span><span id="foundCounterValue">0</span>/3</span>
-            </div>
             <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" />
+            <div class="row row__stats">
+                <span id="timer" class="stats--display">Timer: <span id="timerValue">90</span></span>
+                <span id="clickCounter" class="stats--display">Clicks: <span id="clickCounterValue">0</span></span>
+                <span id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</span>
+            </div>
             <!-- Clickable areas: Kitchen -->
             <div class="row row__upper"> <!-- remove kitchen from child divs and put here -->
                 <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
@@ -314,94 +280,8 @@
                 <div class="area--clickable kitchen" id="area_kitchen_15">Area 15</div>
                 <div class="area--clickable kitchen" id="area_kitchen_16">Area 16</div>
                 <div class="area--clickable kitchen" id="area_kitchen_17">Area 17</div>
-                <div class="area--clickable kitchen" id="area_kitchen_18">Area 18</div>
-                
+                <div class="area--clickable kitchen" id="area_kitchen_18">Area 18</div>                
             </div>
-                <!-- <div
-          class="area--clickable kitchen"
-          id="area_4_kit"
-          style="top: 80.5em; left: 35em; width: 38em; height: 6em"
-        >
-          Area 4
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_5_kit"
-          style="top: 88em; left: 15.5em; width: 18em; height: 30.75em"
-        >
-          Area 5
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_6_kit"
-          style="top: 87.5em; left: 35em; width: 15.5em; height: 27em"
-        >
-          Area 6
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_7_kit"
-          style="top: 87.5em; left: 52.5em; width: 19.5em; height: 27em"
-        >
-          Area 7
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_8_kit"
-          style="top: 80.5em; left: 75.75em; width: 20.25em; height: 11.5em"
-        >
-          Area 8
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_9_kit"
-          style="top: 93em; left: 75em; width: 21em; height: 20em"
-        >
-          Area 9
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_10_kit"
-          style="top: 80em; left: 101em; width: 15.5em; height: 4.5em"
-        >
-          Area 10
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_11_kit"
-          style="top: 85em; left: 101em; width: 15.5em; height: 7em"
-        >
-          Area 11
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_12_kit"
-          style="top: 93em; left: 101em; width: 15.5em; height: 8em"
-        >
-          Area 12
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_13_kit"
-          style="top: 103em; left: 101em; width: 15.5em; height: 11em"
-        >
-          Area 13
-        </div>
-        <div
-          class="area--clickable kitchen"
-          id="area_14_kit"
-          style="top: 64em; left: 81em; width: 13em; height: 12em"
-        >
-          Area 14
-        </div> -->
-                <!--
-        <div class="area--clickable kitchen" id="area_11_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 11</div>
-        <div class="area--clickable kitchen" id="area_12_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 12</div>
-        <div class="area--clickable kitchen" id="area_13_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 13</div>
-        <div class="area--clickable kitchen" id="area_14_kit" style="top: 87.5em;left: 35em;width: 15.5em;height: 27em;">Area 14</div> -->
-            <!-- </div> -->
-
-        <!-- Clickable areas: Bedroom -->
         </div>
 
         <script>
@@ -490,19 +370,6 @@
             //   //   }
             //   // }
             // }
-
-            // function goToKitchen() {
-            //     var goToBedroomButton = document.getElementById('goToBedroomButton');
-            //     var goToKitchenButton = document.getElementById('goToKitchenButton');
-
-            //     // Hide the existing goToBedroomButton
-            //     goToBedroomButton.style.display = 'block';
-
-            //     // Show the goToKitchenButton
-            //     goToKitchenButton.style.display = 'none';
-            //     // changeImage('kitchen');
-            //     goToLocation('kitchen');
-            // }
             
             function startGame() {
                 console.log("startGame() fired");
@@ -514,7 +381,7 @@
                     goToKitchenButton
                 );
 
-                instructions.style.opacity = 0;
+                // instructions.style.opacity = 0;
 
                 setTimeout(function () {
                     instructions.style.display = "none";
@@ -559,38 +426,6 @@
                         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
                     }, 10);
             }
-            
-            // function goToKitchen() {
-            //     var imageContainer = document.getElementById("imageContainer");
-            //     var goToBedroomButton = document.getElementById("goToBedroomButton");
-            //     var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-            //     //     // Show the goToKitchenButton
-            //     //     goToKitchenButton.style.display = 'none';
-            //     //     // changeImage('kitchen');
-            //     //     goToLocation('kitchen');
-            //     var imageContainer = document.getElementById("imageContainer");
-
-            //     // Apply fade-out animation to the image container
-            //     imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-
-            //     // Hide the existing goToKitchenButton
-            //     goToKitchenButton.style.display = "none";
-
-            //     // Show the goToKitchenButton after a delay
-            //     setTimeout(function () {
-            //         goToBedroomButton.style.display = "block";
-            //     }, 500);
-
-            //     // Change the image source after a delay to synchronize with the fade-out animation
-            //     setTimeout(function () {
-            //         // Change the image source after fade-out is complete
-            //         document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-
-            //         // Apply fade-in animation to the image container
-            //         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-            //     }, 10);
-            // }
 
             function goToBedroom() {
                 var goToBedroomButton = document.getElementById("goToBedroomButton");
@@ -616,32 +451,6 @@
                         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
                     }, 10);
             }
-
-            // function goToBedroom() {
-            //     var imageContainer = document.getElementById("imageContainer");
-            //     var goToBedroomButton = document.getElementById("goToBedroomButton");
-            //     var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-            //     // Apply fade-out animation to the image container
-            //     imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-
-            //     // Hide the existing goToBedroomButton
-            //     goToBedroomButton.style.display = "none";
-
-            //     // Show the goToKitchenButton after a delay
-            //     setTimeout(function () {
-            //         goToKitchenButton.style.display = "block";
-            //     }, 500);
-
-            //     // Change the image source after a delay to synchronize with the fade-out animation
-            //     setTimeout(function () {
-            //         // Change the image source after fade-out is complete
-            //         document.getElementById("kitchenImage").src = "img/bedroom.jpg";
-
-            //         // Apply fade-in animation to the image container
-            //         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-            //     }, 10);
-            // }
             
             function goToLocation(location) {
                 console.log("goToLocation fired: " + location);
@@ -759,3 +568,4 @@
         </script>
     </body>
 </html>
+ 
