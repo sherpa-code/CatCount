@@ -61,8 +61,8 @@
                 font-family: Arial, sans-serif;
                 text-align: center;
                 background-color: #4d4d4d;
-                margin: 0;
-                opacity: 0;
+                /* margin: 0;
+                opacity: 0; */
                 animation: fadeIn 1.5s ease-in-out forwards;
             }
 
@@ -87,7 +87,7 @@
             }
             
             .row__upper {
-                column-gap: 1.5rem;
+                column-gap: 1rem;
                 padding-top: 4rem;
             }
             
@@ -98,7 +98,8 @@
             }
 
             .row__middle {
-                column-gap: 2rem;
+                column-gap: 11rem;
+                overflow: hidden;
             }
 
             .row__middle .area--clickable {
@@ -109,12 +110,12 @@
                 column-gap: 0.75rem;
                 flex-grow: 1;
                 overflow: hidden;
-                flex-direction: column;
+                flex-direction: row;
             }
 
-            .row__bottom .area--clickable {
+            /* .row__bottom .area--clickable {
 
-            }
+            } */
 
             .stats--display {
                 position: absolute;
@@ -130,30 +131,27 @@
                 cursor: pointer;
             }
 
-            /* Styles the 'To the Bedroom' and 'To the Kitchen' buttons */
+            /* Styles the 'goTo[location]' buttons; e.g. 'To the Bedroom' and 'To the Kitchen' buttons*/
             .controlButton {
                 display: none;
                 position: absolute;
-                top: 50%;
-                padding: 0.4rem;
+                padding: 0.55rem;
                 border: none;
                 border-radius: 0.35rem;
                 font-size: 1rem;
-                transition: background-color 0.3s ease-in-out;
-                transform: translateY(-50%);
+                transition: background-color 1.6s ease-in-out;
+                top: 50%;
                 z-index: 1;
                 background-color: #3498db;
                 color: #fff;
             }
 
-            /* TODO: adjust the left placement so that it always overlaps the kitchen image */
             #goToBedroomButton {
-                left: 10rem;
+                left: 2rem;
             }
 
-            /* TODO: adjust the right placement so that it always overlaps the bedroom image */
             #goToKitchenButton {
-                right: 10rem;
+                right: 2rem;
             }
 
              /* TODO: turn this back on in the final version */
@@ -248,9 +246,7 @@
     
     <body>
         <!-- goToLocation Buttons -->
-        <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div>
-        <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
-
+        
         <div id="instructions">
             <h1>Find Your Kitties!</h1>
             <p>You are about to leave for work in a hurry...</p>
@@ -260,8 +256,10 @@
             </p>
             <button onclick="startGame()" font-size="200%">Start Searching</button>
         </div>
-
+        
         <div id="imageContainer">
+            <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div>
+            <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
             <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" />
             <div class="row row__stats">
                 <span id="timer" class="stats--display">Timer: <span id="timerValue">90</span></span>
@@ -272,6 +270,7 @@
             <div class="row row__upper"> <!-- remove kitchen from child divs and put here -->
                 <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
                 <div class="area--clickable kitchen" id="area_kitchen_1">Area 1</div>
+                <!-- <div class="area--clickable kitchen" id="area_kitchen_1" onclick="checkArea(this.id)">Area 1</div> -->
                 <div class="area--clickable kitchen" id="area_kitchen_2">Area 2</div>
                 <div class="area--clickable kitchen" id="area_kitchen_3">Area 3</div>
                 <div class="area--clickable kitchen" id="area_kitchen_4">Area 4</div>
@@ -297,6 +296,7 @@
         </div>
 
         <script>
+
             // Statistics
             var clickCounter = 0;
             var timer = 90;
@@ -325,22 +325,22 @@
                         
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
-                allAreaIds = document.querySelectorAll('[id^="area_"]'); // Into allAreaIds NodeList, place all elements with id starting with "area_"
+                const allAreaIds = document.querySelectorAll('[id^="area_"]'); // Into allAreaIds NodeList, place all elements with id starting with "area_"
                 var arrayFromElements = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
                 //console.log(allAreaIds);
                 console.log('Elements with id beginning "area_" converted from NodeList to an array ' + arrayFromElements);
                 startGame();
             });
 
-            function handleClick(e) {
-                //var area = e.target.id;
-                if (!clickedAreas.includes(e.currentTarget.id)) {
-                    clickedAreas.push(e.currentTarget.id);
-                    console.log(e.currentTarget.id);
-                }
-            }
+            // function handleClick(e) {
+            //     //var area = e.target.id;
+            //     if (!clickedAreas.includes(e.currentTarget.id)) {
+            //         clickedAreas.push(e.currentTarget.id);
+            //         console.log(e.currentTarget.id);
+            //     }
+            // }
 
-            // //function handleClick(e, area) {
+            // function handleClick(e, area) {
             //   if (clickedAreas.includes(area)) {
             //     alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
             //   } else {
@@ -350,48 +350,48 @@
             //     alert('Clicked on ' + area);
             //     // You can replace the alert with any other action you want
             // console.log(e.target.id);
-            //  console.log(e.currentTarget.id);
-
-            //console.log(e.srcElement.id);
-            //console.log(area);
+            // console.log(e.currentTarget.id);
+            // console.log(e.srcElement.id);
+            // console.log(area);
             //   }
+            // }
 
             // function handleClick(e) {
             //   //var area = e.target.id;
+            // }
 
-            //   //function handleClick(e, area) {
-            //   // if (clickedAreas.includes(area)) {
-            //   //   alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
-            //   // } else {
-            //   //   clickedAreas.push(area);
-            //   //   clickCounter++;
-            //   //   document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
-            //   //   alert('Clicked on ' + area);
-            //   //   // You can replace the alert with any other action you want
-            //   // console.log(e.target.id);
-            //   // console.log(e.currentTarget.id);
-
-            //   alert(e.currentTarget);
-            //   if (!clickedAreas.includes(e.currentTarget.id)) {
-            //     clickedAreas.push(e.currentTarget.id);
+            // function handleClick(e, area) {
+            //   if (clickedAreas.includes(area)) {
+            //     alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
+            //   } else {
+            //     clickedAreas.push(area);
+            //     clickCounter++;
+            //     document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
+            //     alert('Clicked on ' + area);
+            //     // You can replace the alert with any other action you want
+            //     console.log(e.target.id);
             //     console.log(e.currentTarget.id);
-            //   }
 
-            //   console.log(e.srcElement.id);
-            //   console.log(area);
-            //   //   }
-            //   // }
+            //     alert(e.currentTarget);
+            //     if (!clickedAreas.includes(e.currentTarget.id)) {
+            //         clickedAreas.push(e.currentTarget.id);
+            //         console.log(e.currentTarget.id);
+            //     }
+
+            //     console.log(e.srcElement.id);
+            //     console.log(area);
+            //     }
             // }
             
             function startGame() {
                 console.log("startGame() fired");
                 
-                console.log(
-                    instructions,
-                    imageContainer,
-                    goToBedroomButton,
-                    goToKitchenButton
-                );
+                // console.log(
+                //     instructions,
+                //     imageContainer,
+                //     goToBedroomButton,
+                //     goToKitchenButton
+                // );
 
                 // instructions.style.opacity = 0;
 
