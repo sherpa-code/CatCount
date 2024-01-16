@@ -411,54 +411,19 @@
                 //startTimer(); // TODO: Reenable in the final version
             }
 
-            // TODO: get this working; at present, the fade to kitchen.jpg doesnt work.
-            // TODO: pull the repeated declarations of goToXButton out and move them up.
-            function goToKitchen() {
-                var goToBedroomButton = document.getElementById("goToBedroomButton");
-                    var goToKitchenButton = document.getElementById("goToKitchenButton");
+            // TODO
+            function placeCatsRandomly() {
 
-                    
-                    // Hide the existing goToBedroomButton
-                    goToKitchenButton.style.display = "none";
-                    
-                    // Show the goToKitchenButton after a delay
-                    setTimeout(function () {
-                        goToBedroomButton.style.display = "block";
-                    }, 500);
-
-                    // Change the image source after a delay to synchronize with the fade-out animation
-                    setTimeout(function () {
-                        // Change the image source after fade-out is complete
-                        // document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-                        document.getElementById("kitchenImage").src = "img/kitchen.jpg";
-                        
-                        // Apply fade-in animation to the image container
-                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-                    }, 10);
             }
 
-            function goToBedroom() {
-                var goToBedroomButton = document.getElementById("goToBedroomButton");
-                var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-                    // Hide the existing goToBedroomButton
-                    goToBedroomButton.style.display = "none";
-
-                    // Show the goToKitchenButton after a delay
-                    setTimeout(function () {
-                        goToKitchenButton.style.display = "block";
-                    }, 500);
-
-                    // Change the image source after a delay to synchronize with the fade-out animation
-                    setTimeout(function () {
-                        // Change the image source after fade-out is complete
-                        document.getElementById("kitchenImage").src = "img/bedroom.jpg";
-
-                        // Apply fade-in animation to the image container
-                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-                    }, 10);
+            function checkForCat(hidingPlace) {
+                // TODOs: 
+                // if place is unchecked, see if it is one of the three places in the randomized cat location array
+                    // if it is, show a message and play an animation, then add it to the array. Increment the Found UI element;
+                    // if not, show a message that no cat was found in that place.
+                    // if the place was already checked (in the checked array), show a message saying you checked it already
             }
-            
+
             function goToLocation(location) {
                 console.log("goToLocation fired: " + location);
                 var imageContainer = document.getElementById("imageContainer");
@@ -488,6 +453,56 @@
                 }
             }
 
+            // TODO: get this working; at present, the fade to kitchen.jpg doesnt work.
+            // TODO: pull the repeated declarations of goToXButton out and move them up.
+            function goToKitchen() {
+                var goToBedroomButton = document.getElementById("goToBedroomButton");
+                var goToKitchenButton = document.getElementById("goToKitchenButton");
+
+                
+                // Hide the existing goToBedroomButton
+                goToKitchenButton.style.display = "none";
+                
+                // Show the goToKitchenButton after a delay
+                setTimeout(function () {
+                    goToBedroomButton.style.display = "block";
+                }, 500);
+
+                // Change the image source after a delay to synchronize with the fade-out animation
+                setTimeout(function () {
+                    // Change the image source after fade-out is complete
+                    // document.getElementById("bedroomImage").src = "img/kitchen.jpg";
+                    document.getElementById("kitchenImage").src = "img/kitchen.jpg";
+                    
+                    // Apply fade-in animation to the image container
+                    imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
+                }, 10);
+            }
+
+            function goToBedroom() {
+                var goToBedroomButton = document.getElementById("goToBedroomButton");
+                var goToKitchenButton = document.getElementById("goToKitchenButton");
+
+                    // Hide the existing goToBedroomButton
+                    goToBedroomButton.style.display = "none";
+
+                    // Show the goToKitchenButton after a delay
+                    setTimeout(function () {
+                        goToKitchenButton.style.display = "block";
+                    }, 500);
+
+                    // Change the image source after a delay to synchronize with the fade-out animation
+                    setTimeout(function () {
+                        // Change the image source after fade-out is complete
+                        document.getElementById("kitchenImage").src = "img/bedroom.jpg";
+
+                        // Apply fade-in animation to the image container
+                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
+                    }, 10);
+            }
+            
+
+
             function updateClickableAreas(location) {
                 if (location === "bedroom") {
                     
@@ -497,38 +512,6 @@
                     alert("Failed to update ClickableAreas to an invalid location.")
                 }
             }
-
-            // function goToLocation(location) {
-            //     console.log("goToLocation fired: " + location);
-            //     if (location === "bedroom") {
-            //         var imageContainer = document.getElementById("imageContainer");
-
-            //         // Apply fade-out animation to the image container
-            //         imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-
-            //         // Hide the existing goToKitchenButton
-            //         goToKitchenButton.style.display = "none";
-
-            //         // Show the goToKitchenButton after a delay
-            //         setTimeout(function () {
-            //             goToBedroomButton.style.display = "block";
-            //         }, 500);
-
-            //         // Change the image source after a delay to synchronize with the fade-out animation
-            //         setTimeout(function () {
-            //             // Apply fade-in animation to the image container
-            //             imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-
-            //             // Change the image source after fade-out is complete
-            //             document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-            //         }, 10);
-            //     } else if (location === "kitchen") {
-            //         document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-            //     } else {
-            //         alert("location was an invalid parameter.");
-            //     }
-            // }
-
 
             // Add functionality to swap the clickable areas of the image.
             function changeImage(location) {
