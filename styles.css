@@ -1,0 +1,95 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/* BOOTSTRAP CONTAINER WIDTHS */
+.container {
+  width: 100%;
+  padding-right: calc(1.5rem * 0.5);
+  padding-left: calc(1.5rem * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+#imageContainer {
+  margin: auto;
+  max-width: 965px;
+}
+#imageContainer img {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.upper-rows .clickableArea {
+  height: 17rem;
+  border: 1px solid red;
+  background-color: #ffffff80;
+  height: 17.75rem;
+  align-self: center;
+  flex-grow: 0;
+}
+.upper-rows {
+  display: flex;
+  padding-top: 13%;
+  margin: 0 8%;
+  column-gap: 0.75rem;
+}
+#area_1_kit {
+  width: 11rem;
+}
+#area_2_kit {
+  width: 7.7em;
+}
+#area_3_kit {
+  width: 8em;
+  margin-right: 3%;
+}
+#area_4_kit,
+#area_5_kit {
+  width: 10em;
+  height: 20rem;
+}
