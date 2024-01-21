@@ -79,16 +79,19 @@
                 justify-content: center;
                 padding-left: 4rem;
                 padding-right: 4rem;
-                flex-grow: 1;
+                /* flex-grow: 1; */
             }
 
             .row__stats {
-                height: 4rem;
+                flex: 0.175;
+                /* height: 4rem; */
             }
             
             .row__upper {
                 column-gap: 1rem;
-                padding-top: 4rem;
+                /* padding-top: 4rem; */
+                flex: 1;
+                align-items: end;
             }
             
             /* TODO: dev-only - remove background-color in final version*/
@@ -100,6 +103,7 @@
             .row__middle {
                 column-gap: 11rem;
                 overflow: hidden;
+                flex: 0.35;
             }
 
             .row__middle .area--clickable {
@@ -111,6 +115,8 @@
                 flex-grow: 1;
                 overflow: hidden;
                 flex-direction: row;
+                /* flex: 0.9; */
+                margin-bottom: 4rem;
             }
 
             /* .row__bottom .area--clickable {
@@ -167,14 +173,14 @@
             }
             
             #imageContainer {
-                margin: auto;
+                margin: 0 auto;
                 position: relative;
                 transition: opacity 0.5s ease-in-out;
                 display: flex;
                 flex-direction: column;
                 max-width: 100vh;
-                max-height: 100%;
-                min-height: 100%;
+                /* max-height: 100%; */
+                /* min-height: 100%; */
                 height: 100vh;
             }
             
@@ -262,44 +268,52 @@
             <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
             <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" />
             <div class="row row__stats">
-                <span id="timer" class="stats--display">Timer: <span id="timerValue">90</span></span>
+                <span id="timer" class="stats--display">Timer: <span id="timerValue"></span></span>
                 <span id="clickCounter" class="stats--display">Clicks: <span id="clickCounterValue">0</span></span>
                 <span id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</span>
             </div>
             <!-- Clickable areas: Kitchen -->
-            <div class="row row__upper"> <!-- remove kitchen from child divs and put here -->
-                <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
-                <div class="area--clickable kitchen" id="area_kitchen_1">Area 1</div>
-                <!-- <div class="area--clickable kitchen" id="area_kitchen_1" onclick="checkArea(this.id)">Area 1</div> -->
-                <div class="area--clickable kitchen" id="area_kitchen_2">Area 2</div>
-                <div class="area--clickable kitchen" id="area_kitchen_3">Area 3</div>
-                <div class="area--clickable kitchen" id="area_kitchen_4">Area 4</div>
-                <div class="area--clickable kitchen" id="area_kitchen_5">Area 5</div>
+            <!-- <div style="min-height: 100vh;"> -->
+                <div class="row row__upper"> <!-- remove kitchen from child divs and put here -->
+                    <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
+                    <div class="area--clickable kitchen" id="area_kitchen_1">Area 1</div>
+                    <!-- <div class="area--clickable kitchen" id="area_kitchen_1" onclick="checkArea(this.id)">Area 1</div> -->
+                    <div class="area--clickable kitchen" id="area_kitchen_2">Area 2</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_3">Area 3</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_4">Area 4</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_5">Area 5</div>
+                </div>
+                <div class="row row__middle">
+                    <div class="area--clickable kitchen" id="area_kitchen_6">Area 6</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_7">Area 7</div>
+                </div>
+                <!-- TODO: break up the bottom row into divs and subdivs -->
+                <div class="row row__bottom">
+                    <div class="area--clickable kitchen" id="area_kitchen_8">Area 8</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_9">Area 9</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_10">Area 10</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_11">Area 11</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_12">Area 12</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_13">Area 13</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_14">Area 14</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_15">Area 15</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_16">Area 16</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_17">Area 17</div>
+                    <div class="area--clickable kitchen" id="area_kitchen_18">Area 18</div>                
+                </div>
             </div>
-            <div class="row row__middle">
-                <div class="area--clickable kitchen" id="area_kitchen_6">Area 6</div>
-                <div class="area--clickable kitchen" id="area_kitchen_7">Area 7</div>
-            </div>
-            <div class="row row__bottom">
-                <div class="area--clickable kitchen" id="area_kitchen_8">Area 8</div>
-                <div class="area--clickable kitchen" id="area_kitchen_9">Area 9</div>
-                <div class="area--clickable kitchen" id="area_kitchen_10">Area 10</div>
-                <div class="area--clickable kitchen" id="area_kitchen_11">Area 11</div>
-                <div class="area--clickable kitchen" id="area_kitchen_12">Area 12</div>
-                <div class="area--clickable kitchen" id="area_kitchen_13">Area 13</div>
-                <div class="area--clickable kitchen" id="area_kitchen_14">Area 14</div>
-                <div class="area--clickable kitchen" id="area_kitchen_15">Area 15</div>
-                <div class="area--clickable kitchen" id="area_kitchen_16">Area 16</div>
-                <div class="area--clickable kitchen" id="area_kitchen_17">Area 17</div>
-                <div class="area--clickable kitchen" id="area_kitchen_18">Area 18</div>                
-            </div>
-        </div>
+        <!-- </div> -->
 
         <script>
+            // Graphics and UI
+            var imageContainer = document.getElementById("imageContainer");
+            var instructions = document.getElementById("instructions");
 
             // Statistics
             var clickCounter = 0;
-            var timer = 90;
+            // var timer = 90;
+            var timer = 2; // testing value only, TODO: change back to 90
+            var catsFound = 0;
 
             // Areas
             var clickedAreas = [];
@@ -311,14 +325,9 @@
                 area_kitchen_5,
             ];
             var allAreaIds = [];
-            var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
             var catLocations = [];
-            var catsFound = 0;
+            var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
 
-            // Graphics and UI
-            var imageContainer = document.getElementById("imageContainer");
-            var instructions = document.getElementById("instructions");
-            
             // Interactables
             var goToBedroomButton = document.getElementById("goToBedroomButton");
             var goToKitchenButton = document.getElementById("goToKitchenButton");
@@ -326,19 +335,39 @@
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
                 const allAreaIds = document.querySelectorAll('[id^="area_"]'); // Into allAreaIds NodeList, place all elements with id starting with "area_"
-                var arrayFromElements = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
-                //console.log(allAreaIds);
-                console.log('Elements with id beginning "area_" converted from NodeList to an array ' + arrayFromElements);
+                console.log(allAreaIds);
+                var arrayFromClickables = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
+                console.log("%c %s", "background-color:grey; color: orange",
+                    'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
+
+                allAreaIds.forEach((e) => {
+                    e.addEventListener("click", checkAddToAreaArray);
+                });
+                
                 startGame();
             });
 
-            // function handleClick(e) {
-            //     //var area = e.target.id;
-            //     if (!clickedAreas.includes(e.currentTarget.id)) {
-            //         clickedAreas.push(e.currentTarget.id);
-            //         console.log(e.currentTarget.id);
-            //     }
-            // }
+            function checkAddToAreaArray(e) {
+                alertName(e);
+                addAreaToClickedAreas(e);
+            }
+
+            function addAreaToClickedAreas(e) {
+                if (!clickedAreas.includes(e.target.id)) {
+                    clickedAreas.push(e.target.id);
+                    consoleLogClickedAreas(e);
+                } else {
+                    alert("this area was already clicked");
+                }
+            }
+
+            function consoleLogClickedAreas(e) {
+                console.log(clickedAreas);
+            }
+
+            function alertName(e) {
+                alert(e.target.id);
+            };
 
             // function handleClick(e, area) {
             //   if (clickedAreas.includes(area)) {
@@ -383,6 +412,7 @@
             //     }
             // }
             
+
             function startGame() {
                 console.log("startGame() fired");
                 
@@ -398,7 +428,7 @@
                 setTimeout(function () {
                     instructions.style.display = "none";
 
-                    imageContainer.style.display = "block";
+                    imageContainer.style.display = "flex";
                     imageContainer.style.opacity = 1;
 
                     goToBedroomButton.style.display = "block";
@@ -408,7 +438,7 @@
                     console.log(element);
                 });
                 
-                //startTimer(); // TODO: Reenable in the final version
+                runTimer(); // TODO: Reenable in the final version
             }
 
             // TODO
@@ -500,9 +530,8 @@
                         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
                     }, 10);
             }
-            
 
-
+            // Modifies the displayed clickable areas when the location has been updated.
             function updateClickableAreas(location) {
                 if (location === "bedroom") {
                     
@@ -530,30 +559,55 @@
                 }
             }
 
-            // TODO: Change background image to a success image
-            // TODO: Show a card similar to the 'instructions' that indicates you were successful and presents your final stats
-            // function successful() {
+            
+            function runTimer() {
+                var interval = window.setInterval(function(){
+                    if (timer <= 0) {
+                        gameOver(false);
+                    }
+                else {
+                    timer--;
+                    document.getElementById("timerValue").innerHTML = timer;
+                };
+            }, 1000);
+            }
 
+            // function runTimer() {
+                //   var interval = window.setInterval(function(){
+                    //     if (timer <= 0) {
+                        //         timer--;
+                        //         document.getElementById("timerValue").innerHTML = timer;}
+                        //     else {
+                            //         gameOver(false);
+                            //     };
+            //   }, 1000);
             // }
-
-            // TODO: Change background image to a failure image
-            // TODO: Show a card similar to the 'instructions' that indicates you failed and presents your final stats
-            // function failure() {
-
-            // }
-
-            // function stopTimer() {
-
-            // }
-
-            // TODO: implement a visual element for this
-            // function startTimer() {
-            //   var interval = window.setInterval(function(){
-            //     timer--;
-            //     console.log(timer);
-            //   }, 1100);
-            // }
-        </script>
-    </body>
+            
+            // TODO: Change background image to a success image when all cats found
+                // and show a card similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
+            function successful() {
+                console.log("Won the game");
+            }
+            // function runTimer() {
+                //   var interval = window.setInterval(function(){
+                    //     timer--;
+                    //     document.getElementById("timerValue").innerHTML = timer;
+                    //   }, 1000);
+                    // }
+                    
+                    // TODO: Change background image to a failure image
+                    // TODO: Show the cats in the unfound places they were hiding
+                    // TODO: Show a card similar to the 'instructions' that indicates you failed and presents your final stats
+                    function failure() {
+                        console.log("Failed at the game");
+                    }
+                    
+                    // TODO: Stop the countdown at zero
+                    function stopTimer() {
+                        
+                    };
+                    
+                    
+                    </script>
+</body>
 </html>
- 
