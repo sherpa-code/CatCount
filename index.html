@@ -197,12 +197,12 @@
 
             #timer {
                 top: 1rem;
-                right: 8rem;
+                right: 2.5rem;
             }
 
             #foundCounter {
                 top: 1rem;
-                right: 15.25rem;
+                right: 10rem;
             }
 
             #area_kitchen_1 {
@@ -269,7 +269,7 @@
             <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" />
             <div class="row row__stats">
                 <span id="timer" class="stats--display">Timer: <span id="timerValue"></span></span>
-                <span id="clickCounter" class="stats--display">Clicks: <span id="clickCounterValue">0</span></span>
+                <!-- <span id="clickCounter" class="stats--display">Clicks: <span id="clickCounterValue">0</span></span> -->
                 <span id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</span>
             </div>
             <!-- Clickable areas: Kitchen -->
@@ -312,21 +312,21 @@
             // Statistics
             var clickCounter = 0;
             var timer = 90;
-            // var timer = 2; // testing value only, TODO: change back to 90
+            // var timer = 2; // quick failure state testing value
             var catsFound = 0;
             var totalCats = 3;
 
             // Areas
             var clickedAreas = [];
-            var allAreaIds = [];
             var catLocations = [];
             var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
+            var allAreaIds = [];
+            var arrayFromClickables = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
 
             // Interactables
             var goToBedroomButton = document.getElementById("goToBedroomButton");
             var goToKitchenButton = document.getElementById("goToKitchenButton");
 
-            var arrayFromClickables = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
                         
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
@@ -381,9 +381,9 @@
                     goToBedroomButton.style.display = "block";
                 }, 500); // Set the duration of the transition
                 
-                allAreaIds.forEach(element => {
-                    console.log(element);
-                });
+                // allAreaIds.forEach(element => {
+                //     console.log(element);
+                // });
                 
                 runTimer(); // TODO: Reenable in the final version
             }
@@ -425,19 +425,12 @@
                     alert("Found a cat!");
                     catsFound++;
                     document.getElementById("foundCounterValue").innerHTML = catsFound;
+                    // TODO: Add visual feedback for finding a cat (display the cat gif; fade it in and out)
                 }
                 if (catsFound >= totalCats) {
-                    // gameOver(true);
+                    // gameOver(true); // right now this is handled by the runTimer()
                 }
             }
-
-            // function checkForCat(hidingPlace) {
-            //     // TODOs: 
-            //     // if place is unchecked, see if it is one of the three places in the randomized cat location array
-            //         // if it is, show a message and play an animation, then add it to the array. Increment the Found UI element;
-            //         // if not, show a message that no cat was found in that place.
-            //         // if the place was already checked (in the checked array), show a message saying you checked it already
-            // }
 
             function goToLocation(location) {
                 console.log("goToLocation fired: " + location);
@@ -468,7 +461,6 @@
                 }
             }
 
-            // TODO: get this working; at present, the fade to kitchen.jpg doesnt work.
             // TODO: pull the repeated declarations of goToXButton out and move them up.
             function goToKitchen() {
                 var goToBedroomButton = document.getElementById("goToBedroomButton");
