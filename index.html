@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Cat Count!</title>
         
-        <!-- CSS -->
+        <!-- TODO: separate out into styles.css once the styles are functioning properly -->
         <!-- <link rel="stylesheet" href="styles.css" /> -->
         <style>
             /* CSS Reset */
@@ -311,8 +311,8 @@
 
             // Statistics
             var clickCounter = 0;
-            // var timer = 90;
-            var timer = 2; // testing value only, TODO: change back to 90
+            var timer = 90;
+            // var timer = 2; // testing value only, TODO: change back to 90
             var catsFound = 0;
             var totalCats = 3;
 
@@ -325,12 +325,14 @@
             // Interactables
             var goToBedroomButton = document.getElementById("goToBedroomButton");
             var goToKitchenButton = document.getElementById("goToKitchenButton");
+
+            var arrayFromClickables = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
                         
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
                 const allAreaIds = document.querySelectorAll('[id^="area_"]'); // Into allAreaIds NodeList, place all elements with id starting with "area_"
                 console.log(allAreaIds);
-                var arrayFromClickables = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
+                arrayFromClickables = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
                 console.log("%c %s", "background-color:grey; color: orange",
                     'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
 
@@ -350,6 +352,7 @@
                 if (!clickedAreas.includes(e.target.id)) {
                     clickedAreas.push(e.target.id);
                     consoleLogClickedAreas(e);
+                    checkForCat(e);
                 } else {
                     alert("this area was already clicked");
                 }
@@ -361,51 +364,7 @@
 
             function alertName(e) {
                 alert(e.target.id);
-            };
-
-            // function handleClick(e, area) {
-            //   if (clickedAreas.includes(area)) {
-            //     alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
-            //   } else {
-            //     clickedAreas.push(area);
-            //     clickCounter++;
-            //     document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
-            //     alert('Clicked on ' + area);
-            //     // You can replace the alert with any other action you want
-            // console.log(e.target.id);
-            // console.log(e.currentTarget.id);
-            // console.log(e.srcElement.id);
-            // console.log(area);
-            //   }
-            // }
-
-            // function handleClick(e) {
-            //   //var area = e.target.id;
-            // }
-
-            // function handleClick(e, area) {
-            //   if (clickedAreas.includes(area)) {
-            //     alert('You already checked in ' + area); // TODO: replace with the area's location's name; i.e. 'left cupboard', 'sink' etc.
-            //   } else {
-            //     clickedAreas.push(area);
-            //     clickCounter++;
-            //     document.getElementById('counter').innerText = 'Clicks: ' + clickCounter;
-            //     alert('Clicked on ' + area);
-            //     // You can replace the alert with any other action you want
-            //     console.log(e.target.id);
-            //     console.log(e.currentTarget.id);
-
-            //     alert(e.currentTarget);
-            //     if (!clickedAreas.includes(e.currentTarget.id)) {
-            //         clickedAreas.push(e.currentTarget.id);
-            //         console.log(e.currentTarget.id);
-            //     }
-
-            //     console.log(e.srcElement.id);
-            //     console.log(area);
-            //     }
-            // }
-            
+            };            
 
             function startGame() {
                 console.log("startGame() fired");
@@ -429,18 +388,56 @@
                 runTimer(); // TODO: Reenable in the final version
             }
 
-            // TODO
+            // Randomizes the available clickable areas and adds the first 3 from the randomized array into the catLocations var
             function placeCatsRandomly() {
+                const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
+                const selectedAreas = shuffledArray.slice(0, 3);
+                selectedAreas.forEach(area => catLocations.push(area.id));
 
+                console.log("Randomly placed cats in the following areas: ", catLocations);
             }
+
+            // function checkForCat(hidingPlace) {
+            //     if (!clickedAreas.includes(hidingPlace.target.id)) {
+            //         if (catLocations.includes(hidingPlace.target.id)) {
+            //             // Cat found in the clicked area
+            //             alert("You found a cat in this area!");
+            //             catsFound++;
+            //             document.getElementById("foundCounterValue").innerHTML = catsFound;
+            //             // TODO: Add animation or any other visual feedback for finding a cat
+            //         } else {
+            //             // No cat found in the clicked area
+            //             alert("No cat found in this area.");
+            //             // TODO: Add animation or any other visual feedback for not finding a cat
+            //         }
+
+            //         // Add the clicked area to the clicked areas array
+            //         addAreaToClickedAreas(hidingPlace);
+            //     } else {
+            //         // Area was already clicked
+            //         alert("This area was already clicked.");
+            //         // TODO: Add animation or any other visual feedback for already clicking the area
+            //     }
+            // }            
 
             function checkForCat(hidingPlace) {
-                // TODOs: 
-                // if place is unchecked, see if it is one of the three places in the randomized cat location array
-                    // if it is, show a message and play an animation, then add it to the array. Increment the Found UI element;
-                    // if not, show a message that no cat was found in that place.
-                    // if the place was already checked (in the checked array), show a message saying you checked it already
+                if (catLocations.includes(hidingPlace.target.id)) {
+                    alert("Found a cat!");
+                    catsFound++;
+                    document.getElementById("foundCounterValue").innerHTML = catsFound;
+                }
+                if (catsFound >= totalCats) {
+                    // gameOver(true);
+                }
             }
+
+            // function checkForCat(hidingPlace) {
+            //     // TODOs: 
+            //     // if place is unchecked, see if it is one of the three places in the randomized cat location array
+            //         // if it is, show a message and play an animation, then add it to the array. Increment the Found UI element;
+            //         // if not, show a message that no cat was found in that place.
+            //         // if the place was already checked (in the checked array), show a message saying you checked it already
+            // }
 
             function goToLocation(location) {
                 console.log("goToLocation fired: " + location);
@@ -554,7 +551,7 @@
                     } else if (catsFound >= totalCats) {
                     // } else if ((timer <= 0) && (catsFound >= totalCats)) {
                         clearInterval(interval);
-                        gameOver(true);
+                        gameOver(true); // Should this be incorporated into checkForCat()?
                     } else {
                         timer--;
                         document.getElementById("timerValue").innerHTML = timer;
