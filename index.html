@@ -69,6 +69,10 @@
             .area--clickable {
                 cursor: pointer;
                 border: 1px solid red;
+
+                justify-content: space-between;
+                display: flex;
+                flex-direction: column;
             }
 
             /* TODO: remove the styling other than justify in the final version */
@@ -184,11 +188,17 @@
                 height: 100vh;
             }
             
-            #imageContainer img { 
+            #imageContainer .backgroundImage{ 
                 position: absolute;
                 z-index: -1;
                 inset: 0;
             }
+
+            /* #imageContainer img { 
+                position: absolute;
+                z-index: -1;
+                inset: 0;
+            } */
 
             #clickCounter {
                 top: 1rem;
@@ -264,9 +274,10 @@
         </div>
         
         <div id="imageContainer">
+            <!-- use class name above to handle room changing and clickable area changes -->
             <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div>
             <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
-            <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" />
+            <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" class="backgroundImage"/>
             <div class="row row__stats">
                 <span id="timer" class="stats--display">Timer: <span id="timerValue"></span></span>
                 <!-- <span id="clickCounter" class="stats--display">Clicks: <span id="clickCounterValue">0</span></span> -->
@@ -276,6 +287,7 @@
             <!-- <div style="min-height: 100vh;"> -->
                 <div class="row row__upper"> <!-- remove kitchen from child divs and put here -->
                     <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
+                    <!-- <div class="area--clickable kitchen" id="area_kitchen_1">Area 1</div> -->
                     <div class="area--clickable kitchen" id="area_kitchen_1">Area 1</div>
                     <!-- <div class="area--clickable kitchen" id="area_kitchen_1" onclick="checkArea(this.id)">Area 1</div> -->
                     <div class="area--clickable kitchen" id="area_kitchen_2">Area 2</div>
@@ -326,7 +338,6 @@
             // Interactables
             var goToBedroomButton = document.getElementById("goToBedroomButton");
             var goToKitchenButton = document.getElementById("goToKitchenButton");
-
                         
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
@@ -344,7 +355,7 @@
             });
 
             function checkAddToAreaArray(e) {
-                alertName(e);
+                alertName(e); // debug
                 addAreaToClickedAreas(e);
             }
 
@@ -354,7 +365,7 @@
                     consoleLogClickedAreas(e);
                     checkForCat(e);
                 } else {
-                    alert("this area was already clicked");
+                    alert("this area was already clicked"); // TODO: change this to a visual
                 }
             }
 
@@ -370,7 +381,7 @@
                 console.log("startGame() fired");
                 placeCatsRandomly();
 
-                // instructions.style.opacity = 0;
+                // instructions.style.opacity = 0; // TODO: Re-enable
 
                 setTimeout(function () {
                     instructions.style.display = "none";
@@ -385,46 +396,38 @@
                 //     console.log(element);
                 // });
                 
-                runTimer(); // TODO: Reenable in the final version
+                runTimer();
             }
 
             // Randomizes the available clickable areas and adds the first 3 from the randomized array into the catLocations var
             function placeCatsRandomly() {
                 const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
                 const selectedAreas = shuffledArray.slice(0, 3);
-                selectedAreas.forEach(area => catLocations.push(area.id));
+                console.log(selectedAreas);
+                // selectedAreas.forEach(area => {
+                selectedAreas.forEach((area, index, array) => {
+                        catLocations.push(area.id);
+                        var container = document.getElementById(area.id);
+                        console.log(container);
+                        // container.innerHTML = "<img src='/img/cat1.gif'>";
+                        // container.innerHTML = `<img src='/img/cat${index+1}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
+                        container.innerHTML = `<img src='/img/cat${index+1}.gif'>`;
+                    }
+                );
 
                 console.log("Randomly placed cats in the following areas: ", catLocations);
+                
             }
 
-            // function checkForCat(hidingPlace) {
-            //     if (!clickedAreas.includes(hidingPlace.target.id)) {
-            //         if (catLocations.includes(hidingPlace.target.id)) {
-            //             // Cat found in the clicked area
-            //             alert("You found a cat in this area!");
-            //             catsFound++;
-            //             document.getElementById("foundCounterValue").innerHTML = catsFound;
-            //             // TODO: Add animation or any other visual feedback for finding a cat
-            //         } else {
-            //             // No cat found in the clicked area
-            //             alert("No cat found in this area.");
-            //             // TODO: Add animation or any other visual feedback for not finding a cat
-            //         }
-
-            //         // Add the clicked area to the clicked areas array
-            //         addAreaToClickedAreas(hidingPlace);
-            //     } else {
-            //         // Area was already clicked
-            //         alert("This area was already clicked.");
-            //         // TODO: Add animation or any other visual feedback for already clicking the area
-            //     }
-            // }            
-
+            // Checks if the area clicked is one of the randomized cat locations
+            // Triggers visuals if an unfound cat was found or visually notifies if it was not
             function checkForCat(hidingPlace) {
                 if (catLocations.includes(hidingPlace.target.id)) {
                     alert("Found a cat!");
                     catsFound++;
                     document.getElementById("foundCounterValue").innerHTML = catsFound;
+                    // TODO: Add visual feedback for finding a cat (display the cat gif; fade it in and out)
+                } else {
                     // TODO: Add visual feedback for finding a cat (display the cat gif; fade it in and out)
                 }
                 if (catsFound >= totalCats) {
