@@ -402,8 +402,15 @@
             function placeCatsRandomly() {
                 const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
                 const selectedAreas = shuffledArray.slice(0, 3);
-                selectedAreas.forEach(area => {
+                console.log(selectedAreas);
+                // selectedAreas.forEach(area => {
+                selectedAreas.forEach((area, index, array) => {
                         catLocations.push(area.id);
+                        var container = document.getElementById(area.id);
+                        console.log(container);
+                        // container.innerHTML = "<img src='/img/cat1.gif'>";
+                        // container.innerHTML = `<img src='/img/cat${index+1}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
+                        container.innerHTML = `<img src='/img/cat${index+1}.gif'>`;
                     }
                 );
 
