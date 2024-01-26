@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <!--
   author: Jo Crane
+  
+  'Cat Count' is a single-page web application using HTML, CSS, and JavaScript.
+  The overall goal is to search (by clicking) all areas in which your three cats may be hiding before the timer expires.
 -->
 <html lang="en">
     <head>
@@ -66,24 +69,26 @@
                 animation: fadeIn 1.5s ease-in-out forwards;
             }
 
+            /* TODO: remove the colored styling in the final version */
             .area--clickable {
                 cursor: pointer;
-                border: 1px solid red;
-
                 justify-content: space-between;
                 display: flex;
                 flex-direction: column;
+                
+                border: 1px solid red;
             }
 
-            /* TODO: remove the styling other than justify in the final version */
+            /* TODO: remove the colored styling in the final version */
             .row {
                 display: flex;
-                border: 1px solid blue;
-                background-color: #ffffff80;
                 justify-content: center;
                 padding-left: 4rem;
                 padding-right: 4rem;
                 /* flex-grow: 1; */
+                
+                background-color: #ffffff80;
+                border: 1px solid blue;
             }
 
             .row__stats {
@@ -155,6 +160,14 @@
                 background-color: #3498db;
                 color: #fff;
             }
+            
+            /* TODO: Bound the cat image to it's container, resizing as appropriate */
+            /* TODO: Set the cat image's z-order to not interfere with clicking on the clickable area */
+            .catGif {
+                 /* TODO: re-enable display:none when closer to final */
+                display: none;
+                z-index: -1;
+            }
 
             #goToBedroomButton {
                 left: 2rem;
@@ -164,7 +177,7 @@
                 right: 2rem;
             }
 
-             /* TODO: turn this back on in the final version */
+             /* TODO: turn the instructions block back on in the final version, i.e. change 'display' */
             #instructions {
                 font-size: 150%;
                 margin: 8em;
@@ -176,6 +189,7 @@
                 display: none;
             }
             
+            /*  */
             #imageContainer {
                 margin: 0 auto;
                 position: relative;
@@ -273,11 +287,12 @@
             <button onclick="startGame()" font-size="200%">Start Searching</button>
         </div>
         
+        <!-- The outermost container within the body that wraps the on-screen elements-->
         <div id="imageContainer">
             <!-- use class name above to handle room changing and clickable area changes -->
             <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div>
             <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
-            <img src="img/kitchen.jpg" alt="Kitchen Image" id="kitchenImage" class="backgroundImage"/>
+            <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage"/>
             <div class="row row__stats">
                 <span id="timer" class="stats--display">Timer: <span id="timerValue"></span></span>
                 <!-- <span id="clickCounter" class="stats--display">Clicks: <span id="clickCounterValue">0</span></span> -->
@@ -331,9 +346,9 @@
             // Areas
             var clickedAreas = [];
             var catLocations = [];
+            var allAreaNodes = [];
+            var arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
             var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
-            var allAreaIds = [];
-            var arrayFromClickables = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
 
             // Interactables
             var goToBedroomButton = document.getElementById("goToBedroomButton");
@@ -341,13 +356,13 @@
                         
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
-                const allAreaIds = document.querySelectorAll('[id^="area_"]'); // Into allAreaIds NodeList, place all elements with id starting with "area_"
-                console.log(allAreaIds);
-                arrayFromClickables = Array.from(allAreaIds); // Convert NodeList to Array (for better manipulation)
-                console.log("%c %s", "background-color:grey; color: orange",
+                const allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
+                console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
+                arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
+                console.log("%c%s", "background-color:grey; color:orange",
                     'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
 
-                allAreaIds.forEach((e) => {
+                allAreaNodes.forEach((e) => {
                     e.addEventListener("click", checkAddToAreaArray);
                 });
                 
@@ -365,7 +380,7 @@
                     consoleLogClickedAreas(e);
                     checkForCat(e);
                 } else {
-                    alert("this area was already clicked"); // TODO: change this to a visual
+                    alert("This area was already clicked"); // TODO: change this to a visual
                 }
             }
 
@@ -374,7 +389,7 @@
             }
 
             function alertName(e) {
-                alert(e.target.id);
+                alert("e.target.id = " + e.target.id);
             };            
 
             function startGame() {
@@ -392,7 +407,7 @@
                     goToBedroomButton.style.display = "block";
                 }, 500); // Set the duration of the transition
                 
-                // allAreaIds.forEach(element => {
+                // allAreaNodes.forEach(element => {
                 //     console.log(element);
                 // });
                 
@@ -406,17 +421,18 @@
                 console.log(selectedAreas);
                 // selectedAreas.forEach(area => {
                 selectedAreas.forEach((area, index, array) => {
-                        catLocations.push(area.id);
-                        var container = document.getElementById(area.id);
-                        console.log(container);
-                        // container.innerHTML = "<img src='/img/cat1.gif'>";
-                        // container.innerHTML = `<img src='/img/cat${index+1}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
-                        container.innerHTML = `<img src='/img/cat${index+1}.gif'>`;
-                    }
-                );
+                    catLocations.push(area.id);
+                    var container = document.getElementById(area.id);
+                    console.log(container);
+                    // container.innerHTML = "<img src='/img/cat1.gif'>";
+                    // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
+                    container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
+                    // console.log("this cat's ID = " + container.innerHTML.id);
+                    // console.log("this cat's ID = " + innerHTML.id);
+                });
 
-                console.log("Randomly placed cats in the following areas: ", catLocations);
-                
+                // console.log('cat 0 id = ' + document.getElementById(0).id);
+                console.log("Placed cats in the following areas: ", catLocations);
             }
 
             // Checks if the area clicked is one of the randomized cat locations
@@ -426,7 +442,12 @@
                     alert("Found a cat!");
                     catsFound++;
                     document.getElementById("foundCounterValue").innerHTML = catsFound;
-                    // TODO: Add visual feedback for finding a cat (display the cat gif; fade it in and out)
+                     // TODO: below line should fade in the cat gif from display='none', let it play for a couple seconds, then fade out
+                        // as-is, it simply hides the clickable area
+                        // what is the best way to handle this for the child element (cat gif)?
+                    document.getElementById(hidingPlace.target.id).style.display = 'none';
+
+                    // document.getElementById(hidingPlace.target.id).style.display = 'block';
                 } else {
                     // TODO: Add visual feedback for finding a cat (display the cat gif; fade it in and out)
                 }
@@ -451,7 +472,7 @@
 
                     // Change the image source after a delay to synchronize with the fade-out animation
                     setTimeout(function () {
-                        document.getElementById("kitchenImage").src = "img/bedroom.jpg"; // Change the image source after fade-out is complete
+                        document.getElementById("locationImage").src = "img/bedroom.jpg"; // Change the image source after fade-out is complete
 
                         imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards"; // Apply fade-in animation to the image container
                     }, 10);
@@ -481,7 +502,7 @@
                 setTimeout(function () {
                     // Change the image source after fade-out is complete
                     // document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-                    document.getElementById("kitchenImage").src = "img/kitchen.jpg";
+                    document.getElementById("locationImage").src = "img/kitchen.jpg";
                     
                     // Apply fade-in animation to the image container
                     imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
@@ -503,7 +524,7 @@
                 // Change the image source after a delay to synchronize with the fade-out animation
                 setTimeout(function () {
                     // Change the image source after fade-out is complete
-                    document.getElementById("kitchenImage").src = "img/bedroom.jpg";
+                    document.getElementById("locationImage").src = "img/bedroom.jpg";
 
                     // Apply fade-in animation to the image container
                     imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
@@ -524,7 +545,7 @@
             // Add functionality to swap the clickable areas of the image.
             function changeImage(location) {
                 if (location == "bedroom") {
-                    document.getElementById("kitchenImage").src = "img/bedroom.jpg";
+                    document.getElementById("locationImage").src = "img/bedroom.jpg";
                 } else if (location == "kitchen") {
                     document.getElementById("bedroomImage").src = "img/kitchen.jpg";
                 }
