@@ -51,6 +51,18 @@
                 }
             }
 
+            @keyframes fadeInOut {
+                0% {
+                    opacity: 0;
+                } 25% {
+                    opacity: 1;
+                } 75% { 
+                    opacity: 1;
+                } 100% {
+                    opacity: 0;
+                }
+            }
+
             img {
                 height: auto;
                 justify-content: center;
@@ -174,6 +186,12 @@
                 max-height: 100%;
                 width: auto;
                 height: auto; */
+                /* animation: fadeInOut 3s ease-in-out forwards; */
+                opacity: 0; /* start with cat images transparent */
+            }
+
+            .catGif.active {
+                opacity: 1;
             }
 
             #goToBedroomButton {
@@ -262,7 +280,8 @@
             #area_kitchen_4,
             #area_kitchen_5 {
                 width: 11rem;
-                height: 20rem;
+                /* height: 20rem; */
+                height: 100%;
             }
 
             #area_kitchen_6 {
@@ -283,18 +302,40 @@
                     flex-direction: column;
                 }
             }
-            
+
+            @media screen and (max-width: 480px) {
+                #area_kitchen_4,
+                #area_kitchen_5 {
+                /* height: 65%; */
+                }
+                .row__stats {
+                padding: 0.55rem 0;
+                }
+                .row__upper .area--clickable {
+                /* height: 45%; */
+                }
+                .row__upper {
+                /* column-gap: 1rem; */
+                /* padding-top: 4rem; */
+                /* flex: 1; */
+                /* align-items: end; */
+                height: 8rem;
+                }
+                .row {
+                padding: 0 1rem;
+                }
+            }
+
             /* @media screen and (min-width: 1023px) {
                 .row__upper {
                     flex-direction: column;
                 }
             } */
-            </style>
+            
+        </style>
     </head>
     
     <body>
-        <!-- goToLocation Buttons -->
-        
         <div id="instructions" class="messageOverlay">
             <h1>Find Your Kitties!</h1>
             <p>You are about to leave for work in a hurry...</p>
@@ -359,135 +400,188 @@
             
             <script>
                 // Graphics and UI
-                var imageContainer = document.getElementById("imageContainer");
-            var instructions = document.getElementById("instructions");
-            const catImages = [];
-            
-            // Statistics
-            var clickCounter = 0;
-            var timer = 90;
-            // var timer = 2; // quick failure state testing value
-            var catsFound = 0;
-            var totalCats = 3;
-            
-            // Areas
-            var clickedAreas = [];
-            var catLocations = [];
-            var allAreaNodes = [];
-            var arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
-            var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
-            
-            // Interactables
-            var goToBedroomButton = document.getElementById("goToBedroomButton");
-            var goToKitchenButton = document.getElementById("goToKitchenButton");
-            
-            // When DOM is fully loaded
-            document.addEventListener("DOMContentLoaded", function () {
-                const allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
-                console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
-                arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
-                console.log("%c%s", "background-color:grey; color:orange",
-                'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
+                let imageContainer = document.getElementById("imageContainer");
+                let instructions = document.getElementById("instructions");
+                const catImages = [];
                 
-                allAreaNodes.forEach((e) => {
-                    e.addEventListener("click", checkAddToAreaArray);
+                // Statistics
+                let clickCounter = 0;
+                let timer = 90;
+                // let timer = 2; // quick failure state testing value
+                let catsFound = 0;
+                let totalCats = 3;
+                
+                // Areas
+                let clickedAreas = [];
+                let catLocations = [];
+                let allAreaNodes = [];
+                let arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
+                let areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
+                
+                // Interactables
+                let goToBedroomButton = document.getElementById("goToBedroomButton");
+                let goToKitchenButton = document.getElementById("goToKitchenButton");
+                
+                // When DOM is fully loaded
+                document.addEventListener("DOMContentLoaded", function () {
+                    const allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
+                    console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
+                    arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
+                    console.log("%c%s", "background-color:grey; color:orange",
+                    'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
+                    
+                    allAreaNodes.forEach((e) => {
+                        e.addEventListener("click", checkAddToAreaArray);
+                    });
+                    
+                    startGame();
                 });
                 
-                startGame();
-            });
-            
-            function checkAddToAreaArray(e) {
-                alertName(e); // debug
-                addAreaToClickedAreas(e);
-            }
-            
-            function addAreaToClickedAreas(e) {
-                if (!clickedAreas.includes(e.target.id)) {
-                    // if (!clickedAreas.includes(e.target.id) && (e.target.id != '')) {
-                        clickedAreas.push(e.target.id);
-                        console.log(clickedAreas);
-                        checkForCat(e);
+                function checkAddToAreaArray(e) {
+                    alertName(e); // debug
+                    addAreaToClickedAreas(e);
+                }
+                
+                function addAreaToClickedAreas(e) {
+                    if (!clickedAreas.includes(e.target.id)) {
+                        // if (!clickedAreas.includes(e.target.id) && (e.target.id != '')) {
+                            clickedAreas.push(e.target.id);
+                            console.log(clickedAreas);
+                            checkForCat(e);
+                        } else {
+                            alert("This area was already clicked."); // TODO: change this to a visual
+                        }
+                    }
+                    
+                    function alertName(e) {
+                        alert("e.target.id = " + e.target.id);
+                    };            
+                    
+                    function startGame() {
+                        console.log("startGame() fired");
+                        placeCatsRandomly();
+                        
+                        // instructions.style.opacity = 0; // TODO: Re-enable
+
+                        setTimeout(function () {
+                            instructions.style.display = "none";
+                            
+                            imageContainer.style.display = "flex";
+                            imageContainer.style.opacity = 1;
+                            
+                            goToBedroomButton.style.display = "block";
+                        }, 500); // Set the duration of the transition
+                        
+                        // allAreaNodes.forEach(element => {
+                            //     console.log(element);
+                            // });
+                            
+                            runTimer();
+                        }
+                        
+                        // Randomizes the available clickable areas and adds the first 3 from the randomized array into the catLocations var
+                function placeCatsRandomly() {
+                    const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
+                    const selectedAreas = shuffledArray.slice(0, 3);
+                    console.log(selectedAreas);
+                    // selectedAreas.forEach(area => {
+                    selectedAreas.forEach((area, index, array) => {
+                        catLocations.push(area.id);
+                        var container = document.getElementById(area.id);
+                        console.log(container);
+                        // container.innerHTML = "<img src='/img/cat1.gif'>";
+                        // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
+                        container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
+                        // console.log("this cat's ID = " + container.innerHTML.id);
+                        // console.log("this cat's ID = " + innerHTML.id);
+                    });
+
+                    // console.log('cat 0 id = ' + document.getElementById(0).id);
+                    console.log("Placed cats in the following areas: ", catLocations);
+                }
+
+                // Checks if the area clicked is one of the randomized cat locations
+                // Triggers visuals if an unfound cat was found or visually notifies if it was not
+                function checkForCat(hidingPlace) {
+                    if (catLocations.includes(hidingPlace.target.id)) {
+                        alert("Found a cat!");
+                        catsFound++;
+                        document.getElementById("foundCounterValue").innerHTML = catsFound;
+                        hidingPlace.target.children[0].style.animation = 'fadeInOut 7s ease-in-out forwards';
+                        console.log(`Children of this hidingPlace element: `, hidingPlace.target.children);
+                        // TODO: below line should fade in the cat gif from display='none', let it play for a couple seconds, then fade out
+                            // can use something like 'imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";'
+                            // as-is, it simply hides the clickable area
+                            // what is the best way to handle this for the child element (cat gif)?
+                        // document.getElementById(hidingPlace.target.id).style.display = 'none';
+                        // document.getElementById(hidingPlace.target.id).style.display = 'block';
                     } else {
-                        alert("This area was already clicked."); // TODO: change this to a visual
+                        // TODO: Add visual feedback for finding a cat (display the cat gif; fade it in and out)
+                    }
+                    if (catsFound >= totalCats) {
+                        // gameOver(true); // right now this is handled by the runTimer()
                     }
                 }
-                
-                function alertName(e) {
-                    alert("e.target.id = " + e.target.id);
-                };            
-                
-                function startGame() {
-                    console.log("startGame() fired");
-                    placeCatsRandomly();
-                    
-                    // instructions.style.opacity = 0; // TODO: Re-enable
 
+                function goToLocation(location) {
+                    console.log("goToLocation fired: " + location);
+                    var imageContainer = document.getElementById("imageContainer");
+                    
+                    // Apply fade-out animation to the image container
+                    imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
+                    if (location === "bedroom") {
+                        goToBedroomButton.style.display = "none"; // Hides the goToBedroomButton
+
+                        // Show the goToKitchenButton after a delay
+                        setTimeout(function () {
+                            goToKitchenButton.style.display = "block";
+                        }, 500);
+
+                        // Change the image source after a delay to synchronize with the fade-out animation
+                        setTimeout(function () {
+                            document.getElementById("locationImage").src = "img/bedroom.jpg"; // Change the image source after fade-out is complete
+
+                            imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards"; // Apply fade-in animation to the image container
+                        }, 10);
+                        updateClickableAreas("bedroom");
+                    } else if (location === "kitchen") {
+                        goToKitchen();
+                        updateClickableAreas("kitchen");
+                    } else {
+                        alert("Failed to goToLocation() with an invalid value.");
+                    }
+                }
+
+                // TODO: pull the repeated declarations of goToXButton out and move them up.
+                function goToKitchen() {
+                    var goToBedroomButton = document.getElementById("goToBedroomButton");
+                    var goToKitchenButton = document.getElementById("goToKitchenButton");
+                    
+                    // Hide the existing goToBedroomButton
+                    goToKitchenButton.style.display = "none";
+                    
+                    // Show the goToKitchenButton after a delay
                     setTimeout(function () {
-                        instructions.style.display = "none";
-                        
-                        imageContainer.style.display = "flex";
-                        imageContainer.style.opacity = 1;
-                        
                         goToBedroomButton.style.display = "block";
-                    }, 500); // Set the duration of the transition
-                    
-                    // allAreaNodes.forEach(element => {
-                        //     console.log(element);
-                        // });
+                    }, 500);
+
+                    // Change the image source after a delay to synchronize with the fade-out animation
+                    setTimeout(function () {
+                        // Change the image source after fade-out is complete
+                        // document.getElementById("bedroomImage").src = "img/kitchen.jpg";
+                        document.getElementById("locationImage").src = "img/kitchen.jpg";
                         
-                        runTimer();
-                    }
-                    
-                    // Randomizes the available clickable areas and adds the first 3 from the randomized array into the catLocations var
-            function placeCatsRandomly() {
-                const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
-                const selectedAreas = shuffledArray.slice(0, 3);
-                console.log(selectedAreas);
-                // selectedAreas.forEach(area => {
-                selectedAreas.forEach((area, index, array) => {
-                    catLocations.push(area.id);
-                    var container = document.getElementById(area.id);
-                    console.log(container);
-                    // container.innerHTML = "<img src='/img/cat1.gif'>";
-                    // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
-                    container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
-                    // console.log("this cat's ID = " + container.innerHTML.id);
-                    // console.log("this cat's ID = " + innerHTML.id);
-                });
-
-                // console.log('cat 0 id = ' + document.getElementById(0).id);
-                console.log("Placed cats in the following areas: ", catLocations);
-            }
-
-            // Checks if the area clicked is one of the randomized cat locations
-            // Triggers visuals if an unfound cat was found or visually notifies if it was not
-            function checkForCat(hidingPlace) {
-                if (catLocations.includes(hidingPlace.target.id)) {
-                    alert("Found a cat!");
-                    catsFound++;
-                    document.getElementById("foundCounterValue").innerHTML = catsFound;
-                     // TODO: below line should fade in the cat gif from display='none', let it play for a couple seconds, then fade out
-                        // can use something like 'imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";'
-                        // as-is, it simply hides the clickable area
-                        // what is the best way to handle this for the child element (cat gif)?
-                    // document.getElementById(hidingPlace.target.id).style.display = 'none';
-                    // document.getElementById(hidingPlace.target.id).style.display = 'block';
-                } else {
-                    // TODO: Add visual feedback for finding a cat (display the cat gif; fade it in and out)
+                        // Apply fade-in animation to the image container
+                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
+                    }, 10);
                 }
-                if (catsFound >= totalCats) {
-                    // gameOver(true); // right now this is handled by the runTimer()
-                }
-            }
 
-            function goToLocation(location) {
-                console.log("goToLocation fired: " + location);
-                var imageContainer = document.getElementById("imageContainer");
-                
-                // Apply fade-out animation to the image container
-                imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
-                if (location === "bedroom") {
-                    goToBedroomButton.style.display = "none"; // Hides the goToBedroomButton
+                function goToBedroom() {
+                    var goToBedroomButton = document.getElementById("goToBedroomButton");
+                    var goToKitchenButton = document.getElementById("goToKitchenButton");
+
+                    // Hide the existing goToBedroomButton
+                    goToBedroomButton.style.display = "none";
 
                     // Show the goToKitchenButton after a delay
                     setTimeout(function () {
@@ -496,125 +590,74 @@
 
                     // Change the image source after a delay to synchronize with the fade-out animation
                     setTimeout(function () {
-                        document.getElementById("locationImage").src = "img/bedroom.jpg"; // Change the image source after fade-out is complete
+                        // Change the image source after fade-out is complete
+                        document.getElementById("locationImage").src = "img/bedroom.jpg";
 
-                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards"; // Apply fade-in animation to the image container
+                        // Apply fade-in animation to the image container
+                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
                     }, 10);
-                    updateClickableAreas("bedroom");
-                } else if (location === "kitchen") {
-                    goToKitchen();
-                    updateClickableAreas("kitchen");
-                } else {
-                    alert("Failed to goToLocation() with an invalid value.");
                 }
-            }
 
-            // TODO: pull the repeated declarations of goToXButton out and move them up.
-            function goToKitchen() {
-                var goToBedroomButton = document.getElementById("goToBedroomButton");
-                var goToKitchenButton = document.getElementById("goToKitchenButton");
-                
-                // Hide the existing goToBedroomButton
-                goToKitchenButton.style.display = "none";
-                
-                // Show the goToKitchenButton after a delay
-                setTimeout(function () {
-                    goToBedroomButton.style.display = "block";
-                }, 500);
+                // Modifies the displayed clickable areas when the location has been updated.
+                function updateClickableAreas(location) {
+                    if (location === "bedroom") {
+                        
+                    } else if (location === "kitchen") {
 
-                // Change the image source after a delay to synchronize with the fade-out animation
-                setTimeout(function () {
-                    // Change the image source after fade-out is complete
-                    // document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-                    document.getElementById("locationImage").src = "img/kitchen.jpg";
-                    
-                    // Apply fade-in animation to the image container
-                    imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-                }, 10);
-            }
-
-            function goToBedroom() {
-                var goToBedroomButton = document.getElementById("goToBedroomButton");
-                var goToKitchenButton = document.getElementById("goToKitchenButton");
-
-                // Hide the existing goToBedroomButton
-                goToBedroomButton.style.display = "none";
-
-                // Show the goToKitchenButton after a delay
-                setTimeout(function () {
-                    goToKitchenButton.style.display = "block";
-                }, 500);
-
-                // Change the image source after a delay to synchronize with the fade-out animation
-                setTimeout(function () {
-                    // Change the image source after fade-out is complete
-                    document.getElementById("locationImage").src = "img/bedroom.jpg";
-
-                    // Apply fade-in animation to the image container
-                    imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
-                }, 10);
-            }
-
-            // Modifies the displayed clickable areas when the location has been updated.
-            function updateClickableAreas(location) {
-                if (location === "bedroom") {
-                    
-                } else if (location === "kitchen") {
-
-                } else {
-                    alert("Failed to update ClickableAreas to an invalid location.")
-                }
-            }
-
-            // Add functionality to swap the clickable areas of the image.
-            function changeImage(location) {
-                if (location == "bedroom") {
-                    document.getElementById("locationImage").src = "img/bedroom.jpg";
-                } else if (location == "kitchen") {
-                    document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-                }
-            }
-
-            function gameOver(outcome) {
-                if (outcome === true) {
-                    successful();
-                } else {
-                    failure();
-                }
-            }
-            
-            function runTimer() {
-                var interval = window.setInterval(function(){
-                    if ((timer <= 0) && (catsFound < totalCats)) {
-                        clearInterval(interval);
-                        gameOver(false);
-                    } else if (catsFound >= totalCats) {
-                    // } else if ((timer <= 0) && (catsFound >= totalCats)) {
-                        clearInterval(interval);
-                        gameOver(true); // Should this be incorporated into checkForCat()?
                     } else {
-                        timer--;
-                        document.getElementById("timerValue").innerHTML = timer;
-                    };
-                }, 1000);
-            }
+                        alert("Failed to update ClickableAreas to an invalid location.")
+                    }
+                }
 
-            // TODO: Change background image to a success image when all cats found
-                // and show a card similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
+                // Add functionality to swap the clickable areas of the image.
+                function changeImage(location) {
+                    if (location == "bedroom") {
+                        document.getElementById("locationImage").src = "img/bedroom.jpg";
+                    } else if (location == "kitchen") {
+                        document.getElementById("bedroomImage").src = "img/kitchen.jpg";
+                    }
+                }
 
-            // Show the success message
-            function successful() {
-                var successMessage = document.getElementById("successMessage");
-                successMessage.style.display = "block";
-                console.log("Won the game");
-            }
-            
-            // TODO: Change background image to a failure image
-            // TODO: Show the cats in the unfound places they were hiding
-            // TODO: Show a card similar to the 'instructions' that indicates you failed and presents your final stats
-            function failure() {
-                console.log("Failed at the game");
-            }                           
+                function gameOver(outcome) {
+                    if (outcome === true) {
+                        successful();
+                    } else {
+                        failure();
+                    }
+                }
+                
+                function runTimer() {
+                    var interval = window.setInterval(function(){
+                        if ((timer <= 0) && (catsFound < totalCats)) {
+                            clearInterval(interval);
+                            gameOver(false);
+                        } else if (catsFound >= totalCats) {
+                        // } else if ((timer <= 0) && (catsFound >= totalCats)) {
+                            clearInterval(interval);
+                            gameOver(true); // Should this be incorporated into checkForCat()?
+                        } else {
+                            timer--;
+                            document.getElementById("timerValue").innerHTML = timer;
+                        };
+                    }, 1000);
+                }
+
+                // TODO: Change background image to a success image when all cats found
+                    // and show a card similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
+
+                // Show the success message
+                function successful() {
+                    var successMessage = document.getElementById("successMessage");
+                    successMessage.style.display = "block";
+                    console.log("Won the game");
+                }
+                
+                // TODO: Change background image to a failure image
+                // TODO: Show the cats in the unfound places they were hiding
+                // TODO: Show a card similar to the 'instructions' that indicates you failed and presents your final stats
+                function failure() {
+                    console.log("Failed at the game");
+                }                    
         </script>
-</body>
+    </body>
 </html>
