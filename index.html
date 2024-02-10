@@ -400,27 +400,27 @@
             
             <script>
                 // Graphics and UI
-                let imageContainer = document.getElementById("imageContainer");
-                let instructions = document.getElementById("instructions");
+                var imageContainer = document.getElementById("imageContainer");
+                var instructions = document.getElementById("instructions");
                 const catImages = [];
                 
                 // Statistics
-                let clickCounter = 0;
-                let timer = 90;
-                // let timer = 2; // quick failure state testing value
-                let catsFound = 0;
-                let totalCats = 3;
+                var clickCounter = 0;
+                var timer = 90;
+                // var timer = 2; // quick failure state testing value
+                var catsFound = 0;
+                var totalCats = 3;
                 
                 // Areas
-                let clickedAreas = [];
-                let catLocations = [];
-                let allAreaNodes = [];
-                let arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
-                let areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
+                var clickedAreas = [];
+                var catLocations = [];
+                var allAreaNodes = [];
+                var arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
+                var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
                 
                 // Interactables
-                let goToBedroomButton = document.getElementById("goToBedroomButton");
-                let goToKitchenButton = document.getElementById("goToKitchenButton");
+                var goToBedroomButton = document.getElementById("goToBedroomButton");
+                var goToKitchenButton = document.getElementById("goToKitchenButton");
                 
                 // When DOM is fully loaded
                 document.addEventListener("DOMContentLoaded", function () {
