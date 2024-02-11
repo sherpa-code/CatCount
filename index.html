@@ -206,6 +206,15 @@
                 opacity: 1;
             }
 
+            /* TODO: replace REM with % */
+            .goToLocationButton.left {
+                left: 2rem;
+            }
+
+            .goToLocationButton.right {
+                right: 2rem;
+            }
+
             #goToBedroomButton {
                 left: 2rem;
             }
@@ -259,7 +268,7 @@
                 display: none;
             }
             
-            /*  */
+            /* TODO: replace instances of this with the semantic HTML 'main' */
             #imageContainer {
                 margin: 0 auto;
                 position: relative;
@@ -448,8 +457,7 @@
         <script>
             // Graphics and UI
             // var imageContainer = document.getElementById("imageContainer");
-            var imageContainer = document.getElementsByTagName("main")[0];
-            // console.log("imageContainer is " + imageContainer);
+            var imageContainer = document.getElementsByTagName("main")[0]; // the primary container in the body
             var instructions = document.getElementById("instructions");
             const catImages = [];
             
@@ -458,7 +466,7 @@
             var timer = 90;
             // var timer = 2; // quick failure state testing value
             var catsFound = 0;
-            var totalCats = 3;
+            const totalCats = 3;
             
             // Areas
             var clickedAreas = [];
@@ -473,7 +481,7 @@
             
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
-                const allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
+                var allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
                 console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
                 arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
                 console.log("%c%s", "background-color:grey; color:orange",
@@ -502,31 +510,31 @@
                     }
                 }
                 
-                function alertName(e) {
-                    alert("e.target.id = " + e.target.id);
-                };            
+            function alertName(e) {
+                alert("e.target.id = " + e.target.id);
+            };            
+            
+            function startGame() {
+                // console.log("startGame() fired");
+                placeCatsRandomly();
                 
-                function startGame() {
-                    console.log("startGame() fired");
-                    placeCatsRandomly();
-                    
-                    // instructions.style.opacity = 0; // TODO: Re-enable
+                // instructions.style.opacity = 0; // TODO: Re-enable
 
-                    setTimeout(function () {
-                        instructions.style.display = "none";
-                        
-                        imageContainer.style.display = "flex";
-                        imageContainer.style.opacity = 1;
-                        
-                        goToBedroomButton.style.display = "block";
-                    }, 500); // Set the duration of the transition
+                setTimeout(function () {
+                    instructions.style.display = "none";
                     
-                    // allAreaNodes.forEach(element => {
-                        //     console.log(element);
-                        // });
-                        
-                        runTimer();
-                    }
+                    imageContainer.style.display = "flex";
+                    imageContainer.style.opacity = 1;
+                    
+                    goToBedroomButton.style.display = "block";
+                }, 500); // Set the duration of the transition
+                
+                // allAreaNodes.forEach(element => {
+                    //     console.log(element);
+                    // });
+                    
+                    runTimer();
+                }
                     
                     // Randomizes the available clickable areas and adds the first 3 from the randomized array into the catLocations var
             function placeCatsRandomly() {
@@ -541,8 +549,6 @@
                     // container.innerHTML = "<img src='/img/cat1.gif'>";
                     // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
                     container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
-                    // console.log("this cat's ID = " + container.innerHTML.id);
-                    // console.log("this cat's ID = " + innerHTML.id);
                 });
 
                 // console.log('cat 0 id = ' + document.getElementById(0).id);
@@ -558,15 +564,12 @@
                     document.getElementById("foundCounterValue").innerHTML = catsFound;
                     hidingPlace.target.children[0].style.animation = 'fadeInOut 7s ease-in-out forwards';
                     console.log(`Children of this hidingPlace element: `, hidingPlace.target.children);
-                    // TODO: below line should fade in the cat gif from display='none', let it play for a couple seconds, then fade out
-                        // can use something like 'imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";'
-                        // as-is, it simply hides the clickable area
-                        // what is the best way to handle this for the child element (cat gif)?
                     // document.getElementById(hidingPlace.target.id).style.display = 'none';
                     // document.getElementById(hidingPlace.target.id).style.display = 'block';
                 } else {
-                    // TODO: Add visual feedback for finding a cat (display the cat gif; fade it in and out)
+                    alert("Dang, no cat here...");
                 }
+
                 if (catsFound >= totalCats) {
                     // gameOver(true); // right now this is handled by the runTimer()
                 }
@@ -574,7 +577,6 @@
 
             function goToLocation(location) {
                 console.log("goToLocation fired: " + location);
-                var imageContainer = document.getElementById("imageContainer");
                 
                 // Apply fade-out animation to the image container
                 imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
@@ -692,7 +694,7 @@
             }
 
             // TODO: Change background image to a success image when all cats found
-                // and show a card similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
+                // and show a modal similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
 
             // Show the success message
             function successful() {
