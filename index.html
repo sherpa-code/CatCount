@@ -184,6 +184,21 @@
                 background-color: #3498db;
                 color: #fff;
             }
+
+            button {
+                
+                display: none;
+                position: absolute;
+                padding: 0.55rem;
+                border: none;
+                border-radius: 0.35rem;
+                font-size: 1rem;
+                transition: background-color 1.6s ease-in-out;
+                top: 50%;
+                z-index: 1;
+                background-color: #3498db;
+                color: #fff;
+            }
             
             /* TODO: Bound the cat image to it's container, resizing as appropriate */
             /* TODO: Set the cat image's z-order to not interfere with clicking on the clickable area */
@@ -207,13 +222,13 @@
             }
 
             /* TODO: replace REM with % */
-            .goToLocationButton.left {
+            /* .goToLocationButton.left {
                 left: 2rem;
             }
 
             .goToLocationButton.right {
                 right: 2rem;
-            }
+            } */
 
             #goToBedroomButton {
                 left: 2rem;
@@ -403,9 +418,13 @@
         <!-- The outermost container within the body that wraps the on-screen elements-->
         <!-- <main id="imageContainer"> -->
         <main id="imageContainer">
+        <!-- <div id="imageContainer"> -->
             <!-- use class name above to handle room changing and clickable area changes -->
-            <button id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</button>
-            <button id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</button>
+            <!-- <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div> -->
+            <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div>
+            <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
+            <!-- <button id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</button>
+            <button id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</button> -->
             <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage"/>
             <div class="row row__stats">
                 <span id="timer" class="stats--display">Timer: <span id="timerValue"></span></span>
@@ -695,18 +714,19 @@
             // TODO: Change background image to a success image when all cats found
                 // and show a modal similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
 
-            // Show the success message
+            // TODO: fix the success message modal
             function successful() {
                 var successMessage = document.getElementById("successMessage");
                 successMessage.style.display = "block";
                 console.log("Won the game");
+                // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
             }
             
-            // TODO: Change background image to a failure image
+            // TODO: Add a failure message modal
             // TODO: Show the cats in the unfound places they were hiding
-            // TODO: Show a card similar to the 'instructions' that indicates you failed and presents your final stats
             function failure() {
                 console.log("Failed at the game");
+                // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
             }         
 
         </script>
