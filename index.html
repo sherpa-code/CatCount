@@ -702,6 +702,8 @@
             }
             
             function gameOver(outcome) {
+                // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
+                // document.getElementsByClassName("controlButton").style.display = "none"; TODO: add a foreach to hide them all
                 if (outcome === true) {
                     successful();
                 } else {
@@ -717,14 +719,12 @@
                 var successMessage = document.getElementById("successMessage");
                 successMessage.style.display = "block";
                 console.log("Won the game");
-                // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
             }
             
             // TODO: Add a failure message modal
             // TODO: Show the cats in the unfound places they were hiding
             function failure() {
                 console.log("Failed at the game");
-                // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
             }         
 
         </script>
