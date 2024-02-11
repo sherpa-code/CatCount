@@ -26,10 +26,7 @@
             }
 
             img,
-            picture,
-            video,
-            canvas,
-            svg {
+            picture {
                 display: block;
                 max-width: 100%;
             }
@@ -66,7 +63,7 @@
             img {
                 height: auto;
                 justify-content: center;
-            } 
+            }
 
             /* TODO: background will be one of a few blurred background images of cats to fill the negative space */
             body {
@@ -99,7 +96,6 @@
                 justify-content: space-between;
                 display: flex;
                 flex-direction: column;
-                
                 border: 1px solid red;
             }
 
@@ -113,6 +109,10 @@
                 
                 background-color: #ffffff80;
                 border: 1px solid blue;
+            }
+
+            .row.hidden .area--clickable {
+                display: none;
             }
 
             .row__stats {
@@ -168,6 +168,10 @@
 
             .area--clickable {
                 cursor: pointer;
+            }
+
+            .area--clickable.hidden {
+                display: none;
             }
 
             /* Styles the 'goTo[location]' buttons; e.g. 'To the Bedroom' and 'To the Kitchen' buttons*/
@@ -314,10 +318,10 @@
                 inset: 0;
             } */
 
-            #clickCounter {
+            /* #clickCounter {
                 top: 1rem;
                 right: 1rem;
-            }
+            } */
 
             #timer {
                 top: 1rem;
@@ -427,9 +431,11 @@
             <button id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</button> -->
             <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage"/>
             <div class="row row__stats">
-                <span id="timer" class="stats--display">Timer: <span id="timerValue"></span></span>
+                <!-- <span id="timer" class="stats--display">Timer: <span id="timerValue"></span></span> -->
+                <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
                 <!-- <span id="clickCounter" class="stats--display">Clicks: <span id="clickCounterValue">0</span></span> -->
-                <span id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</span>
+                <!-- <span id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</span> -->
+                <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p>
             </div>
             <!-- Clickable areas: Kitchen -->
             <!-- <div style="min-height: 100vh;"> -->
@@ -462,9 +468,13 @@
                 <div class="area--clickable kitchen" id="area_kitchen_18">Area 18</div>                
             </div>
 
-            <div id="successMessage" class="messageOverlay">
+            <button onclick="startGame()" font-size="200%">Start Searching</button>
+            <dialog id="successMessage" class="messageOverlay">
                 You found all of the cats, congratulations!
-            </div>
+            </dialog>
+            <!-- <div id="successMessage" class="messageOverlay">
+                You found all of the cats, congratulations!
+            </div> -->
 
             <div id="failureMessage" class="messageOverlay">
                 You didn't find your cats in time, you'll be late!
@@ -614,7 +624,7 @@
                     goToKitchen();
                     updateClickableAreas("kitchen");
                 } else {
-                    alert("Failed to goToLocation(location) with an invalid value.");
+                    alert("Failed to goToLocation() with an invalid value.");
                 }
             }
 
@@ -712,6 +722,7 @@
             }
             
             function hideClickableAreas() {
+                //document.querySelectorAll("area--clickable").style.display = "none"; // TODO: add a foreach
                 // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
                 // document.getElementsByClassName("controlButton").style.display = "none"; TODO: add a foreach to hide them all
             }
