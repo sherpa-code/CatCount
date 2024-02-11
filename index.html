@@ -701,15 +701,19 @@
                 }, 1000);
             }
             
+            // Disables the clickable areas one an end-game state is reached, then displays the appropriate modal.
             function gameOver(outcome) {
-                // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
-                // document.getElementsByClassName("controlButton").style.display = "none"; TODO: add a foreach to hide them all
+                hideClickableAreas();
                 if (outcome === true) {
                     successful();
                 } else {
                     failure();
                 }
-
+            }
+            
+            function hideClickableAreas() {
+                // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
+                // document.getElementsByClassName("controlButton").style.display = "none"; TODO: add a foreach to hide them all
             }
 
             // TODO: Change background image to a success image when all cats found
