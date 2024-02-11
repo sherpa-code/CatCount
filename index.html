@@ -3,7 +3,7 @@
   author: Jo Crane
   
   'Cat Count' is a single-page web application using HTML, CSS, and JavaScript.
-  The overall goal is to search (by clicking) all areas in which your three cats may be hiding before the timer expires.
+  The overall goal is to search (by clicking) all areas in which your cats may be hiding before the timer expires.
 -->
 <html lang="en">
     <head>
@@ -250,18 +250,18 @@
                 display: none;
             }
 
-            dialog .instructions {
-                /* font-size: 150%;
+            dialog.instructions {
+                font-size: 150%;
                 margin: 8em;
                 padding: 2em;
                 background-color: #ddd;
                 border-radius: 1em;
                 box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
                 transition: opacity 0.5s ease-in-out;
-                display: none; */
+                display: none;
             }
 
-            dialog .messageOverlay {
+            dialog.messageOverlay {
                 /* font-size: 150%;
                 margin: 8em;
                 padding: 2em;
@@ -711,10 +711,9 @@
                 }
 
             }
+
             // TODO: Change background image to a success image when all cats found
                 // and show a modal similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
-
-            // TODO: fix the success message modal
             function successful() {
                 var successMessage = document.getElementById("successMessage");
                 successMessage.style.display = "block";
