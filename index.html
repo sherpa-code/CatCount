@@ -513,7 +513,7 @@
             });
             
             function checkAddToAreaArray(e) {
-                alertName(e); // debug
+                alert("e.target.id = " + e.target.id);
                 addAreaToClickedAreas(e);
             }
             
@@ -527,15 +527,9 @@
                         alert("This area was already clicked."); // TODO: change this to a visual
                     }
                 }
-                
-            function alertName(e) {
-                alert("e.target.id = " + e.target.id);
-            };            
-            
+        
             function startGame() {
-                // console.log("startGame() fired");
                 placeCatsRandomly();
-                
                 // instructions.style.opacity = 0; // TODO: Re-enable
 
                 setTimeout(function () {
@@ -554,7 +548,8 @@
                     runTimer();
                 }
                     
-                    // Randomizes the available clickable areas and adds the first 3 from the randomized array into the catLocations var
+            // Randomizes the available clickable areas and adds the first 3 from the
+            // randomized array into the catLocations var
             function placeCatsRandomly() {
                 const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
                 const selectedAreas = shuffledArray.slice(0, 3);
@@ -593,6 +588,8 @@
                 }
             }
 
+            // Changes the 'location' the user is in, including animated crossfade and
+            // updating the clickable areas to match the new background room image.
             function goToLocation(location) {
                 console.log("goToLocation fired: " + location);
                 
@@ -686,31 +683,32 @@
                     document.getElementById("bedroomImage").src = "img/kitchen.jpg";
                 }
             }
-
-            function gameOver(outcome) {
-                if (outcome === true) {
-                    successful();
-                } else {
-                    failure();
-                }
-            }
             
+            // TODO: move the catsFound >= totalCats check to checkForCat()
             function runTimer() {
                 var interval = window.setInterval(function(){
                     if ((timer <= 0) && (catsFound < totalCats)) {
                         clearInterval(interval);
                         gameOver(false);
                     } else if (catsFound >= totalCats) {
-                    // } else if ((timer <= 0) && (catsFound >= totalCats)) {
+                        // } else if ((timer <= 0) && (catsFound >= totalCats)) {
                         clearInterval(interval);
-                        gameOver(true); // Should this be incorporated into checkForCat()?
+                        gameOver(true);
                     } else {
                         timer--;
                         document.getElementById("timerValue").innerHTML = timer;
                     };
                 }, 1000);
             }
+            
+            function gameOver(outcome) {
+                if (outcome === true) {
+                    successful();
+                } else {
+                    failure();
+                }
 
+            }
             // TODO: Change background image to a success image when all cats found
                 // and show a modal similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
 
