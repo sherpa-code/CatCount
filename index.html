@@ -403,10 +403,9 @@
         <!-- The outermost container within the body that wraps the on-screen elements-->
         <!-- <main id="imageContainer"> -->
         <main id="imageContainer">
-        <!-- <div id="imageContainer"> -->
             <!-- use class name above to handle room changing and clickable area changes -->
-            <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div>
-            <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
+            <button id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</button>
+            <button id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</button>
             <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage"/>
             <div class="row row__stats">
                 <span id="timer" class="stats--display">Timer: <span id="timerValue"></span></span>
