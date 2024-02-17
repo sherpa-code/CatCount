@@ -75,7 +75,7 @@
                 /* background-image: linear-gradient(rgb(129, 84, 1), rgba(165, 42, 42, 0.171)); */
                 /* margin: 0;
                 opacity: 0; */
-                animation: fadeIn 1.5s ease-in-out forwards;
+                animation: fadeIn 1.5s ease-in forwards;
             }
 
             main {
@@ -209,13 +209,13 @@
                 color: #fff;
             }
             
-            /* TODO: Bound the cat image to it's container, resizing as appropriate */
+            /* TODO: Make all cat images the same dimensions
+            /* TODO: When a cat is shown it hovers over that clickable, even if it overlaps with neighboring ones
             /* TODO: Set the cat image's z-order to not interfere with clicking on the clickable area */
             .catGif {
-                 /* TODO: re-enable display:none when closer to final */
-                /* display: none; */
                 z-index: -1;
-                /* object-fit: cover; */ /* Approach #1 */
+                /* Approach #1 */
+                object-fit: cover;
                 /* object-fit: contain; */ /* Approach #2 */
                 /* Approach #3 */
                 /* max-width: 100%;
@@ -503,6 +503,10 @@
             var imageContainer = document.getElementsByTagName("main")[0]; // the primary container in the body
             var instructions = document.getElementById("instructions");
             const catImages = [];
+
+            const fadeIn = "fadeIn 0.5s ease-in forwards";
+            const fadeOut = "fadeOut 0.5s ease-out forwards";
+            const fadeInOut = 'fadeInOut 2s ease-in-out forwards';
             
             // Statistics
             var clickCounter = 0;
@@ -601,7 +605,7 @@
                     alert("Found a cat!");
                     catsFound++;
                     document.getElementById("foundCounterValue").innerHTML = catsFound;
-                    hidingPlace.target.children[0].style.animation = 'fadeInOut 7s ease-in-out forwards';
+                    hidingPlace.target.children[0].style.animation = 'fadeInOut 8s ease-in-out forwards';
                     console.log(`Children of this hidingPlace element: `, hidingPlace.target.children);
                     // document.getElementById(hidingPlace.target.id).style.display = 'none';
                     // document.getElementById(hidingPlace.target.id).style.display = 'block';
@@ -616,33 +620,28 @@
 
             // Changes the 'location' the user is in, including animated crossfade and
             // updating the clickable areas to match the new background room image.
+
             function goToLocation(location) {
                 console.log("goToLocation fired: " + location);
                 
                 // Apply fade-out animation to the image container
-                imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
+                imageContainer.style.animation = fadeOut;
                 if (location === "bedroom") {
-                    // goToBedroomButton.style.display = "none"; // Hides the goToBedroomButton
-                    goToBedroomButton.style.opacity = 0;
-
-                    // Show the goToKitchenButton after a delay
-                    goToKitchenButton.style.animation = "fadeIn 0.5s ease-in-out forwards";
-
-                    // setTimeout(function () {
-                    //     goToKitchenButton.style.display = "block";
-                    // }, 500);
+                    goToBedroom();
+                    goToBedroomButton.style.display = "none"; // Hides the goToBedroomButton
+                    goToKitchenButton.style.animation = fadeIn ;
 
                     // Change the image source after a delay to synchronize with the fade-out animation
                     setTimeout(function () {
                         document.getElementById("locationImage").src = "img/bedroom.jpg"; // Change the image source after fade-out is complete
 
-                        imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards"; // Apply fade-in animation to the image container
+                        imageContainer.style.animation = fadeIn;
                     }, 10);
                     updateClickableAreas("bedroom");
                 } else if (location === "kitchen") {
                     goToKitchen();
                     updateClickableAreas("kitchen");
-                    goToBedroomButton.style.animation = "fadeIn 0.5s ease-in-out forwards";
+                    goToBedroomButton.style.animation = fadeIn;
                 } else {
                     alert("Failed to goToLocation() with an invalid value.");
                 }
@@ -664,11 +663,10 @@
                 // Change the image source after a delay to synchronize with the fade-out animation
                 setTimeout(function () {
                     // Change the image source after fade-out is complete
-                    // document.getElementById("bedroomImage").src = "img/kitchen.jpg";
                     document.getElementById("locationImage").src = "img/kitchen.jpg";
                     
                     // Apply fade-in animation to the image container
-                    imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
+                    imageContainer.style.animation = fadeIn;
                 }, 10);
             }
 
@@ -690,7 +688,7 @@
                     document.getElementById("locationImage").src = "img/bedroom.jpg";
 
                     // Apply fade-in animation to the image container
-                    imageContainer.style.animation = "fadeIn 0.5s ease-in-out forwards";
+                    imageContainer.style.animation = fadeIn;
                 }, 10);
             }
 
