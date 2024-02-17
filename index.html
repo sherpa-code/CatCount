@@ -189,7 +189,7 @@
                 font-size: 1rem;
                 transition: background-color 1.6s ease-in-out;
                 top: 50%;
-                z-index: 1;
+                z-index: 4;
                 background-color: #3498db;
                 color: #fff;
             }
@@ -460,17 +460,27 @@
             </div>
             <!-- TODO: break up the bottom row into divs and subdivs -->
             <div class="row row__bottom">
-                <div class="area--clickable kitchen" id="area_kitchen_8">Area 8</div>
-                <div class="area--clickable kitchen" id="area_kitchen_9">Area 9</div>
-                <div class="area--clickable kitchen" id="area_kitchen_10">Area 10</div>
-                <div class="area--clickable kitchen" id="area_kitchen_11">Area 11</div>
-                <div class="area--clickable kitchen" id="area_kitchen_12">Area 12</div>
-                <div class="area--clickable kitchen" id="area_kitchen_13">Area 13</div>
-                <div class="area--clickable kitchen" id="area_kitchen_14">Area 14</div>
-                <div class="area--clickable kitchen" id="area_kitchen_15">Area 15</div>
-                <div class="area--clickable kitchen" id="area_kitchen_16">Area 16</div>
-                <div class="area--clickable kitchen" id="area_kitchen_17">Area 17</div>
-                <div class="area--clickable kitchen" id="area_kitchen_18">Area 18</div>                
+                <div class="cupboards kitchen bottom-left">
+                    <div class="area--clickable kitchen" id="area_kitchen_8">Area 8</div>
+                </div>
+                <div class="cupboards kitchen bottom-second-left-top">
+                    <div class="area--clickable kitchen" id="area_kitchen_9">Area 9</div>
+                    <div class="cupboards kitchen bottom-second-left-bottom">
+                        <div class="area--clickable" id="area_kitchen_10">Area 10</div>
+                        <div class="area--clickable" id="area_kitchen_11">Area 11</div>
+                    </div>
+                </div>
+                <div class="cupboards kitchen bottom-second-right">
+                    <div class="area--clickable" id="area_kitchen_12">Area 12</div>
+                    <div class="area--clickable" id="area_kitchen_13">Area 13</div>
+                </div>
+                <div class="cupboards kitchen bottom-right">
+                    <div class="area--clickable" id="area_kitchen_14">Area 14</div>
+                    <div class="area--clickable" id="area_kitchen_15">Area 15</div>
+                    <div class="area--clickable" id="area_kitchen_16">Area 16</div>
+                    <div class="area--clickable" id="area_kitchen_17">Area 17</div>
+                    <div class="area--clickable" id="area_kitchen_18">Area 18</div>
+                </div>
             </div>
 
             <button onclick="startGame()" font-size="200%">Start Searching</button>
@@ -540,8 +550,8 @@
                         checkForCat(e);
                     } else {
                         alert("I already checked here. Whoops!`"); // TODO: change this to a visual
-                    }
                 }
+            }
         
             function startGame() {
                 placeCatsRandomly();
@@ -554,6 +564,7 @@
                     imageContainer.style.opacity = 1;
                     
                     goToBedroomButton.style.display = "block";
+                    goToBedroomButton.style.opacity = 1;
                 }, 500); // Set the duration of the transition
                 
                 // allAreaNodes.forEach(element => {
@@ -616,6 +627,7 @@
 
                     // Show the goToKitchenButton after a delay
                     goToKitchenButton.style.animation = "fadeIn 0.5s ease-in-out forwards";
+
                     // setTimeout(function () {
                     //     goToKitchenButton.style.display = "block";
                     // }, 500);
@@ -643,7 +655,7 @@
                 
                 // Hide the existing goToBedroomButton
                 goToKitchenButton.style.display = "none";
-                
+
                 // Show the goToKitchenButton after a delay
                 setTimeout(function () {
                     goToBedroomButton.style.display = "block";
@@ -664,7 +676,7 @@
                 var goToBedroomButton = document.getElementById("goToBedroomButton");
                 var goToKitchenButton = document.getElementById("goToKitchenButton");
 
-                // Hide the existing goToBedroomButton
+                // Hide the existing goToKitchenButton
                 goToBedroomButton.style.display = "none";
 
                 // Show the goToKitchenButton after a delay
