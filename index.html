@@ -72,7 +72,7 @@
                 font-family: Arial, sans-serif;
                 text-align: center;
                 background-color: #4d4d4d;
-                /* background-image: linear-gradient(rgb(129, 84, 1), rgba(165, 42, 42, 0.171)); */
+                background-image: linear-gradient(rgb(129, 84, 1), rgba(165, 42, 42, 0.171));
                 /* margin: 0;
                 opacity: 0; */
                 animation: fadeIn 1.5s ease-in forwards;
@@ -444,27 +444,27 @@
             </div>
             <!-- Clickable areas: Kitchen -->
             <!-- <div style="min-height: 100vh;"> -->
-            <div class="row row__upper"> <!-- remove kitchen from child divs and put here -->
+            <div class="row row__upper kitchen"> <!-- remove kitchen from child divs and put here -->
                 <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
-                <div class="area--clickable kitchen" id="area_kitchen_1">Area 1</div>
-                <!-- <div class="area--clickable kitchen" id="area_kitchen_1">Area 1<img src="/img/cat1.gif"></div> -->
-                <!-- <div class="area--clickable kitchen" id="area_kitchen_1" onclick="checkArea(this.id)">Area 1</div> -->
-                <div class="area--clickable kitchen" id="area_kitchen_2">Area 2</div>
-                <div class="area--clickable kitchen" id="area_kitchen_3">Area 3</div>
-                <div class="area--clickable kitchen" id="area_kitchen_4">Area 4</div>
-                <div class="area--clickable kitchen" id="area_kitchen_5">Area 5</div>
+                <div class="area--clickable" id="area_kitchen_1">Area 1</div>
+                <!-- <div class="area--clickable" id="area_kitchen_1">Area 1<img src="/img/cat1.gif"></div> -->
+                <!-- <div class="area--clickable" id="area_kitchen_1" onclick="checkArea(this.id)">Area 1</div> -->
+                <div class="area--clickable" id="area_kitchen_2">Area 2</div>
+                <div class="area--clickable" id="area_kitchen_3">Area 3</div>
+                <div class="area--clickable" id="area_kitchen_4">Area 4</div>
+                <div class="area--clickable" id="area_kitchen_5">Area 5</div>
             </div>
             <div class="row row__middle">
-                <div class="area--clickable kitchen" id="area_kitchen_6">Area 6</div>
-                <div class="area--clickable kitchen" id="area_kitchen_7">Area 7</div>
+                <div class="area--clickable" id="area_kitchen_6">Area 6</div>
+                <div class="area--clickable" id="area_kitchen_7">Area 7</div>
             </div>
             <!-- TODO: break up the bottom row into divs and subdivs -->
             <div class="row row__bottom">
                 <div class="cupboards kitchen bottom-left">
-                    <div class="area--clickable kitchen" id="area_kitchen_8">Area 8</div>
+                    <div class="area--clickable" id="area_kitchen_8">Area 8</div>
                 </div>
                 <div class="cupboards kitchen bottom-second-left-top">
-                    <div class="area--clickable kitchen" id="area_kitchen_9">Area 9</div>
+                    <div class="area--clickable" id="area_kitchen_9">Area 9</div>
                     <div class="cupboards kitchen bottom-second-left-bottom">
                         <div class="area--clickable" id="area_kitchen_10">Area 10</div>
                         <div class="area--clickable" id="area_kitchen_11">Area 11</div>
@@ -483,6 +483,60 @@
                 </div>
             </div>
 
+            <!-- Clickable areas: Bedroom -->
+            <!-- <div style="min-height: 100vh;"> -->
+                <div class="row row__upper bedroom"> <!-- remove bedroom from child divs and put here -->
+                    <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
+                    <div class="area--clickable cupboards" id="area_bedroom_1">Area 1</div>
+                    <!-- <div class="area--clickable bedroom" id="area_bedroom_1">Area 1<img src="/img/cat1.gif"></div> -->
+                    <!-- <div class="area--clickable bedroom" id="area_bedroom_1" onclick="checkArea(this.id)">Area 1</div> -->
+                    <div class="cupboards shelves-stacked">
+                        <div class="area--clickable" id="area_bedroom_2">Area 2</div>
+                        <div class="area--clickable" id="area_bedroom_3">Area 3</div>
+                    </div>
+                    <div class="cupboards jewelery-drawer-stacked">
+                        <div class="area--clickable" id="area_bedroom_4">Area 4</div>
+                        <div class="area--clickable" id="area_bedroom_5">Area 5</div>
+                    </div>
+                    <div class="area--clickable drapes" id="area_bedroom_6">Area 6</div>
+                </div>
+                <div class="row row__middle bedroom">
+                    <div class="closet left">
+                        <div class="area--clickable" id="area_bedroom_7">Area 7</div>
+                        <div class="area--clickable" id="area_bedroom_8">Area 8</div>
+                    </div>
+                    <div class="closet second-left">
+                        <div class="area--clickable" id="area_bedroom_9">Area 9</div>
+                        <div class="area--clickable" id="area_bedroom_10">Area 10</div>
+                    </div>
+                    <div class="closet second-middle">
+                        <div class="area--clickable" id="area_bedroom_11">Area 11</div>
+                        <div class="area--clickable" id="area_bedroom_12">Area 12</div>
+                    </div>
+                </div>
+                <div class="row row__bottom bedroom">
+                    <div class="closet left">
+                        <div class="area--clickable" id="area_bedroom_13">Area 13</div>
+                        <div class="area--clickable" id="area_bedroom_14">Area 14</div>
+                        <div class="area--clickable" id="area_bedroom_15">Area 15</div>
+                        <div class="area--clickable" id="area_bedroom_16">Area 16</div>
+                        <div class="area--clickable" id="area_bedroom_17">Area 17</div>
+                    </div>
+                    <div class="closet middle">
+                        <div class="area--clickable" id="area_bedroom_18">Area 18</div>
+                    </div>
+                    <div class="closet second-middle-bottom">
+                        <div class="area--clickable" id="area_bedroom_19">Area 19</div>
+                    </div>
+                    <div class="closet drawers">
+                        <div class="area--clickable" id="area_bedroom_20">Area 20</div>
+                        <div class="area--clickable" id="area_bedroom_21">Area 21</div>
+                        <div class="area--clickable" id="area_bedroom_22">Area 22</div>
+                    </div>
+                    <div class="area--clickable bed" id="area_bedroom_23">Area 23</div>
+                </div>
+                <!-- TODO: break up the bottom row into divs and subdivs -->
+                
             <button onclick="startGame()" font-size="200%">Start Searching</button>
             <dialog id="successMessage" class="messageOverlay">
                 You found all of the cats, congratulations!
@@ -730,23 +784,23 @@
             }
             
             // Disables the clickable areas one an end-game state is reached, then displays the appropriate modal.
-            function gameOver(outcome) {
-                // hideClickableAreas();
-                // const areas = document.querySelectorAll(".area");
-                // console.log(areas);
-                // // areas.forEach (areas => console.log(areas));
-                // areas.forEach (areas => areas.remove());
-                const areas = document.querySelectorAll(".area--clickable");
-                console.log(areas);
-                // areas.forEach (areas => console.log(areas));
-                areas.forEach (areas => areas.remove());
+            // function gameOver(outcome) {
+            //     // hideClickableAreas();
+            //     // const areas = document.querySelectorAll(".area");
+            //     // console.log(areas);
+            //     // // areas.forEach (areas => console.log(areas));
+            //     // areas.forEach (areas => areas.remove());
+            //     const areas = document.querySelectorAll(".area--clickable");
+            //     console.log(areas);
+            //     // areas.forEach (areas => console.log(areas));
+            //     areas.forEach (areas => areas.remove());
 
-                if (outcome === true) {
-                    successful();
-                } else {
-                    failure();
-                }
-            }
+            //     if (outcome === true) {
+            //         successful();
+            //     } else {
+            //         failure();
+            //     }
+            // }
             
             function hideClickableAreas() {
                 //document.querySelectorAll("area--clickable").style.display = "none"; // TODO: add a foreach
