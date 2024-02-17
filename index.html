@@ -90,6 +90,10 @@
                 height: 100vh;
             }
 
+            .area {
+
+            }
+
             /* TODO: remove the colored styling in the final version */
             .area--clickable {
                 cursor: pointer;
@@ -176,7 +180,8 @@
 
             /* Styles the 'goTo[location]' buttons; e.g. 'To the Bedroom' and 'To the Kitchen' buttons*/
             .controlButton {
-                display: none;
+                /* display: none; */
+                opacity: 0;
                 position: absolute;
                 padding: 0.55rem;
                 border: none;
@@ -534,7 +539,7 @@
                         console.log(clickedAreas);
                         checkForCat(e);
                     } else {
-                        alert("This area was already clicked."); // TODO: change this to a visual
+                        alert("I already checked here. Whoops!`"); // TODO: change this to a visual
                     }
                 }
         
@@ -606,12 +611,14 @@
                 // Apply fade-out animation to the image container
                 imageContainer.style.animation = "fadeOut 0.5s ease-in-out forwards";
                 if (location === "bedroom") {
-                    goToBedroomButton.style.display = "none"; // Hides the goToBedroomButton
+                    // goToBedroomButton.style.display = "none"; // Hides the goToBedroomButton
+                    goToBedroomButton.style.opacity = 0;
 
                     // Show the goToKitchenButton after a delay
-                    setTimeout(function () {
-                        goToKitchenButton.style.display = "block";
-                    }, 500);
+                    goToKitchenButton.style.animation = "fadeIn 0.5s ease-in-out forwards";
+                    // setTimeout(function () {
+                    //     goToKitchenButton.style.display = "block";
+                    // }, 500);
 
                     // Change the image source after a delay to synchronize with the fade-out animation
                     setTimeout(function () {
@@ -623,6 +630,7 @@
                 } else if (location === "kitchen") {
                     goToKitchen();
                     updateClickableAreas("kitchen");
+                    goToBedroomButton.style.animation = "fadeIn 0.5s ease-in-out forwards";
                 } else {
                     alert("Failed to goToLocation() with an invalid value.");
                 }
@@ -713,7 +721,16 @@
             
             // Disables the clickable areas one an end-game state is reached, then displays the appropriate modal.
             function gameOver(outcome) {
-                hideClickableAreas();
+                // hideClickableAreas();
+                // const areas = document.querySelectorAll(".area");
+                // console.log(areas);
+                // // areas.forEach (areas => console.log(areas));
+                // areas.forEach (areas => areas.remove());
+                const areas = document.querySelectorAll(".area--clickable");
+                console.log(areas);
+                // areas.forEach (areas => console.log(areas));
+                areas.forEach (areas => areas.remove());
+
                 if (outcome === true) {
                     successful();
                 } else {
