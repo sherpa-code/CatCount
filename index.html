@@ -6,6 +6,8 @@
   The overall goal is to search (by clicking) all areas in which your cats may be hiding before the timer expires.
   
   TODO: separate the cat gif from its parent container so that, upon victory or failure, they don't just disappear at that moment.
+  TODO: after the clickable areas map properly to the clickable areas, remove the grey colors from them and the row outlines
+  TODO: add the starting Instructions modal back
 -->
 <html lang="en">
     <head>
@@ -26,9 +28,7 @@
             </p>
             <button onclick="startGame()" font-size="200%">Start Searching</button>
         </dialog>
-        
-        <!-- The outermost container within the body that wraps the on-screen elements-->
-        <!-- <main id="imageContainer"> -->
+         
         <main id="imageContainer">
             <nav id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
             <nav id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
@@ -127,7 +127,6 @@
                 </div>
                 <div class="area--clickable bed" id="area_bedroom_23">Area 23</div>
             </section>
-                <!-- TODO: break up the bottom row into divs and subdivs -->
                 
             <button onclick="startGame()" font-size="200%">Start Searching</button>
             <dialog class="success" id="successMessage">
@@ -138,7 +137,6 @@
                 You didn't find your cats in time... Oh no! You'll be late!<br>&#129402;
             </dialog>
         </main>
-            <!-- </div> -->
             
         <script>
             // Graphics and UI
@@ -146,6 +144,11 @@
             const imageContainer = document.getElementsByTagName("main")[0]; // the primary container in the body
             const instructions = document.getElementById("instructions");
             const catImages = [];
+            let emojiCounter = 0;
+            const maxEmojis = 1500;
+            const interval = 150; // Adjust the interval (in milliseconds) for adding emojis to the window
+            const frownEmoji = '\uD83D\uDE41';
+            const heartEmoji = '\u2764\uFE0F';
 
             const fadeIn = "fadeIn 0.5s ease-in forwards";
             const fadeOut = "fadeOut 0.5s ease-out forwards";
@@ -173,8 +176,8 @@
                 let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
                 console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
                 arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
-                console.log("%c%s", "background-color:grey; color:orange",
-                'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
+                // console.log("%c%s", "background-color:grey; color:orange",
+                // 'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
                 
                 allAreaNodes.forEach((e) => {
                     e.addEventListener("click", checkAddToAreaArray);
@@ -201,7 +204,7 @@
         
             function startGame() {
                 placeCatsRandomly();
-                // instructions.style.opacity = 0; // TODO: Re-enable
+                // instructions.style.opacity = 0; // TODO: Re-enable, how?
 
                 setTimeout(function () {
                     instructions.style.display = "none";
@@ -211,8 +214,8 @@
                     goToBedroomButton.style.opacity = 1;
                 }, 500); // Set the duration of the transition
                 
-                    runTimer();
-                }
+                runTimer();
+            }
                     
             // Randomizes the available clickable areas and adds the first 3 from the
             // randomized array into the catLocations var
@@ -275,10 +278,36 @@
                     notificationModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
                     notificationModal.style.width = "auto";
                     notificationModal.style.padding = "10px";
-                    notificationModal.style.transform = "translate(-50%, -50%)"; // Center the modal
+                    notificationModal.style.transform = "translate(-50%, -50%) scale(2.5)"; // Center the modal
                     // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         notificationModal.remove();
+                    }, 40000); // Adjust the duration based on your fadeInOut animation
+                }, 10);
+            }
+
+                // Function to show a notification modal at the specified coordinates // TODO: finish implementing this; the modal is created but not visible on screen.
+            function addEmojiRandomly(message, x, y) {
+                const emojiModal = document.createElement("div");
+                emojiModal.className = "emojiModal";
+                emojiModal.style.top = y + "px";
+                emojiModal.style.left = x + "px";
+                emojiModal.style.zIndex = 7;
+                // emojiModal.textContent = message;
+                emojiModal.innerHTML = message;
+
+                document.body.appendChild(emojiModal);
+
+                // Triggering the fadeInOut animation after a short delay
+                setTimeout(() => {
+                    emojiModal.style.animation = fadeInOut;
+                    emojiModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
+                    emojiModal.style.width = "auto";
+                    emojiModal.style.padding = "10px";
+                    emojiModal.style.transform = "translate(-50%, -50%) scale(2)"; // Center the modal
+                    // Removing the modal after the fade-out animation completes
+                    setTimeout(() => {
+                        emojiModal.remove();
                     }, 40000); // Adjust the duration based on your fadeInOut animation
                 }, 10);
             }
@@ -299,7 +328,6 @@
                     // Change the image source after a delay to synchronize with the fade-out animation
                     setTimeout(function () {
                         document.getElementById("locationImage").src = "img/bedroom.jpg"; // Change the image source after fade-out is complete
-
                         imageContainer.style.animation = fadeIn;
                     }, 10);
                     updateClickableAreas("bedroom");
@@ -389,11 +417,6 @@
             
             // Removes all clickable areas from the the screen on fail state, then displays the appropriate modal.
             function gameOver(outcome) {
-                // hideClickableAreas();
-                // const areas = document.querySelectorAll(".area");
-                // console.log(areas);
-                // // areas.forEach (areas => console.log(areas));
-                // areas.forEach (areas => areas.remove());
                 hideClickableAreas();
                 if (outcome === true) {
                     successful();
@@ -417,11 +440,7 @@
             function hideClickableAreas() {
                 const areas = document.querySelectorAll(".area--clickable");
                 console.log(areas);
-                // areas.forEach (areas => console.log(areas));
                 areas.forEach (areas => areas.remove());
-                //document.querySelectorAll("area--clickable").style.display = "none"; // TODO: add a foreach
-                // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
-                // document.getElementsByClassName("controlButton").style.display = "none"; TODO: add a foreach to hide them all
             }
 
             // TODO: Change background image to a success image when all cats found
@@ -429,15 +448,40 @@
             function successful() {
                 var successMessage = document.getElementById("successMessage");
                 successMessage.style.display = "block";
-                console.log("Won the game");
+                // document.getElementsByClassName.src="img/bedroom.jpg"; // TODO: make it so the background image fades slowly into a full-window real life cat picture
+                // document.getElementsByClassName.img = src="img/bedroom.jpg"; // TODO: make it so the background image fades slowly into a full-window real life cat picture
+                
+                // TODO: Make emojis slowly float up
+                // Adds a heart emoji at a random location
+                const emojiInterval = setInterval(() => {
+                    addEmojiRandomLocation(heartEmoji);
+                },  interval);
             }
             
-            // TODO: Add a failure message modal
             // TODO: Show the cats in the unfound places they were hiding
             function failure() {
                 var failureMessage = document.getElementById("failureMessage");
                 failureMessage.style.display = "block";
                 console.log("Failed at the game");
+                const emojiInterval = setInterval(() => {
+                    addEmojiRandomLocation(frownEmoji);
+            },  interval);
+            }
+
+            function addEmojiRandomLocation(emoji) {
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                const randomX = Math.floor(Math.random() * viewportWidth);
+                const randomY = Math.floor(Math.random() * viewportHeight);
+
+                emojiCounter++;
+
+                if (emojiCounter >= maxEmojis) {
+                    clearInterval(emojiInterval); // Stop the interval after reaching the desired number of hearts
+                }
+                
+                addEmojiRandomly(emoji, randomX, randomY);
             }
         </script>
     </body>
