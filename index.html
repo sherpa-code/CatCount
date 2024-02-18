@@ -4,6 +4,8 @@
   
   'Cat Count' is a single-page web application using HTML, CSS, and JavaScript.
   The overall goal is to search (by clicking) all areas in which your cats may be hiding before the timer expires.
+  
+  TODO: separate the cat gif from its parent container so that, upon victory or failure, they don't just disappear at that moment.
 -->
 <html lang="en">
     <head>
@@ -152,7 +154,6 @@
             // Statistics
             let clickCounter = 0;
             let timer = 90;
-            // var timer = 2; // quick failure state testing value
             var catsFound = 0;
             const totalCats = 3;
             
@@ -183,7 +184,7 @@
             });
             
             function checkAddToAreaArray(e) {
-                alert("e.target.id = " + e.target.id);
+                // alert("e.target.id = " + e.target.id);
                 addAreaToClickedAreas(e);
             }
             
@@ -194,7 +195,7 @@
                         console.log(clickedAreas);
                         checkForCat(e);
                     } else {
-                        alert("I already checked here. Whoops!`"); // TODO: change this to a visual
+                        checkForCat(e);
                 }
             }
         
@@ -237,19 +238,18 @@
             // Triggers visuals if an unfound cat was found or visually notifies if it was not
             function checkForCat(hidingPlace) {
                 if (catLocations.includes(hidingPlace.target.id)) {
-                    alert("Found a cat!");
                     catsFound++;
                     catsFound++; // TODO: disable, debug only
                     catsFound++; // TODO: disable, debug only
                     document.getElementById("foundCounterValue").innerHTML = catsFound;
-                    hidingPlace.target.children[0].style.animation = 'fadeInOut 8s ease-in-out forwards';
+                    hidingPlace.target.children[0].style.animation = 'fadeInOut 4s ease-in-out forwards';
                     console.log(`Children of this hidingPlace element: `, hidingPlace.target.children);
                     // document.getElementById(hidingPlace.target.id).style.display = 'none';
                     // document.getElementById(hidingPlace.target.id).style.display = 'block';
+                    showNotification("❤️❤️❤️<br>❤️❤️❤️", hidingPlace.clientX, hidingPlace.clientY);
                 } else {
-                    alert("Dang, no cat here...");
-                    showNotification("Darn, no cat here!", hidingPlace.clientX, hidingPlace.clientY); //TODO: implement this with below function.
-
+                    // alert("Dang, no cat here...");
+                    showNotification("Darn, no cat here... 😟", hidingPlace.clientX, hidingPlace.clientY);
                 }
 
                 if (catsFound >= totalCats) {
@@ -264,7 +264,8 @@
                 notificationModal.style.top = y + "px";
                 notificationModal.style.left = x + "px";
                 notificationModal.style.zIndex = 7;
-                notificationModal.textContent = message;
+                // notificationModal.textContent = message;
+                notificationModal.innerHTML = message;
 
                 document.body.appendChild(notificationModal);
 
@@ -278,7 +279,7 @@
                     // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         notificationModal.remove();
-                    }, 20000); // Adjust the duration based on your fadeInOut animation
+                    }, 40000); // Adjust the duration based on your fadeInOut animation
                 }, 10);
             }
 
@@ -332,6 +333,8 @@
                     // Apply fade-in animation to the image container
                     imageContainer.style.animation = fadeIn;
                 }, 10);
+
+                updateClickableAreas("kitchen")
             }
 
             function goToBedroom() {
@@ -354,17 +357,8 @@
                     // Apply fade-in animation to the image container
                     imageContainer.style.animation = fadeIn;
                 }, 10);
-            }
 
-            // Modifies the displayed clickable areas when the location has been updated.
-            function updateClickableAreas(location) {
-                if (location === "bedroom") {
-                    
-                } else if (location === "kitchen") {
-
-                } else {
-                    alert("Failed to update ClickableAreas to an invalid location.")
-                }
+                updateClickableAreas("bedroom")
             }
 
             // Add functionality to swap the clickable areas of the image.
@@ -407,6 +401,18 @@
                     failure();
                 }
             }
+
+            // Modifies the displayed clickable areas when the location has been updated.
+            // TODO: complete this function by replacing the relevant rows and their contents
+            function updateClickableAreas(location) {
+                if (location === "bedroom") {
+                    
+                } else if (location === "kitchen") {
+
+                } else {
+                    alert("Failed to update ClickableAreas to an invalid location.")
+                }
+            }
             
             function hideClickableAreas() {
                 const areas = document.querySelectorAll(".area--clickable");
@@ -419,7 +425,7 @@
             }
 
             // TODO: Change background image to a success image when all cats found
-                // and show a modal similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
+            // and show a modal similar to the 'instructions' that indicates you were successful that presents your final stats (timer, click count)
             function successful() {
                 var successMessage = document.getElementById("successMessage");
                 successMessage.style.display = "block";
@@ -433,9 +439,6 @@
                 failureMessage.style.display = "block";
                 console.log("Failed at the game");
             }
-
-            
-
         </script>
     </body>
 </html>

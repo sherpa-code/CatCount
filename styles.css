@@ -83,6 +83,7 @@
                 border-radius: 1em;
                 transition: opacity 0.5s ease-in-out;
                 display: none;
+                /* transform: translate(-50%, -50%); */
             }
 
             dialog.instructions {
@@ -100,6 +101,17 @@
                 hsl(210, 25%, 50%),  /* Blue */
                 hsl(270, 25%, 50%),  /* Purple */
                 hsl(330, 25%, 50%)   /* Magenta */
+                );
+            }
+
+            dialog.failure {
+                background: radial-gradient(circle, 
+                hsl(0, 0%, 31%),    /* Red */
+                hsl(0, 0%, 73%),   /* Orange */
+                hsl(0, 0%, 23%),  /* Green */
+                hsl(0, 0%, 51%),  /* Blue */
+                hsl(0, 0%, 9%),  /* Purple */
+                hsl(0, 0%, 0%)   /* Magenta */
                 );
             }
 
