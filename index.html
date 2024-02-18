@@ -10,411 +10,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Cat Count!</title>
-        
-        <!-- TODO: separate out into styles.css once the styles are functioning properly -->
-        <!-- <link rel="stylesheet" href="styles.css" /> -->
-        <style>
-            /* CSS Reset */
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box;
-            }
-
-            * {
-                margin: 0;
-            }
-
-            img,
-            picture {
-                display: block;
-                max-width: 100%;
-            }
-            /* CSS Reset ends */
-
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                } to {
-                    opacity: 1;
-                }
-            }
-
-            @keyframes fadeOut {
-                from {
-                    opacity: 1;
-                } to {
-                    opacity: 0;
-                }
-            }
-
-            @keyframes fadeInOut {
-                0% {
-                    opacity: 0;
-                } 25% {
-                    opacity: 1;
-                } 75% { 
-                    opacity: 1;
-                } 100% {
-                    opacity: 0;
-                }
-            }
-
-            img {
-                height: auto;
-                justify-content: center;
-            }
-
-            /* TODO: background will be one of a few blurred background images of cats to fill the negative space */
-            body {
-                line-height: 1.5;
-                -webkit-font-smoothing: antialiased;
-                font-family: Arial, sans-serif;
-                text-align: center;
-                background-color: #4d4d4d;
-                background-image: linear-gradient(rgb(129, 84, 1), rgba(165, 42, 42, 0.171));
-                /* margin: 0;
-                opacity: 0; */
-                animation: fadeIn 1.5s ease-in forwards;
-            }
-
-            main {
-                margin: 0 auto;
-                position: relative;
-                transition: opacity 0.5s ease-in-out;
-                display: flex;
-                flex-direction: column;
-                max-width: 100vh;
-                /* max-height: 100%; */
-                /* min-height: 100%; */
-                height: 100vh;
-            }
-
-            .area {
-
-            }
-
-            /* TODO: remove the colored styling in the final version */
-            .area--clickable {
-                cursor: pointer;
-                justify-content: space-between;
-                display: flex;
-                flex-direction: column;
-                border: 1px solid red;
-            }
-
-            /* TODO: remove the colored styling in the final version */
-            .row {
-                display: flex;
-                justify-content: center;
-                padding-left: 4rem;
-                padding-right: 4rem;
-                /* flex-grow: 1; */
-                
-                background-color: #ffffff80;
-                border: 1px solid blue;
-            }
-
-            .row.hidden .area--clickable {
-                display: none;
-            }
-
-            .row__stats {
-                flex: 0.175;
-                /* height: 4rem; */
-            }
-            
-            .row__upper {
-                column-gap: 1rem;
-                /* padding-top: 4rem; */
-                flex: 1;
-                align-items: end;
-            }
-            
-            /* TODO: dev-only - remove background-color in final version*/
-            .row__upper .area--clickable {
-                height: 17rem;
-                background-color: #ffffff80;
-            }
-
-            .row__middle {
-                column-gap: 11rem;
-                overflow: hidden;
-                flex: 0.35;
-            }
-
-            .row__middle .area--clickable {
-                column-gap: 0.75rem;
-            }
-
-            .row__bottom {
-                column-gap: 0.75rem;
-                flex-grow: 1;
-                overflow: hidden;
-                flex-direction: row;
-                /* flex: 0.9; */
-                margin-bottom: 4rem;
-            }
-
-            /* .row__bottom .area--clickable {
-
-            } */
-
-            .stats--display {
-                position: absolute;
-                padding: 0.15rem 0.65rem;
-                border-radius: 0.5rem;
-                background-color: #3498db;
-                color: #fff;
-                font-weight: bold;
-                font-size: 1.15rem;
-            }
-
-            .area--clickable {
-                cursor: pointer;
-            }
-
-            .area--clickable.hidden {
-                display: none;
-            }
-
-            /* Styles the 'goTo[location]' buttons; e.g. 'To the Bedroom' and 'To the Kitchen' buttons*/
-            .controlButton {
-                /* display: none; */
-                opacity: 0;
-                position: absolute;
-                padding: 0.55rem;
-                border: none;
-                border-radius: 0.35rem;
-                font-size: 1rem;
-                transition: background-color 1.6s ease-in-out;
-                top: 50%;
-                z-index: 4;
-                background-color: #3498db;
-                color: #fff;
-            }
-
-            button {
-                
-                display: none;
-                position: absolute;
-                padding: 0.55rem;
-                border: none;
-                border-radius: 0.35rem;
-                font-size: 1rem;
-                transition: background-color 1.6s ease-in-out;
-                top: 50%;
-                z-index: 1;
-                background-color: #3498db;
-                color: #fff;
-            }
-            
-            /* TODO: Make all cat images the same dimensions
-            /* TODO: When a cat is shown it hovers over that clickable, even if it overlaps with neighboring ones
-            /* TODO: Set the cat image's z-order to not interfere with clicking on the clickable area */
-            .catGif {
-                z-index: -1;
-                /* Approach #1 */
-                object-fit: cover;
-                /* object-fit: contain; */ /* Approach #2 */
-                /* Approach #3 */
-                /* max-width: 100%;
-                max-height: 100%;
-                width: auto;
-                height: auto; */
-                /* animation: fadeInOut 3s ease-in-out forwards; */
-                opacity: 0; /* start with cat images transparent */
-            }
-
-            .catGif.active {
-                opacity: 1;
-            }
-
-            /* TODO: replace REM with % */
-            /* .goToLocationButton.left {
-                left: 2rem;
-            }
-
-            .goToLocationButton.right {
-                right: 2rem;
-            } */
-
-            #goToBedroomButton {
-                left: 2rem;
-            }
-
-            #goToKitchenButton {
-                right: 2rem;
-            }
-
-             /* TODO: turn the instructions block back on in the final version, i.e. change 'display' */
-            #instructions {
-                font-size: 150%;
-                margin: 8em;
-                padding: 2em;
-                background-color: #ddd;
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
-                display: none;
-            }
-
-            dialog.instructions {
-                font-size: 150%;
-                margin: 8em;
-                padding: 2em;
-                background-color: #ddd;
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
-                display: none;
-            }
-
-            dialog.messageOverlay {
-                /* font-size: 150%;
-                margin: 8em;
-                padding: 2em;
-                background-color: #ddd;
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
-                display: none; */
-            }
-
-            .messageOverlay {
-                font-size: 150%;
-                margin: 8em;
-                padding: 2em;
-                background-color: #ddd;
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
-                display: none;
-            }
-            
-            /* TODO: replace instances of this with the semantic HTML 'main' */
-            #imageContainer {
-                margin: 0 auto;
-                position: relative;
-                transition: opacity 0.5s ease-in-out;
-                display: flex;
-                flex-direction: column;
-                max-width: 100vh;
-                /* max-height: 100%; */
-                /* min-height: 100%; */
-                height: 100vh;
-            }
-            
-            /* #imageContainer .backgroundImage{ 
-                position: absolute;
-                z-index: -1;
-                inset: 0;
-            } */
-
-            main .backgroundImage { 
-                position: absolute;
-                z-index: -1;
-                inset: 0;
-            }
-
-            /* #imageContainer img { 
-                position: absolute;
-                z-index: -1;
-                inset: 0;
-            } */
-
-            /* #clickCounter {
-                top: 1rem;
-                right: 1rem;
-            } */
-
-            #timer {
-                top: 1rem;
-                right: 2.5rem;
-            }
-
-            #foundCounter {
-                top: 1rem;
-                right: 10rem;
-            }
-
-            #area_kitchen_1 {
-                width: 10.35rem;
-            }
-
-            #area_kitchen_2 {
-                width: 9rem;
-            }
-
-            #area_kitchen_3 {
-                width: 9rem;
-            }
-
-            #area_kitchen_4,
-            #area_kitchen_5 {
-                width: 11rem;
-                /* height: 20rem; */
-                height: 100%;
-            }
-
-            #area_kitchen_6 {
-                width: 10rem;
-                height: 4rem;
-                align-self: flex-end;
-            }
-            
-            #area_kitchen_7 {
-                width: 7rem;
-                height: 8rem;
-                padding-top: 1rem;
-                align-self: flex-end;
-            }
-
-            @media screen and (max-width: 1023px) {
-                .row__upper {
-                    flex-direction: column;
-                }
-            }
-
-            @media screen and (max-width: 480px) {
-                #area_kitchen_4,
-                #area_kitchen_5 {
-                    /* height: 65%; */
-                }
-
-                .row__stats {
-                    padding: 0.55rem 0;
-                }
-
-                .row__upper .area--clickable {
-                    /* height: 45%; */
-                }
-
-                .row__upper {
-                    /* column-gap: 1rem; */
-                    /* padding-top: 4rem; */
-                    /* flex: 1; */
-                    /* align-items: end; */
-                    height: 8rem;
-                }
-
-                .row {
-                    padding: 0 1rem;
-                }
-            }
-
-            /* @media screen and (min-width: 1023px) {
-                .row__upper {
-                    flex-direction: column;
-                }
-            } */
-            
-        </style>
+        <link rel="stylesheet" href="styles.css" />
     </head>
     
     <body>
         <!-- <dialog id="instructions" class="messageOverlay"></dialog> -->
-        <div id="instructions" class="messageOverlay">
+        <dialog id="instructions">
             <h1>Find Your Kitties!</h1>
             <p>You are about to leave for work in a hurry...</p>
             <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
@@ -422,44 +23,33 @@
                 Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
             </p>
             <button onclick="startGame()" font-size="200%">Start Searching</button>
-        </div>
+        </dialog>
         
         <!-- The outermost container within the body that wraps the on-screen elements-->
         <!-- <main id="imageContainer"> -->
         <main id="imageContainer">
-        <!-- <div id="imageContainer"> -->
-            <!-- use class name above to handle room changing and clickable area changes -->
-            <!-- <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div> -->
-            <div id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</div>
-            <div id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</div>
-            <!-- <button id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</button>
-            <button id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</button> -->
-            <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage"/>
-            <div class="row row__stats">
-                <!-- <span id="timer" class="stats--display">Timer: <span id="timerValue"></span></span> -->
+            <nav id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
+            <nav id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
+            <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
+            <section class="row row__stats">
                 <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
-                <!-- <span id="clickCounter" class="stats--display">Clicks: <span id="clickCounterValue">0</span></span> -->
-                <!-- <span id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</span> -->
                 <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p>
-            </div>
+            </section>
             <!-- Clickable areas: Kitchen -->
             <!-- <div style="min-height: 100vh;"> -->
-            <div class="row row__upper kitchen"> <!-- remove kitchen from child divs and put here -->
-                <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
+            <section class="row row__upper kitchen"> <!-- remove kitchen from child divs and put here -->
                 <div class="area--clickable" id="area_kitchen_1">Area 1</div>
-                <!-- <div class="area--clickable" id="area_kitchen_1">Area 1<img src="/img/cat1.gif"></div> -->
-                <!-- <div class="area--clickable" id="area_kitchen_1" onclick="checkArea(this.id)">Area 1</div> -->
                 <div class="area--clickable" id="area_kitchen_2">Area 2</div>
                 <div class="area--clickable" id="area_kitchen_3">Area 3</div>
                 <div class="area--clickable" id="area_kitchen_4">Area 4</div>
                 <div class="area--clickable" id="area_kitchen_5">Area 5</div>
-            </div>
-            <div class="row row__middle">
+            </section>
+            <section class="row row__middle">
                 <div class="area--clickable" id="area_kitchen_6">Area 6</div>
                 <div class="area--clickable" id="area_kitchen_7">Area 7</div>
-            </div>
+            </section>
             <!-- TODO: break up the bottom row into divs and subdivs -->
-            <div class="row row__bottom">
+            <section class="row row__bottom">
                 <div class="cupboards kitchen bottom-left">
                     <div class="area--clickable" id="area_kitchen_8">Area 8</div>
                 </div>
@@ -481,81 +71,78 @@
                     <div class="area--clickable" id="area_kitchen_17">Area 17</div>
                     <div class="area--clickable" id="area_kitchen_18">Area 18</div>
                 </div>
-            </div>
+            </section>
 
             <!-- Clickable areas: Bedroom -->
             <!-- <div style="min-height: 100vh;"> -->
-                <div class="row row__upper bedroom"> <!-- remove bedroom from child divs and put here -->
-                    <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
-                    <div class="area--clickable cupboards" id="area_bedroom_1">Area 1</div>
-                    <!-- <div class="area--clickable bedroom" id="area_bedroom_1">Area 1<img src="/img/cat1.gif"></div> -->
-                    <!-- <div class="area--clickable bedroom" id="area_bedroom_1" onclick="checkArea(this.id)">Area 1</div> -->
-                    <div class="cupboards shelves-stacked">
-                        <div class="area--clickable" id="area_bedroom_2">Area 2</div>
-                        <div class="area--clickable" id="area_bedroom_3">Area 3</div>
-                    </div>
-                    <div class="cupboards jewelery-drawer-stacked">
-                        <div class="area--clickable" id="area_bedroom_4">Area 4</div>
-                        <div class="area--clickable" id="area_bedroom_5">Area 5</div>
-                    </div>
-                    <div class="area--clickable drapes" id="area_bedroom_6">Area 6</div>
+            <section class="row row__upper bedroom"> <!-- remove bedroom from child divs and put here -->
+                <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
+                <div class="area--clickable cupboards" id="area_bedroom_1">Area 1</div>
+                <!-- <div class="area--clickable bedroom" id="area_bedroom_1">Area 1<img src="/img/cat1.gif"></div> -->
+                <!-- <div class="area--clickable bedroom" id="area_bedroom_1" onclick="checkArea(this.id)">Area 1</div> -->
+                <div class="cupboards shelves-stacked">
+                    <div class="area--clickable" id="area_bedroom_2">Area 2</div>
+                    <div class="area--clickable" id="area_bedroom_3">Area 3</div>
                 </div>
-                <div class="row row__middle bedroom">
-                    <div class="closet left">
-                        <div class="area--clickable" id="area_bedroom_7">Area 7</div>
-                        <div class="area--clickable" id="area_bedroom_8">Area 8</div>
-                    </div>
-                    <div class="closet second-left">
-                        <div class="area--clickable" id="area_bedroom_9">Area 9</div>
-                        <div class="area--clickable" id="area_bedroom_10">Area 10</div>
-                    </div>
-                    <div class="closet second-middle">
-                        <div class="area--clickable" id="area_bedroom_11">Area 11</div>
-                        <div class="area--clickable" id="area_bedroom_12">Area 12</div>
-                    </div>
+                <div class="cupboards jewelery-drawer-stacked">
+                    <div class="area--clickable" id="area_bedroom_4">Area 4</div>
+                    <div class="area--clickable" id="area_bedroom_5">Area 5</div>
                 </div>
-                <div class="row row__bottom bedroom">
-                    <div class="closet left">
-                        <div class="area--clickable" id="area_bedroom_13">Area 13</div>
-                        <div class="area--clickable" id="area_bedroom_14">Area 14</div>
-                        <div class="area--clickable" id="area_bedroom_15">Area 15</div>
-                        <div class="area--clickable" id="area_bedroom_16">Area 16</div>
-                        <div class="area--clickable" id="area_bedroom_17">Area 17</div>
-                    </div>
-                    <div class="closet middle">
-                        <div class="area--clickable" id="area_bedroom_18">Area 18</div>
-                    </div>
-                    <div class="closet second-middle-bottom">
-                        <div class="area--clickable" id="area_bedroom_19">Area 19</div>
-                    </div>
-                    <div class="closet drawers">
-                        <div class="area--clickable" id="area_bedroom_20">Area 20</div>
-                        <div class="area--clickable" id="area_bedroom_21">Area 21</div>
-                        <div class="area--clickable" id="area_bedroom_22">Area 22</div>
-                    </div>
-                    <div class="area--clickable bed" id="area_bedroom_23">Area 23</div>
+                <div class="area--clickable drapes" id="area_bedroom_6">Area 6</div>
+            </section>
+            <section class="row row__middle bedroom">
+                <div class="closet left">
+                    <div class="area--clickable" id="area_bedroom_7">Area 7</div>
+                    <div class="area--clickable" id="area_bedroom_8">Area 8</div>
                 </div>
+                <div class="closet second-left">
+                    <div class="area--clickable" id="area_bedroom_9">Area 9</div>
+                    <div class="area--clickable" id="area_bedroom_10">Area 10</div>
+                </div>
+                <div class="closet second-middle">
+                    <div class="area--clickable" id="area_bedroom_11">Area 11</div>
+                    <div class="area--clickable" id="area_bedroom_12">Area 12</div>
+                </div>
+            </section>
+            <section class="row row__bottom bedroom">
+                <div class="closet left">
+                    <div class="area--clickable" id="area_bedroom_13">Area 13</div>
+                    <div class="area--clickable" id="area_bedroom_14">Area 14</div>
+                    <div class="area--clickable" id="area_bedroom_15">Area 15</div>
+                    <div class="area--clickable" id="area_bedroom_16">Area 16</div>
+                    <div class="area--clickable" id="area_bedroom_17">Area 17</div>
+                </div>
+                <div class="closet middle">
+                    <div class="area--clickable" id="area_bedroom_18">Area 18</div>
+                </div>
+                <div class="closet second-middle-bottom">
+                    <div class="area--clickable" id="area_bedroom_19">Area 19</div>
+                </div>
+                <div class="closet drawers">
+                    <div class="area--clickable" id="area_bedroom_20">Area 20</div>
+                    <div class="area--clickable" id="area_bedroom_21">Area 21</div>
+                    <div class="area--clickable" id="area_bedroom_22">Area 22</div>
+                </div>
+                <div class="area--clickable bed" id="area_bedroom_23">Area 23</div>
+            </section>
                 <!-- TODO: break up the bottom row into divs and subdivs -->
                 
             <button onclick="startGame()" font-size="200%">Start Searching</button>
-            <dialog id="successMessage" class="messageOverlay">
-                You found all of the cats, congratulations!
+            <dialog class="success" id="successMessage">
+                You found all of the cats, congratulations!</br>&#128526;
             </dialog>
-            <!-- <div id="successMessage" class="messageOverlay">
-                You found all of the cats, congratulations!
-            </div> -->
 
-            <div id="failureMessage" class="messageOverlay">
-                You didn't find your cats in time, you'll be late!
-            </div>
+            <dialog class="failure" id="failureMessage">
+                You didn't find your cats in time... Oh no! You'll be late!<br>&#129402;
+            </dialog>
         </main>
             <!-- </div> -->
             
         <script>
             // Graphics and UI
             // var imageContainer = document.getElementById("imageContainer");
-            var imageContainer = document.getElementsByTagName("main")[0]; // the primary container in the body
-            var instructions = document.getElementById("instructions");
+            const imageContainer = document.getElementsByTagName("main")[0]; // the primary container in the body
+            const instructions = document.getElementById("instructions");
             const catImages = [];
 
             const fadeIn = "fadeIn 0.5s ease-in forwards";
@@ -563,8 +150,8 @@
             const fadeInOut = 'fadeInOut 2s ease-in-out forwards';
             
             // Statistics
-            var clickCounter = 0;
-            var timer = 90;
+            let clickCounter = 0;
+            let timer = 90;
             // var timer = 2; // quick failure state testing value
             var catsFound = 0;
             const totalCats = 3;
@@ -582,7 +169,7 @@
             
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
-                var allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
+                let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
                 console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
                 arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
                 console.log("%c%s", "background-color:grey; color:orange",
@@ -617,18 +204,12 @@
 
                 setTimeout(function () {
                     instructions.style.display = "none";
-                    
                     imageContainer.style.display = "flex";
                     imageContainer.style.opacity = 1;
-                    
                     goToBedroomButton.style.display = "block";
                     goToBedroomButton.style.opacity = 1;
                 }, 500); // Set the duration of the transition
                 
-                // allAreaNodes.forEach(element => {
-                    //     console.log(element);
-                    // });
-                    
                     runTimer();
                 }
                     
@@ -636,7 +217,7 @@
             // randomized array into the catLocations var
             function placeCatsRandomly() {
                 const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
-                const selectedAreas = shuffledArray.slice(0, 3);
+                const selectedAreas = shuffledArray.slice(0, totalCats);
                 console.log(selectedAreas);
                 // selectedAreas.forEach(area => {
                 selectedAreas.forEach((area, index, array) => {
@@ -658,6 +239,8 @@
                 if (catLocations.includes(hidingPlace.target.id)) {
                     alert("Found a cat!");
                     catsFound++;
+                    catsFound++; // TODO: disable, debug only
+                    catsFound++; // TODO: disable, debug only
                     document.getElementById("foundCounterValue").innerHTML = catsFound;
                     hidingPlace.target.children[0].style.animation = 'fadeInOut 8s ease-in-out forwards';
                     console.log(`Children of this hidingPlace element: `, hidingPlace.target.children);
@@ -665,11 +248,38 @@
                     // document.getElementById(hidingPlace.target.id).style.display = 'block';
                 } else {
                     alert("Dang, no cat here...");
+                    showNotification("Darn, no cat here!", hidingPlace.clientX, hidingPlace.clientY); //TODO: implement this with below function.
+
                 }
 
                 if (catsFound >= totalCats) {
                     // gameOver(true); // right now this is handled by the runTimer()
                 }
+            }
+            
+            // Function to show a notification modal at the specified coordinates // TODO: finish implementing this; the modal is created but not visible on screen.
+            function showNotification(message, x, y) {
+                const notificationModal = document.createElement("div");
+                notificationModal.className = "notificationModal";
+                notificationModal.style.top = y + "px";
+                notificationModal.style.left = x + "px";
+                notificationModal.style.zIndex = 7;
+                notificationModal.textContent = message;
+
+                document.body.appendChild(notificationModal);
+
+                // Triggering the fadeInOut animation after a short delay
+                setTimeout(() => {
+                    notificationModal.style.animation = fadeInOut;
+                    notificationModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
+                    notificationModal.style.width = "auto";
+                    notificationModal.style.padding = "10px";
+                    notificationModal.style.transform = "translate(-50%, -50%)"; // Center the modal
+                    // Removing the modal after the fade-out animation completes
+                    setTimeout(() => {
+                        notificationModal.remove();
+                    }, 20000); // Adjust the duration based on your fadeInOut animation
+                }, 10);
             }
 
             // Changes the 'location' the user is in, including animated crossfade and
@@ -783,26 +393,26 @@
                 }, 1000);
             }
             
-            // Disables the clickable areas one an end-game state is reached, then displays the appropriate modal.
-            // function gameOver(outcome) {
-            //     // hideClickableAreas();
-            //     // const areas = document.querySelectorAll(".area");
-            //     // console.log(areas);
-            //     // // areas.forEach (areas => console.log(areas));
-            //     // areas.forEach (areas => areas.remove());
-            //     const areas = document.querySelectorAll(".area--clickable");
-            //     console.log(areas);
-            //     // areas.forEach (areas => console.log(areas));
-            //     areas.forEach (areas => areas.remove());
-
-            //     if (outcome === true) {
-            //         successful();
-            //     } else {
-            //         failure();
-            //     }
-            // }
+            // Removes all clickable areas from the the screen on fail state, then displays the appropriate modal.
+            function gameOver(outcome) {
+                // hideClickableAreas();
+                // const areas = document.querySelectorAll(".area");
+                // console.log(areas);
+                // // areas.forEach (areas => console.log(areas));
+                // areas.forEach (areas => areas.remove());
+                hideClickableAreas();
+                if (outcome === true) {
+                    successful();
+                } else {
+                    failure();
+                }
+            }
             
             function hideClickableAreas() {
+                const areas = document.querySelectorAll(".area--clickable");
+                console.log(areas);
+                // areas.forEach (areas => console.log(areas));
+                areas.forEach (areas => areas.remove());
                 //document.querySelectorAll("area--clickable").style.display = "none"; // TODO: add a foreach
                 // document.getElementsByClassName("row").style.display = "none"; TODO: add a foreach to hide them all
                 // document.getElementsByClassName("controlButton").style.display = "none"; TODO: add a foreach to hide them all
@@ -819,8 +429,12 @@
             // TODO: Add a failure message modal
             // TODO: Show the cats in the unfound places they were hiding
             function failure() {
+                var failureMessage = document.getElementById("failureMessage");
+                failureMessage.style.display = "block";
                 console.log("Failed at the game");
-            }         
+            }
+
+            
 
         </script>
     </body>
