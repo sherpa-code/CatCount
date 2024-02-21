@@ -11,6 +11,8 @@
   TODO: add to Github Pages
   TODO: swap out the clickable areas when you hit a GoToLocation button
   TODO: center the success and failure message modals
+  TODO: add responsiveness via Media Queries for at least 1080p and 4k
+  TODO: add the splash screen
 -->
 <html lang="en">
     <head>
@@ -32,28 +34,30 @@
             <button id="splashPageBeginButton" font-size="200%">
                 <p>Let's go!</p>
             </button>
+
+            <dialog id="instructions">
+                <h1>Find Your Kitties!</h1>
+                <p>You are about to leave for work in a hurry...</p>
+                <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
+                <p>
+                    Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
+                </p>
+                <button onclick="startGame()" font-size="200%">Start Searching</button>
+            </dialog>
         </section> -->
 
-        <dialog id="instructions">
-            <h1>Find Your Kitties!</h1>
-            <p>You are about to leave for work in a hurry...</p>
-            <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
-            <p>
-                Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
-            </p>
-            <button onclick="startGame()" font-size="200%">Start Searching</button>
-        </dialog>
+
          
         <main id="imageContainer">
             <nav id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
             <nav id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
-            <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
             <section class="row row__stats">
                 <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
                 <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
             </section>
             <!-- Clickable areas: Kitchen -->
             <section class="kitchen">
+                <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
                 <section class="row row__upper">
                     <div class="area--clickable" id="area_kitchen_1">Area 1</div>
                     <div class="area--clickable" id="area_kitchen_2">Area 2</div>
@@ -92,6 +96,7 @@
 
             <!-- Clickable areas: Bedroom -->
             <section class="bedroom" style="display: none;">
+                <img src="img/bedroom.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
                 <section class="row row__upper"> <!-- remove bedroom from child divs and put here -->
                     <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
                     <div class="area--clickable cupboards" id="area_bedroom_1">Area 1</div>
@@ -222,9 +227,9 @@
                 // instructions.style.opacity = 0; // TODO: Re-enable, how?
 
                 setTimeout(function () {
-                    instructions.style.display = "none";
-                    imageContainer.style.display = "flex";
-                    imageContainer.style.opacity = 1;
+                    // instructions.style.display = "none";
+                    // imageContainer.style.display = "flex";
+                    // imageContainer.style.opacity = 1;
                     goToBedroomButton.style.display = "block";
                     goToBedroomButton.style.opacity = 1;
                 }, 500); // Set the duration of the transition
@@ -334,6 +339,11 @@
                 // Hide the existing goToBedroomButton
                 goToKitchenButton.style.display = "none";
 
+                //Hide the existing Bedroom rows
+                document.querySelector(".bedroom").style.display = "none";
+                //Show the Kitchen rows
+                document.querySelector(".kitchen").style.display = "flex";
+
                 // Show the goToKitchenButton after a delay
                 setTimeout(function () {
                     goToBedroomButton.style.display = "block";
@@ -358,16 +368,10 @@
                 // Hide the existing goToKitchenButton
                 goToBedroomButton.style.display = "none";
 
-                //TODO: this is not working, when you go to bedroom, the bedroom image and rows dont load
                 //Hide the existing Kitchen rows
-                // document.getElementsByClassName("kitchen row").style.display = "none";
-                // document.querySelectorAll(kitchen, row).style.display = "none";
-                // document.querySelectorAll(".kitchen", ".row").style.display = "none";
-                // document.querySelectorAll("kitchen", "area--clickable").style.display = "none";
-                //Show the bedroom rows
-                // document.getElementsByClassName("bedroom row").style.display = "block";
-                // document.querySelectorAll(".bedroom", ".row").style.display = "block";
-                // document.querySelectorAll("bedroom", "area--clickable").style.display = "block";
+                document.querySelector(".kitchen").style.display = "none";
+                //Show the Bedroom rows
+                document.querySelector(".bedroom").style.display = "flex";
 
                 // Show the goToKitchenButton after a delay
                 setTimeout(function () {
@@ -420,18 +424,23 @@
                 emojiModal.style.top = y + "px";
                 emojiModal.style.left = x + "px";
                 emojiModal.style.zIndex = 7;
+                emojiModal.style.opacity = 0;
+                emojiModal.style.display = "none";
                 // emojiModal.textContent = message;
                 emojiModal.innerHTML = message;
 
-                document.body.appendChild(emojiModal);
+                // document.body.appendChild(emojiModal);
+                document.getElementById("imageContainer").appendChild(emojiModal);
 
                 // Triggering the fadeInOut animation after a short delay
                 setTimeout(() => {
                     emojiModal.style.animation = fadeInOut;
-                    emojiModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
+                    // emojiModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
+                    emojiModal.style.position = "absolute"; // Ensure the modal stays fixed relative to the viewport
                     emojiModal.style.width = "auto";
                     emojiModal.style.padding = "10px";
                     emojiModal.style.transform = "translate(-50%, -50%) scale(2)"; // Center the modal
+                    emojiModal.style.display = "block";
                     // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         emojiModal.remove();
