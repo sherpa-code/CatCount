@@ -6,10 +6,9 @@
   The overall goal is to search (by clicking) all areas in which your cats may be hiding before the timer expires.
   
   TODO: separate the cat gif from its parent container so that, upon victory or failure, they don't just disappear at that moment.
-  TODO: after the clickable areas map properly to the clickable areas, remove the grey colors from them and the row outlines
+  TODO: after the clickable areas are mapped properly to the background images, remove the grey colors and row outlines from them
   TODO: add the starting Instructions modal back
   TODO: add to Github Pages
-  TODO: swap out the clickable areas when you hit a GoToLocation button
   TODO: center the success and failure message modals
   TODO: add responsiveness via Media Queries for at least 1080p and 4k
   TODO: add the splash screen
@@ -26,17 +25,14 @@
         <!-- TODO: make this show up on page load as the only element you see first
                     it will have the Cat Count! title in a modal in the top left
                     and a "Let's Go!" button in the bottom right that pops up the instructions modal -->
-        <!-- <section class="splashPage">
+        <section class="splashPage">
             <img src="/img/splashPage.jpg">
             <dialog id="splashTitle">
                 <h1>Cat Count!</h1>
             </dialog>
-            <button id="splashPageBeginButton" font-size="200%">
-                <p>Let's go!</p>
-            </button>
 
             <dialog id="instructions">
-                <h1>Find Your Kitties!</h1>
+                <h1><u>Find Your Kitties!</u></h1>
                 <p>You are about to leave for work in a hurry...</p>
                 <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
                 <p>
@@ -44,7 +40,17 @@
                 </p>
                 <button onclick="startGame()" font-size="200%">Start Searching</button>
             </dialog>
-        </section> -->
+
+            <!-- <dialog id="letsgobutton">
+                <h1>Find Your Kitties!</h1>
+                <p>Let's go!</p>
+                <button onclick="startGame()" font-size="200%">Start Searching</button>
+            </dialog> -->
+
+            <button id="letsgobutton" onclick="showInstructions()">
+                <p>Let's go!</p>
+            </button>
+        </section>
 
 
          
@@ -203,7 +209,7 @@
                     e.addEventListener("click", checkAddToAreaArray);
                 });
                 
-                startGame();
+                //startGame(); // TODO: move this to the button within Instructions on the splash screen
             });
             
             function checkAddToAreaArray(e) {
@@ -415,6 +421,16 @@
                 const areas = document.querySelectorAll(".area--clickable");
                 console.log(areas);
                 areas.forEach (areas => areas.remove());
+            }
+
+            function showInstructions() {
+                let instruction = document.getElementById("instructions");
+                instructions.style.animation = fadeIn;
+                instructions.style.display = "block";
+                // document.getElementById("instructions").style.display = "block";
+                let letsgobutton = document.getElementById("letsgobutton");
+                letsgobutton.style.animation = fadeOut;
+                // letsgobutton.style.display
             }
 
             // Function to show a notification modal at the specified coordinates // TODO: finish implementing this; the modal is created but not visible on screen.
