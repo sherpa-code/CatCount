@@ -16,12 +16,6 @@
             }
             /* CSS Reset ends */
 
-            html,
-            body {
-                height: 100%;
-            }
-
-
             @keyframes fadeIn {
                 from {
                     opacity: 0;
@@ -68,6 +62,16 @@
                 }
             }
 
+            /* TODO: DEBUG to be disabled */
+            * {
+                outline: 2px solid red;
+            }
+
+            html,
+            body {
+                height: 100%;
+            }
+
             img {
                 height: auto;
                 justify-content: center;
@@ -105,100 +109,57 @@
                 margin: 8em;
                 padding: 2em;
                 border-radius: 1em;
-                transition: opacity 0.5s ease-in-out;
                 display: none;
-                z-index: 4;
-                /* transform: translate(-50%, -50%); */
+                z-index: 2;
             }
 
-            #splashTitle {
-                font-size: 150%;
-                color: white;
-                margin: auto;
-                padding: 1em;
-                /* background-color: #ddd; */
-                background: radial-gradient(circle, 
-                    hsl(0, 25%, 50%),
-                    hsl(30, 25%, 50%),
-                    hsl(120, 25%, 50%),
-                    hsl(210, 25%, 50%),
-                    hsl(270, 25%, 50%),
-                    hsl(330, 25%, 50%)
-                );
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
+            button {
                 /* display: none; */
-                display: block;
-                position: relative;
-                /* top: 0; */
-                /* right: 0; */
-                /* bottom: 0; */
-                /* left: 0; */
-                opacity: 85%;
-                scale: 1.2;
-                transform: skew(-3deg, -3deg);
-                /* transform: translate(-100%, -300%) skew(-3deg, -3deg); */
-                
-                /* replace movement via translate */                transform: skew(-3deg, -3deg);
+                position: absolute;
+                /* padding: 0.55rem; */
+                border: none;
+                border-radius: 1em;
+                font-size: 1rem;
+                transition: background-color 1.6s ease-in-out;
+                /* top: 50%; */
+                z-index: 1;
+                background-color: #3498db;
+                color: #fff;
             }
 
             dialog.instructions {
                 background-color: #ddd;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
                 transition: opacity 0.5s ease-in-out;
                 display: none;
                 /* display: block;*/
             }
 
-            dialog#letsgobutton {
-                /* background-color: #ddd;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
-                display: block;
-                transform: translateY(-100px);
-                display: block; */
-            }
-
             dialog.success {
                 background: radial-gradient(circle, 
-                hsl(0, 25%, 50%),    /* Red */
-                hsl(30, 25%, 50%),   /* Orange */
-                hsl(120, 25%, 50%),  /* Green */
-                hsl(210, 25%, 50%),  /* Blue */
-                hsl(270, 25%, 50%),  /* Purple */
-                hsl(330, 25%, 50%)   /* Magenta */
+                hsl(0, 25%, 50%),
+                hsl(30, 25%, 50%),
+                hsl(120, 25%, 50%),
+                hsl(210, 25%, 50%),
+                hsl(270, 25%, 50%),
+                hsl(330, 25%, 50%)
                 );
             }
 
             dialog.failure {
                 background: radial-gradient(circle, 
-                hsl(0, 0%, 31%),    /* Red */
-                hsl(0, 0%, 73%),   /* Orange */
-                hsl(0, 0%, 23%),  /* Green */
-                hsl(0, 0%, 51%),  /* Blue */
-                hsl(0, 0%, 9%),  /* Purple */
-                hsl(0, 0%, 0%)   /* Magenta */
+                hsl(0, 0%, 31%),
+                hsl(0, 0%, 73%),
+                hsl(0, 0%, 23%),
+                hsl(0, 0%, 51%),
+                hsl(0, 0%, 9%),
+                hsl(0, 0%, 0%)
                 );
             }
 
-            #splashPage {
-                height: 100%;
-                /* position: absolute;
-                margin: auto;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0; */
-                /* display: flex; */
-                display: grid;
-                justify-content: center;
-                position: relative;
-                /* background-image: url(http://localhost:5500/img/splashPage.jpg); */
-                background-image: url(/img/splashPage.jpg);
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain;
+            main .backgroundImage { 
+                position: absolute;
+                z-index: -1;
+                inset: 0;
             }
 
             section img {
@@ -207,7 +168,6 @@
 
             .messageOverlay {
                 background-color: #ddd;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
             }
 
             /* TODO: remove the colored styling in the final version */
@@ -225,7 +185,7 @@
             }
 
             /* Styles the 'goTo[location]' buttons; e.g. 'To the Bedroom' and 'To the Kitchen' buttons*/
-            .controlButton {
+            .goToLocationButton {
                 /* display: none; */
                 opacity: 0;
                 position: absolute;
@@ -351,13 +311,62 @@
                 right: 2rem;
             }
 
+            #splashPage {
+                height: 100%;
+                /* position: absolute;
+                margin: auto;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0; */
+                /* display: flex; */
+                display: grid;
+                justify-content: center;
+                position: relative;
+                /* background-image: url(http://localhost:5500/img/splashPage.jpg); */
+                background-image: url(/img/splashPage.jpg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+            }
+
+            #splashTitle {
+                /* display: none; */
+                display: block;
+                font-size: 150%;
+                color: white;
+                /* margin: auto; */
+                /* position: relative; */
+                padding: 1em;
+                /* background-color: #ddd; */
+                background: radial-gradient(circle, 
+                    hsl(0, 25%, 50%),
+                    hsl(30, 25%, 50%),
+                    hsl(120, 25%, 50%),
+                    hsl(210, 25%, 50%),
+                    hsl(270, 25%, 50%),
+                    hsl(330, 25%, 50%)
+                );
+                border-radius: 1em;
+                transition: opacity 0.5s ease-in-out;
+                /* top: 0; */
+                /* right: 0; */
+                /* bottom: 0; */
+                /* left: 0; */
+                opacity: 85%;
+                scale: 1.2;
+                transform: skew(-3deg, -3deg);
+                /* transform: translate(-100%, -300%) skew(-3deg, -3deg); */
+                
+                /* replace movement via translate */                transform: skew(-3deg, -3deg);
+            }
+
             #instructions {
                 font-size: 150%;
                 margin: auto;
-                padding: 1.2em 1.65em;
+                /* padding: 1.2em 1.65em; */
+                padding: auto;
                 background-color: #ddd;
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
                 transition: opacity 0.5s ease-in-out;
                 display: none;
                 /* display: flex; */
@@ -373,42 +382,28 @@
             }
 
             #letsGoButton {
-                font-size: 150%;
-                padding: 0.35em;
-                background-color: lightskyblue;
+                font-size: 200%;
+                font-weight: bold;
+                padding: 1.35em;
+                background-color: rgba(230, 78, 40, 0.411);
                 color: black;
                 border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
                 transition: opacity 0.5s ease-in-out;
                 display: block;
-                margin-top: 30vh;
-                margin-left: 45vw;
+                /* margin-top: 30vh;
+                margin-left: 45vw; */
+                transform: skew(-3deg, -3deg);
                 opacity: 90%;
-            }
-
-            button {
-                display: none;
-                position: absolute;
-                padding: 0.55rem;
-                border: none;
-                border-radius: 0.35rem;
-                font-size: 1rem;
-                transition: background-color 1.6s ease-in-out;
-                top: 50%;
-                z-index: 1;
-                background-color: #3498db;
-                color: #fff;
             }
 
             #startGameButton {
                 /* display: block; */
                 font-size: 150%;
                 /* margin: auto; */
-                padding: 0.45em;
+                /* padding: 0.45em; */
                 color: black;
                 border-radius: 0.35em;
                 transition: opacity 0.5s ease-in-out;
-                
             }
 
             #startGameContainer {
@@ -429,9 +424,7 @@
                 height: 100vh;
             }
 
-            * {
-                outline: 2px solid red;
-              }
+
             
             /* #imageContainer .backgroundImage{ 
                 position: absolute;
@@ -439,11 +432,7 @@
                 inset: 0;
             } */
 
-            main .backgroundImage { 
-                position: absolute;
-                z-index: -1;
-                inset: 0;
-            }
+
 
             /* #imageContainer img { 
                 position: absolute;

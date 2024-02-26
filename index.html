@@ -7,11 +7,11 @@
   
   TODO: separate the cat gif from its parent container so that, upon victory or failure, they don't just disappear at that moment.
   TODO: after the clickable areas are mapped properly to the background images, remove the grey colors and row outlines from them
-  TODO: add the starting Instructions modal back
+  TODO: tidy up the starting Instructions modal
   TODO: add to Github Pages
   TODO: center the success and failure message modals
   TODO: add responsiveness via Media Queries for at least 1080p and 4k
-  TODO: add the splash screen
+  TODO: place elements properply and responsively on splash screen
 -->
 <html lang="en">
     <head>
@@ -49,8 +49,8 @@
         </section>
          
         <main id="imageContainer">
-            <nav id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
-            <nav id="goToKitchenButton" class="controlButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
+            <nav id="goToBedroomButton" class="goToLocationButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
+            <nav id="goToKitchenButton" class="goToLocationButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
             <section class="row row__stats">
                 <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
                 <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
@@ -229,8 +229,12 @@
                     goToBedroomButton.style.display = "block";
                     goToBedroomButton.style.opacity = 1;
                 }, 500); // Set the duration of the transition
-                // document.getElementById
-                document.getElementByClassName("splashPage").style.animation = fadeOut;
+                document.getElementById("splashPage").style.animation = fadeOut;
+                document.getElementById("splashPage").style.display = "none";
+
+                // goToLocation("kitchen");
+                document.getElementById("imageContainer").style.animation = fadeIn;
+                document.getElementById("imageContainer").style.display = "flex";
                 
                 runTimer();
             }
