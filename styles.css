@@ -127,21 +127,6 @@
                 color: #fff;
             }
 
-            dialog.instructions {
-                /* background-color: #ddd; */
-                /* background: radial-gradient(circle, 
-                hsl(0, 25%, 50%),
-                hsl(30, 25%, 50%),
-                hsl(120, 25%, 50%),
-                hsl(210, 25%, 50%),
-                hsl(270, 25%, 50%),
-                hsl(330, 25%, 50%)
-                ); */
-                transition: opacity 0.5s ease-in-out;
-                display: none;
-                /* display: block;*/
-            }
-
             dialog.success {
                 background: radial-gradient(circle, 
                 hsl(0, 25%, 50%),
@@ -172,10 +157,6 @@
 
             section img {
                 height: 100%;
-            }
-
-            .messageOverlay {
-                background-color: #ddd;
             }
 
             /* TODO: remove the colored styling in the final version */
@@ -322,14 +303,10 @@
             }
 
             #splashTitle {
-                /* display: none; */
                 display: block;
                 font-size: 150%;
                 color: white;
-                /* margin: auto; */
-                /* position: relative; */
                 padding: 1em;
-                /* background-color: #ddd; */
                 background: radial-gradient(circle, 
                     hsl(0, 25%, 50%),
                     hsl(30, 25%, 50%),
@@ -340,16 +317,9 @@
                 );
                 border-radius: 1em;
                 transition: opacity 0.5s ease-in-out;
-                /* top: 0; */
-                /* right: 0; */
-                /* bottom: 0; */
-                /* left: 0; */
                 opacity: 85%;
                 scale: 1.2;
-                transform: skew(-3deg, -3deg);
-                /* transform: translate(-100%, -300%) skew(-3deg, -3deg); */
-                
-                /* replace movement via translate */                transform: skew(-3deg, -3deg);
+                transform: skew(-3deg, -3deg);           transform: skew(-3deg, -3deg);
             }
 
             #instructions {
@@ -384,7 +354,11 @@
 
             #startGameContainer {
                 margin-top: 2.5rem;
-                margin-bottom: 2.5em;
+                margin-bottom: 3.5em;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
             }
 
             #letsGoButton {

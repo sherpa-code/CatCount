@@ -25,8 +25,30 @@
         <!-- TODO: make this show up on page load as the only element you see first
                     it will have the Cat Count! title in a modal in the top left
                     and a "Let's Go!" button in the bottom right that pops up the instructions modal -->
+        <!-- <section id="splashPage">
+            <img src="/img/splashPage.jpg">
+            <dialog id="splashTitle">
+                <h1>Cat Count!</h1>
+            </dialog>
+
+            <dialog id="instructions">
+                <h1><u>Find Your Kitties!</u></h1>
+                <p>You are about to leave for work in a hurry...</p>
+                <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
+                <p>
+                    Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
+                </p>
+                <div id="startGameContainer">
+                    <button id="startGameButton" onclick="startGame()" font-size="200%">Start</button>
+                </div>
+            </dialog>
+
+            <button id="letsGoButton" onclick="showInstructions()">
+                <p>Let's go!</p>
+            </button>
+        </section> -->
         <section id="splashPage">
-            <!-- <img src="/img/splashPage.jpg"> -->
+            <img src="/img/splashPage.jpg">
             <dialog id="splashTitle">
                 <h1>Cat Count!</h1>
             </dialog>
@@ -150,7 +172,7 @@
             </section>
 
             <dialog class="success" id="successMessage">
-                You found all of the cats, congratulations!</br>&#128526;
+                You found all of your cats, now head to work!</br>&#128526;
             </dialog>
 
             <dialog class="failure" id="failureMessage">
@@ -235,6 +257,9 @@
                 // goToLocation("kitchen");
                 document.getElementById("playArea").style.animation = fadeIn;
                 document.getElementById("playArea").style.display = "flex";
+
+                const splashPage = document.getElementById("splashPage");
+                splashPage.remove();
                 
                 runTimer();
             }
@@ -280,6 +305,8 @@
                     // gameOver(true); // right now this is handled by the runTimer()
                 }
             }
+
+            
             
             // Function to show a notification modal at the specified coordinates // TODO: create another for showEmoji
             function showNotification(message, x, y) {
@@ -335,9 +362,6 @@
             }
 
             function goToKitchen() {
-                var goToBedroomButton = document.getElementById("goToBedroomButton");
-                var goToKitchenButton = document.getElementById("goToKitchenButton");
-                
                 // Hide the existing goToBedroomButton
                 goToKitchenButton.style.display = "none";
 
@@ -360,13 +384,10 @@
                     playArea.style.animation = fadeIn;
                 }, 10);
 
-                updateClickableAreas("kitchen")
+                updateClickableAreas("kitchen");
             }
 
             function goToBedroom() {
-                var goToBedroomButton = document.getElementById("goToBedroomButton");
-                var goToKitchenButton = document.getElementById("goToKitchenButton");
-
                 // Hide the existing goToKitchenButton
                 goToBedroomButton.style.display = "none";
 
@@ -389,7 +410,7 @@
                     playArea.style.animation = fadeIn;
                 }, 10);
 
-                updateClickableAreas("bedroom")
+                updateClickableAreas("bedroom");
             }
 
             // Add functionality to swap the clickable areas of the image.
