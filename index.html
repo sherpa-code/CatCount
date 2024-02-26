@@ -48,26 +48,30 @@
             </button>
         </section> -->
         <section id="splashPage">
-            <img src="/img/splashPage.jpg">
-            <dialog id="splashTitle">
-                <h1>Cat Count!</h1>
-            </dialog>
+            <!-- <img src="/img/splashPage.jpg"> -->
+            <div class="container">
+                <dialog id="splashTitle">
+                    <h1>Cat Count!</h1>
+                </dialog>
 
-            <dialog id="instructions">
-                <h1><u>Find Your Kitties!</u></h1>
-                <p>You are about to leave for work in a hurry...</p>
-                <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
-                <p>
-                    Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
-                </p>
-                <div id="startGameContainer">
-                    <button id="startGameButton" onclick="startGame()" font-size="200%">Start</button>
+                <dialog id="instructions">
+                    <h1><u>Find Your Kitties!</u></h1>
+                    <p>You are about to leave for work in a hurry...</p>
+                    <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
+                    <p>
+                        Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
+                    </p>
+                    <div id="startGameContainer">
+                        <button id="startGameButton" onclick="startGame()" font-size="200%">Start</button>
+                    </div>
+                </dialog>
+
+                <div id="letsGoButtonContainer">
+                    <button id="letsGoButton" onclick="showInstructions()">
+                        <p>Let's go!</p>
+                    </button>
                 </div>
-            </dialog>
-
-            <button id="letsGoButton" onclick="showInstructions()">
-                <p>Let's go!</p>
-            </button>
+            </div>
         </section>
          
         <main id="playArea">
@@ -201,7 +205,8 @@
             
             // Statistics
             let clickCounter = 0;
-            let timer = 90;
+            // let timer = 90;
+            let timer = 9999;
             var catsFound = 0;
             let totalCats = 3;
             
@@ -261,6 +266,8 @@
                 // goToLocation("kitchen");
                 document.getElementById("playArea").style.animation = fadeIn;
                 document.getElementById("playArea").style.display = "flex";
+
+                goToKitchenButton.style.display = "none";
 
                 const splashPage = document.getElementById("splashPage");
                 splashPage.remove();
@@ -441,7 +448,7 @@
             function hideClickableAreas() {
                 const areas = document.querySelectorAll(".area--clickable");
                 console.log(areas);
-                areas.forEach (areas => areas.remove());
+                areas.forEach(areas => areas.remove());
             }
 
             function showInstructions() {
@@ -451,6 +458,7 @@
                 let letsGoButton = document.getElementById("letsGoButton");
                 letsGoButton.style.animation = fadeOut;
                 document.getElementById("startGameContainer").style.animation = fadeIn;
+                letsGoButton.remove();
             }
 
             // Function to show a notification modal at the specified coordinates // TODO: finish implementing this; the modal is created but not visible on screen.
