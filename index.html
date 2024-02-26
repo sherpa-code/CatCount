@@ -25,8 +25,8 @@
         <!-- TODO: make this show up on page load as the only element you see first
                     it will have the Cat Count! title in a modal in the top left
                     and a "Let's Go!" button in the bottom right that pops up the instructions modal -->
-        <section class="splashPage">
-            <img src="/img/splashPage.jpg">
+        <section id="splashPage">
+            <!-- <img src="/img/splashPage.jpg"> -->
             <dialog id="splashTitle">
                 <h1>Cat Count!</h1>
             </dialog>
@@ -38,21 +38,15 @@
                 <p>
                     Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
                 </p>
-                <button onclick="startGame()" font-size="200%">Start Searching</button>
+                <div id="startGameContainer">
+                    <button id="startGameButton" onclick="startGame()" font-size="200%">Start</button>
+                </div>
             </dialog>
 
-            <!-- <dialog id="letsgobutton">
-                <h1>Find Your Kitties!</h1>
-                <p>Let's go!</p>
-                <button onclick="startGame()" font-size="200%">Start Searching</button>
-            </dialog> -->
-
-            <button id="letsgobutton" onclick="showInstructions()">
+            <button id="letsGoButton" onclick="showInstructions()">
                 <p>Let's go!</p>
             </button>
         </section>
-
-
          
         <main id="imageContainer">
             <nav id="goToBedroomButton" class="controlButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
@@ -154,8 +148,7 @@
                     <div class="area--clickable bed" id="area_bedroom_23">Area 23</div>
                 </section>
             </section>
-                
-            <button onclick="startGame()" font-size="200%">Start Searching</button>
+
             <dialog class="success" id="successMessage">
                 You found all of the cats, congratulations!</br>&#128526;
             </dialog>
@@ -208,8 +201,6 @@
                 allAreaNodes.forEach((e) => {
                     e.addEventListener("click", checkAddToAreaArray);
                 });
-                
-                //startGame(); // TODO: move this to the button within Instructions on the splash screen
             });
             
             function checkAddToAreaArray(e) {
@@ -230,7 +221,6 @@
         
             function startGame() {
                 placeCatsRandomly();
-                // instructions.style.opacity = 0; // TODO: Re-enable, how?
 
                 setTimeout(function () {
                     // instructions.style.display = "none";
@@ -239,6 +229,8 @@
                     goToBedroomButton.style.display = "block";
                     goToBedroomButton.style.opacity = 1;
                 }, 500); // Set the duration of the transition
+                // document.getElementById
+                document.getElementByClassName("splashPage").style.animation = fadeOut;
                 
                 runTimer();
             }
@@ -424,13 +416,12 @@
             }
 
             function showInstructions() {
-                let instruction = document.getElementById("instructions");
                 instructions.style.animation = fadeIn;
                 instructions.style.display = "block";
                 // document.getElementById("instructions").style.display = "block";
-                let letsgobutton = document.getElementById("letsgobutton");
-                letsgobutton.style.animation = fadeOut;
-                // letsgobutton.style.display
+                let letsGoButton = document.getElementById("letsGoButton");
+                letsGoButton.style.animation = fadeOut;
+                document.getElementById("startGameContainer").style.animation = fadeIn;
             }
 
             // Function to show a notification modal at the specified coordinates // TODO: finish implementing this; the modal is created but not visible on screen.
@@ -442,7 +433,6 @@
                 emojiModal.style.zIndex = 7;
                 emojiModal.style.opacity = 0;
                 emojiModal.style.display = "none";
-                // emojiModal.textContent = message;
                 emojiModal.innerHTML = message;
 
                 // document.body.appendChild(emojiModal);

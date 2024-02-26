@@ -118,26 +118,29 @@
                 padding: 1em;
                 /* background-color: #ddd; */
                 background: radial-gradient(circle, 
-                hsl(0, 25%, 50%),    /* Red */
-                hsl(30, 25%, 50%),   /* Orange */
-                hsl(120, 25%, 50%),  /* Green */
-                hsl(210, 25%, 50%),  /* Blue */
-                hsl(270, 25%, 50%),  /* Purple */
-                hsl(330, 25%, 50%)   /* Magenta */
+                    hsl(0, 25%, 50%),
+                    hsl(30, 25%, 50%),
+                    hsl(120, 25%, 50%),
+                    hsl(210, 25%, 50%),
+                    hsl(270, 25%, 50%),
+                    hsl(330, 25%, 50%)
                 );
                 border-radius: 1em;
                 box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
                 transition: opacity 0.5s ease-in-out;
                 /* display: none; */
                 display: block;
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
+                position: relative;
+                /* top: 0; */
+                /* right: 0; */
+                /* bottom: 0; */
+                /* left: 0; */
                 opacity: 85%;
                 scale: 1.2;
-                transform: translate(-100%, -300%) skew(-3deg, -3deg);
+                transform: skew(-3deg, -3deg);
+                /* transform: translate(-100%, -300%) skew(-3deg, -3deg); */
+                
+                /* replace movement via translate */                transform: skew(-3deg, -3deg);
             }
 
             dialog.instructions {
@@ -179,14 +182,23 @@
                 );
             }
 
-            section.splashPage {
+            #splashPage {
                 height: 100%;
-                position: absolute;
+                /* position: absolute;
                 margin: auto;
                 top: 0;
                 right: 0;
                 bottom: 0;
-                left: 0;
+                left: 0; */
+                /* display: flex; */
+                display: grid;
+                justify-content: center;
+                position: relative;
+                /* background-image: url(http://localhost:5500/img/splashPage.jpg); */
+                background-image: url(/img/splashPage.jpg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
             }
 
             section img {
@@ -297,19 +309,9 @@
 
 
 
-            button {
-                display: none;
-                position: absolute;
-                padding: 0.55rem;
-                border: none;
-                border-radius: 0.35rem;
-                font-size: 1rem;
-                transition: background-color 1.6s ease-in-out;
-                top: 50%;
-                z-index: 1;
-                background-color: #3498db;
-                color: #fff;
-            }
+            
+
+            
             
             /* TODO: Make all cat images the same dimensions
             /* TODO: When a cat is shown it hovers over that clickable, even if it overlaps with neighboring ones
@@ -349,21 +351,6 @@
                 right: 2rem;
             }
 
-             /* TODO: turn the instructions block back on in the final version, i.e. change 'display' */
-            /* #instructions {
-                font-size: 150%;
-                margin: 8em;
-                padding: 2em;
-                background-color: #ddd;
-                border-radius: 1em;
-                box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
-                transition: opacity 0.5s ease-in-out;
-                /* display: none;
-                display: block;
-                position: absolute;
-                top: 0;
-            } */
-
             #instructions {
                 font-size: 150%;
                 margin: auto;
@@ -373,37 +360,59 @@
                 box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
                 transition: opacity 0.5s ease-in-out;
                 display: none;
-                /* display: block; */
+                /* display: flex; */
+                flex-direction: column;
+                align-items: center;
                 position: absolute;
-                top: 0;
+                top: 10vh;
                 right: 0;
                 bottom: 0;
                 left: 0;
-                opacity: 70%;
+                opacity: 65%;
                 scale: 0.9;
-                /* transform: translate(-50%, -50%); */
             }
 
-            #letsgobutton {
+            #letsGoButton {
                 font-size: 150%;
-                /* margin: auto; */
                 padding: 0.35em;
                 background-color: lightskyblue;
-                /* color: white; */
                 color: black;
                 border-radius: 1em;
                 box-shadow: 0 0 12em rgba(0, 0, 0, 0.5);
                 transition: opacity 0.5s ease-in-out;
-                /* display: none; */
                 display: block;
-                position: absolute;
-                /* top: 0; */
-                /* right: 0; */
-                /* bottom: 0; */
-                /* left: 0; */
+                margin-top: 30vh;
+                margin-left: 45vw;
                 opacity: 90%;
-                /* scale: 0.9; */
-                transform: translate(1200%, 850%);
+            }
+
+            button {
+                display: none;
+                position: absolute;
+                padding: 0.55rem;
+                border: none;
+                border-radius: 0.35rem;
+                font-size: 1rem;
+                transition: background-color 1.6s ease-in-out;
+                top: 50%;
+                z-index: 1;
+                background-color: #3498db;
+                color: #fff;
+            }
+
+            #startGameButton {
+                /* display: block; */
+                font-size: 150%;
+                /* margin: auto; */
+                padding: 0.45em;
+                color: black;
+                border-radius: 0.35em;
+                transition: opacity 0.5s ease-in-out;
+                
+            }
+
+            #startGameContainer {
+                opacity: 85%;
             }
           
             /* TODO: replace instances of this with the semantic HTML 'main' */
