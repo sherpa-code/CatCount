@@ -123,12 +123,20 @@
                 transition: background-color 1.6s ease-in-out;
                 /* top: 50%; */
                 z-index: 1;
-                background-color: #3498db;
+                /* background-color: #3498db; */
                 color: #fff;
             }
 
             dialog.instructions {
-                background-color: #ddd;
+                /* background-color: #ddd; */
+                /* background: radial-gradient(circle, 
+                hsl(0, 25%, 50%),
+                hsl(30, 25%, 50%),
+                hsl(120, 25%, 50%),
+                hsl(210, 25%, 50%),
+                hsl(270, 25%, 50%),
+                hsl(330, 25%, 50%)
+                ); */
                 transition: opacity 0.5s ease-in-out;
                 display: none;
                 /* display: block;*/
@@ -294,15 +302,6 @@
                 opacity: 1;
             }
 
-            /* TODO: replace REM with % */
-            /* .goToLocationButton.left {
-                left: 2rem;
-            }
-
-            .goToLocationButton.right {
-                right: 2rem;
-            } */
-
             #goToBedroomButton {
                 left: 2rem;
             }
@@ -313,21 +312,13 @@
 
             #splashPage {
                 height: 100%;
-                /* position: absolute;
-                margin: auto;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0; */
-                /* display: flex; */
                 display: grid;
                 justify-content: center;
                 position: relative;
-                /* background-image: url(http://localhost:5500/img/splashPage.jpg); */
-                background-image: url(/img/splashPage.jpg);
+                /* background-image: url(/img/splashPage.jpg);
                 background-repeat: no-repeat;
                 background-position: center;
-                background-size: contain;
+                background-size: contain; */
             }
 
             #splashTitle {
@@ -362,11 +353,13 @@
             }
 
             #instructions {
-                font-size: 150%;
+                font-size: 200%;
                 margin: auto;
                 /* padding: 1.2em 1.65em; */
                 padding: auto;
-                background-color: #ddd;
+                /* background-color: #ddd; */
+                background: radial-gradient(ellipse at top, #e66465, transparent),
+                radial-gradient(ellipse at bottom, #4d9f0c, transparent);
                 transition: opacity 0.5s ease-in-out;
                 display: none;
                 /* display: flex; */
@@ -377,8 +370,21 @@
                 right: 0;
                 bottom: 0;
                 left: 0;
-                opacity: 65%;
+                opacity: 75%;
                 scale: 0.9;
+            }
+
+            #instructions h1 {
+                margin-bottom: 0.5em;
+            }
+
+            #instructions p {
+                margin-bottom: 0.25em;
+            }
+
+            #startGameContainer {
+                margin-top: 2.5rem;
+                margin-bottom: 2.5em;
             }
 
             #letsGoButton {
@@ -400,7 +406,7 @@
                 /* display: block; */
                 font-size: 150%;
                 /* margin: auto; */
-                /* padding: 0.45em; */
+                padding: 0.45em;
                 color: black;
                 border-radius: 0.35em;
                 transition: opacity 0.5s ease-in-out;
@@ -411,39 +417,19 @@
             }
           
             /* TODO: replace instances of this with the semantic HTML 'main' */
-            #imageContainer {
+            #playArea {
                 margin: 0 auto;
                 position: relative;
                 transition: opacity 0.5s ease-in-out;
-                /* display: flex; */
                 display: none;
                 flex-direction: column;
                 max-width: 100vh;
-                /* max-height: 100%; */
-                /* min-height: 100%; */
                 height: 100vh;
+                background-image: url(/img/splashPage.jpg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
             }
-
-
-            
-            /* #imageContainer .backgroundImage{ 
-                position: absolute;
-                z-index: -1;
-                inset: 0;
-            } */
-
-
-
-            /* #imageContainer img { 
-                position: absolute;
-                z-index: -1;
-                inset: 0;
-            } */
-
-            /* #clickCounter {
-                top: 1rem;
-                right: 1rem;
-            } */
 
             #timer {
                 top: 1rem;
@@ -486,6 +472,45 @@
                 padding-top: 1rem;
                 align-self: flex-end;
             }
+
+            #area_kitchen_8 {}
+            #area_kitchen_9 {}
+            #area_kitchen_10 {}
+            #area_kitchen_11 {}
+            #area_kitchen_12 {}
+            #area_kitchen_13 {}
+            #area_kitchen_14 {}
+            #area_kitchen_15 {}
+            #area_kitchen_16 {}
+            #area_kitchen_17 {}
+            #area_kitchen_18 {}
+
+            #area_bedroom_1 {}
+            #area_bedroom_2 {}
+            #area_bedroom_3 {}
+            #area_bedroom_4 {}
+            #area_bedroom_5 {}
+            #area_bedroom_6 {}
+            #area_bedroom_7 {}
+            #area_bedroom_8 {}
+            #area_bedroom_9 {}
+            #area_bedroom_10 {}
+            #area_bedroom_11 {}
+            #area_bedroom_12 {}
+            #area_bedroom_13 {}
+            #area_bedroom_14 {}
+            #area_bedroom_15 {}
+            #area_bedroom_16 {}
+            #area_bedroom_17 {}
+            #area_bedroom_18 {}
+            #area_bedroom_19 {}
+            #area_bedroom_20 {}
+            #area_bedroom_21 {}
+            #area_bedroom_22 {}
+            #area_bedroom_23 {}
+
+            
+
 
             @media screen and (max-width: 1023px) {
                 .row__upper {
