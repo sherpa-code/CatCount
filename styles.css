@@ -127,6 +127,21 @@
                 color: #fff;
             }
 
+            dialog.instructions {
+                /* background-color: #ddd; */
+                /* background: radial-gradient(circle, 
+                hsl(0, 25%, 50%),
+                hsl(30, 25%, 50%),
+                hsl(120, 25%, 50%),
+                hsl(210, 25%, 50%),
+                hsl(270, 25%, 50%),
+                hsl(330, 25%, 50%)
+                ); */
+                transition: opacity 0.5s ease-in-out;
+                display: none;
+                /* display: block;*/
+            }
+
             dialog.success {
                 background: radial-gradient(circle, 
                 hsl(0, 25%, 50%),
@@ -157,6 +172,10 @@
 
             section img {
                 height: 100%;
+            }
+
+            .messageOverlay {
+                background-color: #ddd;
             }
 
             /* TODO: remove the colored styling in the final version */
@@ -296,10 +315,6 @@
                 display: grid;
                 justify-content: center;
                 position: relative;
-                /* background-image: url(/img/splashPage.jpg);
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain; */
             }
 
             #splashTitle {
@@ -307,6 +322,7 @@
                 font-size: 150%;
                 color: white;
                 padding: 1em;
+                /* background-color: #ddd; */
                 background: radial-gradient(circle, 
                     hsl(0, 25%, 50%),
                     hsl(30, 25%, 50%),
@@ -354,11 +370,7 @@
 
             #startGameContainer {
                 margin-top: 2.5rem;
-                margin-bottom: 3.5em;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
+                margin-bottom: 2.5em;
             }
 
             #letsGoButton {

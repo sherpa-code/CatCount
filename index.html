@@ -77,6 +77,16 @@
                 <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
                 <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
             </section>
+
+            <dialog class="success finalDialog" id="successMessage">
+                You found all of your cats, now head to work!</br>&#128526;
+            </dialog>
+
+            <dialog class="failure finalDialog" id="failureMessage">
+                You didn't find your cats in time... Oh no! You'll be late!<br>&#129402;
+            </dialog>
+
+
             <!-- Clickable areas: Kitchen -->
             <section class="kitchen">
                 <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
@@ -171,13 +181,7 @@
                 </section>
             </section>
 
-            <dialog class="success" id="successMessage">
-                You found all of your cats, now head to work!</br>&#128526;
-            </dialog>
 
-            <dialog class="failure" id="failureMessage">
-                You didn't find your cats in time... Oh no! You'll be late!<br>&#129402;
-            </dialog>
         </main>
             
         <script>
@@ -221,12 +225,12 @@
                 // 'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
                 
                 allAreaNodes.forEach((e) => {
-                    e.addEventListener("click", checkAddToAreaArray);
+                    e.addEventListener("click", checkAddClickedAreaToArray);
                 });
             });
             
-            function checkAddToAreaArray(e) {
-                // alert("e.target.id = " + e.target.id);
+            // 
+            function checkAddClickedAreaToArray(e) {
                 addAreaToClickedAreas(e);
             }
             
