@@ -285,7 +285,7 @@
                 selectedAreas.forEach((area, index, array) => {
                     catLocations.push(area.id);
                     var container = document.getElementById(area.id);
-                    console.log(container);
+                    // console.log(container);
                     // container.innerHTML = "<img src='/img/cat1.gif'>";
                     // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
                     container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;

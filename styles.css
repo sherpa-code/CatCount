@@ -108,7 +108,7 @@
                 font-size: 150%;
                 /* margin: 8em; */
                 margin-left: 1em;;
-                padding: 2em;
+                /* padding: 2em; */
                 border-radius: 1em;
                 display: none;
                 z-index: 2;
@@ -321,7 +321,7 @@
             }
 
             .container {
-                max-width: 990px;
+                max-width: 1000px;
                 margin: auto;
                 width: 100%;
                 height: 100%;
@@ -329,6 +329,7 @@
                 flex-direction: column;
                 justify-content: space-around;
                 position: relative;
+                padding: 0% 5%;
             }
 
             #splashTitle {
@@ -355,7 +356,8 @@
             #instructions {
                 /* margin: auto; */
                 /* padding: 1.2em 1.65em; */
-                padding: auto;
+                /* padding: auto; */
+                /* padding: 0% 5%; */
                 /* background-color: #ddd; */
                 background: radial-gradient(ellipse at top, #e66465, transparent),
                 radial-gradient(ellipse at bottom, #4d9f0c, transparent);
@@ -382,8 +384,9 @@
             }
 
             #startGameContainer {
-                margin-top: 2.5rem;
-                margin-bottom: 2.5em;
+                /* margin-top: 2rem; */
+                margin-top: 2vh;
+                /* margin-bottom: 2.5em; */
             }
 
             #letsGoButton {
