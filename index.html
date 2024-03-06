@@ -7,11 +7,9 @@
   
   TODO: separate the cat gif from its parent container so that, upon victory or failure, they don't just disappear at that moment.
   TODO: after the clickable areas are mapped properly to the background images, remove the grey colors and row outlines from them
-  TODO: tidy up the starting Instructions modal
   TODO: add to Github Pages
   TODO: center the success and failure message modals
-  TODO: add responsiveness via Media Queries for at least 1080p and 4k
-  TODO: place elements properply and responsively on splash screen
+  TODO: add responsiveness via Media Queries for at least 720p and 1080p
 -->
 <html lang="en">
     <head>
@@ -22,33 +20,7 @@
     </head>
     
     <body>
-        <!-- TODO: make this show up on page load as the only element you see first
-                    it will have the Cat Count! title in a modal in the top left
-                    and a "Let's Go!" button in the bottom right that pops up the instructions modal -->
-        <!-- <section id="splashPage">
-            <img src="/img/splashPage.jpg">
-            <dialog id="splashTitle">
-                <h1>Cat Count!</h1>
-            </dialog>
-
-            <dialog id="instructions">
-                <h1><u>Find Your Kitties!</u></h1>
-                <p>You are about to leave for work in a hurry...</p>
-                <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
-                <p>
-                    Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
-                </p>
-                <div id="startGameContainer">
-                    <button id="startGameButton" onclick="startGame()" font-size="200%">Start</button>
-                </div>
-            </dialog>
-
-            <button id="letsGoButton" onclick="showInstructions()">
-                <p>Let's go!</p>
-            </button>
-        </section> -->
         <section id="splashPage">
-            <!-- <img src="/img/splashPage.jpg"> -->
             <div class="container">
                 <dialog id="splashTitle">
                     <h1>Cat Count!</h1>
@@ -73,6 +45,13 @@
                 </div>
             </div>
         </section>
+
+        <img src="img/kitchen.jpg" alt="Location Image" usemap="#imageMap" style="max-width: 100%; height: auto;">
+
+        <map name="imageMap">
+            <!-- Define clickable areas using vh and vw units as coordinates -->
+            <area shape="rect" coords="10vw,10vh,30vw,30vh" href="https://example.com/area1" alt="Area 1">
+        </map>
          
         <main id="playArea">
             <nav id="goToBedroomButton" class="goToLocationButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
@@ -198,6 +177,7 @@
             let emojiCounter = 0;
             const maxEmojis = 1500;
             const interval = 150; // Adjust the interval (in milliseconds) for adding emojis to the window at the end
+            const splashPage = document.getElementById("splashPage");
 
             const fadeIn = "fadeIn 0.5s ease-in forwards";
             const fadeOut = "fadeOut 0.5s ease-out forwards";
@@ -263,13 +243,17 @@
                 document.getElementById("splashPage").style.animation = fadeOut;
                 document.getElementById("splashPage").style.display = "none";
 
-                // goToLocation("kitchen");
+                // goToLocation("kitchen"); // doesn't work here
+
+                // playArea version
                 document.getElementById("playArea").style.animation = fadeIn;
                 document.getElementById("playArea").style.display = "flex";
 
+                // imageMap version
+
                 goToKitchenButton.style.display = "none";
 
-                const splashPage = document.getElementById("splashPage");
+                
                 splashPage.remove();
                 
                 runTimer();
@@ -315,9 +299,7 @@
                 if (catsFound >= totalCats) {
                     // gameOver(true); // right now this is handled by the runTimer()
                 }
-            }
-
-            
+            }            
             
             // Function to show a notification modal at the specified coordinates // TODO: create another for showEmoji
             function showNotification(message, x, y) {
@@ -479,7 +461,7 @@
                 setTimeout(() => {
                     emojiModal.style.animation = fadeInOut;
                     // emojiModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
-                    emojiModal.style.position = "absolute"; // Ensure the modal stays fixed relative to the viewport
+                    emojiModal.style.position = "absolute";
                     emojiModal.style.width = "auto";
                     emojiModal.style.padding = "10px";
                     emojiModal.style.transform = "translate(-50%, -50%) scale(2)"; // Center the modal
@@ -487,7 +469,7 @@
                     // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         emojiModal.remove();
-                    }, 40000); // Adjust the duration based on your fadeInOut animation
+                    }, 40000); // Duration of the fadeInOut animation
                 }, 10);
             }
 
