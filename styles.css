@@ -320,18 +320,10 @@
                 background-size: contain;
             }
 
-            .container {
-                max-width: 1045px;
-                margin: auto;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                position: relative;
-                padding: 0% 5%;
-            }
+            #splashImageContainer {
 
+            }
+            
             #splashTitle {
                 display: block;
                 font-size: 150%;
@@ -352,6 +344,19 @@
                 scale: 1.2;
                 transform: skew(-3deg, -3deg);           transform: skew(-3deg, -3deg);
             }
+
+            .container {
+                max-width: 1000px;
+                margin: auto;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                position: relative;
+                padding: 0% 5%;
+            }
+
 
             #instructions {
                 /* margin: auto; */
@@ -441,7 +446,13 @@
             }
 
             #imageMapContainer {
-
+                margin: 0 auto;
+                position: relative;
+                transition: opacity 0.5s ease-in-out;
+                display: none;
+                flex-direction: column;
+                max-width: 100vh;
+                height: 100vh;
             }
 
             #kitchenMap {
@@ -450,6 +461,22 @@
 
             #bedroomMap {
 
+            }
+
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* semi-transparent grey */
+                display: none;
+            }
+
+            .imagemap {
+                width: 100%;
+                height: auto;
+                display: block;
             }
 
             #timer {
