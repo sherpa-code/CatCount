@@ -49,17 +49,20 @@
 
         
         <main id="playArea">
-            <img src="img/kitchen.jpg" alt="Location Image" usemap="#imageMap" style="max-width: 100%; height: auto;">
-    
-            <map name="imageMap">
-                <!-- Define clickable areas using vh and vw units as coordinates -->
-                <area shape="rect" coords="10vw,10vh,30vw,30vh" href="https://example.com/area1" alt="Area 1">
-            </map>
-            <nav id="goToBedroomButton" class="goToLocationButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
-            <nav id="goToKitchenButton" class="goToLocationButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
-            <section class="row row__stats">
-                <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
-                <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
+            <section id="imageMapContainer"> 
+                <img src="img/kitchen.jpg" alt="Location Image" usemap="#imageMap" style="max-width: 100%; height: auto;">
+        
+                <map name="imageMap">
+                    <!-- Define clickable areas using vh and vw units as coordinates -->
+                    <area shape="rect" coords="100%" href="https://example.com/area1" alt="Area 1">
+                    <!-- <area shape="rect" coords="20vw,5vh,30vw,15vh" href="https://example.com/area2" alt="Area 2"> -->
+                </map>
+                <nav id="goToBedroomButton" class="goToLocationButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
+                <nav id="goToKitchenButton" class="goToLocationButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
+                <section class="row row__stats">
+                    <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
+                    <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
+                </section>
             </section>
 
             <dialog class="success finalDialog" id="successMessage">
@@ -75,13 +78,11 @@
             // Graphics and UI
             // const playArea = document.getElementsByTagName("main")[0]; // the primary container in the body
             const instructions = document.getElementById("instructions");
+            const splashPage = document.getElementById("splashPage");
             const catImages = [];
             const frownEmoji = '\uD83D\uDE41';
             const heartEmoji = '\u2764\uFE0F';
-            let emojiCounter = 0;
-            const maxEmojis = 1500;
             const interval = 150; // Adjust the interval (in milliseconds) for adding emojis to the window at the end
-            const splashPage = document.getElementById("splashPage");
 
             const fadeIn = "fadeIn 0.5s ease-in forwards";
             const fadeOut = "fadeOut 0.5s ease-out forwards";
@@ -89,61 +90,66 @@
             
             // Statistics
             let clickCounter = 0;
-            // let timer = 90;
-            let timer = 9999;
+            let timer = 90;
+            // let timer = 4;
             var catsFound = 0;
             let totalCats = 3;
             
             // Areas
             var clickedAreas = [];
             var catLocations = [];
-            var allAreaNodes = [];
-            var arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
             var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
             
             // Interactables
             var goToBedroomButton = document.getElementById("goToBedroomButton");
             var goToKitchenButton = document.getElementById("goToKitchenButton");
             
-            // When DOM is fully loaded
-            document.addEventListener("DOMContentLoaded", function () {
-                let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
-                console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
-                arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
-                // console.log("%c%s", "background-color:grey; color:orange",
-                // 'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
+            // TODO: write function to add all CLICKABLE areas in the image map to an array;
+            // Note: replaces below code
+            
+            // // When DOM is fully loaded // NOTE: disabled while converting to map version
+            // document.addEventListener("DOMContentLoaded", function () {
+            //     let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
+            //     console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
+            //     arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
+            //     // console.log("%c%s", "background-color:grey; color:orange",
+            //     // 'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
                 
-                allAreaNodes.forEach((e) => {
-                    e.addEventListener("click", checkAddClickedAreaToArray);
-                });
-            });
+            //     allAreaNodes.forEach((e) => {
+            //         e.addEventListener("click", checkAddClickedAreaToArray);
+            //     });
+            // });
             
             // 
-            function checkAddClickedAreaToArray(e) {
-                addAreaToClickedAreas(e);
-            }
+            // function checkAddClickedAreaToArray(e) {
+            //     addAreaToClickedAreas(e);
+            // }
             
-            function addAreaToClickedAreas(e) {
-                if (!clickedAreas.includes(e.target.id)) {
-                    // if (!clickedAreas.includes(e.target.id) && (e.target.id != '')) {
-                        clickedAreas.push(e.target.id);
-                        console.log(clickedAreas);
-                        checkForCat(e);
-                    } else {
-                        checkForCat(e);
-                }
-            }
+            //TODO: write function to add any CLICKED areas in the image map to an array;
+
+            //DISABLED: old node-based version
+            // function addAreaToClickedAreas(e) {
+            //     if (!clickedAreas.includes(e.target.id)) {
+            //         // if (!clickedAreas.includes(e.target.id) && (e.target.id != '')) {
+            //             clickedAreas.push(e.target.id);
+            //             console.log(clickedAreas);
+            //             checkForCat(e);
+            //         } else {
+            //             checkForCat(e);
+            //     }
+            // }
         
+            /* 
+                Fired when clicking the #startGameButton within the #instructions modal
+
+            */
             function startGame() {
-                placeCatsRandomly();
+                placeCatsRandomly(); // TODO: rewrite this to support the imagemap approach
 
                 setTimeout(function () {
-                    // instructions.style.display = "none";
-                    // playArea.style.display = "flex";
-                    // playArea.style.opacity = 1;
                     goToBedroomButton.style.display = "block";
                     goToBedroomButton.style.opacity = 1;
-                }, 500); // Set the duration of the transition
+                }, 500); // duration of the transition
                 document.getElementById("splashPage").style.animation = fadeOut;
                 document.getElementById("splashPage").style.display = "none";
 
@@ -152,36 +158,37 @@
                 // playArea version
                 document.getElementById("playArea").style.animation = fadeIn;
                 document.getElementById("playArea").style.display = "flex";
+                //document.getElementById("playArea")
 
                 // imageMap version
-
                 goToKitchenButton.style.display = "none";
 
-                
                 splashPage.remove();
                 
                 runTimer();
             }
-                    
+
+            // TODO: Reimplement this with respect to switching to the imagemap clickable area approach
+            // this includes adding all of the clickable imagemap areas into an array for easy cross-referencing
             // Randomizes the available clickable areas and adds the first 3 from the
             // randomized array into the catLocations var
-            function placeCatsRandomly() {
-                const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
-                const selectedAreas = shuffledArray.slice(0, totalCats);
-                console.log(selectedAreas);
-                // selectedAreas.forEach(area => {
-                selectedAreas.forEach((area, index, array) => {
-                    catLocations.push(area.id);
-                    var container = document.getElementById(area.id);
-                    // console.log(container);
-                    // container.innerHTML = "<img src='/img/cat1.gif'>";
-                    // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
-                    container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
-                });
+            // function placeCatsRandomly() {
+            //     const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
+            //     const selectedAreas = shuffledArray.slice(0, totalCats);
+            //     console.log(selectedAreas);
+            //     // selectedAreas.forEach(area => {
+            //     selectedAreas.forEach((area, index, array) => {
+            //         catLocations.push(area.id);
+            //         var container = document.getElementById(area.id);
+            //         // console.log(container);
+            //         // container.innerHTML = "<img src='/img/cat1.gif'>";
+            //         // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
+            //         container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
+            //     });
 
-                // console.log('cat 0 id = ' + document.getElementById(0).id);
-                console.log("Placed cats in the following areas: ", catLocations);
-            }
+            //     // console.log('cat 0 id = ' + document.getElementById(0).id);
+            //     console.log("Placed cats in the following areas: ", catLocations);
+            // }
 
             // Checks if the area clicked is one of the randomized cat locations
             // Triggers visuals if an unfound cat was found or visually notifies if it was not
@@ -231,6 +238,8 @@
                 }, 10);
             }
 
+            // TODO: all 3 goToX() functions below need to be reconfigured for updating the
+            //  imagemap background images and the clickable areas
             // Changes the 'location' the user is in, including animated crossfade and
             // updating the clickable areas to match the new background room image.
             function goToLocation(location) {
@@ -319,23 +328,23 @@
                 }
             }
             
-            // Modifies the displayed clickable areas when the location has been updated.
-            // TODO: complete this function by replacing the relevant rows and their contents
+            // Modifies the displayed imagemap displayed over the background image when the location has been updated
             function updateClickableAreas(location) {
                 if (location === "bedroom") {
                     
                 } else if (location === "kitchen") {
 
                 } else {
-                    alert("Failed to update ClickableAreas to an invalid location.")
+                    console.error("updateClickableAreas reveived invalid location param");
                 }
             }
             
-            function hideClickableAreas() {
-                const areas = document.querySelectorAll(".area--clickable");
-                console.log(areas);
-                areas.forEach(areas => areas.remove());
-            }
+            // TODO: modify this to remove the imagemap and its interactability
+            // function hideClickableAreas() {
+            //     const areas = document.querySelectorAll(".area--clickable");
+            //     console.log(areas);
+            //     areas.forEach(areas => areas.remove());
+            // }
 
             function showInstructions() {
                 //addEmojiTargeted(heartEmoji, "50%", "50%"); // TODO: Make this spawn in the splashScreen near the cat's head (i.e. not in the next screen)
@@ -369,7 +378,6 @@
                 } else {
                     console.error("invalid layer parameter passed to spawnEmojiAtLocation");
                 }
-                
 
                 // Triggering the fadeInOut animation after a short delay
                 setTimeout(() => {
@@ -387,6 +395,7 @@
                 }, 10);
             }
 
+            // Targets a random place in a container (i.e. playArea or splashPage) and routes flow accordingly
             function addEmojiRandomly(emoji, layer="playArea") {
                 const viewportWidth = window.innerWidth;
                 const viewportHeight = window.innerHeight;
@@ -395,17 +404,18 @@
                 const randomY = Math.floor(Math.random() * viewportHeight);
 
                 emojiCounter++;
-
                 if (emojiCounter >= maxEmojis) {
                     clearInterval(emojiInterval); // Stop the interval after reaching the desired number of hearts
                 }
+
+                clearInterval(emojiInterval); // Stop the interval after reaching the desired number of hearts
                 
                 spawnEmojiAtLocation(emoji, randomX, randomY, layer);
             }
 
+            // Targets a specific place in a container (i.e. playArea or splashPage) and routes flow accordingly
             function addEmojiTargeted(emoji, X, Y, layer) {
                 emojiCounter++;
-
                 if (emojiCounter >= maxEmojis) {
                     clearInterval(emojiInterval); // Stop the interval after reaching the desired number of hearts
                 }
@@ -416,7 +426,6 @@
                     spawnEmojiAtLocation(emoji, X, Y, "splashPage");
                 }
             }
-
             
             // TODO: move the catsFound >= totalCats check to checkForCat()
             function runTimer() {
@@ -435,9 +444,9 @@
                 }, 1000);
             }
             
-            // Removes all clickable areas from the the screen on fail state, then displays the appropriate modal.
+            // Resolves the end-state of the program
             function gameOver(outcome) {
-                hideClickableAreas();
+                hideClickableAreas(); // TODO: remove the image map from the screen
                 if (outcome === true) {
                     successful();
                 } else {
@@ -455,7 +464,7 @@
                 // TODO: Make emojis slowly float up
                 // Adds a heart emoji at a random location
                 const emojiInterval = setInterval(() => {
-                    addEmojiRandomLocation(heartEmoji);
+                    addEmojiRandomly(heartEmoji);
                 },  interval);
             }
             
@@ -465,7 +474,7 @@
                 failureMessage.style.display = "block";
                 console.log("Failed at the game");
                 const emojiInterval = setInterval(() => {
-                    addEmojiRandomLocation(frownEmoji);
+                    addEmojiRandomly(frownEmoji);
                 },  interval);
             }
         </script>

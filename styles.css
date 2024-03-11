@@ -445,7 +445,7 @@
                 background-size: contain; */
             }
 
-            #imageMapContainer {
+            /* #imageMapContainer {
                 margin: 0 auto;
                 position: relative;
                 transition: opacity 0.5s ease-in-out;
@@ -453,6 +453,17 @@
                 flex-direction: column;
                 max-width: 100vh;
                 height: 100vh;
+            } */
+            
+            /* .imagemap-container {
+                position: relative;
+                max-width: 100%;
+            } */
+
+            .imagemap {
+                width: 100%;
+                height: auto;
+                display: block;
             }
 
             #kitchenMap {
@@ -473,11 +484,7 @@
                 display: none;
             }
 
-            .imagemap {
-                width: 100%;
-                height: auto;
-                display: block;
-            }
+
 
             #timer {
                 top: 1rem;
