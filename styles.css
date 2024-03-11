@@ -86,8 +86,6 @@
                 text-align: center;
                 background-color: #4d4d4d;
                 background-image: linear-gradient(rgb(129, 84, 1), rgba(165, 42, 42, 0.171));
-                /* margin: 0;
-                opacity: 0; */
                 animation: fadeIn 1.5s ease-in forwards;
             }
 
@@ -95,11 +93,8 @@
                 margin: 0 auto;
                 position: relative;
                 transition: opacity 0.5s ease-in-out;
-                /* display: flex; */
                 flex-direction: column;
                 max-width: 100vh;
-                /* max-height: 100%; */
-                /* min-height: 100%; */
                 height: 100vh;
             }
 
@@ -366,9 +361,7 @@
             }
 
             #startGameContainer {
-                /* margin-top: 2rem; */
                 margin-top: 2vh;
-                /* margin-bottom: 2.5em; */
             }
 
             #letsGoButton {
@@ -380,8 +373,6 @@
                 border-radius: 1em;
                 transition: opacity 0.5s ease-in-out;
                 display: block;
-                /* margin-top: 30vh;
-                margin-left: 45vw; */
                 transform: skew(-3deg, -3deg);
                 opacity: 90%;
                 max-width: 350px;
@@ -389,14 +380,11 @@
             }
 
             #letsGoButtonContainer {
-                /* text-align: right; */
                 margin-left: auto;
             }
 
             #startGameButton {
-                /* display: block; */
                 font-size: 150%;
-                /* margin: auto; */
                 padding: 0.45em;
                 color: black;
                 border-radius: 0.35em;
@@ -431,11 +419,9 @@
                 max-width: 100vh;
                 height: 100vh;
             } */
-            
-            /* .imagemap-container {
+            #imageMapContainer {
                 position: relative;
-                max-width: 100%;
-            } */
+            }
 
             /* .imagemap {
                 width: 100%;
@@ -557,8 +543,6 @@
             #area_bedroom_23 {}
 
             
-
-
             @media screen and (max-width: 1023px) {
                 /* .row__upper {
                     flex-direction: column;
@@ -590,11 +574,4 @@
                 .row {
                     padding: 0 1rem;
                 }
-            }
-
-            /* @media screen and (min-width: 1023px) {
-                .row__upper {
-                    flex-direction: column;
-                }
-            } */
-            
+            }            
