@@ -106,45 +106,26 @@
             dialog {
                 animation: "fadeIn 0.5s ease-in forwards";
                 font-size: 150%;
-                /* margin: 8em; */
                 margin-left: 1em;;
-                /* padding: 2em; */
                 border-radius: 1em;
                 display: none;
                 z-index: 2;
-                /* display: block; */
                 display: none;
                 position: relative;
             }
 
             button {
-                /* display: none; */
-                /* position: absolute; */
-                
-                /* padding: 0.55rem; */
                 border: none;
                 border-radius: 1em;
                 font-size: 1rem;
                 transition: background-color 1.6s ease-in-out;
-                /* top: 50%; */
                 z-index: 1;
-                /* background-color: #3498db; */
                 color: #fff;
             }
 
             dialog.instructions {
-                /* background-color: #ddd; */
-                /* background: radial-gradient(circle, 
-                hsl(0, 25%, 50%),
-                hsl(30, 25%, 50%),
-                hsl(120, 25%, 50%),
-                hsl(210, 25%, 50%),
-                hsl(270, 25%, 50%),
-                hsl(330, 25%, 50%)
-                ); */
                 transition: opacity 0.5s ease-in-out;
                 display: none;
-                /* display: block;*/
             }
 
             dialog.success {
@@ -265,10 +246,6 @@
                 /* flex: 0.9; */
                 margin-bottom: 4rem;
             }
-
-            /* .row__bottom .area--clickable {
-
-            } */
 
             .stats--display {
                 position: absolute;
@@ -460,10 +437,25 @@
                 max-width: 100%;
             } */
 
-            .imagemap {
+            /* .imagemap {
                 width: 100%;
                 height: auto;
                 display: block;
+            } */
+
+            map {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            area {
+                background:#fff;
+                display:block;
+                height:475px;
+                opacity:0;
+                position:absolute;
+                width:320px;
             }
 
             #kitchenMap {
@@ -568,9 +560,9 @@
 
 
             @media screen and (max-width: 1023px) {
-                .row__upper {
+                /* .row__upper {
                     flex-direction: column;
-                }
+                } */
             }
 
             @media screen and (max-width: 480px) {

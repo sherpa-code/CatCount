@@ -52,9 +52,9 @@
             <section id="imageMapContainer"> 
                 <img src="img/kitchen.jpg" alt="Location Image" usemap="#imageMap" style="max-width: 100%; height: auto;">
         
-                <map name="imageMap">
+                <map name="imageMap" display="">
                     <!-- Define clickable areas using vh and vw units as coordinates -->
-                    <area shape="rect" coords="100%" href="https://example.com/area1" alt="Area 1">
+                    <area shape="rect" coords="100,100,100,100" width="100px" height="100px" href="https://example.com/area1" alt="Area 1">
                     <!-- <area shape="rect" coords="20vw,5vh,30vw,15vh" href="https://example.com/area2" alt="Area 2"> -->
                 </map>
                 <nav id="goToBedroomButton" class="goToLocationButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
@@ -144,27 +144,28 @@
 
             */
             function startGame() {
-                placeCatsRandomly(); // TODO: rewrite this to support the imagemap approach
-
+                
                 setTimeout(function () {
                     goToBedroomButton.style.display = "block";
                     goToBedroomButton.style.opacity = 1;
                 }, 500); // duration of the transition
                 document.getElementById("splashPage").style.animation = fadeOut;
                 document.getElementById("splashPage").style.display = "none";
-
+                
                 // goToLocation("kitchen"); // doesn't work here
-
+                
                 // playArea version
                 document.getElementById("playArea").style.animation = fadeIn;
                 document.getElementById("playArea").style.display = "flex";
                 //document.getElementById("playArea")
-
+                
                 // imageMap version
                 goToKitchenButton.style.display = "none";
 
                 splashPage.remove();
                 
+                placeCatsRandomly(); // TODO: rewrite this to support the imagemap approach
+
                 runTimer();
             }
 
