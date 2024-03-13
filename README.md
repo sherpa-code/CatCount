@@ -1,7 +1,6 @@
 # CatCount
 
-A pure HTML, CSS, and JavaScript single-page application.  
-![Image](img/readmeSplash.png)
+A pure HTML, CSS, and JavaScript single-page application.
 
 ## About
 This app presents two "rooms" in a home, each with clickable areas, that must be search to find all of the cats that might be hidden in places they should not be... before the user is late for work!

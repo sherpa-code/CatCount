@@ -244,7 +244,7 @@
             
             .kitchen .row__upper {
                 column-gap: 0.8rem;
-                padding-top: 5rem;
+                padding-top: 4rem;
                 flex: 1;
                 align-items: end;
                 height: 25em;
@@ -252,7 +252,7 @@
                 padding-right: 4rem;
             }
             
-            .row__upper .area--clickable {
+            .kitchen .row__upper .area--clickable {
                 height: 17rem;
             }
 
@@ -266,10 +266,6 @@
                 /* padding-top: 1.45rem; */
             }
 
-            .row__middle .area--clickable {
-                
-            }
-
             .kitchen .row__bottom {
                 /* column-gap: 7rem; */
                 flex-grow: 1;
@@ -281,11 +277,7 @@
                 padding-left: 4rem;
                 padding-right: 4rem;
                 
-            }
-
-            .row__bottom .area--clickable {
-
-            }
+            }            }
 
             .kitchen .bottom-second-left-top {
                 flex-direction: column;
@@ -390,6 +382,9 @@
             #area_kitchen_18 {
                 height: 5.5rem;
             }
+
+
+            /* Bedroom Styles */
 
             #area_bedroom_1 {}
             #area_bedroom_2 {}
