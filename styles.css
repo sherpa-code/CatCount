@@ -238,11 +238,11 @@
 
             .row__stats {
                 flex: 0.175;
-                min-height: 3em;
+                min-height: 4em;
                 /* height: 4rem; */
             }
             
-            .row__upper {
+            .kitchen .row__upper {
                 column-gap: 0.8rem;
                 padding-top: 5rem;
                 flex: 1;
@@ -254,24 +254,23 @@
             
             .row__upper .area--clickable {
                 height: 17rem;
-                background-color: #ffffff80;
             }
 
-            .row__middle {
+            .kitchen .row__middle {
                 column-gap: 11rem;
                 overflow: hidden;
                 /* flex: 0.35; */
                 flex: 1;
                 padding-left: 5rem;
                 padding-right: 4rem;
-                padding-top: 1.45rem;
+                /* padding-top: 1.45rem; */
             }
 
             .row__middle .area--clickable {
                 
             }
 
-            .row__bottom {
+            .kitchen .row__bottom {
                 /* column-gap: 7rem; */
                 flex-grow: 1;
                 overflow: hidden;
@@ -288,16 +287,23 @@
 
             }
 
-            .bottom-second-left-top {
+            .kitchen .bottom-second-left-top {
                 flex-direction: column;
                 align-items: flex-start;
                 /* width: 40rem; */
             }
 
-            .bottom-second-left-bottom {
+            .kitchen .bottom-second-left-bottom {
                 display: flex;
                 flex-direction: row;
                 align-items: flex-start;
+            }
+
+            /* .cupboards.bottom-right {
+                width: 19rem;
+            } */
+            .kitchen .cupboards.bottom-right {
+                width: 19rem;
             }
 
 
@@ -349,27 +355,26 @@
             #area_kitchen_10 {
                 /* width: 13rem; */
                 width: 7rem;
-                height: 15rem;
             }
 
             #area_kitchen_11 {
                 /* width: 13rem; */
                 width: 11rem;
-                height: 15rem;
             }
+
+            #area_kitchen_10,
+            #area_kitchen_11 {
+                height: 13rem;
+            }
+
             #area_kitchen_12 {
                 width: 11rem;
                 height: 6rem;
             }
             #area_kitchen_13 {
                 width: 11rem;
-                height: 13rem;
+                height: 10.5rem;
             }
-
-            .cupboards.bottom-right {
-                width: 19rem;
-            }
-
             #area_kitchen_14 {
                 height: 2.3rem;
             }
