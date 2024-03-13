@@ -3,7 +3,7 @@
 A pure HTML, CSS, and JavaScript single-page application.
 
 ## About
-This app presents two "rooms" in a home, each with clickable areas, that must be search to find all of the cats that might be hidden in places they should not be... before the user is late for work!
+This app presents two rooms in a home, each with clickable areas, that must be search to find all of the cats that might be hidden in places they should not be... before the user is late for work!
 
 This project was motivated by the love of my three cats Butane, Big, and Squeak, and how they love to get themselves trapped where they should not be before I leave for work in the morning. It's always necessary to make sure they are safe while I am away.
 

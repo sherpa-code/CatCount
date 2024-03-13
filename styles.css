@@ -183,6 +183,10 @@
                 background-color: #ddd;
             }
 
+            .thanksText {
+                font-size: 50%;
+            }
+
             /* TODO: remove the colored styling in the final version */
             .area--clickable {
                 cursor: pointer;
@@ -242,6 +246,8 @@
                 /* height: 4rem; */
             }
             
+
+            /* KITCHEN Styles */
             .kitchen .row__upper {
                 column-gap: 0.8rem;
                 padding-top: 4rem;
@@ -277,7 +283,7 @@
                 padding-left: 4rem;
                 padding-right: 4rem;
                 
-            }            }
+            }
 
             .kitchen .bottom-second-left-top {
                 flex-direction: column;
@@ -291,13 +297,9 @@
                 align-items: flex-start;
             }
 
-            /* .cupboards.bottom-right {
-                width: 19rem;
-            } */
             .kitchen .cupboards.bottom-right {
                 width: 19rem;
             }
-
 
             #area_kitchen_1 {
                 width: 12.35rem;
@@ -317,7 +319,6 @@
             #area_kitchen_4,
             #area_kitchen_5 {
                 width: 11rem;
-                /* height: 20rem; */
                 height: 100%;
             }
 
@@ -345,12 +346,10 @@
             }
 
             #area_kitchen_10 {
-                /* width: 13rem; */
                 width: 7rem;
             }
 
             #area_kitchen_11 {
-                /* width: 13rem; */
                 width: 11rem;
             }
 
@@ -384,7 +383,46 @@
             }
 
 
-            /* Bedroom Styles */
+            /* BEDROOM Styles */
+
+            .bedroom .row__upper {
+                column-gap: 0.8rem;
+                padding-top: 4rem;
+                flex: 1;
+                align-items: end;
+                height: 25em;
+                padding-left: 4.4rem;
+                padding-right: 4rem;
+            }
+
+            .bedroom .row__upper .area--clickable {
+
+            }
+
+            .bedroom .row__middle {
+                column-gap: 11rem;
+                overflow: hidden;
+                /* flex: 0.35; */
+                flex: 1;
+                padding-left: 5rem;
+                padding-right: 4rem;
+                /* padding-top: 1.45rem; */
+            }
+
+            .bedroom .row__bottom {
+                /* column-gap: 7rem; */
+                flex-grow: 1;
+                overflow: hidden;
+                flex-direction: row;
+                /* flex: 0.9; */
+                /* margin-bottom: 4rem; */
+                padding-top: 1rem;
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+
+            
+
 
             #area_bedroom_1 {}
             #area_bedroom_2 {}
