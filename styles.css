@@ -86,6 +86,8 @@
                 text-align: center;
                 background-color: #4d4d4d;
                 background-image: linear-gradient(rgb(129, 84, 1), rgba(165, 42, 42, 0.171));
+                /* margin: 0;
+                opacity: 0; */
                 animation: fadeIn 1.5s ease-in forwards;
             }
 
@@ -93,34 +95,56 @@
                 margin: 0 auto;
                 position: relative;
                 transition: opacity 0.5s ease-in-out;
+                /* display: flex; */
                 flex-direction: column;
                 max-width: 100vh;
+                /* max-height: 100%; */
+                /* min-height: 100%; */
                 height: 100vh;
             }
 
             dialog {
                 animation: "fadeIn 0.5s ease-in forwards";
                 font-size: 150%;
+                /* margin: 8em; */
                 margin-left: 1em;;
+                /* padding: 2em; */
                 border-radius: 1em;
                 display: none;
                 z-index: 2;
+                /* display: block; */
                 display: none;
                 position: relative;
             }
 
             button {
+                /* display: none; */
+                /* position: absolute; */
+                
+                /* padding: 0.55rem; */
                 border: none;
                 border-radius: 1em;
                 font-size: 1rem;
                 transition: background-color 1.6s ease-in-out;
+                /* top: 50%; */
                 z-index: 1;
+                /* background-color: #3498db; */
                 color: #fff;
             }
 
             dialog.instructions {
+                /* background-color: #ddd; */
+                /* background: radial-gradient(circle, 
+                hsl(0, 25%, 50%),
+                hsl(30, 25%, 50%),
+                hsl(120, 25%, 50%),
+                hsl(210, 25%, 50%),
+                hsl(270, 25%, 50%),
+                hsl(330, 25%, 50%)
+                ); */
                 transition: opacity 0.5s ease-in-out;
                 display: none;
+                /* display: block;*/
             }
 
             dialog.success {
@@ -173,6 +197,14 @@
                 display: none;
             }
 
+            section.kitchen {
+                flex-grow: 1;
+            }
+
+            section.bedroom {
+                flex-grow: 1;
+            }
+
             /* Styles the 'goTo[location]' buttons; e.g. 'To the Bedroom' and 'To the Kitchen' buttons*/
             .goToLocationButton {
                 /* display: none; */
@@ -189,6 +221,196 @@
                 color: #fff;
             }
 
+            /* TODO: remove the colored styling in the final version */
+            .row {
+                display: flex;
+                justify-content: center;
+
+                /* flex-grow: 1; */
+                
+                background-color: #ffffff80;
+                border: 1px solid blue;
+            }
+
+            .row.hidden .area--clickable {
+                display: none;
+            }
+
+            .row__stats {
+                flex: 0.175;
+                min-height: 3em;
+                /* height: 4rem; */
+            }
+            
+            .row__upper {
+                column-gap: 0.8rem;
+                padding-top: 5rem;
+                flex: 1;
+                align-items: end;
+                height: 25em;
+                padding-left: 4.4rem;
+                padding-right: 4rem;
+            }
+            
+            .row__upper .area--clickable {
+                height: 17rem;
+                background-color: #ffffff80;
+            }
+
+            .row__middle {
+                column-gap: 11rem;
+                overflow: hidden;
+                /* flex: 0.35; */
+                flex: 1;
+                padding-left: 5rem;
+                padding-right: 4rem;
+                padding-top: 1.45rem;
+            }
+
+            .row__middle .area--clickable {
+                
+            }
+
+            .row__bottom {
+                /* column-gap: 7rem; */
+                flex-grow: 1;
+                overflow: hidden;
+                flex-direction: row;
+                /* flex: 0.9; */
+                /* margin-bottom: 4rem; */
+                padding-top: 1rem;
+                padding-left: 4rem;
+                padding-right: 4rem;
+                
+            }
+
+            .row__bottom .area--clickable {
+
+            }
+
+            .bottom-second-left-top {
+                flex-direction: column;
+                align-items: flex-start;
+                /* width: 40rem; */
+            }
+
+            .bottom-second-left-bottom {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+
+            #area_kitchen_1 {
+                width: 12.35rem;
+                margin-bottom: 2.2em;
+            }
+
+            #area_kitchen_2 {
+                width: 7rem;
+                margin-bottom: 2.2em;
+            }
+
+            #area_kitchen_3 {
+                width: 9rem;
+                margin-bottom: 2.2em;
+            }
+
+            #area_kitchen_4,
+            #area_kitchen_5 {
+                width: 11rem;
+                /* height: 20rem; */
+                height: 100%;
+            }
+
+            #area_kitchen_6 {
+                width: 10rem;
+                height: 4.5rem;
+                align-self: flex-end;
+            }
+            
+            #area_kitchen_7 {
+                width: 7rem;
+                height: 6.5rem;
+                padding-top: 1rem;
+                align-self: flex-end;
+            }
+
+            #area_kitchen_8 {
+                height: 18.5rem;
+                width: 12rem;
+            }
+
+            #area_kitchen_9 {
+                width: 18rem;
+                height: 3.5rem;
+            }
+
+            #area_kitchen_10 {
+                /* width: 13rem; */
+                width: 7rem;
+                height: 15rem;
+            }
+
+            #area_kitchen_11 {
+                /* width: 13rem; */
+                width: 11rem;
+                height: 15rem;
+            }
+            #area_kitchen_12 {
+                width: 11rem;
+                height: 6rem;
+            }
+            #area_kitchen_13 {
+                width: 11rem;
+                height: 13rem;
+            }
+
+            .cupboards.bottom-right {
+                width: 19rem;
+            }
+
+            #area_kitchen_14 {
+                height: 2.3rem;
+            }
+            #area_kitchen_15 {
+                height: 3.4rem;
+            }
+            #area_kitchen_16 {
+                height: 2.3rem;
+            }
+            #area_kitchen_17 {
+                height: 2.3rem;
+            }
+            #area_kitchen_18 {
+                height: 5.5rem;
+            }
+
+            #area_bedroom_1 {}
+            #area_bedroom_2 {}
+            #area_bedroom_3 {}
+            #area_bedroom_4 {}
+            #area_bedroom_5 {}
+            #area_bedroom_6 {}
+            #area_bedroom_7 {}
+            #area_bedroom_8 {}
+            #area_bedroom_9 {}
+            #area_bedroom_10 {}
+            #area_bedroom_11 {}
+            #area_bedroom_12 {}
+            #area_bedroom_13 {}
+            #area_bedroom_14 {}
+            #area_bedroom_15 {}
+            #area_bedroom_16 {}
+            #area_bedroom_17 {}
+            #area_bedroom_18 {}
+            #area_bedroom_19 {}
+            #area_bedroom_20 {}
+            #area_bedroom_21 {}
+            #area_bedroom_22 {}
+            #area_bedroom_23 {}
+
+            
             .stats--display {
                 position: absolute;
                 padding: 0.15rem 0.65rem;
@@ -205,8 +427,9 @@
             .catGif {
                 z-index: -1;
                 /* Approach #1 */
-                object-fit: cover;
-                /* object-fit: contain; */ /* Approach #2 */
+                /* object-fit: cover; */
+                /* object-fit: scale-down; */
+                object-fit: contain;
                 /* Approach #3 */
                 /* max-width: 100%;
                 max-height: 100%;
@@ -239,10 +462,18 @@
                 background-size: contain;
             }
 
-            #splashImageContainer {
-
+            .container {
+                max-width: 1000px;
+                margin: auto;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                position: relative;
+                padding: 0% 5%;
             }
-            
+
             #splashTitle {
                 display: block;
                 font-size: 150%;
@@ -262,18 +493,6 @@
                 opacity: 85%;
                 scale: 1.2;
                 transform: skew(-3deg, -3deg);           transform: skew(-3deg, -3deg);
-            }
-
-            .container {
-                max-width: 1000px;
-                margin: auto;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                position: relative;
-                padding: 0% 5%;
             }
 
             #instructions {
@@ -307,7 +526,9 @@
             }
 
             #startGameContainer {
+                /* margin-top: 2rem; */
                 margin-top: 2vh;
+                /* margin-bottom: 2.5em; */
             }
 
             #letsGoButton {
@@ -319,6 +540,8 @@
                 border-radius: 1em;
                 transition: opacity 0.5s ease-in-out;
                 display: block;
+                /* margin-top: 30vh;
+                margin-left: 45vw; */
                 transform: skew(-3deg, -3deg);
                 opacity: 90%;
                 max-width: 350px;
@@ -326,11 +549,14 @@
             }
 
             #letsGoButtonContainer {
+                /* text-align: right; */
                 margin-left: auto;
             }
 
             #startGameButton {
+                /* display: block; */
                 font-size: 150%;
+                /* margin: auto; */
                 padding: 0.45em;
                 color: black;
                 border-radius: 0.35em;
@@ -356,84 +582,12 @@
                 background-size: contain; */
             }
 
-            /* #imageMapContainer {
-                margin: 0 auto;
-                position: relative;
-                transition: opacity 0.5s ease-in-out;
-                display: none;
-                flex-direction: column;
-                max-width: 100vh;
-                height: 100vh;
-            } */
-            #imageMapContainer {
-                position: relative;
-            }
-
-            /* .imagemap {
-                width: 100%;
-                height: auto;
-                display: block;
-            } */
-
-            /* map {
-                width: 100%;
-                height: 100%;
-                display: block;
-                position: absolute;
-                top: 0;
-            } */
-
-            map {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-            }
             
-            area {
-                background: #fff;
-                display: inline-flex;
-                /* height: 475px;
-                width: 320px; */
-                opacity: 0;
-                position: absolute;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 2;
-                top: 0;
-            }
-
-            #area_1 {
-                height: 475px;
-                width: 320px;
-            }
-            #area_2 {
-                height: 475px;
-                width: 320px;
-            }
-
-            #kitchenMap {
-                
-            }
-
-            #bedroomMap {
-
-            }
-
-            .overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5); /* semi-transparent grey */
-                display: none;
-            }
+ 
 
             #timer {
                 top: 1rem;
                 right: 2.5rem;
-                position: absolute;
             }
 
             #foundCounter {
@@ -441,52 +595,9 @@
                 right: 10rem;
             }
 
-            #area_kitchen_8 {}
-            #area_kitchen_9 {}
-            #area_kitchen_10 {}
-            #area_kitchen_11 {}
-            #area_kitchen_12 {}
-            #area_kitchen_13 {}
-            #area_kitchen_14 {}
-            #area_kitchen_15 {}
-            #area_kitchen_16 {}
-            #area_kitchen_17 {}
-            #area_kitchen_18 {}
-
-            #area_bedroom_1 {}
-            #area_bedroom_2 {}
-            #area_bedroom_3 {}
-            #area_bedroom_4 {}
-            #area_bedroom_5 {}
-            #area_bedroom_6 {}
-            #area_bedroom_7 {}
-            #area_bedroom_8 {}
-            #area_bedroom_9 {}
-            #area_bedroom_10 {}
-            #area_bedroom_11 {}
-            #area_bedroom_12 {}
-            #area_bedroom_13 {}
-            #area_bedroom_14 {}
-            #area_bedroom_15 {}
-            #area_bedroom_16 {}
-            #area_bedroom_17 {}
-            #area_bedroom_18 {}
-            #area_bedroom_19 {}
-            #area_bedroom_20 {}
-            #area_bedroom_21 {}
-            #area_bedroom_22 {}
-            #area_bedroom_23 {}
-
-            
-            @media screen and (max-width: 1023px) {
-                .row_stats {
-                    /* padding: 0.55rem 0; */
-                    top: 0;
-                    left: 0;
-                    bottom: 0;
-                    right: 0;
-                    height: 2em;
-                    position: absolute;
+            @media screen and (max-width: 980px) {
+                .row__upper {
+                    /* flex-direction: column; */
                 }
             }
 
@@ -496,11 +607,31 @@
                     /* height: 65%; */
                 }
 
-                .row_stats {
+                .row__stats {
                     padding: 0.55rem 0;
+                    min-height: 4em;
+                }
+
+                .row__upper .area--clickable {
+                    /* height: 45%; */
+                }
+
+                .row__upper {
+                    /* column-gap: 1rem; */
+                    /* padding-top: 4rem; */
+                    /* flex: 1; */
+                    /* align-items: end; */
+                    height: 8rem;
                 }
 
                 .row {
                     padding: 0 1rem;
                 }
-            }            
+            }
+
+            /* @media screen and (min-width: 1023px) {
+                .row__upper {
+                    flex-direction: column;
+                }
+            } */
+            

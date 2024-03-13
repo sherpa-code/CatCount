@@ -7,9 +7,12 @@
   
   TODO: separate the cat gif from its parent container so that, upon victory or failure, they don't just disappear at that moment.
   TODO: after the clickable areas are mapped properly to the background images, remove the grey colors and row outlines from them
+  TODO: tidy up the starting Instructions modal
   TODO: add to Github Pages
   TODO: center the success and failure message modals
-  TODO: add responsiveness via Media Queries for at least 720p and 1080p
+  TODO: add responsiveness via Media Queries for at least 1080p and 4k
+  TODO: place elements properply and responsively on splash screen
+  TODO: modify emoji spawning so that they exceed the boundary of the playArea image
 -->
 <html lang="en">
     <head>
@@ -20,9 +23,11 @@
     </head>
     
     <body>
+        <!-- TODO: make this show up on page load as the only element you see first
+                    it will have the Cat Count! title in a modal in the top left
+                    and a "Let's Go!" button in the bottom right that pops up the instructions modal -->
         <section id="splashPage">
             <div class="container">
-            <!-- <div class="container.splashImageContainer"> -->
                 <dialog id="splashTitle">
                     <h1>Cat Count!</h1>
                 </dialog>
@@ -46,25 +51,13 @@
                 </div>
             </div>
         </section>
-
-        
+         
         <main id="playArea">
-            <section id="imageMapContainer"> 
-                <img src="img/kitchen.jpg" alt="Location Image" usemap="#imageMap" style="width: 100%; height: auto;">
-        
-                <map name="imageMap" display="">
-                    <!-- Define clickable areas using vh and vw units as coordinates -->
-                    <!-- <area shape="rect" coords="50,50,50,50" href="https://example.com/area1" alt="Area 1"> -->
-                    <area id="area_1" shape="rect" href="https://example.com/area1" alt="Area 1" style="outline:red">
-                    <area id="area_2" shape="rect" href="https://example.com/area2" alt="Area 2">
-                    <!-- <area shape="rect" coords="20vw,5vh,30vw,15vh" href="https://example.com/area2" alt="Area 2"> -->
-                </map>
-                <nav id="goToBedroomButton" class="goToLocationButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
-                <nav id="goToKitchenButton" class="goToLocationButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
-                <section class="row_stats">
-                    <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
-                    <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
-                </section>
+            <nav id="goToBedroomButton" class="goToLocationButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
+            <nav id="goToKitchenButton" class="goToLocationButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
+            <section class="row row__stats">
+                <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
+                <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
             </section>
 
             <dialog class="success finalDialog" id="successMessage">
@@ -74,16 +67,114 @@
             <dialog class="failure finalDialog" id="failureMessage">
                 You didn't find your cats in time... Oh no! You'll be late!<br>&#129402;
             </dialog>
+
+
+            <!-- Clickable areas: Kitchen -->
+            <section class="kitchen">
+                <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
+                <section class="row row__upper">
+                    <div class="area--clickable" id="area_kitchen_1">Area 1</div>
+                    <div class="area--clickable" id="area_kitchen_2">Area 2</div>
+                    <div class="area--clickable" id="area_kitchen_3">Area 3</div>
+                    <div class="area--clickable" id="area_kitchen_4">Area 4</div>
+                    <div class="area--clickable" id="area_kitchen_5">Area 5</div>
+                </section>
+                <section class="row row__middle kitchen">
+                    <div class="area--clickable" id="area_kitchen_6">Area 6</div>
+                    <div class="area--clickable" id="area_kitchen_7">Area 7</div>
+                </section>
+                <section class="row row__bottom kitchen">
+                    <div class="cupboards bottom-left">
+                        <div class="area--clickable" id="area_kitchen_8">Area 8</div>
+                    </div>
+                    <div class="bottom-second-left-top">
+                        <div class="area--clickable" id="area_kitchen_9">Area 9</div>
+                        <div class="bottom-second-left-bottom">
+                            <div class="area--clickable" id="area_kitchen_10">Area 10</div>
+                            <div class="area--clickable" id="area_kitchen_11">Area 11</div>
+                        </div>
+                    </div>
+                    <div class="cupboards bottom-second-right">
+                        <div class="area--clickable" id="area_kitchen_12">Area 12</div>
+                        <div class="area--clickable" id="area_kitchen_13">Area 13</div>
+                    </div>
+                    <div class="cupboards bottom-right">
+                        <div class="area--clickable" id="area_kitchen_14">Area 14</div>
+                        <div class="area--clickable" id="area_kitchen_15">Area 15</div>
+                        <div class="area--clickable" id="area_kitchen_16">Area 16</div>
+                        <div class="area--clickable" id="area_kitchen_17">Area 17</div>
+                        <div class="area--clickable" id="area_kitchen_18">Area 18</div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Clickable areas: Bedroom -->
+            <section class="bedroom" style="display: none;">
+                <img src="img/bedroom.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
+                <section class="row row__upper"> <!-- remove bedroom from child divs and put here -->
+                    <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
+                    <div class="area--clickable cupboards" id="area_bedroom_1">Area 1</div>
+                    <!-- <div class="area--clickable bedroom" id="area_bedroom_1">Area 1<img src="/img/cat1.gif"></div> -->
+                    <!-- <div class="area--clickable bedroom" id="area_bedroom_1" onclick="checkArea(this.id)">Area 1</div> -->
+                    <div class="cupboards shelves-stacked">
+                        <div class="area--clickable" id="area_bedroom_2">Area 2</div>
+                        <div class="area--clickable" id="area_bedroom_3">Area 3</div>
+                    </div>
+                    <div class="cupboards jewelery-drawer-stacked">
+                        <div class="area--clickable" id="area_bedroom_4">Area 4</div>
+                        <div class="area--clickable" id="area_bedroom_5">Area 5</div>
+                    </div>
+                    <div class="area--clickable drapes" id="area_bedroom_6">Area 6</div>
+                </section>
+                <section class="row row__middle bedroom">
+                    <div class="closet left">
+                        <div class="area--clickable" id="area_bedroom_7">Area 7</div>
+                        <div class="area--clickable" id="area_bedroom_8">Area 8</div>
+                    </div>
+                    <div class="closet second-left">
+                        <div class="area--clickable" id="area_bedroom_9">Area 9</div>
+                        <div class="area--clickable" id="area_bedroom_10">Area 10</div>
+                    </div>
+                    <div class="closet second-middle">
+                        <div class="area--clickable" id="area_bedroom_11">Area 11</div>
+                        <div class="area--clickable" id="area_bedroom_12">Area 12</div>
+                    </div>
+                </section>
+                <section class="row row__bottom bedroom">
+                    <div class="closet left">
+                        <div class="area--clickable" id="area_bedroom_13">Area 13</div>
+                        <div class="area--clickable" id="area_bedroom_14">Area 14</div>
+                        <div class="area--clickable" id="area_bedroom_15">Area 15</div>
+                        <div class="area--clickable" id="area_bedroom_16">Area 16</div>
+                        <div class="area--clickable" id="area_bedroom_17">Area 17</div>
+                    </div>
+                    <div class="closet middle">
+                        <div class="area--clickable" id="area_bedroom_18">Area 18</div>
+                    </div>
+                    <div class="closet second-middle-bottom">
+                        <div class="area--clickable" id="area_bedroom_19">Area 19</div>
+                    </div>
+                    <div class="closet drawers">
+                        <div class="area--clickable" id="area_bedroom_20">Area 20</div>
+                        <div class="area--clickable" id="area_bedroom_21">Area 21</div>
+                        <div class="area--clickable" id="area_bedroom_22">Area 22</div>
+                    </div>
+                    <div class="area--clickable bed" id="area_bedroom_23">Area 23</div>
+                </section>
+            </section>
+
+
         </main>
             
         <script>
             // Graphics and UI
-            // const playArea = document.getElementsByTagName("main")[0]; // the primary container in the body
+            const playArea = document.getElementsByTagName("main")[0]; // the primary container in the body
             const instructions = document.getElementById("instructions");
-            const splashPage = document.getElementById("splashPage");
             const catImages = [];
             const frownEmoji = '\uD83D\uDE41';
             const heartEmoji = '\u2764\uFE0F';
+            let emojiCounter = 0;
+            const maxEmojis = 10000;
             const interval = 150; // Adjust the interval (in milliseconds) for adding emojis to the window at the end
 
             const fadeIn = "fadeIn 0.5s ease-in forwards";
@@ -92,106 +183,95 @@
             
             // Statistics
             let clickCounter = 0;
-            let timer = 90;
-            // let timer = 4;
+            // let timer = 90;
+            let timer = 9999;
             var catsFound = 0;
             let totalCats = 3;
             
             // Areas
             var clickedAreas = [];
             var catLocations = [];
+            var allAreaNodes = [];
+            var arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
             var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
             
             // Interactables
             var goToBedroomButton = document.getElementById("goToBedroomButton");
             var goToKitchenButton = document.getElementById("goToKitchenButton");
             
-            // TODO: write function to add all CLICKABLE areas in the image map to an array;
-            // Note: replaces below code
-            
-            // // When DOM is fully loaded // NOTE: disabled while converting to map version
-            // document.addEventListener("DOMContentLoaded", function () {
-            //     let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
-            //     console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
-            //     arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
-            //     // console.log("%c%s", "background-color:grey; color:orange",
-            //     // 'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
+            // When DOM is fully loaded
+            document.addEventListener("DOMContentLoaded", function () {
+                let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
+                console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
+                arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
+                // console.log("%c%s", "background-color:grey; color:orange",
+                // 'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
                 
-            //     allAreaNodes.forEach((e) => {
-            //         e.addEventListener("click", checkAddClickedAreaToArray);
-            //     });
-            // });
+                allAreaNodes.forEach((e) => {
+                    e.addEventListener("click", checkAddClickedAreaToArray);
+                });
+            });
             
             // 
-            // function checkAddClickedAreaToArray(e) {
-            //     addAreaToClickedAreas(e);
-            // }
+            function checkAddClickedAreaToArray(e) {
+                addAreaToClickedAreas(e);
+            }
             
-            //TODO: write function to add any CLICKED areas in the image map to an array;
-
-            //DISABLED: old node-based version
-            // function addAreaToClickedAreas(e) {
-            //     if (!clickedAreas.includes(e.target.id)) {
-            //         // if (!clickedAreas.includes(e.target.id) && (e.target.id != '')) {
-            //             clickedAreas.push(e.target.id);
-            //             console.log(clickedAreas);
-            //             checkForCat(e);
-            //         } else {
-            //             checkForCat(e);
-            //     }
-            // }
+            function addAreaToClickedAreas(e) {
+                if (!clickedAreas.includes(e.target.id)) {
+                    // if (!clickedAreas.includes(e.target.id) && (e.target.id != '')) {
+                        clickedAreas.push(e.target.id);
+                        console.log(clickedAreas);
+                        checkForCat(e);
+                    } else {
+                        checkForCat(e);
+                }
+            }
         
-            /* 
-                Fired when clicking the #startGameButton within the #instructions modal
-
-            */
             function startGame() {
-                
+                placeCatsRandomly();
+
                 setTimeout(function () {
+                    // instructions.style.display = "none";
+                    // playArea.style.display = "flex";
+                    // playArea.style.opacity = 1;
                     goToBedroomButton.style.display = "block";
                     goToBedroomButton.style.opacity = 1;
-                }, 500); // duration of the transition
+                }, 500); // Set the duration of the transition
                 document.getElementById("splashPage").style.animation = fadeOut;
                 document.getElementById("splashPage").style.display = "none";
-                
-                // goToLocation("kitchen"); // doesn't work here
-                
-                // playArea version
+
+                // goToLocation("kitchen");
                 document.getElementById("playArea").style.animation = fadeIn;
                 document.getElementById("playArea").style.display = "flex";
-                //document.getElementById("playArea")
-                
-                // imageMap version
+
                 goToKitchenButton.style.display = "none";
 
+                const splashPage = document.getElementById("splashPage");
                 splashPage.remove();
                 
-                placeCatsRandomly(); // TODO: rewrite this to support the imagemap approach
-
                 runTimer();
             }
-
-            // TODO: Reimplement this with respect to switching to the imagemap clickable area approach
-            // this includes adding all of the clickable imagemap areas into an array for easy cross-referencing
+                    
             // Randomizes the available clickable areas and adds the first 3 from the
             // randomized array into the catLocations var
-            // function placeCatsRandomly() {
-            //     const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
-            //     const selectedAreas = shuffledArray.slice(0, totalCats);
-            //     console.log(selectedAreas);
-            //     // selectedAreas.forEach(area => {
-            //     selectedAreas.forEach((area, index, array) => {
-            //         catLocations.push(area.id);
-            //         var container = document.getElementById(area.id);
-            //         // console.log(container);
-            //         // container.innerHTML = "<img src='/img/cat1.gif'>";
-            //         // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
-            //         container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
-            //     });
+            function placeCatsRandomly() {
+                const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
+                const selectedAreas = shuffledArray.slice(0, totalCats);
+                console.log(selectedAreas);
+                // selectedAreas.forEach(area => {
+                selectedAreas.forEach((area, index, array) => {
+                    catLocations.push(area.id);
+                    var container = document.getElementById(area.id);
+                    // console.log(container);
+                    // container.innerHTML = "<img src='/img/cat1.gif'>";
+                    // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
+                    container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
+                });
 
-            //     // console.log('cat 0 id = ' + document.getElementById(0).id);
-            //     console.log("Placed cats in the following areas: ", catLocations);
-            // }
+                // console.log('cat 0 id = ' + document.getElementById(0).id);
+                console.log("Placed cats in the following areas: ", catLocations);
+            }
 
             // Checks if the area clicked is one of the randomized cat locations
             // Triggers visuals if an unfound cat was found or visually notifies if it was not
@@ -213,7 +293,9 @@
                 if (catsFound >= totalCats) {
                     // gameOver(true); // right now this is handled by the runTimer()
                 }
-            }            
+            }
+
+            
             
             // Function to show a notification modal at the specified coordinates // TODO: create another for showEmoji
             function showNotification(message, x, y) {
@@ -241,8 +323,6 @@
                 }, 10);
             }
 
-            // TODO: all 3 goToX() functions below need to be reconfigured for updating the
-            //  imagemap background images and the clickable areas
             // Changes the 'location' the user is in, including animated crossfade and
             // updating the clickable areas to match the new background room image.
             function goToLocation(location) {
@@ -331,39 +411,36 @@
                 }
             }
             
-            // Modifies the displayed imagemap displayed over the background image when the location has been updated
+            // Modifies the displayed clickable areas when the location has been updated.
+            // TODO: complete this function by replacing the relevant rows and their contents
             function updateClickableAreas(location) {
                 if (location === "bedroom") {
                     
                 } else if (location === "kitchen") {
 
                 } else {
-                    console.error("updateClickableAreas reveived invalid location param");
+                    alert("Failed to update ClickableAreas to an invalid location.")
                 }
             }
             
-            // TODO: modify this to remove the imagemap and its interactability
-            // function hideClickableAreas() {
-            //     const areas = document.querySelectorAll(".area--clickable");
-            //     console.log(areas);
-            //     areas.forEach(areas => areas.remove());
-            // }
+            function hideClickableAreas() {
+                const areas = document.querySelectorAll(".area--clickable");
+                console.log(areas);
+                areas.forEach(areas => areas.remove());
+            }
 
             function showInstructions() {
-                //addEmojiTargeted(heartEmoji, "50%", "50%"); // TODO: Make this spawn in the splashScreen near the cat's head (i.e. not in the next screen)
                 instructions.style.animation = fadeIn;
                 instructions.style.display = "block";
                 // document.getElementById("instructions").style.display = "block";
                 let letsGoButton = document.getElementById("letsGoButton");
                 letsGoButton.style.animation = fadeOut;
-                
                 document.getElementById("startGameContainer").style.animation = fadeIn;
                 letsGoButton.remove();
-                
             }
 
-            // Function to show a notification modal at the specified coordinates // TODO: finish implementing this; the modal is created but not visible on screen.
-            function spawnEmojiAtLocation(message, x, y, layer) {
+            // Function to show a notification modal at the specified coordinates
+            function addEmojiRandomly(message, x, y) {
                 const emojiModal = document.createElement("div");
                 emojiModal.className = "emojiModal";
                 emojiModal.style.top = y + "px";
@@ -374,61 +451,82 @@
                 emojiModal.innerHTML = message;
 
                 // document.body.appendChild(emojiModal);
-                if (layer == "playArea") {
-                    document.getElementById("playArea").appendChild(emojiModal);
-                } else if (layer == "splashPage") {
-                    document.getElementById("splashPage").appendChild(emojiModal);
-                } else {
-                    console.error("invalid layer parameter passed to spawnEmojiAtLocation");
-                }
+                document.getElementById("playArea").appendChild(emojiModal);
 
                 // Triggering the fadeInOut animation after a short delay
                 setTimeout(() => {
                     emojiModal.style.animation = fadeInOut;
                     // emojiModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
-                    emojiModal.style.position = "absolute";
+                    emojiModal.style.position = "absolute"; // Ensure the modal stays fixed relative to the viewport
                     emojiModal.style.width = "auto";
                     emojiModal.style.padding = "10px";
-                    emojiModal.style.transform = "translate(-50%, -50%) scale(2)"; // Center the modal
+                    emojiModal.style.transform = "translate(-50%, -50%) scale(2)";
                     emojiModal.style.display = "block";
                     // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         emojiModal.remove();
-                    }, 40000); // Duration of the fadeInOut animation
+                    }, 40000); // Adjust the duration based on your fadeInOut animation
                 }, 10);
             }
 
-            // Targets a random place in a container (i.e. playArea or splashPage) and routes flow accordingly
-            function addEmojiRandomly(emoji, layer="playArea") {
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
+            function addEmojiRandomLocation(emoji) {
+                // const viewportWidth = window.innerWidth;
+                // const viewportHeight = window.innerHeight;
 
-                const randomX = Math.floor(Math.random() * viewportWidth);
-                const randomY = Math.floor(Math.random() * viewportHeight);
+                // let randomX = Math.floor(Math.random() * viewportWidth);
+                // if (randomX > randomX*1.2) {
+                //     randomX = randomX*1.2;
+                // } else if (randomX < randomX*0.8) {
+                //     randomX = randomX*0.8;
+                // }
+                // let randomY = Math.floor(Math.random() * viewportHeight);
+                // if (randomY > randomY*1.2) {
+                //     randomY = randomY*1.2;
+                // } else if (randomY < randomY*0.8) {
+                //     randomY = randomY*0.8;
+                // }
+
+                const playAreaWidth = playArea.offsetWidth;
+                const playAreaHeight = playArea.offsetHeight;
+                console.log(playAreaWidth);
+                console.log(playAreaHeight);
+
+                let randomX = Math.floor(Math.random() * playAreaWidth);
+                if (randomX < randomX*1.2) {
+                    randomX = randomX*1.2;
+                } else if (randomX < randomX*0.8) {
+                    randomX = randomX*0.8;
+                }
+                let randomY = Math.floor(Math.random() * playAreaHeight);
+                if (randomY > randomY*1.2) {
+                    randomY = randomY*1.2;
+                } else if (randomY < randomY*0.8) {
+                    randomY = randomY*0.8;
+                }
+
+                // let randomX = Math.floor(Math.random() * playAreaWidth);
+                // if (randomX < randomX*1.2) {
+                //     randomX = randomX*1.2;
+                // } else if (randomX > randomX*0.8) {
+                //     randomX = randomX*0.8;
+                // }
+                // let randomY = Math.floor(Math.random() * playAreaHeight);
+                // if (randomY < randomY*1.2) {
+                //     randomY = randomY*1.2;
+                // } else if (randomY > randomY*0.8) {
+                //     randomY = randomY*0.8;
+                //}
+                
 
                 emojiCounter++;
+
                 if (emojiCounter >= maxEmojis) {
                     clearInterval(emojiInterval); // Stop the interval after reaching the desired number of hearts
                 }
-
-                clearInterval(emojiInterval); // Stop the interval after reaching the desired number of hearts
                 
-                spawnEmojiAtLocation(emoji, randomX, randomY, layer);
+                addEmojiRandomly(emoji, randomX, randomY);
             }
 
-            // Targets a specific place in a container (i.e. playArea or splashPage) and routes flow accordingly
-            function addEmojiTargeted(emoji, X, Y, layer) {
-                emojiCounter++;
-                if (emojiCounter >= maxEmojis) {
-                    clearInterval(emojiInterval); // Stop the interval after reaching the desired number of hearts
-                }
-                
-                if (layer == "playArea") {
-                    spawnEmojiAtLocation(emoji, X, Y, "playArea");
-                } else if (layer == "splashPage") {
-                    spawnEmojiAtLocation(emoji, X, Y, "splashPage");
-                }
-            }
             
             // TODO: move the catsFound >= totalCats check to checkForCat()
             function runTimer() {
@@ -447,9 +545,9 @@
                 }, 1000);
             }
             
-            // Resolves the end-state of the program
+            // Removes all clickable areas from the the screen on fail state, then displays the appropriate modal.
             function gameOver(outcome) {
-                hideClickableAreas(); // TODO: remove the image map from the screen
+                hideClickableAreas();
                 if (outcome === true) {
                     successful();
                 } else {
@@ -467,7 +565,7 @@
                 // TODO: Make emojis slowly float up
                 // Adds a heart emoji at a random location
                 const emojiInterval = setInterval(() => {
-                    addEmojiRandomly(heartEmoji);
+                    addEmojiRandomLocation(heartEmoji);
                 },  interval);
             }
             
@@ -477,7 +575,7 @@
                 failureMessage.style.display = "block";
                 console.log("Failed at the game");
                 const emojiInterval = setInterval(() => {
-                    addEmojiRandomly(frownEmoji);
+                    addEmojiRandomLocation(frownEmoji);
                 },  interval);
             }
         </script>
