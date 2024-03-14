@@ -11,8 +11,6 @@
   TODO: add to Github Pages
   TODO: center the success and failure message modals
   TODO: add responsiveness via Media Queries for at least 1080p and 4k
-  TODO: place elements properply and responsively on splash screen
-  TODO: modify emoji spawning so that they exceed the boundary of the playArea image
   TODO: center gameover modals
 -->
 <html lang="en">
@@ -61,6 +59,25 @@
                 <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
             </section>
 
+            <div class="finalDialog">
+                <dialog class="success" id="successMessage">
+                    You found all of your cats, now head to work!</br>&#128526</br></br>
+                    <p class="thanksText">Thanks for playing!</br>
+                        Please check out my other projects at:</br>
+                        <a href="https://github.com/sherpa-code">GitHub</a><br>
+                        - Jo Crane
+                    </br>
+                    </p>
+                </dialog>
+            </div>
+
+            <div class="finalDialog">
+                <dialog class="failure" id="failureMessage">
+                    You didn't find your cats in time... Oh no! You'll be late!<br>&#129402;
+                </dialog>
+            </div>
+
+            <!-- 
             <dialog class="success finalDialog" id="successMessage">
                 You found all of your cats, now head to work!</br>&#128526</br></br>
                 <p class="thanksText">Thanks for playing!</br>
@@ -73,7 +90,7 @@
 
             <dialog class="failure finalDialog" id="failureMessage">
                 You didn't find your cats in time... Oh no! You'll be late!<br>&#129402;
-            </dialog>
+            </dialog> -->
 
 
             <!-- Clickable areas: Kitchen -->
@@ -116,7 +133,7 @@
             </section>
 
             <!-- Clickable areas: Bedroom -->
-            <section class="bedroom" style="display: none;">
+            <section class="bedroom hidden">
                 <img src="img/bedroom.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
                 <section class="row row__upper"> <!-- remove bedroom from child divs and put here -->
                     <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
@@ -246,7 +263,8 @@
                     goToBedroomButton.style.opacity = 1;
                 }, 500); // Set the duration of the transition
                 document.getElementById("splashPage").style.animation = fadeOut;
-                document.getElementById("splashPage").style.display = "none";
+                // document.getElementById("splashPage").style.display = "none";
+                // document.getElementById("splashPage").classList.add('hidden');
 
                 // goToLocation("kitchen");
                 document.getElementById("playArea").style.animation = fadeIn;
@@ -254,8 +272,7 @@
 
                 goToKitchenButton.style.display = "none";
 
-                const splashPage = document.getElementById("splashPage");
-                splashPage.remove();
+                document.getElementById("splashPage").remove();
                 
                 runTimer();
             }
@@ -362,9 +379,11 @@
                 goToKitchenButton.style.display = "none";
 
                 //Hide the existing Bedroom rows
-                document.querySelector(".bedroom").style.display = "none";
+                document.querySelector(".bedroom").classList.add("hidden");
+                // document.querySelector(".bedroom").style.display = "none";
                 //Show the Kitchen rows
-                document.querySelector(".kitchen").style.display = "flex";
+                document.querySelector(".kitchen").classList.remove("hidden");
+                // document.querySelector(".kitchen").style.display = "flex";
 
                 // Show the goToKitchenButton after a delay
                 setTimeout(function () {
@@ -388,9 +407,10 @@
                 goToBedroomButton.style.display = "none";
 
                 //Hide the existing Kitchen rows
-                document.querySelector(".kitchen").style.display = "none";
+                // document.querySelector(".kitchen").style.display = "none";
+                document.querySelector(".kitchen").classList.add("hidden");
                 //Show the Bedroom rows
-                document.querySelector(".bedroom").style.display = "flex";
+                document.querySelector(".bedroom").classList.remove("hidden");
 
                 // Show the goToKitchenButton after a delay
                 setTimeout(function () {
@@ -452,9 +472,9 @@
                 emojiModal.className = "emojiModal";
                 emojiModal.style.top = y + "px";
                 emojiModal.style.left = x + "px";
-                emojiModal.style.zIndex = 7;
-                emojiModal.style.opacity = 0;
-                emojiModal.style.display = "none";
+                // emojiModal.style.zIndex = 7;
+                // emojiModal.style.opacity = 0;
+                // emojiModal.style.display = "none";
                 emojiModal.innerHTML = message;
 
                 // document.body.appendChild(emojiModal);
@@ -464,11 +484,11 @@
                 setTimeout(() => {
                     emojiModal.style.animation = fadeInOut;
                     // emojiModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
-                    emojiModal.style.position = "absolute"; // Ensure the modal stays fixed relative to the viewport
-                    emojiModal.style.width = "auto";
-                    emojiModal.style.padding = "10px";
-                    emojiModal.style.transform = "translate(-50%, -50%) scale(2)";
-                    emojiModal.style.display = "block";
+                    // emojiModal.style.position = "absolute"; // Ensure the modal stays fixed relative to the viewport
+                    // emojiModal.style.width = "auto";
+                    // emojiModal.style.padding = "10px";
+                    // emojiModal.style.transform = "translate(-50%, -50%) scale(2)";
+                    // emojiModal.style.display = "block";
                     // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         emojiModal.remove();
@@ -477,63 +497,79 @@
             }
 
             function addEmojiRandomLocation(emoji) {
-                // const viewportWidth = window.innerWidth;
-                // const viewportHeight = window.innerHeight;
-
-                // let randomX = Math.floor(Math.random() * viewportWidth);
-                // if (randomX > randomX*1.2) {
-                //     randomX = randomX*1.2;
-                // } else if (randomX < randomX*0.8) {
-                //     randomX = randomX*0.8;
-                // }
-                // let randomY = Math.floor(Math.random() * viewportHeight);
-                // if (randomY > randomY*1.2) {
-                //     randomY = randomY*1.2;
-                // } else if (randomY < randomY*0.8) {
-                //     randomY = randomY*0.8;
-                // }
-
                 const playAreaWidth = playArea.offsetWidth;
                 const playAreaHeight = playArea.offsetHeight;
-                console.log(playAreaWidth);
-                console.log(playAreaHeight);
                 
-                // TODO: Make this bit spawn emoji within the picture
                 let randomX = Math.floor(Math.random() * playAreaWidth);
-                if (randomX < randomX*1.2) {
-                    randomX = randomX*1.2;
-                } else if (randomX < randomX*0.8) {
-                    randomX = randomX*0.8;
-                }
-                let randomY = Math.floor(Math.random() * playAreaHeight);
-                if (randomY > randomY*1.2) {
-                    randomY = randomY*1.2;
-                } else if (randomY < randomY*0.8) {
-                    randomY = randomY*0.8;
-                }
-
-                // let randomX = Math.floor(Math.random() * playAreaWidth);
-                // if (randomX < randomX*1.2) {
-                //     randomX = randomX*1.2;
-                // } else if (randomX > randomX*0.8) {
-                //     randomX = randomX*0.8;
-                // }
-                // let randomY = Math.floor(Math.random() * playAreaHeight);
-                // if (randomY < randomY*1.2) {
-                //     randomY = randomY*1.2;
-                // } else if (randomY > randomY*0.8) {
-                //     randomY = randomY*0.8;
-                //}
-                
+                let randomY = Math.floor(Math.random() * (playAreaHeight - 20));
 
                 emojiCounter++;
 
                 if (emojiCounter >= maxEmojis) {
-                    clearInterval(emojiInterval); // Stop the interval after reaching the desired number of hearts
+                    clearInterval(emojiInterval);
                 }
                 
                 addEmojiRandomly(emoji, randomX, randomY);
             }
+
+            // function addEmojiRandomLocation(emoji) {
+            //     // const viewportWidth = window.innerWidth;
+            //     // const viewportHeight = window.innerHeight;
+
+            //     // let randomX = Math.floor(Math.random() * viewportWidth);
+            //     // if (randomX > randomX*1.2) {
+            //     //     randomX = randomX*1.2;
+            //     // } else if (randomX < randomX*0.8) {
+            //     //     randomX = randomX*0.8;
+            //     // }
+            //     // let randomY = Math.floor(Math.random() * viewportHeight);
+            //     // if (randomY > randomY*1.2) {
+            //     //     randomY = randomY*1.2;
+            //     // } else if (randomY < randomY*0.8) {
+            //     //     randomY = randomY*0.8;
+            //     // }
+
+            //     const playAreaWidth = playArea.offsetWidth;
+            //     const playAreaHeight = playArea.offsetHeight;
+            //     console.log(playAreaWidth);
+            //     console.log(playAreaHeight);
+                
+            //     // TODO: Make this bit spawn emoji within the picture
+            //     let randomX = Math.floor(Math.random() * playAreaWidth);
+            //     if (randomX < randomX*1.2) {
+            //         randomX = randomX*1.2;
+            //     } else if (randomX < randomX*0.8) {
+            //         randomX = randomX*0.8;
+            //     }
+            //     let randomY = Math.floor(Math.random() * playAreaHeight);
+            //     if (randomY > randomY*1.2) {
+            //         randomY = randomY*1.2;
+            //     } else if (randomY < randomY*0.8) {
+            //         randomY = randomY*0.8;
+            //     }
+
+            //     // let randomX = Math.floor(Math.random() * playAreaWidth);
+            //     // if (randomX < randomX*1.2) {
+            //     //     randomX = randomX*1.2;
+            //     // } else if (randomX > randomX*0.8) {
+            //     //     randomX = randomX*0.8;
+            //     // }
+            //     // let randomY = Math.floor(Math.random() * playAreaHeight);
+            //     // if (randomY < randomY*1.2) {
+            //     //     randomY = randomY*1.2;
+            //     // } else if (randomY > randomY*0.8) {
+            //     //     randomY = randomY*0.8;
+            //     //}
+                
+
+            //     emojiCounter++;
+
+            //     if (emojiCounter >= maxEmojis) {
+            //         clearInterval(emojiInterval); // Stop the interval after reaching the desired number of hearts
+            //     }
+                
+            //     addEmojiRandomly(emoji, randomX, randomY);
+            // }
 
             
             // TODO: move the catsFound >= totalCats check to checkForCat()

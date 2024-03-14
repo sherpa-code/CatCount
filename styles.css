@@ -240,12 +240,24 @@
                 display: none;
             }
 
+            .hidden {
+                display: none;
+            }
+
             .row__stats {
                 flex: 0.175;
                 min-height: 4em;
                 /* height: 4rem; */
             }
             
+            .emojiModal {
+                z-index: 7;
+                position: absolute;
+                display: block;
+                width: auto;
+                opacity: 0;
+                /* padding: 10px; */
+            }
 
             /* KITCHEN Styles */
             .kitchen .row__upper {
@@ -400,25 +412,11 @@
             }
 
             .bedroom .row__middle {
-                column-gap: 11rem;
-                overflow: hidden;
-                /* flex: 0.35; */
-                flex: 1;
-                padding-left: 5rem;
-                padding-right: 4rem;
-                /* padding-top: 1.45rem; */
+                
             }
 
             .bedroom .row__bottom {
-                /* column-gap: 7rem; */
-                flex-grow: 1;
-                overflow: hidden;
-                flex-direction: row;
-                /* flex: 0.9; */
-                /* margin-bottom: 4rem; */
-                padding-top: 1rem;
-                padding-left: 4rem;
-                padding-right: 4rem;
+
             }
 
             
@@ -617,9 +615,6 @@
                 background-position: center;
                 background-size: contain; */
             }
-
-            
- 
 
             #timer {
                 top: 1rem;
