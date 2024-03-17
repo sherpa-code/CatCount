@@ -86,8 +86,6 @@
                 text-align: center;
                 background-color: #4d4d4d;
                 background-image: linear-gradient(rgb(129, 84, 1), rgba(165, 42, 42, 0.171));
-                /* margin: 0;
-                opacity: 0; */
                 animation: fadeIn 1.5s ease-in forwards;
             }
 
@@ -95,56 +93,34 @@
                 margin: 0 auto;
                 position: relative;
                 transition: opacity 0.5s ease-in-out;
-                /* display: flex; */
                 flex-direction: column;
                 max-width: 100vh;
-                /* max-height: 100%; */
-                /* min-height: 100%; */
                 height: 100vh;
             }
 
             dialog {
                 animation: "fadeIn 0.5s ease-in forwards";
                 font-size: 150%;
-                /* margin: 8em; */
-                margin-left: 1em;;
-                /* padding: 2em; */
+                margin-left: 1em;
                 border-radius: 1em;
                 display: none;
                 z-index: 2;
-                /* display: block; */
                 display: none;
                 position: relative;
             }
 
             button {
-                /* display: none; */
-                /* position: absolute; */
-                
-                /* padding: 0.55rem; */
                 border: none;
                 border-radius: 1em;
                 font-size: 1rem;
                 transition: background-color 1.6s ease-in-out;
-                /* top: 50%; */
                 z-index: 1;
-                /* background-color: #3498db; */
                 color: #fff;
             }
 
             dialog.instructions {
-                /* background-color: #ddd; */
-                /* background: radial-gradient(circle, 
-                hsl(0, 25%, 50%),
-                hsl(30, 25%, 50%),
-                hsl(120, 25%, 50%),
-                hsl(210, 25%, 50%),
-                hsl(270, 25%, 50%),
-                hsl(330, 25%, 50%)
-                ); */
                 transition: opacity 0.5s ease-in-out;
                 display: none;
-                /* display: block;*/
             }
 
             dialog.success {
@@ -210,7 +186,6 @@
 
             /* Styles the 'goTo[location]' buttons; e.g. 'To the Bedroom' and 'To the Kitchen' buttons*/
             .goToLocationButton {
-                /* display: none; */
                 opacity: 0;
                 position: absolute;
                 padding: 0.55rem;
@@ -228,9 +203,6 @@
             .row {
                 display: flex;
                 justify-content: center;
-
-                /* flex-grow: 1; */
-                
                 background-color: #ffffff80;
                 border: 1px solid blue;
             }
@@ -246,7 +218,6 @@
             .row__stats {
                 flex: 0.175;
                 min-height: 4em;
-                /* height: 4rem; */
             }
             
             .emojiModal {
@@ -255,10 +226,9 @@
                 display: block;
                 width: auto;
                 opacity: 0;
-                /* padding: 10px; */
             }
 
-            /* KITCHEN Styles */
+            /* KITCHEN STYLES */
             .kitchen .row__upper {
                 column-gap: 0.8rem;
                 padding-top: 4rem;
@@ -276,22 +246,17 @@
             .kitchen .row__middle {
                 column-gap: 11rem;
                 overflow: hidden;
-                /* flex: 0.35; */
                 flex: 1;
                 padding-left: 5rem;
                 padding-right: 4rem;
-                /* padding-top: 1.45rem; */
             }
 
             .kitchen .row__bottom {
-                /* column-gap: 7rem; */
                 flex-grow: 1;
-                overflow: hidden;
+                /* overflow: hidden; */
                 flex-direction: row;
-                /* flex: 0.9; */
-                /* margin-bottom: 4rem; */
-                padding-top: 1rem;
-                padding-left: 4rem;
+                padding-top: 1.5rem;
+                padding-left: 3.5rem;
                 padding-right: 4rem;
                 
             }
@@ -299,7 +264,7 @@
             .kitchen .bottom-second-left-top {
                 flex-direction: column;
                 align-items: flex-start;
-                /* width: 40rem; */
+                width: 18rem;
             }
 
             .kitchen .bottom-second-left-bottom {
@@ -314,18 +279,24 @@
 
             #area_kitchen_1 {
                 width: 12.35rem;
-                margin-bottom: 2.2em;
             }
 
             #area_kitchen_2 {
                 width: 7rem;
-                margin-bottom: 2.2em;
             }
 
             #area_kitchen_3 {
                 width: 9rem;
-                margin-bottom: 2.2em;
+                
             }
+
+            #area_kitchen_1,
+            #area_kitchen_2,
+            #area_kitchen_3 {
+                margin-bottom: 2.2em;
+                height: 18rem;
+            }
+
 
             #area_kitchen_4,
             #area_kitchen_5 {
@@ -348,7 +319,7 @@
 
             #area_kitchen_8 {
                 height: 18.5rem;
-                width: 12rem;
+                width: 13rem;
             }
 
             #area_kitchen_9 {
@@ -357,14 +328,18 @@
             }
 
             #area_kitchen_10 {
+                width: 10rem;
+            }
+            
+            #area_kitchen_11 {
+                width: 16rem;
+            }
+
+            #area_kitchen_12 {
                 width: 7rem;
             }
 
-            #area_kitchen_11 {
-                width: 11rem;
-            }
-
-            #area_kitchen_10,
+            #area_kitchen_12,
             #area_kitchen_11 {
                 height: 13rem;
             }
@@ -378,13 +353,13 @@
                 height: 10.5rem;
             }
             #area_kitchen_14 {
-                height: 2.3rem;
+                height: 2.5rem;
             }
             #area_kitchen_15 {
-                height: 3.4rem;
+                height: 3.9rem;
             }
             #area_kitchen_16 {
-                height: 2.3rem;
+                height: 1.8rem;
             }
             #area_kitchen_17 {
                 height: 2.3rem;
@@ -395,69 +370,19 @@
 
 
             /* BEDROOM Styles */
-
             .bedroom .row__upper {
-                /* column-gap: 0.8rem;
-                padding-top: 4rem;
-                flex: 1;
-                align-items: end;
-                height: 14em;
-                padding-left: 4.4rem;
-                padding-right: 4rem;
-                padding-top: 3rem;
-                display: flex; */
-
-                /* column-gap: 0.8rem;
-                padding-top: 2rem;
-                flex: 1;
-                align-items: end;
-                height: 15em;
-                display: flex; */
-
                 column-gap: 0.8rem;
-                padding-top: 9rem;
                 flex: 1;
                 align-items: end;
-                height: 15em;
+                height: 16em;
                 display: flex;
-                /* justify-content: space-between; */
                 justify-content: left;
                 padding-left: 10%
-                
             }
-
-            /* .bedroom .row__upper .area--clickable {
-                height: 17rem;
-            } */
-
-            .bedroom .row__middle {
-                
-            }
-
-            .bedroom .row__bottom {
-
-            }
-
+            
+            /* ROW TOP */
             .bedroom .shelves-stacked {
                 width: 6rem;
-                height: 
-            }
-
-            /* #area_bedroom_1,
-            #area_bedroom_2,
-            #area_bedroom_3,
-            #area_bedroom_4,
-            #area_bedroom_5,
-            #area_bedroom_6 {
-                max-height: 11em;
-            } */
-
-            #area_bedroom_1,
-            #area_bedroom_2,
-            #area_bedroom_3,
-            #area_bedroom_4,
-            #area_bedroom_5 {
-                max-height: 11em;
             }
 
             #area_bedroom_1,
@@ -465,44 +390,156 @@
             #area_bedroom_3,
             #area_bedroom_4,
             #area_bedroom_5 {
-                /* flex: 1; */
+                max-height: 11em;
             }
             
             #area_bedroom_1 {
                 width: 13rem;
+                height: 11rem;
             }
-
 
             #area_bedroom_2,
             #area_bedroom_3 {
-                height: 5rem;
+                height: 5.4rem;
             }
-
             
             #area_bedroom_4 {
-                height: 7rem;
+                height: 4.5rem;
             }
-            #area_bedroom_5 {height: 7rem;}
+            
+            #area_bedroom_5 {
+                height: 3.5rem;
+            }
+
+            #area_bedroom_4,
+            #area_bedroom_5 {
+                width: 4rem;
+            }
+
             #area_bedroom_6 {
-                align-self: flex-end;
+                align-self: flex-start;
+                margin-left: auto;
+                height: 9rem;
+                margin-top: 2rem;
+                width: 9rem;
             }
-            #area_bedroom_7 {}
-            #area_bedroom_8 {}
-            #area_bedroom_9 {}
-            #area_bedroom_10 {}
-            #area_bedroom_11 {}
-            #area_bedroom_12 {}
-            #area_bedroom_13 {}
-            #area_bedroom_14 {}
-            #area_bedroom_15 {}
-            #area_bedroom_16 {}
+
+            /* ROW MIDDLE */
+            .bedroom .row__middle {
+                column-gap: 0.6rem;
+                flex: 1;
+                height: 16.5rem;
+                display: flex;
+                justify-content: left;
+                padding-left: 10%;
+                overflow: visible;
+            }
+
+            #area_bedroom_7 {
+                align-self: flex-start;
+                width: 13rem;
+                height: 100%;
+            }
+
+            #area_bedroom_8 {
+                width: 6.25rem;
+                height: 100%;
+            }
+
+            #area_bedroom_9 {
+                width: 4.25rem;
+                height: 3rem;
+                margin-top: 2.25rem;
+            }
+
+            #area_bedroom_10 {
+                width: 4.25rem;
+                height: 130%;
+            }
+
+            #area_bedroom_12 {  
+                width: 4.1rem;
+                height: 2.6rem;
+            }
+
+            /* ROW BOTTOM */
+            .bedroom .row__bottom {
+                column-gap: 0.6rem;
+                display: flex;
+                flex: 1;
+                /* justify-content: left; */
+                justify-content: space-between;
+                padding-left: 10%;
+            }
+
+
+            #area_bedroom_13,
+            #area_bedroom_14,
+            #area_bedroom_15 {
+                width: 13rem;
+            }
+
+            #area_bedroom_13 {
+                height: 3rem;
+            }
+            #area_bedroom_14 {
+                height: 3rem;
+            }
+            #area_bedroom_15 {
+                height: 3.25rem;
+            }
+            #area_bedroom_16 {
+                margin-left: 6.75rem;
+                width: 4.6rem;
+                height: 7.75rem;
+            }
+
+            /* #area_bedroom_20,
+            #area_bedroom_21,
+            #area_bedroom_22 {
+                margin-left: 13rem;
+            } */
+
             #area_bedroom_17 {}
             #area_bedroom_18 {}
             #area_bedroom_19 {}
             #area_bedroom_20 {}
             #area_bedroom_21 {}
             #area_bedroom_22 {}
-            #area_bedroom_23 {}
+            #area_bedroom_23 {
+                /* align-self: flex-end; */
+            }
+
+
+            .drawers {
+                margin-left: auto;
+                padding-top: 1rem;
+            }
+
+            #area_bedroom_20,
+            #area_bedroom_21,
+            #area_bedroom_22 {
+                /* margin-left: auto; */
+                margin-right: 2rem;
+                /* margin-top: 1rem; */
+                width: 11rem;
+            }
+
+            #area_bedroom_20 {
+                height: 4rem;
+            }
+
+            #area_bedroom_21,
+            #area_bedroom_22 {
+                height: 3.35em;
+            }
+
+            #area_bedroom_23 {
+                /* margin-left: auto; */
+                margin-top: 6rem;
+                width: 12rem;
+                height: 15rem;
+            }
 
             
             .stats--display {
@@ -547,7 +584,6 @@
 
             #splashPage {
                 height: 100%;
-                /* display: grid; */
                 justify-content: center;
                 position: relative;
                 background-image: url(/img/splashPage.jpg);
@@ -573,7 +609,6 @@
                 font-size: 150%;
                 color: white;
                 padding: 1em;
-                /* background-color: #ddd; */
                 background: radial-gradient(circle, 
                     hsl(0, 25%, 50%),
                     hsl(30, 25%, 50%),
@@ -590,16 +625,10 @@
             }
 
             #instructions {
-                /* margin: auto; */
-                /* padding: 1.2em 1.65em; */
-                /* padding: auto; */
-                /* padding: 0% 5%; */
-                /* background-color: #ddd; */
                 background: radial-gradient(ellipse at top, #e66465, transparent),
                 radial-gradient(ellipse at bottom, #4d9f0c, transparent);
                 transition: opacity 0.5s ease-in-out;
                 display: none;
-                /* display: flex; */
                 flex-direction: column;
                 align-items: center;
                 top: 15vh;
@@ -608,7 +637,6 @@
                 left: 0;
                 opacity: 75%;
                 scale: 0.9;
-                /* position: absolute; */
             }
 
             #instructions h1 {
@@ -620,9 +648,7 @@
             }
 
             #startGameContainer {
-                /* margin-top: 2rem; */
                 margin-top: 2vh;
-                /* margin-bottom: 2.5em; */
             }
 
             #letsGoButton {
@@ -634,8 +660,6 @@
                 border-radius: 1em;
                 transition: opacity 0.5s ease-in-out;
                 display: block;
-                /* margin-top: 30vh;
-                margin-left: 45vw; */
                 transform: skew(-3deg, -3deg);
                 opacity: 90%;
                 max-width: 350px;
@@ -643,14 +667,11 @@
             }
 
             #letsGoButtonContainer {
-                /* text-align: right; */
                 margin-left: auto;
             }
 
             #startGameButton {
-                /* display: block; */
                 font-size: 150%;
-                /* margin: auto; */
                 padding: 0.45em;
                 color: black;
                 border-radius: 0.35em;
@@ -670,10 +691,6 @@
                 flex-direction: column;
                 max-width: 100vh;
                 height: 100vh;
-                /* background-image: url(/img/splashPage.jpg); */
-                /* background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain; */
             }
 
             #timer {
@@ -683,7 +700,7 @@
 
             #foundCounter {
                 top: 1rem;
-                right: 10rem;
+                right: 12rem;
             }
 
             @media screen and (max-width: 980px) {
