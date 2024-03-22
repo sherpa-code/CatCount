@@ -6,7 +6,7 @@
   The goal is to search your apartment (by clicking) all areas in which your cats may be hiding to find them all before the timer expires.
   
   TODO: separate the cat gif from its parent container so that, upon victory or failure, they don't just disappear at that moment.
-  TODO: after the clickable areas are mapped properly to the background images, remove the grey colors and row outlines from them
+  TODO: remove the grey colors and row outlines from elements
   TODO: tidy up the starting Instructions modal
   TODO: add to Github Pages
   TODO: center the success and failure message modals
@@ -22,9 +22,6 @@
     </head>
     
     <body>
-        <!-- TODO: make this show up on page load as the only element you see first
-                    it will have the Cat Count! title in a modal in the top left
-                    and a "Let's Go!" button in the bottom right that pops up the instructions modal -->
         <section id="splashPage">
             <div class="container">
                 <dialog id="splashTitle">
@@ -39,7 +36,7 @@
                         Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
                     </p>
                     <div id="startGameContainer">
-                        <button id="startGameButton" onclick="startGame()" font-size="200%">Start</button>
+                        <button id="startGameButton" onclick="startGame()">Start</button>
                     </div>
                 </dialog>
 
@@ -51,9 +48,9 @@
             </div>
         </section>
          
-        <main id="playArea">
-            <nav id="goToBedroomButton" class="goToLocationButton area--clickable" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
-            <nav id="goToKitchenButton" class="goToLocationButton area--clickable" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
+        <main id="playArea" class="hidden">
+            <nav id="goToBedroomButton" class="goToLocationButton" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
+            <nav id="goToKitchenButton" class="goToLocationButton" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
             <section class="row row__stats">
                 <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
                 <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
@@ -61,13 +58,13 @@
 
             <div class="finalDialog">
                 <dialog class="success" id="successMessage">
-                    You found all of your cats, now head to work!</br>&#128526</br></br>
-                    <p class="thanksText">Thanks for playing!</br></br>
-                        Please check out my other projects at:</br>
+                    You found all of your cats, now head to work!<br/>&#128526;<br/><br/>
+                    <p class="thanksText">Thanks for playing!<br/><br/>
+                        Please check out my other projects at:<br/>
                         <a href="https://github.com/sherpa-code">GitHub</a>
                         <i>- Jo Crane</i>
                     </p>
-                    </br>
+                    <br/>
                     </p>
                 </dialog>
             </div>
@@ -75,23 +72,23 @@
             <div class="finalDialog">
                 <dialog class="failure" id="failureMessage">
                     You didn't find your cats in time... Oh no! You'll be late!<br>&#129402;
-                    <p class="thanksText">Thanks for playing!</br></br>
-                        Please check out my other projects at:</br>
+                    <p class="thanksText">Thanks for playing!<br/><br/>
+                        Please check out my other projects at:<br/>
                         <a href="https://github.com/sherpa-code">GitHub</a>
                         - Jo Crane
                     </p>
-                    </br>
+                    <br/>
                 </dialog>
             </div>
 
             <!-- 
             <dialog class="success finalDialog" id="successMessage">
-                You found all of your cats, now head to work!</br>&#128526</br></br>
-                <p class="thanksText">Thanks for playing!</br>
-                    Please check out my other projects at:</br>
+                You found all of your cats, now head to work!<br/>&#128526;<br/><br/>
+                <p class="thanksText">Thanks for playing!<br/>
+                    Please check out my other projects at:<br/>
                     <a href="https://github.com/sherpa-code">GitHub</a><br>
                     - Jo Crane
-                </br>
+                <br/>
                 </p>
             </dialog>
 
@@ -104,37 +101,37 @@
             <section class="kitchen">
                 <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
                 <section class="row row__upper">
-                    <div class="area--clickable" id="area_kitchen_1">Area 1</div>
-                    <div class="area--clickable" id="area_kitchen_2">Area 2</div>
-                    <div class="area--clickable" id="area_kitchen_3">Area 3</div>
-                    <div class="area--clickable" id="area_kitchen_4">Area 4</div>
-                    <div class="area--clickable" id="area_kitchen_5">Area 5</div>
+                    <div class="areaClickable" id="area_kitchen_1">Area 1</div>
+                    <div class="areaClickable" id="area_kitchen_2">Area 2</div>
+                    <div class="areaClickable" id="area_kitchen_3">Area 3</div>
+                    <div class="areaClickable" id="area_kitchen_4">Area 4</div>
+                    <div class="areaClickable" id="area_kitchen_5">Area 5</div>
                 </section>
                 <section class="row row__middle">
-                    <div class="area--clickable" id="area_kitchen_6">Area 6</div>
-                    <div class="area--clickable" id="area_kitchen_7">Area 7</div>
+                    <div class="areaClickable" id="area_kitchen_6">Area 6</div>
+                    <div class="areaClickable" id="area_kitchen_7">Area 7</div>
                 </section>
                 <section class="row row__bottom">
                     <div class="cupboards bottom-left">
-                        <div class="area--clickable" id="area_kitchen_8">Area 8</div>
+                        <div class="areaClickable" id="area_kitchen_8">Area 8</div>
                     </div>
                     <div class="bottom-second-left-top">
-                        <div class="area--clickable" id="area_kitchen_9">Area 9</div>
+                        <div class="areaClickable" id="area_kitchen_9">Area 9</div>
                         <div class="bottom-second-left-bottom">
-                            <div class="area--clickable" id="area_kitchen_10">Area 10</div>
-                            <div class="area--clickable" id="area_kitchen_11">Area 11</div>
+                            <div class="areaClickable" id="area_kitchen_10">Area 10</div>
+                            <div class="areaClickable" id="area_kitchen_11">Area 11</div>
                         </div>
                     </div>
                     <div class="cupboards bottom-second-right">
-                        <div class="area--clickable" id="area_kitchen_12">Area 12</div>
-                        <div class="area--clickable" id="area_kitchen_13">Area 13</div>
+                        <div class="areaClickable" id="area_kitchen_12">Area 12</div>
+                        <div class="areaClickable" id="area_kitchen_13">Area 13</div>
                     </div>
                     <div class="cupboards bottom-right">
-                        <div class="area--clickable" id="area_kitchen_14">Area 14</div>
-                        <div class="area--clickable" id="area_kitchen_15">Area 15</div>
-                        <div class="area--clickable" id="area_kitchen_16">Area 16</div>
-                        <div class="area--clickable" id="area_kitchen_17">Area 17</div>
-                        <div class="area--clickable" id="area_kitchen_18">Area 18</div>
+                        <div class="areaClickable" id="area_kitchen_14">Area 14</div>
+                        <div class="areaClickable" id="area_kitchen_15">Area 15</div>
+                        <div class="areaClickable" id="area_kitchen_16">Area 16</div>
+                        <div class="areaClickable" id="area_kitchen_17">Area 17</div>
+                        <div class="areaClickable" id="area_kitchen_18">Area 18</div>
                     </div>
                 </section>
             </section>
@@ -143,55 +140,55 @@
             <section class="bedroom hidden">
                 <img src="img/bedroom.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
                 <section class="row row__upper"> <!-- remove bedroom from child divs and put here -->
-                    <!-- <div class="area--clickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
-                    <div class="area--clickable cupboards" id="area_bedroom_1">Area 1</div>
-                    <!-- <div class="area--clickable bedroom" id="area_bedroom_1">Area 1<img src="/img/cat1.gif"></div> -->
-                    <!-- <div class="area--clickable bedroom" id="area_bedroom_1" onclick="checkArea(this.id)">Area 1</div> -->
+                    <!-- <div class="areaClickable" id="area_1" style="top: 22em; left: 13em; width: 18.5em; height: 31em;" onclick="handleClick('that cupboard.')">Area 1</div> -->
+                    <div class="areaClickable cupboards" id="area_bedroom_1">Area 1</div>
+                    <!-- <div class="areaClickable bedroom" id="area_bedroom_1">Area 1<img src="/img/cat1.gif"></div> -->
+                    <!-- <div class="areaClickable bedroom" id="area_bedroom_1" onclick="checkArea(this.id)">Area 1</div> -->
                     <div class="cupboards shelves-stacked">
-                        <div class="area--clickable" id="area_bedroom_2">Area 2</div>
-                        <div class="area--clickable" id="area_bedroom_3">Area 3</div>
+                        <div class="areaClickable" id="area_bedroom_2">Area 2</div>
+                        <div class="areaClickable" id="area_bedroom_3">Area 3</div>
                     </div>
                     <div class="cupboards jewelery-drawer-stacked">
-                        <div class="area--clickable" id="area_bedroom_4">Area 4</div>
-                        <div class="area--clickable" id="area_bedroom_5">Area 5</div>
+                        <div class="areaClickable" id="area_bedroom_4">Area 4</div>
+                        <div class="areaClickable" id="area_bedroom_5">Area 5</div>
                     </div>
-                    <div class="area--clickable drapes" id="area_bedroom_6">Area 6</div>
+                    <div class="areaClickable drapes" id="area_bedroom_6">Area 6</div>
                 </section>
                 <section class="row row__middle">
                     <div class="closet left">
-                        <div class="area--clickable" id="area_bedroom_7">Area 7</div>
+                        <div class="areaClickable" id="area_bedroom_7">Area 7</div>
                     </div>
                     <div class="closet second-left">
-                        <div class="area--clickable" id="area_bedroom_8">Area 8</div>
+                        <div class="areaClickable" id="area_bedroom_8">Area 8</div>
                     </div>
                     <div class="closet second-middle">
-                        <div class="area--clickable" id="area_bedroom_9">Area 9</div>
-                        <div class="area--clickable" id="area_bedroom_10">Area 10</div>
-                        <!-- <div class="area--clickable" id="area_bedroom_11">Area 11</div>
-                        <div class="area--clickable" id="area_bedroom_12">Area 12</div> -->
+                        <div class="areaClickable" id="area_bedroom_9">Area 9</div>
+                        <div class="areaClickable" id="area_bedroom_10">Area 10</div>
+                        <!-- <div class="areaClickable" id="area_bedroom_11">Area 11</div>
+                        <div class="areaClickable" id="area_bedroom_12">Area 12</div> -->
                     </div>
                 </section>
                 <section class="row row__bottom">
                     <div class="closet left">
-                        <div class="area--clickable" id="area_bedroom_12">Area 12</div>
-                        <div class="area--clickable" id="area_bedroom_13">Area 13</div>
-                        <div class="area--clickable" id="area_bedroom_14">Area 14</div>
-                        <div class="area--clickable" id="area_bedroom_15">Area 15</div>
+                        <div class="areaClickable" id="area_bedroom_12">Area 12</div>
+                        <div class="areaClickable" id="area_bedroom_13">Area 13</div>
+                        <div class="areaClickable" id="area_bedroom_14">Area 14</div>
+                        <div class="areaClickable" id="area_bedroom_15">Area 15</div>
                     </div>
                     <div class="closet middle">
                     </div>
                     <div class="closet second-middle-bottom">
-                        <!-- <div class="area--clickable" id="area_bedroom_16">Area 16</div>
-                        <div class="area--clickable" id="area_bedroom_18">Area 18</div>
-                        <div class="area--clickable" id="area_bedroom_19">Area 19</div> -->
+                        <!-- <div class="areaClickable" id="area_bedroom_16">Area 16</div>
+                        <div class="areaClickable" id="area_bedroom_18">Area 18</div>
+                        <div class="areaClickable" id="area_bedroom_19">Area 19</div> -->
                     </div>
                     <div class="drawers">
-                        <!-- <div class="area--clickable" id="area_bedroom_17">Area 17</div> -->
-                        <div class="area--clickable" id="area_bedroom_20">Area 20</div>
-                        <div class="area--clickable" id="area_bedroom_21">Area 21</div>
-                        <div class="area--clickable" id="area_bedroom_22">Area 22</div>
+                        <!-- <div class="areaClickable" id="area_bedroom_17">Area 17</div> -->
+                        <div class="areaClickable" id="area_bedroom_20">Area 20</div>
+                        <div class="areaClickable" id="area_bedroom_21">Area 21</div>
+                        <div class="areaClickable" id="area_bedroom_22">Area 22</div>
                     </div>
-                    <div class="area--clickable bed" id="area_bedroom_23">Area 23</div>
+                    <div class="areaClickable bed" id="area_bedroom_23">Area 23</div>
                 </section>
             </section>
 
@@ -217,27 +214,25 @@
             let clickCounter = 0;
             // let timer = 90;
             let timer = 9999;
-            var catsFound = 0;
+            let catsFound = 0;
             let totalCats = 3;
             
             // Areas
-            var clickedAreas = [];
-            var catLocations = [];
-            var allAreaNodes = [];
-            var arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
-            var areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
+            let clickedAreas = [];
+            let catLocations = [];
+            let allAreaNodes = [];
+            let arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
+            let areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
             
             // Interactables
-            var goToBedroomButton = document.getElementById("goToBedroomButton");
-            var goToKitchenButton = document.getElementById("goToKitchenButton");
+            let goToBedroomButton = document.getElementById("goToBedroomButton");
+            let goToKitchenButton = document.getElementById("goToKitchenButton");
             
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
                 let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
                 console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
                 arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
-                // console.log("%c%s", "background-color:grey; color:orange",
-                // 'Elements with id beginning "area_" converted from NodeList to an array are: ' + arrayFromClickables);
                 
                 allAreaNodes.forEach((e) => {
                     e.addEventListener("click", checkAddClickedAreaToArray);
@@ -251,12 +246,11 @@
             
             function addAreaToClickedAreas(e) {
                 if (!clickedAreas.includes(e.target.id)) {
-                    // if (!clickedAreas.includes(e.target.id) && (e.target.id != '')) {
-                        clickedAreas.push(e.target.id);
-                        console.log(clickedAreas);
-                        checkForCat(e);
-                    } else {
-                        checkForCat(e);
+                    clickedAreas.push(e.target.id);
+                    console.log(clickedAreas);
+                    checkForCat(e);
+                } else {
+                    checkForCat(e);
                 }
             }
         
@@ -264,17 +258,10 @@
                 placeCatsRandomly();
 
                 setTimeout(function () {
-                    // instructions.style.display = "none";
-                    // playArea.style.display = "flex";
-                    // playArea.style.opacity = 1;
                     goToBedroomButton.style.display = "block";
                     goToBedroomButton.style.opacity = 1;
-                }, 500); // Set the duration of the transition
-                document.getElementById("splashPage").style.animation = fadeOut;
-                // document.getElementById("splashPage").style.display = "none";
-                // document.getElementById("splashPage").classList.add('hidden');
+                }, 500);
 
-                // goToLocation("kitchen");
                 document.getElementById("playArea").style.animation = fadeIn;
                 document.getElementById("playArea").style.display = "flex";
 
@@ -291,17 +278,14 @@
                 const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
                 const selectedAreas = shuffledArray.slice(0, totalCats);
                 console.log(selectedAreas);
-                // selectedAreas.forEach(area => {
                 selectedAreas.forEach((area, index, array) => {
                     catLocations.push(area.id);
                     var container = document.getElementById(area.id);
-                    // console.log(container);
                     // container.innerHTML = "<img src='/img/cat1.gif'>";
                     // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
                     container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
                 });
 
-                // console.log('cat 0 id = ' + document.getElementById(0).id);
                 console.log("Placed cats in the following areas: ", catLocations);
             }
 
@@ -351,7 +335,7 @@
                     // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         notificationModal.remove();
-                    }, 40000); // Adjust the duration based on your fadeInOut animation
+                    }, 40000);
                 }, 10);
             }
 
@@ -365,35 +349,27 @@
                 if (location === "bedroom") {
                     goToBedroom();
                     goToBedroomButton.style.display = "none"; // Hides the goToBedroomButton
-                    goToKitchenButton.style.animation = fadeIn ;
 
                     // Change the image source after a delay to synchronize with the fade-out animation
                     setTimeout(function () {
                         document.getElementById("locationImage").src = "img/bedroom.jpg"; // Change the image source after fade-out is complete
                         playArea.style.animation = fadeIn;
                     }, 10);
-                    updateClickableAreas("bedroom");
                 } else if (location === "kitchen") {
                     goToKitchen();
-                    updateClickableAreas("kitchen");
-                    goToBedroomButton.style.animation = fadeIn;
                 } else {
-                    alert("Failed to goToLocation() with an invalid value.");
+                    console.error("Failed to goToLocation() with an invalid value.");
                 }
             }
 
             function goToKitchen() {
-                // Hide the existing goToBedroomButton
                 goToKitchenButton.style.display = "none";
 
-                //Hide the existing Bedroom rows
+                // Hide the existing Bedroom rows
                 document.querySelector(".bedroom").classList.add("hidden");
-                // document.querySelector(".bedroom").style.display = "none";
-                //Show the Kitchen rows
+                // Show the Kitchen rows
                 document.querySelector(".kitchen").classList.remove("hidden");
-                // document.querySelector(".kitchen").style.display = "flex";
-
-                // Show the goToKitchenButton after a delay
+                
                 setTimeout(function () {
                     goToBedroomButton.style.display = "block";
                 }, 500);
@@ -401,7 +377,7 @@
                 // Change the image source after a delay to synchronize with the fade-out animation
                 setTimeout(function () {
                     // Change the image source after fade-out is complete
-                    document.getElementById("locationImage").src = "img/kitchen.jpg";
+                    changeImage("kitchen");
                     
                     // Apply fade-in animation to the image container
                     playArea.style.animation = fadeIn;
@@ -414,8 +390,7 @@
                 // Hide the existing goToKitchenButton
                 goToBedroomButton.style.display = "none";
 
-                //Hide the existing Kitchen rows
-                // document.querySelector(".kitchen").style.display = "none";
+                // Hide the existing Kitchen rows
                 document.querySelector(".kitchen").classList.add("hidden");
                 //Show the Bedroom rows
                 document.querySelector(".bedroom").classList.remove("hidden");
@@ -427,50 +402,32 @@
 
                 // Change the image source after a delay to synchronize with the fade-out animation
                 setTimeout(function () {
-                    // Change the image source after fade-out is complete
-                    document.getElementById("locationImage").src = "img/bedroom.jpg";
-
+                    changeImage("bedroom");
+                    
                     // Apply fade-in animation to the image container
                     playArea.style.animation = fadeIn;
                 }, 10);
-
+                
                 updateClickableAreas("bedroom");
             }
 
-            // Add functionality to swap the clickable areas of the image.
             function changeImage(location) {
                 if (location == "bedroom") {
                     document.getElementById("locationImage").src = "img/bedroom.jpg";
                 } else if (location == "kitchen") {
-                    document.getElementById("bedroomImage").src = "img/kitchen.jpg";
-                }
-            }
-            
-            // Modifies the displayed clickable areas when the location has been updated.
-            // TODO: complete this function by replacing the relevant rows and their contents
-            function updateClickableAreas(location) {
-                if (location === "bedroom") {
-                    
-                } else if (location === "kitchen") {
-
-                } else {
-                    alert("Failed to update ClickableAreas to an invalid location.")
+                    document.getElementById("locationImage").src = "img/kitchen.jpg";
                 }
             }
             
             function hideClickableAreas() {
-                const areas = document.querySelectorAll(".area--clickable");
+                const areas = document.querySelectorAll(".areaClickable");
                 console.log(areas);
-                areas.forEach(area => areas.remove());
+                areas.forEach(area => areas.remove()); // TODO: fix, not working (console error)
             }
 
             function showInstructions() {
-                instructions.style.animation = fadeIn;
                 instructions.style.display = "block";
-                // document.getElementById("instructions").style.display = "block";
                 let letsGoButton = document.getElementById("letsGoButton");
-                letsGoButton.style.animation = fadeOut;
-                document.getElementById("startGameContainer").style.animation = fadeIn;
                 letsGoButton.remove();
             }
 
@@ -480,17 +437,14 @@
                 emojiModal.className = "emojiModal";
                 emojiModal.style.top = y + "px";
                 emojiModal.style.left = x + "px";
-                // emojiModal.style.zIndex = 7;
-                // emojiModal.style.opacity = 0;
-                // emojiModal.style.display = "none";
                 emojiModal.innerHTML = message;
-
-                // document.body.appendChild(emojiModal);
+                
                 document.getElementById("playArea").appendChild(emojiModal);
 
-                // Triggering the fadeInOut animation after a short delay
                 setTimeout(() => {
-                    emojiModal.style.animation = fadeInOut;
+                    // emojiModal.style.animation = fadeInOut;
+
+
                     // emojiModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
                     // emojiModal.style.position = "absolute"; // Ensure the modal stays fixed relative to the viewport
                     // emojiModal.style.width = "auto";

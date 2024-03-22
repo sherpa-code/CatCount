@@ -1,743 +1,742 @@
-            /* CSS Reset */
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box;
-            }
-
-            * {
-                margin: 0;
-            }
-
-            img,
-            picture {
-                display: block;
-                max-width: 100%;
-            }
-            /* CSS Reset ends */
-
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                } to {
-                    opacity: 1;
-                }
-            }
-
-            @keyframes fadeOut {
-                from {
-                    opacity: 1;
-                } to {
-                    opacity: 0;
-                }
-            }
-
-            @keyframes fadeInOut {
-                0% {
-                    opacity: 0;
-                } 25% {
-                    opacity: 1;
-                } 75% { 
-                    opacity: 1;
-                } 100% {
-                    opacity: 0;
-                }
-            }
-
-            @keyframes moveUp {
-                from {
-                    transform: translateY(0);
-                }
-                to {
-                    transform: translateY(-100px);
-                }
-            }
-
-            @keyframes moveDown {
-                from {
-                    transform: translateY(0);
-                }
-                to {
-                    transform: translateY(100px); /* Adjust the distance you want the heart to move up */
-                }
-            }
-
-            /* TODO: DEBUG to be disabled */
-            * {
-                outline: 2px solid red;
-            }
-
-            html,
-            body {
-                height: 100%;
-            }
-
-            img {
-                height: auto;
-                /* justify-content: center; */
-                margin: auto;
-            }
-
-            /* TODO: background will be one of a few blurred background images of cats to fill the negative space */
-            body {
-                line-height: 1.5;
-                -webkit-font-smoothing: antialiased;
-                font-family: Arial, sans-serif;
-                text-align: center;
-                background-color: #4d4d4d;
-                background-image: linear-gradient(rgb(129, 84, 1), rgba(165, 42, 42, 0.171));
-                animation: fadeIn 1.5s ease-in forwards;
-            }
-
-            main {
-                margin: 0 auto;
-                position: relative;
-                transition: opacity 0.5s ease-in-out;
-                flex-direction: column;
-                max-width: 100vh;
-                height: 100vh;
-            }
-
-            dialog {
-                animation: "fadeIn 0.5s ease-in forwards";
-                font-size: 150%;
-                margin-left: 1em;
-                border-radius: 1em;
-                display: none;
-                z-index: 2;
-                position: relative;
-            }
-
-            button {
-                border: none;
-                border-radius: 1em;
-                font-size: 1rem;
-                transition: background-color 1.6s ease-in-out;
-                z-index: 1;
-                color: #fff;
-            }
-
-            dialog.instructions {
-                transition: opacity 0.5s ease-in-out;
-                display: none;
-            }
-
-            dialog.success {
-                background: radial-gradient(circle, 
-                hsl(0, 25%, 50%),
-                hsl(30, 25%, 50%),
-                hsl(120, 25%, 50%),
-                hsl(210, 25%, 50%),
-                hsl(270, 25%, 50%),
-                hsl(330, 25%, 50%)
-                );
-            }
-
-            dialog.failure {
-                background: radial-gradient(circle, 
-                hsl(0, 0%, 31%),
-                hsl(0, 0%, 73%),
-                hsl(0, 0%, 23%),
-                hsl(0, 0%, 51%),
-                hsl(0, 0%, 9%),
-                hsl(0, 0%, 0%)
-                );
-            }
-
-            main .backgroundImage { 
-                position: absolute;
-                z-index: -1;
-                inset: 0;
-            }
-
-            section img {
-                height: 100%;
-            }
-
-            .messageOverlay {
-                background-color: #ddd;
-            }
-
-            .thanksText {
-                font-size: 50%;
-            }
-
-            /* TODO: remove the colored styling in the final version */
-            .area--clickable {
-                cursor: pointer;
-                justify-content: space-between;
-                display: flex;
-                flex-direction: column;
-                border: 1px solid red;
-            }
-
-            .area--clickable.hidden {
-                display: none;
-            }
-
-            section.kitchen {
-                flex-grow: 1;
-            }
-
-            section.bedroom {
-                flex-grow: 1;
-            }
-
-            /* Styles the 'goTo[location]' buttons; e.g. 'To the Bedroom' and 'To the Kitchen' buttons*/
-            .goToLocationButton {
-                opacity: 0;
-                position: absolute;
-                padding: 0.55rem;
-                border: none;
-                border-radius: 0.35rem;
-                font-size: 1rem;
-                transition: background-color 1.6s ease-in-out;
-                top: 50%;
-                z-index: 4;
-                background-color: #3498db;
-                color: #fff;
-            }
-
-            /* TODO: remove the colored styling in the final version */
-            .row {
-                display: flex;
-                justify-content: center;
-                background-color: #ffffff80;
-                border: 1px solid blue;
-            }
-
-            .row.hidden .area--clickable {
-                display: none;
-            }
-
-            .hidden {
-                display: none;
-            }
-
-            .row__stats {
-                flex: 0.175;
-                min-height: 4em;
-            }
-            
-            .emojiModal {
-                z-index: 7;
-                position: absolute;
-                display: block;
-                width: auto;
-                opacity: 0;
-            }
-
-            /* KITCHEN STYLES */
-            .kitchen .row__upper {
-                column-gap: 0.8rem;
-                padding-top: 4rem;
-                flex: 1;
-                align-items: end;
-                height: 25em;
-                padding-left: 4.4rem;
-                padding-right: 4rem;
-            }
-            
-            .kitchen .row__upper .area--clickable {
-                height: 17rem;
-            }
-
-            .kitchen .row__middle {
-                column-gap: 11rem;
-                overflow: hidden;
-                flex: 1;
-                padding-left: 5rem;
-                padding-right: 4rem;
-            }
-
-            .kitchen .row__bottom {
-                flex-grow: 1;
-                /* overflow: hidden; */
-                flex-direction: row;
-                padding-top: 1.5rem;
-                padding-left: 3.5rem;
-                padding-right: 4rem;
-                
-            }
-
-            .kitchen .bottom-second-left-top {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 18rem;
-            }
-
-            .kitchen .bottom-second-left-bottom {
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
-            }
-
-            .kitchen .cupboards.bottom-right {
-                width: 19rem;
-            }
-
-            #area_kitchen_1 {
-                width: 12.35rem;
-            }
-
-            #area_kitchen_2 {
-                width: 7rem;
-            }
-
-            #area_kitchen_3 {
-                width: 9rem;
-                
-            }
-
-            #area_kitchen_1,
-            #area_kitchen_2,
-            #area_kitchen_3 {
-                margin-bottom: 2.2em;
-                height: 18rem;
-            }
-
-
-            #area_kitchen_4,
-            #area_kitchen_5 {
-                width: 11rem;
-                height: 100%;
-            }
-
-            #area_kitchen_6 {
-                width: 10rem;
-                height: 4.5rem;
-                align-self: flex-end;
-            }
-            
-            #area_kitchen_7 {
-                width: 7rem;
-                height: 6.5rem;
-                padding-top: 1rem;
-                align-self: flex-end;
-            }
-
-            #area_kitchen_8 {
-                height: 18.5rem;
-                width: 13rem;
-            }
-
-            #area_kitchen_9 {
-                width: 18rem;
-                height: 3.5rem;
-            }
-
-            #area_kitchen_10 {
-                width: 10rem;
-            }
-            
-            #area_kitchen_11 {
-                width: 16rem;
-            }
-
-            #area_kitchen_12 {
-                width: 7rem;
-            }
-
-            #area_kitchen_12,
-            #area_kitchen_11 {
-                height: 13rem;
-            }
-
-            #area_kitchen_12 {
-                width: 11rem;
-                height: 6rem;
-            }
-            #area_kitchen_13 {
-                width: 11rem;
-                height: 10.5rem;
-            }
-            #area_kitchen_14 {
-                height: 2.5rem;
-            }
-            #area_kitchen_15 {
-                height: 3.9rem;
-            }
-            #area_kitchen_16 {
-                height: 1.8rem;
-            }
-            #area_kitchen_17 {
-                height: 2.3rem;
-            }
-            #area_kitchen_18 {
-                height: 5.5rem;
-            }
-
-
-            /* BEDROOM Styles */
-            .bedroom .row__upper {
-                column-gap: 0.8rem;
-                flex: 1;
-                align-items: end;
-                height: 16em;
-                display: flex;
-                justify-content: left;
-                padding-left: 10%
-            }
-            
-            /* ROW TOP */
-            .bedroom .shelves-stacked {
-                width: 6rem;
-            }
-
-            #area_bedroom_1,
-            #area_bedroom_2,
-            #area_bedroom_3,
-            #area_bedroom_4,
-            #area_bedroom_5 {
-                max-height: 11em;
-            }
-            
-            #area_bedroom_1 {
-                width: 13rem;
-                height: 11rem;
-            }
-
-            #area_bedroom_2,
-            #area_bedroom_3 {
-                height: 5.4rem;
-            }
-            
-            #area_bedroom_4 {
-                height: 4.5rem;
-            }
-            
-            #area_bedroom_5 {
-                height: 3.5rem;
-            }
-
-            #area_bedroom_4,
-            #area_bedroom_5 {
-                width: 4rem;
-            }
-
-            #area_bedroom_6 {
-                align-self: flex-start;
-                margin-left: auto;
-                height: 9rem;
-                margin-top: 2rem;
-                width: 9rem;
-            }
-
-            /* ROW MIDDLE */
-            .bedroom .row__middle {
-                column-gap: 0.6rem;
-                flex: 1;
-                height: 16.5rem;
-                display: flex;
-                justify-content: left;
-                padding-left: 10%;
-                overflow: visible;
-            }
-
-            #area_bedroom_7 {
-                align-self: flex-start;
-                width: 13rem;
-                height: 100%;
-            }
-
-            #area_bedroom_8 {
-                width: 6.25rem;
-                height: 100%;
-            }
-
-            #area_bedroom_9 {
-                width: 4.25rem;
-                height: 3rem;
-                margin-top: 2.25rem;
-            }
-
-            #area_bedroom_10 {
-                width: 4.25rem;
-                height: 130%;
-            }
-
-            #area_bedroom_12 {  
-                width: 4.1rem;
-                height: 2.6rem;
-            }
-
-            /* ROW BOTTOM */
-            .bedroom .row__bottom {
-                column-gap: 0.6rem;
-                display: flex;
-                flex: 1;
-                /* justify-content: left; */
-                justify-content: space-between;
-                padding-left: 10%;
-            }
-
-
-            #area_bedroom_13,
-            #area_bedroom_14,
-            #area_bedroom_15 {
-                width: 13rem;
-            }
-
-            #area_bedroom_13 {
-                height: 3rem;
-            }
-            #area_bedroom_14 {
-                height: 3rem;
-            }
-            #area_bedroom_15 {
-                height: 3.25rem;
-            }
-            #area_bedroom_16 {
-                margin-left: 6.75rem;
-                width: 4.6rem;
-                height: 7.75rem;
-            }
-
-            /* #area_bedroom_20,
-            #area_bedroom_21,
-            #area_bedroom_22 {
-                margin-left: 13rem;
-            } */
-
-            #area_bedroom_17 {}
-            #area_bedroom_18 {}
-            #area_bedroom_19 {}
-            #area_bedroom_20 {}
-            #area_bedroom_21 {}
-            #area_bedroom_22 {}
-            #area_bedroom_23 {
-                /* align-self: flex-end; */
-            }
-
-
-            .drawers {
-                margin-left: auto;
-                padding-top: 1rem;
-            }
-
-            #area_bedroom_20,
-            #area_bedroom_21,
-            #area_bedroom_22 {
-                /* margin-left: auto; */
-                margin-right: 2rem;
-                /* margin-top: 1rem; */
-                width: 11rem;
-            }
-
-            #area_bedroom_20 {
-                height: 4rem;
-            }
-
-            #area_bedroom_21,
-            #area_bedroom_22 {
-                height: 3.35em;
-            }
-
-            #area_bedroom_23 {
-                /* margin-left: auto; */
-                margin-top: 6rem;
-                width: 12rem;
-                height: 15rem;
-            }
-
-            
-            .stats--display {
-                position: absolute;
-                padding: 0.15rem 0.65rem;
-                border-radius: 0.5rem;
-                background-color: #3498db;
-                color: #fff;
-                font-weight: bold;
-                font-size: 1.15rem;
-            }
-            
-            /* TODO: Make all cat images the same dimensions
-            /* TODO: When a cat is shown it hovers over that clickable, even if it overlaps with neighboring ones
-            /* TODO: Set the cat image's z-order to not interfere with clicking on the clickable area */
-            .catGif {
-                z-index: -1;
-                /* Approach #1 */
-                /* object-fit: cover; */
-                /* object-fit: scale-down; */
-                object-fit: contain;
-                /* Approach #3 */
-                /* max-width: 100%;
-                max-height: 100%;
-                width: auto;
-                height: auto; */
-                /* animation: fadeInOut 3s ease-in-out forwards; */
-                opacity: 0; /* start with cat images transparent */
-            }
-
-            .catGif.active {
-                opacity: 1;
-            }
-
-            #goToBedroomButton {
-                left: 2rem;
-            }
-
-            #goToKitchenButton {
-                right: 2rem;
-            }
-
-            #splashPage {
-                height: 100%;
-                position: relative;
-                background-image: url(/img/splashPage.jpg);
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: contain;
-            }
-
-            .container {
-                max-width: 1000px;
-                margin: auto;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                position: relative;
-                padding: 0% 5%;
-            }
-
-            #splashTitle {
-                display: block;
-                font-size: 150%;
-                color: white;
-                padding: 1em;
-                background: radial-gradient(circle, 
-                    hsl(0, 25%, 50%),
-                    hsl(30, 25%, 50%),
-                    hsl(120, 25%, 50%),
-                    hsl(210, 25%, 50%),
-                    hsl(270, 25%, 50%),
-                    hsl(330, 25%, 50%)
-                );
-                border-radius: 1em;
-                transition: opacity 0.5s ease-in-out;
-                opacity: 85%;
-                scale: 1.2;
-                transform: skew(-3deg, -3deg);           transform: skew(-3deg, -3deg);
-            }
-
-            #instructions {
-                background: radial-gradient(ellipse at top, #e66465, transparent),
-                radial-gradient(ellipse at bottom, #4d9f0c, transparent);
-                transition: opacity 0.5s ease-in-out;
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                top: 15vh;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                opacity: 75%;
-                scale: 0.9;
-            }
-
-            #instructions h1 {
-                margin-bottom: 0.5em;
-            }
-
-            #instructions p {
-                margin-bottom: 0.25em;
-            }
-
-            #startGameContainer {
-                margin-top: 2vh;
-            }
-
-            #letsGoButton {
-                font-size: 200%;
-                font-weight: bold;
-                padding: 1.35em;
-                background-color: rgba(230, 78, 40, 0.411);
-                color: black;
-                border-radius: 1em;
-                transition: opacity 0.5s ease-in-out;
-                display: block;
-                transform: skew(-3deg, -3deg);
-                opacity: 90%;
-                max-width: 350px;
-                align-self: flex-end;
-            }
-
-            #letsGoButtonContainer {
-                margin-left: auto;
-            }
-
-            #startGameButton {
-                font-size: 150%;
-                padding: 0.45em;
-                color: black;
-                border-radius: 0.35em;
-                transition: opacity 0.5s ease-in-out;
-            }
-
-            #startGameContainer {
-                opacity: 85%;
-            }
-          
-            /* TODO: replace instances of this with the semantic HTML 'main' */
-            #playArea {
-                margin: 0 auto;
-                position: relative;
-                transition: opacity 0.5s ease-in-out;
-                display: none;
-                flex-direction: column;
-                max-width: 100vh;
-                height: 100vh;
-            }
-
-            #timer {
-                top: 1rem;
-                right: 2.5rem;
-            }
-
-            #foundCounter {
-                top: 1rem;
-                right: 12rem;
-            }
-
-            @media screen and (max-width: 980px) {
-                .row__upper {
-                    /* flex-direction: column; */
-                }
-            }
-
-            @media screen and (max-width: 480px) {
-                #area_kitchen_4,
-                #area_kitchen_5 {
-                    /* height: 65%; */
-                }
-
-                .row__stats {
-                    padding: 0.55rem 0;
-                    min-height: 4em;
-                }
-
-                .row__upper .area--clickable {
-                    /* height: 45%; */
-                }
-
-                .row__upper {
-                    /* column-gap: 1rem; */
-                    /* padding-top: 4rem; */
-                    /* flex: 1; */
-                    /* align-items: end; */
-                    height: 8rem;
-                }
-
-                .row {
-                    padding: 0 1rem;
-                }
-            }
-
-            /* @media screen and (min-width: 1023px) {
-                .row__upper {
-                    flex-direction: column;
-                }
-            } */
-            
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+img,
+picture {
+    display: block;
+    max-width: 100%;
+}
+/* CSS Reset ends */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    } to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    } 25% {
+        opacity: 1;
+    } 75% { 
+        opacity: 1;
+    } 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes moveUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100px);
+    }
+}
+
+@keyframes moveDown {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100px); /* Adjust the distance you want the heart to move up */
+    }
+}
+
+/* TODO: DEBUG to be disabled */
+* {
+    outline: 2px solid red;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+img {
+    height: auto;
+    margin: auto;
+}
+
+/* TODO: background will be one of a few blurred background images of cats to fill the negative space */
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #4d4d4d;
+    background-image: linear-gradient(rgb(129, 84, 1), rgba(165, 42, 42, 0.171));
+    animation: fadeIn 1.5s ease-in forwards;
+}
+
+main {
+    margin: 0 auto;
+    position: relative;
+    transition: opacity 0.5s ease-in-out;
+    flex-direction: column;
+    max-width: 100vh;
+    height: 100vh;
+}
+
+button {
+    border: none;
+    border-radius: 1em;
+    font-size: 1rem;
+    transition: background-color 1.6s ease-in-out;
+    z-index: 1;
+    color: #fff;
+}
+
+dialog {
+    animation: "fadeIn 0.5s ease-in forwards";
+    font-size: 150%;
+    margin-left: 1em;
+    border-radius: 1em;
+    display: none;
+    z-index: 2;
+    position: relative;
+}
+
+dialog.instructions {
+    transition: opacity 0.5s ease-in-out;
+    display: none;
+}
+
+dialog.success {
+    background: radial-gradient(
+        circle, 
+        hsl(0, 25%, 50%),
+        hsl(30, 25%, 50%),
+        hsl(120, 25%, 50%),
+        hsl(210, 25%, 50%),
+        hsl(270, 25%, 50%),
+        hsl(330, 25%, 50%)
+    );
+}
+
+dialog.failure {
+    background: radial-gradient(
+        circle, 
+        hsl(0, 0%, 31%),
+        hsl(0, 0%, 73%),
+        hsl(0, 0%, 23%),
+        hsl(0, 0%, 51%),
+        hsl(0, 0%, 9%),
+        hsl(0, 0%, 0%)
+    );
+}
+
+main .backgroundImage { 
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+}
+
+section {
+    flex-grow: 1;   
+}
+
+section img {
+    height: 100%;
+}
+    
+.messageOverlay {
+    background-color: #ddd;
+}
+    
+.thanksText {
+    font-size: 50%;
+}
+
+.areaClickable {
+    cursor: pointer;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+/* UTILITY CLASSES */
+
+/* pseudoclass for defining global scope CSS variables */
+:root {
+    --animationFadeIn: fadeIn 0.5s ease-in forwards;
+    --animationFadeOut: fadeOut 0.5s ease-out forwards;
+    --animationFadeInOut: fadeInOut 2s ease-in-out forwards;
+    --animationFadeInOut4s: fadeInOut 4s ease-in-out forwards;
+    --transitionOpacity: opacity 0.5s ease-in-out;
+}
+
+/* ! TODO ADAM: ADDED UTILITY CLASSES HERE THAT WE CAN TOGGLE WITH JS */
+.fadeIn {
+    animation: var(--animationFadeIn);
+}
+
+.fadeOut {
+    animation: var(--animationFadeOut);
+}
+
+.fadeInOut {
+    animation: var(--animationFadeInOut);
+}
+
+.areaClickable.hidden {
+    display: none;
+}
+
+.goToLocationButton {
+    opacity: 0;
+    position: absolute;
+    padding: 0.55rem;
+    border-radius: 0.35rem;
+    transition: background-color 1.6s ease-in-out;
+    top: 50%;
+    z-index: 4;
+    background-color: #3498db;
+    animation: var(--animationFadeIn);
+}
+
+/* TODO: remove the colored styling in the final version */
+.row {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff80;
+    border: 1px solid blue;
+}
+
+.row.hidden .areaClickable {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.row__stats {
+    flex: 0.175;
+    min-height: 4em;
+}
+
+.emojiModal {
+    z-index: 7;
+    position: absolute;
+    display: block;
+    width: auto;
+    opacity: 0;
+    animation: var(--animationFadeInOut);
+}
+
+/* KITCHEN STYLES */
+.kitchen .row__upper {
+    column-gap: 0.8rem;
+    padding-top: 4rem;
+    flex: 1;
+    align-items: end;
+    height: 25em;
+    padding-left: 4.4rem;
+    padding-right: 4rem;
+}
+
+.kitchen .row__upper .areaClickable {
+    height: 17rem;
+}
+
+.kitchen .row__middle {
+    column-gap: 11rem;
+    overflow: hidden;
+    flex: 1;
+    padding-left: 5rem;
+    padding-right: 4rem;
+}
+
+.kitchen .row__bottom {
+    flex-grow: 1;
+    flex-direction: row;
+    padding-top: 1.5rem;
+    padding-left: 3.5rem;
+    padding-right: 4rem;
+    
+}
+
+.kitchen .bottom-second-left-top {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 18rem;
+}
+
+.kitchen .bottom-second-left-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.kitchen .cupboards.bottom-right {
+    width: 19rem;
+}
+
+#area_kitchen_1 {
+    width: 12.35rem;
+}
+
+#area_kitchen_2 {
+    width: 7rem;
+}
+
+#area_kitchen_3 {
+    width: 9rem;
+    
+}
+
+#area_kitchen_1,
+#area_kitchen_2,
+#area_kitchen_3 {
+    margin-bottom: 2.2em;
+    height: 18rem;
+}
+
+
+#area_kitchen_4,
+#area_kitchen_5 {
+    width: 11rem;
+    height: 100%;
+}
+
+#area_kitchen_6 {
+    width: 10rem;
+    height: 4.5rem;
+    align-self: flex-end;
+}
+
+#area_kitchen_7 {
+    width: 7rem;
+    height: 6.5rem;
+    padding-top: 1rem;
+    align-self: flex-end;
+}
+
+#area_kitchen_8 {
+    height: 18.5rem;
+    width: 13rem;
+}
+
+#area_kitchen_9 {
+    width: 18rem;
+    height: 3.5rem;
+}
+
+#area_kitchen_10 {
+    width: 10rem;
+}
+
+#area_kitchen_11 {
+    width: 16rem;
+}
+
+#area_kitchen_12 {
+    width: 7rem;
+}
+
+#area_kitchen_12,
+#area_kitchen_11 {
+    height: 13rem;
+}
+
+#area_kitchen_12 {
+    width: 11rem;
+    height: 6rem;
+}
+#area_kitchen_13 {
+    width: 11rem;
+    height: 10.5rem;
+}
+#area_kitchen_14 {
+    height: 2.5rem;
+}
+#area_kitchen_15 {
+    height: 3.9rem;
+}
+#area_kitchen_16 {
+    height: 1.8rem;
+}
+#area_kitchen_17 {
+    height: 2.3rem;
+}
+#area_kitchen_18 {
+    height: 5.5rem;
+}
+
+/* BEDROOM Styles */
+.bedroom .row__upper {
+    column-gap: 0.8rem;
+    flex: 1;
+    align-items: end;
+    height: 16em;
+    display: flex;
+    justify-content: left;
+    padding-left: 10%
+}
+
+/* ROW TOP */
+.bedroom .shelves-stacked {
+    width: 6rem;
+}
+
+#area_bedroom_1,
+#area_bedroom_2,
+#area_bedroom_3,
+#area_bedroom_4,
+#area_bedroom_5 {
+    max-height: 11em;
+}
+
+#area_bedroom_1 {
+    width: 13rem;
+    height: 11rem;
+}
+
+#area_bedroom_2,
+#area_bedroom_3 {
+    height: 5.4rem;
+}
+
+#area_bedroom_4 {
+    height: 4.5rem;
+}
+
+#area_bedroom_5 {
+    height: 3.5rem;
+}
+
+#area_bedroom_4,
+#area_bedroom_5 {
+    width: 4rem;
+}
+
+#area_bedroom_6 {
+    align-self: flex-start;
+    margin-left: auto;
+    height: 9rem;
+    margin-top: 2rem;
+    width: 9rem;
+}
+
+/* ROW MIDDLE */
+.bedroom .row__middle {
+    column-gap: 0.6rem;
+    flex: 1;
+    height: 16.5rem;
+    display: flex;
+    justify-content: left;
+    padding-left: 10%;
+    overflow: visible;
+}
+
+#area_bedroom_7 {
+    align-self: flex-start;
+    width: 13rem;
+    height: 100%;
+}
+
+#area_bedroom_8 {
+    width: 6.25rem;
+    height: 100%;
+}
+
+#area_bedroom_9 {
+    width: 4.25rem;
+    height: 3rem;
+    margin-top: 2.25rem;
+}
+
+#area_bedroom_10 {
+    width: 4.25rem;
+    height: 130%;
+}
+
+#area_bedroom_12 {  
+    width: 4.1rem;
+    height: 2.6rem;
+}
+
+/* ROW BOTTOM */
+.bedroom .row__bottom {
+    column-gap: 0.6rem;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    padding-left: 10%;
+}
+
+#area_bedroom_13,
+#area_bedroom_14,
+#area_bedroom_15 {
+    width: 13rem;
+}
+
+#area_bedroom_13 {
+    height: 3rem;
+}
+#area_bedroom_14 {
+    height: 3rem;
+}
+#area_bedroom_15 {
+    height: 3.25rem;
+}
+#area_bedroom_16 {
+    margin-left: 6.75rem;
+    width: 4.6rem;
+    height: 7.75rem;
+}
+
+#area_bedroom_17 {}
+#area_bedroom_18 {}
+#area_bedroom_19 {}
+#area_bedroom_20 {}
+#area_bedroom_21 {}
+#area_bedroom_22 {}
+#area_bedroom_23 {
+    /* align-self: flex-end; */
+}
+
+.drawers {
+    margin-left: auto;
+    padding-top: 1rem;
+}
+
+#area_bedroom_20,
+#area_bedroom_21,
+#area_bedroom_22 {
+    margin-right: 2rem;
+    width: 11rem;
+}
+
+#area_bedroom_20 {
+    height: 4rem;
+}
+
+#area_bedroom_21,
+#area_bedroom_22 {
+    height: 3.35em;
+}
+
+#area_bedroom_23 {
+    margin-top: 6rem;
+    width: 12rem;
+    height: 15rem;
+}
+
+
+.stats--display {
+    position: absolute;
+    padding: 0.15rem 0.65rem;
+    border-radius: 0.5rem;
+    background-color: #3498db;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+
+/* TODO: Make all cat images the same dimensions
+/* TODO: When a cat is shown it hovers over that clickable, even if it overlaps with neighboring ones
+/* TODO: Set the cat image's z-order to not interfere with clicking on the clickable area */
+.catGif {
+    z-index: -1;
+    /* Approach #1 */
+    /* object-fit: cover; */
+    /* object-fit: scale-down; */
+    object-fit: contain;
+    /* Approach #3 */
+    /* max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto; */
+    /* animation: fadeInOut 3s ease-in-out forwards; */
+    opacity: 0; /* start with cat images transparent */
+}
+
+.catGif.active {
+    opacity: 1;
+}
+
+#goToBedroomButton {
+    left: 2rem;
+}
+
+#goToKitchenButton {
+    right: 2rem;
+}
+
+#splashPage {
+    height: 100%;
+    position: relative;
+    background-image: url(/img/splashPage.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    animation: var(--animationFadeIn);
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    padding: 0% 5%;
+}
+
+#splashTitle {
+    display: block;
+    font-size: 150%;
+    color: white;
+    padding: 1em;
+    background: radial-gradient(circle, 
+        hsl(0, 25%, 50%),
+        hsl(30, 25%, 50%),
+        hsl(120, 25%, 50%),
+        hsl(210, 25%, 50%),
+        hsl(270, 25%, 50%),
+        hsl(330, 25%, 50%)
+    );
+    border-radius: 1em;
+    opacity: 85%;
+    scale: 1.2;
+    transform: skew(-3deg, -3deg);
+}
+
+#instructions {
+    background: radial-gradient(ellipse at top, #e66465, transparent),
+    radial-gradient(ellipse at bottom, #4d9f0c, transparent);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    top: 15vh;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 75%;
+    scale: 0.9;
+    animation: var(--animationFadeIn);
+}
+
+#instructions h1 {
+    margin-bottom: 0.5em;
+}
+
+#instructions p {
+    margin-bottom: 0.25em;
+}
+
+#letsGoButton {
+    align-self: flex-end;
+    background-color: rgba(230, 78, 40, 0.411);
+    border-radius: 1em;
+    color: black;
+    display: block;
+    font-size: 200%;
+    font-weight: bold;
+    max-width: 350px;
+    opacity: 90%;
+    padding: 1.35em;
+    animation: var(--animationFadeIn);
+    transform: skew(-3deg, -3deg);
+}
+
+#letsGoButtonContainer {
+    margin-left: auto;
+}
+
+#startGameButton {
+    font-size: 150%;
+    padding: 0.45em;
+    color: white;
+    border-radius: 0.35em;
+    animation: var(--animationFadeIn);
+}
+
+#startGameContainer {
+    margin-top: 2vh;
+    animation: var(--animationFadeIn);
+    opacity: 85%;
+}
+
+/* TODO: replace instances of this with the semantic HTML 'main' */
+#playArea {
+    margin: 0 auto;
+    position: relative;
+    display: none;
+    flex-direction: column;
+    max-width: 100vh;
+    height: 100vh;
+}
+
+#timer {
+    top: 1rem;
+    right: 2.5rem;
+}
+
+#foundCounter {
+    top: 1rem;
+    right: 12rem;
+}
+
+@media screen and (max-width: 980px) {
+    .row__upper {
+        /* flex-direction: column; */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #area_kitchen_4,
+    #area_kitchen_5 {
+        /* height: 65%; */
+    }
+
+    .row__stats {
+        padding: 0.55rem 0;
+        min-height: 4em;
+    }
+
+    .row__upper .areaClickable {
+        /* height: 45%; */
+    }
+
+    .row__upper {
+        /* column-gap: 1rem; */
+        /* padding-top: 4rem; */
+        /* flex: 1; */
+        /* align-items: end; */
+        height: 8rem;
+    }
+
+    .row {
+        padding: 0 1rem;
+    }
+}
+
+/* @media screen and (min-width: 1023px) {
+    .row__upper {
+        flex-direction: column;
+    }
+} */
