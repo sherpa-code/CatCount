@@ -79,7 +79,7 @@
 
             <!-- Clickable areas: Kitchen -->
             <section class="kitchen">
-                <img src="img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
+                <img src="./img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
                 <section class="row row__upper">
                     <div class="areaClickable" id="area_kitchen_1">Area 1</div>
                     <div class="areaClickable" id="area_kitchen_2">Area 2</div>
@@ -118,7 +118,7 @@
 
             <!-- Clickable areas: Bedroom -->
             <section class="bedroom hidden">
-                <img src="img/bedroom.jpg" alt="Location Image" class="backgroundImage">
+                <img src="./img/bedroom.jpg" alt="Location Image" class="backgroundImage">
                 <section class="row row__upper">
                     <div class="areaClickable cupboards" id="area_bedroom_1">Area 1</div>
                     <div class="cupboards shelves-stacked">
@@ -305,7 +305,7 @@
 
                     // Change the image source after a delay to synchronize with the fade-out animation
                     setTimeout(function () {
-                        document.getElementById("locationImage").src = "img/bedroom.jpg"; // Change the image source after fade-out is complete
+                        document.getElementById("locationImage").src = "./img/bedroom.jpg"; // Change the image source after fade-out is complete
                         playArea.style.animation = fadeIn;
                     }, 10);
                 } else if (location === "kitchen") {
@@ -357,9 +357,9 @@
 
             function changeImage(location) {
                 if (location == "bedroom") {
-                    document.getElementById("locationImage").src = "img/bedroom.jpg";
+                    document.getElementById("locationImage").src = "./img/bedroom.jpg";
                 } else if (location == "kitchen") {
-                    document.getElementById("locationImage").src = "img/kitchen.jpg";
+                    document.getElementById("locationImage").src = "./img/kitchen.jpg";
                 }
             }
 
