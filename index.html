@@ -182,7 +182,8 @@
             
             // Statistics
             let clickCounter = 0;
-            let timer = 90;
+            // let timer = 90;
+            let timer = 9999;
             // let timer = 3;
             let catsFound = 0;
             let totalCats = 3;
@@ -263,7 +264,7 @@
                 selectedAreas.forEach((area, index, array) => {
                     catLocations.push(area.id);
                     var container = document.getElementById(area.id);
-                    container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
+                    container.innerHTML = `<img class='catGif' id='cat${index}' src='./img/cat${index}.gif'>`;
                 });
 
                 // console.log("Placed cats in the following areas: ", catLocations);
