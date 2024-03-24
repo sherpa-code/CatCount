@@ -226,12 +226,9 @@ section img {
     animation: var(--animationFadeIn);
 }
 
-/* TODO: remove the colored styling in the final version */
 .row {
     display: flex;
     justify-content: center;
-    background-color: #ffffff80;
-    border: 1px solid blue;
 }
 
 .row.hidden .areaClickable {
