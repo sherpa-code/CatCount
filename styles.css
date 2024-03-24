@@ -60,11 +60,6 @@ picture {
     }
 }
 
-/* TODO: DEBUG to be disabled */
-* {
-    /* outline: 2px solid red; */
-}
-
 html,
 body {
     height: 100%;
