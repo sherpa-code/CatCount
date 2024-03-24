@@ -7,7 +7,6 @@
   
   TODO: remove the grey colors and row outlines from elements
   TODO: add to Github Pages
-  TODO: center the success and failure message modals
   TODO: add responsiveness via Media Queries for at least 1080p and 4k
 -->
 <html lang="en">
@@ -183,8 +182,8 @@
             
             // Statistics
             let clickCounter = 0;
-            // let timer = 90;
-            let timer = 3;
+            let timer = 90;
+            // let timer = 3;
             let catsFound = 0;
             let totalCats = 3;
             
@@ -202,7 +201,7 @@
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
                 let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
-                console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
+                // console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
                 arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
                 
                 allAreaNodes.forEach((e) => {
@@ -214,7 +213,6 @@
             function addAreaToClickedAreas(e) {
                 if (!clickedAreas.includes(e.target.id)) {
                     clickedAreas.push(e.target.id);
-                    console.log("ClickedAreas = " + clickedAreas);
                     checkForCat(e);
                 } else {
                     checkForCat(e);
@@ -226,11 +224,8 @@
             function checkForCat(hidingPlace) {
                 if (catLocations.includes(hidingPlace.target.id)) {
                     catsFound++;
-                    catsFound++; // TODO: disable, debug only
-                    catsFound++; // TODO: disable, debug only
                     document.getElementById("foundCounterValue").innerHTML = catsFound;
                     hidingPlace.target.children[0].style.animation = fadeIn;
-                    console.log(`Children of this hidingPlace element: `, hidingPlace.target.children);
                     showNotification("❤️", hidingPlace.clientX, hidingPlace.clientY);
                 } else {
                     showNotification("Darn, no cat here... 😟", hidingPlace.clientX, hidingPlace.clientY);
@@ -261,7 +256,6 @@
                     
             // Randomizes the available clickable areas and adds the first 3 from the
             // randomized array into the catLocations var
-            // TODO: fix bug where the same cat is placed in the same area
             function placeCatsRandomly() {
                 const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
                 const selectedAreas = shuffledArray.slice(0, totalCats);
@@ -269,12 +263,10 @@
                 selectedAreas.forEach((area, index, array) => {
                     catLocations.push(area.id);
                     var container = document.getElementById(area.id);
-                    // container.innerHTML = "<img src='/img/cat1.gif'>";
-                    // container.innerHTML = `<img src='/img/cat${index}.gif'>`; // uses string interpolation // change cat image names starting at cat 0
                     container.innerHTML = `<img class='catGif' id='cat${index}' src='/img/cat${index}.gif'>`;
                 });
 
-                console.log("Placed cats in the following areas: ", catLocations);
+                // console.log("Placed cats in the following areas: ", catLocations);
             }
             
             // Function to show a notification modal at the specified coordinates // TODO: create another for showEmoji
@@ -305,8 +297,6 @@
             // Changes the 'location' the user is in, including animated crossfade and
             // updating the clickable areas to match the new background room image.
             function goToLocation(location) {
-                console.log("goToLocation fired: " + location);
-                
                 // Apply fade-out animation to the image container
                 playArea.style.animation = fadeOut;
                 if (location === "bedroom") {
@@ -389,16 +379,6 @@
                 document.getElementById("playArea").appendChild(emojiModal);
 
                 setTimeout(() => {
-                    // emojiModal.style.animation = fadeInOut;
-
-
-                    // emojiModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
-                    // emojiModal.style.position = "absolute"; // Ensure the modal stays fixed relative to the viewport
-                    // emojiModal.style.width = "auto";
-                    // emojiModal.style.padding = "10px";
-                    // emojiModal.style.transform = "translate(-50%, -50%) scale(2)";
-                    // emojiModal.style.display = "block";
-                    // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         emojiModal.remove();
                     }, 40000);
@@ -424,7 +404,6 @@
             // Begins the timer countdown and directs the game to the appropriate end state
             function runTimer() {
                 var interval = window.setInterval(function(){
-                    // if ((timer <= 0) && (catsFound < totalCats)) {
                     if (timer <= 0) {
                         clearInterval(interval);
                         gameOver(false);
@@ -450,11 +429,9 @@
                 },  interval);
             }
             
-            // TODO: Show the cats in the unfound places they were hiding
             function failure() {
                 var failureMessage = document.getElementById("failureMessage");
                 failureMessage.style.display = "block";
-                console.log("Failed at the game");
 
                 const emojiInterval = setInterval(() => {
                     addEmojiRandomLocation(frownEmoji);
@@ -463,8 +440,6 @@
                         
             // Removes all clickable areas from the the screen on fail state, then displays the appropriate modal.
             function gameOver(outcome) {
-                console.log("gameOver fired with outcome: " + outcome);
-
                 let goToLocationButtons = Array.from(document.getElementsByClassName("goToLocationButton"));
                 goToLocationButtons.forEach((e) => {
                     e.style.display = "none";
@@ -474,13 +449,9 @@
                     e.style.display = "none";
                 });
 
-                // document.getElementsByClassName("goToLocationButton")[0].style.display = "none";
-                // document.getElementsByClassName("goToLocationButton")[1].style.display = "none";
                 if (outcome) {
-                    console.log("Game Over: Success because gameOver(outcome) true");
                     successful();
                 } else {
-                    console.log("Game Over: Failure because gameOver(outcome) false");
                     failure();
                 }
             }
