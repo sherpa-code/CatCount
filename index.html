@@ -179,8 +179,8 @@
             
             // Statistics
             let clickCounter = 0;
-            let timer = 90;
-            // let timer = 9999;
+            //let timer = 90;
+            let timer = 9999;
             // let timer = 3;
             let catsFound = 0;
             let totalCats = 3;
@@ -288,7 +288,7 @@
                     // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         notificationModal.remove();
-                    }, 40000);
+                    }, 2200);
                 }, 10);
             }
 
@@ -384,8 +384,13 @@
             }
 
             function addEmojiRandomLocation(emoji) {
-                const playAreaWidth = playArea.offsetWidth;
-                const playAreaHeight = playArea.offsetHeight;
+                const emojiWidth = 50;
+                const emojiHeight = 50;
+
+                const playAreaWidth = playArea.offsetWidth - emojiWidth;
+                const playAreaHeight = playArea.offsetHeight - emojiHeight;
+                // const playAreaWidth = playArea.offsetWidth;
+                // const playAreaHeight = playArea.offsetHeight;
                 
                 let randomX = Math.floor(Math.random() * playAreaWidth);
                 let randomY = Math.floor(Math.random() * (playAreaHeight - 20));
