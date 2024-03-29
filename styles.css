@@ -459,12 +459,6 @@ section {
 }
 
 /* BEDROOM ROW LOWER */
-#area_bedroom_12 {
-  width: 4.1rem;
-  height: 2.6rem;
-}
-
-/* ROW BOTTOM */
 .bedroom .row__bottom {
   column-gap: 0.6rem;
   display: flex;
@@ -473,21 +467,30 @@ section {
   padding-left: 10%;
 }
 
+#area_bedroom_12 {
+  width: 4.1rem;
+  height: 2.6rem;
+}
+
+
+#area_bedroom_13 {
+  height: 3rem;
+}
+
+#area_bedroom_14 {
+  height: 3rem;
+}
+
+#area_bedroom_15 {
+  height: 3.25rem;
+}
+
 #area_bedroom_13,
 #area_bedroom_14,
 #area_bedroom_15 {
   width: 13rem;
 }
 
-#area_bedroom_13 {
-  height: 3rem;
-}
-#area_bedroom_14 {
-  height: 3rem;
-}
-#area_bedroom_15 {
-  height: 3.25rem;
-}
 #area_bedroom_16 {
   margin-left: 6.75rem;
   width: 4.6rem;
@@ -500,15 +503,7 @@ section {
 }
 #area_bedroom_19 {
 }
-#area_bedroom_20 {
-}
-#area_bedroom_21 {
-}
-#area_bedroom_22 {
-}
-#area_bedroom_23 {
-  /* align-self: flex-end; */
-}
+
 
 .drawers {
   margin-left: auto;
@@ -575,61 +570,61 @@ section {
 }
 
 #splashPage {
-  height: 100%;
-  position: relative;
+  animation: var(--animationFadeIn);
   background-image: url(./img/splashPage.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  animation: var(--animationFadeIn);
+  height: 100%;
+  position: relative;
 }
 
 .container {
-  max-width: 1000px;
-  margin: auto;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: space-around;
+  margin: auto;
+  max-width: 1000px;
   position: relative;
   padding: 0% 5%;
+  width: 100%;
 }
 
 #splashTitle {
+  border-radius: 1em;
+  color: white;
   display: block;
   font-size: 150%;
-  color: white;
+  margin-left: 1em;
+  opacity: 85%;
   padding: 1em;
+  scale: 1.2;
+  transform: skew(-3deg, -3deg);
   background: radial-gradient(
     circle,
     hsl(0, 25%, 50%),
     hsl(30, 25%, 50%),
-    hsl(120, 25%, 50%),
-    hsl(210, 25%, 50%),
-    hsl(270, 25%, 50%),
-    hsl(330, 25%, 50%)
+      hsl(120, 25%, 50%),
+      hsl(210, 25%, 50%),
+      hsl(270, 25%, 50%),
+      hsl(330, 25%, 50%)
   );
-  border-radius: 1em;
-  opacity: 85%;
-  scale: 1.2;
-  transform: skew(-3deg, -3deg);
-  margin-left: 1em;
 }
 
 #instructions {
-  background: radial-gradient(ellipse at top, #e66465, transparent),
-    radial-gradient(ellipse at bottom, #4d9f0c, transparent);
+  align-items: center;
+  animation: var(--animationFadeIn);
   display: none;
   flex-direction: column;
-  align-items: center;
   top: 15vh;
   right: 0;
   bottom: 0;
   left: 0;
   opacity: 75%;
   scale: 0.9;
-  animation: var(--animationFadeIn);
+  background: radial-gradient(ellipse at top, #e66465, transparent),
+    radial-gradient(ellipse at bottom, #4d9f0c, transparent);
 }
 
 #instructions h1 {
@@ -642,6 +637,7 @@ section {
 
 #letsGoButton {
   align-self: flex-end;
+  animation: var(--animationFadeIn);
   background-color: rgba(230, 78, 40, 0.411);
   border-radius: 1em;
   color: black;
@@ -651,7 +647,6 @@ section {
   max-width: 350px;
   opacity: 90%;
   padding: 1.35em;
-  animation: var(--animationFadeIn);
   transform: skew(-3deg, -3deg);
 }
 
@@ -660,27 +655,26 @@ section {
 }
 
 #startGameButton {
+  animation: var(--animationFadeIn);
+  border-radius: 0.35em;
+  color: white;
   font-size: 150%;
   padding: 0.45em;
-  color: white;
-  border-radius: 0.35em;
-  animation: var(--animationFadeIn);
 }
 
 #startGameContainer {
-  margin-top: 2vh;
   animation: var(--animationFadeIn);
+  margin-top: 2vh;
   opacity: 85%;
 }
 
-/* TODO: replace instances of this with the semantic HTML 'main' */
 #playArea {
-  margin: 0 auto;
-  position: relative;
   display: none;
   flex-direction: column;
-  max-width: 100vh;
   height: 100vh;
+  margin: 0 auto;
+  max-width: 100vh;
+  position: relative;
 }
 
 #timer {
@@ -696,6 +690,103 @@ section {
 @media screen and (max-width: 1440px) {
   dialog {
     font-size: 175%;
+  }
+
+  .kitchen .row__upper {
+    column-gap: 1.7rem;
+    padding-top: 5.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .kitchen .row__middle {
+    padding-top: 3.2rem;
+    column-gap: 13.5rem;
+  }
+
+  .kitchen .row__bottom {
+    padding-top: 2.2rem;
+  }
+
+  /* .kitchen .row__bottom .cupboards .bottom-left {
+    width: 19rem;
+  } */
+
+  #area_kitchen_8 {
+    height: 20.5rem;
+    width: 14.5rem;
+  }
+
+  /* #area_kitchen_9 {
+    width: 20.5rem;
+  } */
+
+  #area_kitchen_9 {
+    width: auto;
+    height: 3rem;
+  }
+  
+  #area_kitchen_10 {
+    width: 11rem;
+  }
+
+  #area_kitchen_10,
+  #area_kitchen_11 {
+    height: 15rem;
+  }
+
+  #area_kitchen_12 {
+    height: 6.2rem;
+  }
+
+  #area_kitchen_13 {
+    height: 12.5em;
+  }
+
+  #area_kitchen_12,
+  #area_kitchen_13 {
+    width: 12.2rem;
+  }
+
+
+  #area_kitchen_14 {
+    height: 2.7rem;
+  }
+
+  #area_kitchen_15 {
+    height: 3.5rem;
+  }
+
+  #area_kitchen_16 {
+    height: 2.5rem;
+  }
+
+  #area_kitchen_17 {
+    height: 2.7rem;
+  }
+
+  #area_kitchen_18 {
+    height: 6.5rem;
+  }
+
+  .kitchen .cupboards.bottom-right {
+    width: 11.8rem;
+}
+
+/* #area_kitchen */
+
+
+  .kitchen .bottom-second-left-top {
+    align-items: flex-start;
+    flex-direction: column;
+    width: 20.5rem;
+    /* height: 16rem; */
+  }
+
+  .kitchen .bottom-second-left-bottom {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+  
   }
 
 
@@ -833,8 +924,6 @@ section {
     margin-top: 2rem
   }
 
-  
-
   #area_bedroom_1 {
    width: 13.5rem; 
   }
@@ -848,9 +937,8 @@ section {
     width: 6.5rem;
   }
 
-
   #area_bedroom_7,
-  section.bedroom > section.row.row__bottom > div.closet.left #area_bedroom_13,
+  #area_bedroom_13,
   #area_bedroom_14,
   #area_bedroom_15 {
     /* min-width: 8rem;
