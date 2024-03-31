@@ -13,7 +13,7 @@
         <title>Cat Count!</title>
         <link rel="stylesheet" href="styles.css" />
     </head>
-    
+
     <body>
         <section id="splashPage">
             <div class="container">
@@ -24,12 +24,18 @@
                 <dialog id="instructions">
                     <h1><u>Find Your Kitties!</u></h1>
                     <p>You are about to leave for work in a hurry...</p>
-                    <p>but you haven't made sure all your cats haven't gotten into sticky situations!</p>
                     <p>
-                        Check every place they could be hiding before the clock runs out or you might be <b><u>late for work!</u></b>
+                        but you haven't made sure all your cats haven't gotten
+                        into sticky situations!
+                    </p>
+                    <p>
+                        Check every place they could be hiding before the clock
+                        runs out or you might be <b><u>late for work!</u></b>
                     </p>
                     <div id="startGameContainer">
-                        <button id="startGameButton" onclick="startGame()">Start</button>
+                        <button id="startGameButton" onclick="startGame()">
+                            Start
+                        </button>
                     </div>
                 </dialog>
 
@@ -40,34 +46,55 @@
                 </div>
             </div>
         </section>
-         
+
         <main id="playArea" class="hidden">
-            <nav id="goToBedroomButton" class="goToLocationButton" onclick="goToLocation('bedroom')">&#9666; To the Bedroom</nav>
-            <nav id="goToKitchenButton" class="goToLocationButton" onclick="goToLocation('kitchen')">To the Kitchen &#9656;</nav>
+            <nav
+                id="goToBedroomButton"
+                class="goToLocationButton"
+                onclick="goToLocation('bedroom')"
+            >
+                &#9666; To the Bedroom
+            </nav>
+            <nav
+                id="goToKitchenButton"
+                class="goToLocationButton"
+                onclick="goToLocation('kitchen')"
+            >
+                To the Kitchen &#9656;
+            </nav>
             <section class="row row__stats">
-                <p id="timer" class="stats--display">Timer: <span id="timerValue"></span></p>
-                <p id="foundCounter" class="stats--display">Found: <span id="foundCounterValue">0</span>/3</p> <!-- TODO: change the total to be whatever the javascript totalCats count is-->
+                <p id="timer" class="stats--display">
+                    Timer: <span id="timerValue"></span>
+                </p>
+                <p id="foundCounter" class="stats--display">
+                    Found: <span id="foundCounterValue">0</span>/3
+                </p>
+                <!-- TODO: change the total to be whatever the javascript totalCats count is-->
             </section>
 
             <div class="finalDialog">
                 <dialog class="success" id="successMessage">
                     You found all of your cats, now head to work!<br />&#128526;<br /><br />
-                    <p class="thanksText">Thanks for playing!<br /><br />
+                    <p class="thanksText">
+                        Thanks for playing!<br /><br />
                         Please check out my other projects at:<br />
-                        <a href="https://github.com/sherpa-code">GitHub</a><br />
+                        <a href="https://github.com/sherpa-code">GitHub</a
+                        ><br />
                         <i>- Jo Crane</i>
                     </p>
                     <br />
-                    </p>
                 </dialog>
             </div>
 
             <div class="finalDialog">
                 <dialog class="failure" id="failureMessage">
-                    You didn't find your cats in time... Oh no! You'll be late!<br>&#129402;
-                    <p class="thanksText">Thanks for playing!<br /><br />
+                    You didn't find your cats in time... Oh no! You'll be
+                    late!<br />&#129402;
+                    <p class="thanksText">
+                        Thanks for playing!<br /><br />
                         Please check out my other projects at:<br />
-                        <a href="https://github.com/sherpa-code">GitHub</a><br />
+                        <a href="https://github.com/sherpa-code">GitHub</a
+                        ><br />
                         - Jo Crane
                     </p>
                     <br />
@@ -76,7 +103,12 @@
 
             <!-- Clickable areas: Kitchen -->
             <section class="kitchen">
-                <img src="./img/kitchen.jpg" alt="Location Image" id="locationImage" class="backgroundImage">
+                <img
+                    src="./img/kitchen.jpg"
+                    alt="Location Image"
+                    id="locationImage"
+                    class="backgroundImage"
+                />
                 <section class="row row__upper">
                     <div class="areaClickable" id="area_kitchen_1"></div>
                     <div class="areaClickable" id="area_kitchen_2"></div>
@@ -95,8 +127,14 @@
                     <div class="bottom-second-left-top">
                         <div class="areaClickable" id="area_kitchen_9"></div>
                         <div class="bottom-second-left-bottom">
-                            <div class="areaClickable" id="area_kitchen_10"></div>
-                            <div class="areaClickable" id="area_kitchen_11"></div>
+                            <div
+                                class="areaClickable"
+                                id="area_kitchen_10"
+                            ></div>
+                            <div
+                                class="areaClickable"
+                                id="area_kitchen_11"
+                            ></div>
                         </div>
                     </div>
                     <div class="cupboards bottom-second-right">
@@ -115,9 +153,16 @@
 
             <!-- Clickable areas: Bedroom -->
             <section class="bedroom hidden">
-                <img src="./img/bedroom.jpg" alt="Location Image" class="backgroundImage">
+                <img
+                    src="./img/bedroom.jpg"
+                    alt="Location Image"
+                    class="backgroundImage"
+                />
                 <section class="row row__upper">
-                    <div class="areaClickable cupboards" id="area_bedroom_1"></div>
+                    <div
+                        class="areaClickable cupboards"
+                        id="area_bedroom_1"
+                    ></div>
                     <div class="cupboards shelves-stacked">
                         <div class="areaClickable" id="area_bedroom_2"></div>
                         <div class="areaClickable" id="area_bedroom_3"></div>
@@ -147,10 +192,8 @@
                         <div class="areaClickable" id="area_bedroom_14"></div>
                         <div class="areaClickable" id="area_bedroom_15"></div>
                     </div>
-                    <div class="closet middle">
-                    </div>
-                    <div class="closet second-middle-bottom">
-                    </div>
+                    <div class="closet middle"></div>
+                    <div class="closet second-middle-bottom"></div>
                     <div class="drawers">
                         <div class="areaClickable" id="area_bedroom_20"></div>
                         <div class="areaClickable" id="area_bedroom_21"></div>
@@ -160,23 +203,23 @@
                 </section>
             </section>
         </main>
-            
+
         <script>
             // Graphics and UI
             const playArea = document.getElementsByTagName("main")[0]; // the primary container in the body
             const instructions = document.getElementById("instructions");
             const catImages = [];
-            const frownEmoji = '\uD83D\uDE41';
-            const heartEmoji = '\u2764\uFE0F';
+            const frownEmoji = "\uD83D\uDE41";
+            const heartEmoji = "\u2764\uFE0F";
             let emojiCounter = 0;
             const maxEmojis = 10000;
             const interval = 150; // Adjust the interval (in milliseconds) for adding emojis to the window at the end
 
             const fadeIn = "fadeIn 0.5s ease-in forwards";
             const fadeOut = "fadeOut 0.5s ease-out forwards";
-            const fadeInOut = 'fadeInOut 2s ease-in-out forwards';
-            const fadeInOut4s = 'fadeInOut 4s ease-in-out forwards';
-            
+            const fadeInOut = "fadeInOut 2s ease-in-out forwards";
+            const fadeInOut4s = "fadeInOut 4s ease-in-out forwards";
+
             // Statistics
             let clickCounter = 0;
             //let timer = 90;
@@ -184,30 +227,38 @@
             // let timer = 3;
             let catsFound = 0;
             let totalCats = 3;
-            
+
             // Areas
             let clickedAreas = [];
             let catLocations = [];
             let allAreaNodes = [];
             let arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
-            let areaNames = ["that cupboard", "that drawer", "the sink", "the curtain", "the closet"];
-            
+            let areaNames = [
+                "that cupboard",
+                "that drawer",
+                "the sink",
+                "the curtain",
+                "the closet",
+            ];
+
             // Interactables
-            let goToBedroomButton = document.getElementById("goToBedroomButton");
-            let goToKitchenButton = document.getElementById("goToKitchenButton");
-            
+            let goToBedroomButton =
+                document.getElementById("goToBedroomButton");
+            let goToKitchenButton =
+                document.getElementById("goToKitchenButton");
+
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
                 let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
                 // console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
                 arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
-                
+
                 allAreaNodes.forEach((e) => {
                     // e.addEventListener("click", checkAddClickedAreaToArray);
                     e.addEventListener("click", addAreaToClickedAreas);
                 });
             });
-            
+
             function addAreaToClickedAreas(e) {
                 if (!clickedAreas.includes(e.target.id)) {
                     clickedAreas.push(e.target.id);
@@ -216,24 +267,33 @@
                     checkForCat(e);
                 }
             }
-            
+
             // Checks if the area clicked is one of the randomized cat locations
             // Triggers visuals if an unfound cat was found or visually notifies if it was not
             function checkForCat(hidingPlace) {
                 if (catLocations.includes(hidingPlace.target.id)) {
                     catsFound++;
-                    document.getElementById("foundCounterValue").innerHTML = catsFound;
+                    document.getElementById("foundCounterValue").innerHTML =
+                        catsFound;
                     hidingPlace.target.children[0].style.animation = fadeIn;
-                    showNotification("❤️", hidingPlace.clientX, hidingPlace.clientY);
+                    showNotification(
+                        "❤️",
+                        hidingPlace.clientX,
+                        hidingPlace.clientY
+                    );
                 } else {
-                    showNotification("Darn, no cat here... 😟", hidingPlace.clientX, hidingPlace.clientY);
+                    showNotification(
+                        "Darn, no cat here... 😟",
+                        hidingPlace.clientX,
+                        hidingPlace.clientY
+                    );
                 }
 
                 if (catsFound >= totalCats) {
                     gameOver(true);
                 }
             }
-        
+
             function startGame() {
                 placeCatsRandomly();
 
@@ -248,14 +308,16 @@
                 goToKitchenButton.style.display = "none";
 
                 document.getElementById("splashPage").remove();
-                
+
                 runTimer();
             }
-                    
+
             // Randomizes the available clickable areas and adds the first 3 from the
             // randomized array into the catLocations var
             function placeCatsRandomly() {
-                const shuffledArray = arrayFromClickables.sort(() => Math.random() - 0.5);
+                const shuffledArray = arrayFromClickables.sort(
+                    () => Math.random() - 0.5
+                );
                 const selectedAreas = shuffledArray.slice(0, totalCats);
                 console.log(selectedAreas);
                 selectedAreas.forEach((area, index, array) => {
@@ -266,7 +328,7 @@
 
                 // console.log("Placed cats in the following areas: ", catLocations);
             }
-            
+
             // Function to show a notification modal at the specified coordinates // TODO: create another for showEmoji
             function showNotification(message, x, y) {
                 const notificationModal = document.createElement("div");
@@ -284,7 +346,8 @@
                     notificationModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
                     notificationModal.style.width = "auto";
                     notificationModal.style.padding = "10px";
-                    notificationModal.style.transform = "translate(-50%, -50%) scale(1.5)"; // Center the modal
+                    notificationModal.style.transform =
+                        "translate(-50%, -50%) scale(1.5)"; // Center the modal
                     // Removing the modal after the fade-out animation completes
                     setTimeout(() => {
                         notificationModal.remove();
@@ -302,13 +365,16 @@
 
                     // Change the image source after a delay to synchronize with the fade-out animation
                     setTimeout(function () {
-                        document.getElementById("locationImage").src = "./img/bedroom.jpg"; // Change the image source after fade-out is complete
+                        document.getElementById("locationImage").src =
+                            "./img/bedroom.jpg"; // Change the image source after fade-out is complete
                         playArea.style.animation = fadeIn;
                     }, 10);
                 } else if (location === "kitchen") {
                     goToKitchen();
                 } else {
-                    console.error("Failed to goToLocation() with an invalid parameter.");
+                    console.error(
+                        "Failed to goToLocation() with an invalid parameter."
+                    );
                 }
             }
 
@@ -326,7 +392,7 @@
                 setTimeout(function () {
                     // Change the image source after fade-out is complete
                     changeImage("kitchen");
-                    
+
                     // Apply fade-in animation to the image container
                     playArea.style.animation = fadeIn;
                 }, 10);
@@ -346,7 +412,7 @@
                 // Change the image source after a delay to synchronize with the fade-out animation
                 setTimeout(function () {
                     changeImage("bedroom");
-                    
+
                     // Apply fade-in animation to the image container
                     playArea.style.animation = fadeIn;
                 }, 10);
@@ -354,9 +420,11 @@
 
             function changeImage(location) {
                 if (location == "bedroom") {
-                    document.getElementById("locationImage").src = "./img/bedroom.jpg";
+                    document.getElementById("locationImage").src =
+                        "./img/bedroom.jpg";
                 } else if (location == "kitchen") {
-                    document.getElementById("locationImage").src = "./img/kitchen.jpg";
+                    document.getElementById("locationImage").src =
+                        "./img/kitchen.jpg";
                 }
             }
 
@@ -366,14 +434,14 @@
                 letsGoButton.remove();
             }
 
-            // 
+            //
             function addEmojiRandomly(message, x, y) {
                 const emojiModal = document.createElement("div");
                 emojiModal.className = "emojiModal";
                 emojiModal.style.top = y + "px";
                 emojiModal.style.left = x + "px";
                 emojiModal.innerHTML = message;
-                
+
                 document.getElementById("playArea").appendChild(emojiModal);
 
                 setTimeout(() => {
@@ -391,7 +459,7 @@
                 const playAreaHeight = playArea.offsetHeight - emojiHeight;
                 // const playAreaWidth = playArea.offsetWidth;
                 // const playAreaHeight = playArea.offsetHeight;
-                
+
                 let randomX = Math.floor(Math.random() * playAreaWidth);
                 let randomY = Math.floor(Math.random() * (playAreaHeight - 20));
 
@@ -400,13 +468,13 @@
                 if (emojiCounter >= maxEmojis) {
                     clearInterval(emojiInterval);
                 }
-                
+
                 addEmojiRandomly(emoji, randomX, randomY);
             }
-            
+
             // Begins the timer countdown and directs the game to the appropriate end state
             function runTimer() {
-                var interval = window.setInterval(function(){
+                var interval = window.setInterval(function () {
                     if (timer <= 0) {
                         clearInterval(interval);
                         gameOver(false);
@@ -415,34 +483,36 @@
                     } else {
                         timer--;
                         document.getElementById("timerValue").innerHTML = timer;
-                    };
+                    }
                 }, 1000);
             }
-            
+
             function successful() {
                 var successMessage = document.getElementById("successMessage");
                 successMessage.style.display = "block";
                 console.log("Won at the game");
-                
+
                 // TODO: Make emojis slowly float up
                 // Adds a heart emoji at a random location
                 const emojiInterval = setInterval(() => {
                     addEmojiRandomLocation(heartEmoji);
-                },  interval);
+                }, interval);
             }
-            
+
             function failure() {
                 var failureMessage = document.getElementById("failureMessage");
                 failureMessage.style.display = "block";
 
                 const emojiInterval = setInterval(() => {
                     addEmojiRandomLocation(frownEmoji);
-                },  interval);
+                }, interval);
             }
-                        
+
             // Removes all clickable areas from the the screen on fail state, then displays the appropriate modal.
             function gameOver(outcome) {
-                let goToLocationButtons = Array.from(document.getElementsByClassName("goToLocationButton"));
+                let goToLocationButtons = Array.from(
+                    document.getElementsByClassName("goToLocationButton")
+                );
                 goToLocationButtons.forEach((e) => {
                     e.style.display = "none";
                 });
