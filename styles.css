@@ -912,18 +912,6 @@ section {
     font-size: 175%;
   }
 
-  /* .row__upper {
-        flex-direction: column;
-    }
-
-    .row__middle {
-        flex-direction: column;
-    }
-
-    .row__bottom {
-        flex-direction: column;
-    } */
-
   #splashTitle {
     margin-top: 7rem;
     scale: 0.85;
@@ -956,7 +944,9 @@ section {
     /* height: 25em; */
     padding-left: 4.4rem;
     padding-right: 4rem;
+    margin-top: 2rem
 }
+
 
 
 /* KITCHEN ROW MIDDLE */
@@ -1045,12 +1035,7 @@ height: 2.45rem;
 width: 100%;
 height: 6.5rem;
 }
-
-
-
-  .kitchen .row__upper {
-    margin-top: 2rem
-  }
+  
 
 /* BEDROOM */
 /* BEDROOM ROW UPPER */
@@ -1058,9 +1043,13 @@ height: 6.5rem;
    width: 13.5rem; 
   }
 
+  #area_bedroom_2 {
+    margin-bottom: 0;
+  }
+
   #area_bedroom_4,
   #area_bedroom_5 {
-    width: 7rem; 
+    width: 5.5rem; 
    }
 
   .cupboards .shelves-stacked {
@@ -1068,6 +1057,16 @@ height: 6.5rem;
   }
 
   /* BEDROOM ROW MIDDLE */
+
+  .bedroom .row__middle {
+    height: 18.2rem;
+  }
+
+
+  #area_bedroom_7 {
+    /* height: 15rem; */
+  }
+
   #area_bedroom_7,
   #area_bedroom_13,
   #area_bedroom_14,
@@ -1075,7 +1074,7 @@ height: 6.5rem;
     /* min-width: 8rem;
         max-width: 8rem;
          */
-    width: 10rem;
+    width: 13.5rem;
     /* margin: auto; */
   }
 
@@ -1098,7 +1097,7 @@ height: 6.5rem;
   }
 
   #area_bedroom_23 {
-    max-width: 11rem;
+    width: 11rem;
   }
 
   .bedroom.drawers {
@@ -1117,7 +1116,6 @@ height: 6.5rem;
   }
   
 /* KITCHEN */
-
 
   #splashTitle {
     margin-top: 10rem;
@@ -1144,27 +1142,201 @@ height: 6.5rem;
 /* KITCHEN ROW UPPER */
 .kitchen .row__upper {
     align-items: start;
+    margin-top: 9rem;
   }
+
   #area_kitchen_1,
   #area_kitchen_2,
   #area_kitchen_3 {
     height: 14rem;
   }
 
+  #area_kitchen_4,
+  #area_kitchen_5 {
+    height: 16rem;
+}
+
   /* KITCHEN ROW MIDDLE */
+.kitchen .row__middle {
+    padding-top: 0.2rem;
+    column-gap: 8.2rem;
+  }
+
+  #area_kitchen_6 {
+    width: 8rem;
+  }
+
+  #area_kitchen_7 {
+    width: 5.8rem;
+  }
+
+  /* KITCHEN ROW BOTTOM */
+  .kitchen .row__bottom {
+    padding-right: 3rem;
+  }
+
+  #area_kitchen_8 {
+    height: 15rem;
+    width: 9rem;
+  }
+
+  .kitchen .bottom-second-left-top {
+    width: 15.5rem;
+  }
+
+  #area_kitchen_9 {
+    height: 3rem;
+    width: 100%;
+  }
+
+  #area_kitchen_10,
+    #area_kitchen_11 {
+        height: 10.5rem;
+    }
+
+  #area_kitchen_12 {
+    height: 5rem;
+  }
+
+  #area_kitchen_13 {
+    height: 8.5rem;
+  }
+
+#area_kitchen_12,
+#area_kitchen_13 {
+    width: 8rem;
+}
+
+    #area_kitchen_14 {
+        width: 9rem;
+        height: 2.5rem;
+    }
+
+    #area_kitchen_15 {
+        height: 2.4rem;
+    }
+
+    #area_kitchen_16 {
+        height: 1.9rem;
+    }
+
+    #area_kitchen_17 {
+        height: 1.9rem;
+    }
+
+    #area_kitchen_18 {
+        height: 4.75rem;
+    }
 
 
-/* KITCHEN ROW LOWER */
+/* BEDROOM */
+/* BEDROOM ROOM UPPER */
+.bedroom .row__upper {
+    margin-top: 4.25rem;
+    column-gap: 0; 
+}
+    
+    #area_bedroom_1 {
+    height: 10rem;
+        width: 10.5rem;
+}
+
+#area_bedroom_2,
+#area_bedroom_3 {
+    height: 4.5rem;
+    width:5.5rem;
+}
+
+#area_bedroom_4 {
+    height: 4rem;
+}
+
+#area_bedroom_5 {
+    height: 2.5rem;
+}
+
+#area_bedroom_4,
+#area_bedroom_5 {
+    width: 3.5rem;
+}
+
+#area_bedroom_6 {
+    margin-top: 4rem;
+    width: 7.7rem;   
+}
+
+/* BEDROOM ROOM MIDDLE */
+.bedroom .row__middle {
+    height: 12.6rem;
+    column-gap: 0;
+}
+
+#area_bedroom_7 {
+    /* height: 13rem; */
+    height: 100%;
+    /* width: 10.5rem; */
+}
+
+#area_bedroom_8 {
+    height: 22rem;
+    width: 6rem;
+}
+
+.bedroom .closet.closet.second-middle {
+    width: 3.6rem;
+}
+
+#area_bedroom_9 {
+    margin-top: 0;
+    height: 4rem;
+    /* width: 100%; */
+}
+
+/* BEDROOM ROOM LOWER */
+.bedroom .row__bottom {
+    column-gap: 0;
+}
+
+#area_bedroom_7,
+#area_bedroom_13,
+#area_bedroom_14,
+#area_bedroom_15 {
+    width: 10.5rem;
+}
+
+#area_bedroom_12 {
+    height: 2.35rem;
+}
+
+#area_bedroom_13,
+#area_bedroom_14,
+#area_bedroom_15 {
+    height: 2.5rem; 
+}
+
+.bedroom.drawers {
+    /* padding-top: 0; */
+  }
+
+#area_bedroom_20,
+#area_bedroom_21,
+#area_bedroom_22 {
+    /* height: 3.5rem; */
+    margin-right: 0;
+    margin-left: 5rem;
+    height: 3rem;
+    width: 9.5rem;
+}
 
 
-
+#area_bedroom_23 {
+    height: 11rem;
+    width: 10rem;
 }
 
 
 
-
-
-
+}
 
 
 @media screen and (max-width: 480px) {
