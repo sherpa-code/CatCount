@@ -432,6 +432,14 @@
                 instructions.style.display = "block";
                 let letsGoButton = document.getElementById("letsGoButton");
                 letsGoButton.remove();
+                if (
+                    Math.max(
+                        document.documentElement.clientWidth || 0,
+                        window.innerWidth || 0
+                    ) <= 500
+                ) {
+                    splashTitle.remove();
+                }
             }
 
             //

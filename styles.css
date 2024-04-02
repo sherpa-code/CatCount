@@ -1098,8 +1098,6 @@ section {
         font-size: 175%;
     }
 
-    /* KITCHEN */
-
     #splashTitle {
         margin-top: 10rem;
         scale: 0.65;
@@ -1111,8 +1109,8 @@ section {
     }
 
     #instructions {
-        scale: 0.55;
-        margin-bottom: 15rem;
+        scale: 0.65;
+        margin-bottom: 22rem;
         position: relative;
     }
 
@@ -1121,6 +1119,7 @@ section {
         scale: 0.8;
     }
 
+    /* KITCHEN */
     /* KITCHEN ROW UPPER */
     .kitchen .row__upper {
         align-items: start;
@@ -1316,4 +1315,123 @@ section {
 }
 
 @media screen and (max-width: 425px) {
+    #splashTitle {
+        margin-top: 15rem;
+        /* margin-right: 5rem; */
+        margin-left: -2rem;
+        /* position: relative; */
+    }
+
+    #letsGoButton {
+        margin-bottom: 17rem;
+        position: relative;
+    }
+
+    #instructions {
+        scale: 0.55;
+        /* margin-bottom: 15rem;
+        position: relative; */
+
+        margin-top: 5rem;
+        /* margin-left: 2rem; */
+        position: absolute;
+    }
+
+    /* KITCHEN */
+    /* KITCHEN ROW UPPER */
+    .kitchen .row__upper {
+        align-items: start;
+        margin-top: 17rem;
+        column-gap: 0.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        height: 7.8rem;
+    }
+
+    #area_kitchen_1,
+    #area_kitchen_2,
+    #area_kitchen_3 {
+        height: 7.2rem;
+    }
+
+    #area_kitchen_4,
+    #area_kitchen_5 {
+        height: 8.2rem;
+    }
+
+    .kitchen .row__middle {
+        margin-top: 4rem;
+        column-gap: 3.5rem;
+    }
+
+    #area_kitchen_6 {
+        height: 2.5rem;
+        width: 5rem;
+    }
+
+    #area_kitchen_7 {
+        height: 3.5rem;
+        width: 4.5rem;
+    }
+
+    .kitchen .row__bottom {
+        /* height: 1rem; */
+        /* padding-bottom: 11rem; */
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .goToLocationButton {
+        margin-top: 14rem;
+    }
+
+    #area_kitchen_8 {
+        height: 8.5rem;
+        width: 6rem;
+    }
+
+    #area_kitchen_9 {
+        height: 2.5rem;
+        width: 100%;
+    }
+
+    #area_kitchen_10,
+    #area_kitchen_11 {
+        height: 7rem;
+    }
+
+    #area_kitchen_12 {
+        height: 3rem;
+    }
+
+    #area_kitchen_13 {
+        height: 4.5rem;
+    }
+
+    #area_kitchen_12,
+    #area_kitchen_13 {
+        width: 4.5rem;
+    }
+
+    #area_kitchen_14 {
+        height: 1.5rem;
+    }
+
+    #area_kitchen_15 {
+        height: 2rem;
+    }
+
+    #area_kitchen_16 {
+        height: 1.5rem;
+    }
+
+    #area_kitchen_17 {
+        height: 1.5rem;
+    }
+
+    #area_kitchen_18 {
+        height: 3.5rem;
+    }
+
+    /* BEDROOM */
 }
