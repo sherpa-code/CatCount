@@ -253,11 +253,9 @@
             // When DOM is fully loaded
             document.addEventListener("DOMContentLoaded", function () {
                 let allAreaNodes = document.querySelectorAll('[id^="area_"]'); // Into allAreaNodes NodeList, place all elements with id starting with "area_"
-                // console.log('%c%s', 'background-color:grey; color:orange', 'allAreaNodes = ' + allAreaNodes);
-                arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for better manipulation)
+                arrayFromClickables = Array.from(allAreaNodes); // Convert NodeList to Array (for easier manipulation)
 
                 allAreaNodes.forEach((e) => {
-                    // e.addEventListener("click", checkAddClickedAreaToArray);
                     e.addEventListener("click", addAreaToClickedAreas);
                 });
             });
@@ -328,11 +326,9 @@
                     var container = document.getElementById(area.id);
                     container.innerHTML = `<img class='catGif' id='cat${index}' src='./img/cat${index}.gif'>`;
                 });
-
-                // console.log("Placed cats in the following areas: ", catLocations);
             }
 
-            // Function to show a notification modal at the specified coordinates // TODO: create another for showEmoji
+            // Shows a notification modal at the specified coordinates
             function showNotification(message, x, y) {
                 const notificationModal = document.createElement("div");
                 notificationModal.className = "notificationModal";
@@ -343,7 +339,7 @@
 
                 document.body.appendChild(notificationModal);
 
-                // Triggering the fadeInOut animation after a short delay
+                // Triggers the fadeInOut animation after a short delay
                 setTimeout(() => {
                     notificationModal.style.animation = fadeInOut;
                     notificationModal.style.position = "fixed"; // Ensure the modal stays fixed relative to the viewport
@@ -351,7 +347,7 @@
                     notificationModal.style.padding = "10px";
                     notificationModal.style.transform =
                         "translate(-50%, -50%) scale(1.5)"; // Center the modal
-                    // Removing the modal after the fade-out animation completes
+                    // Removes the modal after the fade-out animation completes
                     setTimeout(() => {
                         notificationModal.remove();
                     }, 2200);
@@ -361,15 +357,13 @@
             // Changes the 'location' the user is in, including animated crossfade and
             // updating the clickable areas to match the new background room image.
             function goToLocation(location) {
-                // Apply fade-out animation to the image container
                 playArea.style.animation = fadeOut;
                 if (location === "bedroom") {
                     goToBedroom();
 
-                    // Change the image source after a delay to synchronize with the fade-out animation
                     setTimeout(function () {
                         document.getElementById("locationImage").src =
-                            "./img/bedroom.jpg"; // Change the image source after fade-out is complete
+                            "./img/bedroom.jpg";
                         playArea.style.animation = fadeIn;
                     }, 10);
                 } else if (location === "kitchen") {
@@ -468,8 +462,6 @@
 
                 const playAreaWidth = playArea.offsetWidth - emojiWidth;
                 const playAreaHeight = playArea.offsetHeight - emojiHeight;
-                // const playAreaWidth = playArea.offsetWidth;
-                // const playAreaHeight = playArea.offsetHeight;
 
                 let randomX = Math.floor(Math.random() * playAreaWidth);
                 let randomY = Math.floor(Math.random() * (playAreaHeight - 20));
@@ -519,7 +511,7 @@
                 }, interval);
             }
 
-            // Removes all clickable areas from the the screen on fail state, then displays the appropriate modal.
+            // Removes all clickable areas from the the screen on fail state, then displays the appropriate modal
             function gameOver(outcome) {
                 let goToLocationButtons = Array.from(
                     document.getElementsByClassName("goToLocationButton")
