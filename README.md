@@ -10,6 +10,7 @@ This app presents two rooms in a home, each with clickable areas, that must be s
 This project was motivated by the love of my three cats Butane, Big, and Squeak, and how they love to get themselves trapped where they should not be before I leave for work in the morning. It's always necessary to make sure they are safe while I am away.
 
 Play [Cat Count!](https://sherpa-code.github.io/CatCount/) on GitHub Pages.
+Best viewed on desktop and tablet.
 
 ### Sources
 The background images were generated using the generative AI 'Stable Diffusion XL' courtesy of [NightCafe](https://nightcafe.studio)
