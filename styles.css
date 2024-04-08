@@ -1263,7 +1263,7 @@ section {
     }
 
     .goToLocationButton {
-        margin-top: 17rem;
+        top: 75%;
     }
 
     /* KITCHEN */
@@ -1488,7 +1488,7 @@ section {
     }
 
     .goToLocationButton {
-        margin-top: 17rem;
+        top: 72%;
     }
 
     .finalDialog {
@@ -1750,7 +1750,7 @@ section {
     }
 
     .goToLocationButton {
-        margin-top: 13rem;
+        top: 70%;
     }
 
     /* KITCHEN */
@@ -1987,7 +1987,7 @@ section {
     }
 
     .goToLocationButton {
-        margin-top: 13rem;
+        top: 67%;
     }
 
     /* KITCHEN */
