@@ -855,19 +855,18 @@ section {
     }
 
     #splashTitle {
-        margin-top: 7rem;
         position: relative;
-        scale: 0.85;
+        scale: 1.35;
+        margin-top: 15vh;
     }
 
     #letsGoButton {
-        scale: 0.85;
+        scale: 1.25;
     }
 
     #instructions {
         margin-bottom: 10rem;
         position: relative;
-        scale: 0.75;
     }
 
     .finalDialog {
@@ -887,7 +886,7 @@ section {
     /* KITCHEN ROW MIDDLE */
     .kitchen .row__middle {
         column-gap: 10.8rem;
-        padding-top: 1rem;
+        padding-top: 0.25rem;
     }
 
     .kitchen .row__bottom {
@@ -969,6 +968,12 @@ section {
 
     /* BEDROOM */
     /* BEDROOM ROW UPPER */
+    .bedroom .row__upper {
+        margin: 0;
+        padding-top: 0;
+        height: 32vh;
+    }
+
     #area_bedroom_1 {
         width: 13.5rem;
     }
@@ -977,19 +982,31 @@ section {
         margin-bottom: 0;
     }
 
+    .cupboards .shelves-stacked {
+        width: 6.5rem;
+    }
+
     #area_bedroom_4,
     #area_bedroom_5 {
         width: 5.5rem;
     }
 
-    .cupboards .shelves-stacked {
-        width: 6.5rem;
+    #area_bedroom_6 {
+        align-self: flex-start;
+        height: 15vh;
+        margin-top: 10vh;
+
+        /* align-items: start; */
     }
 
     /* BEDROOM ROW MIDDLE */
     .bedroom .row__middle {
-        height: 18.2rem;
+        height: 17.75rem;
     }
+
+    /* #area_bedroom_9 {
+        height: 13vh;
+    } */
 
     #area_bedroom_7,
     #area_bedroom_13,
@@ -1012,6 +1029,8 @@ section {
     /* BEDROOM ROW BOTTOM */
     .drawers {
         margin-left: 15rem;
+        margin-top: 0;
+        /* height: 13rem; */
     }
 
     #area_bedroom_23 {

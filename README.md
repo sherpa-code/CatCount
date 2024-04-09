@@ -5,8 +5,9 @@ A pure HTML, CSS, and JavaScript single-page application.
 ![Cat Count logo](https://raw.githubusercontent.com/sherpa-code/CatCount/main/img/readmeSplash.PNG)
 
 ## About
-Welcome to Cat Count!
-It's morning. You're ready to dash out the door and head to work but there's one more thing... your pesky kitties love to get into sticky situations at the worst times. Before you leave for the day, check your apartment to ensure all your cats are accounted for.
+Welcome to Cat Count!\
+Yawn... it's morning.\
+You're ready to dash out the door and head to work but there's one more thing... your pesky kitties love to get into sticky situations at the worst times. Before you leave for the day, check your apartment to ensure all your cats are accounted for.
 
 Click each area in the kitchen and bedroom where your cats may be hiding before the timer runs out, otherwise you might be late for work!
 
