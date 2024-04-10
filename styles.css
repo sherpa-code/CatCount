@@ -856,7 +856,7 @@ section {
 
     #splashTitle {
         position: relative;
-        scale: 1.35;
+        /* scale: 1.35; */
         margin-top: 15vh;
     }
 
@@ -1045,7 +1045,7 @@ section {
 
     #splashTitle {
         margin-top: 20vh;
-        scale: 115%;
+        /* scale: 115%; */
     }
 
     #letsGoButton {
@@ -1982,11 +1982,13 @@ section {
 @media screen and (max-width: 320px) {
     #splashTitle {
         margin-top: 21rem;
-        margin-left: -2rem;
+        margin-left: -4rem;
+        scale: 0.45;
     }
 
     #letsGoButton {
         margin-bottom: 20rem;
+        scale: 0.55;
     }
 
     #instructions {
@@ -2008,7 +2010,9 @@ section {
         column-gap: 0.5rem;
         padding-left: 2rem;
         padding-right: 2rem;
-        padding-top: 2rem;
+        padding-bottom: 0;
+        height: 9rem;
+        align-items: start;
     }
 
     #area_kitchen_1,
@@ -2020,12 +2024,13 @@ section {
 
     #area_kitchen_4,
     #area_kitchen_5 {
-        height: 7rem;
+        height: 6.5rem;
     }
 
     /* KITCHEN ROW MIDDLE */
     .kitchen .row__middle {
         column-gap: 2rem;
+        height: 2.8rem;
     }
 
     #area_kitchen_6 {
@@ -2210,10 +2215,14 @@ section {
         width: 4.5rem;
     }
 
+    #area_bedroom_20 {
+        margin-top: 0.5rem;
+    }
+
     #area_bedroom_20,
     #area_bedroom_21,
     #area_bedroom_22 {
-        height: 1.45rem;
+        height: 1.55rem;
         margin-left: 4.6rem;
         width: 4.2rem;
     }
