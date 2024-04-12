@@ -286,7 +286,8 @@
                     showNotification(
                         "Darn, no cat here... 😟",
                         hidingPlace.clientX,
-                        hidingPlace.clientY
+                        hidingPlace.clientY,
+                        "catNotFound"
                     );
                 }
 
@@ -329,9 +330,12 @@
             }
 
             // Shows a notification modal at the specified coordinates
-            function showNotification(message, x, y) {
+            function showNotification(message, x, y, type) {
                 const notificationModal = document.createElement("div");
                 notificationModal.className = "notificationModal";
+                if (type === "catNotFound") {
+                    notificationModal.classList.add("catNotFoundDialog");
+                }
                 notificationModal.style.top = y + "px";
                 notificationModal.style.left = x + "px";
                 notificationModal.style.zIndex = 7;

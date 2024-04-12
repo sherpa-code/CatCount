@@ -144,8 +144,12 @@ dialog {
 }
 
 .catNotFoundDialog {
-    border-radius: 1em;
-    z-index: 2;
+    border-radius: 0.5em;
+    z-index: 3;
+    background-color: rgb(245, 179, 179);
+    scale: 80%;
+    pointer-events: none;
+    padding: 0;
 }
 
 .finalDialog {
