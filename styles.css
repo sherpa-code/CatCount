@@ -150,6 +150,7 @@ dialog {
     scale: 80%;
     pointer-events: none;
     padding: 0;
+    opacity: 0.6;
 }
 
 .finalDialog {
@@ -1501,8 +1502,8 @@ section {
     }
 
     #letsGoButton {
-        margin-bottom: 17rem;
-        scale: 0.8;
+        /* margin-bottom: 2rem; */
+        scale: 0.6;
     }
 
     #instructions {
@@ -1761,7 +1762,7 @@ section {
     }
 
     #letsGoButton {
-        margin-bottom: 17rem;
+        margin-bottom: 10rem;
         scale: 0.65;
     }
 
