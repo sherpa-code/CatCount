@@ -352,7 +352,6 @@ section {
 
 #startGameContainer {
     animation: var(--animationFadeIn);
-    margin-top: 2vh;
     opacity: 85%;
 }
 
@@ -360,8 +359,8 @@ section {
     display: none;
     flex-direction: column;
     height: 100vh;
-    margin: 0 auto;
     max-width: 100vh;
+    margin: 0 auto;
     position: relative;
 }
 
@@ -860,7 +859,7 @@ section {
 
     #letsGoButton {
         scale: 1.25;
-        margin-right: 3rem;
+        /* margin-right: 3rem; */
         margin-bottom: 2rem;
     }
 
@@ -1035,12 +1034,12 @@ section {
     }
 
     #splashTitle {
-        margin-top: 15rem;
+        margin-top: 10rem;
     }
 
     #letsGoButton {
-        margin-bottom: 15rem;
-        margin-right: 2rem;
+        margin-bottom: 7rem;
+        /* margin-right: rem; */
     }
 
     #instructions {
@@ -1265,7 +1264,7 @@ section {
 
     #instructions {
         scale: 0.7;
-        margin-top: 15rem;
+        /* margin-top: 15rem; */
         position: absolute;
     }
 
@@ -1756,7 +1755,7 @@ section {
 
 @media screen and (max-width: 375px) {
     #splashTitle {
-        margin-top: 17rem;
+        margin-top: 12.5rem;
         margin-left: -2rem;
         scale: 0.55;
     }
@@ -1770,7 +1769,7 @@ section {
         font-size: 160%;
         position: absolute;
         scale: 0.65;
-        top: 1.5rem;
+        top: 3.5rem;
     }
 
     .goToLocationButton {
