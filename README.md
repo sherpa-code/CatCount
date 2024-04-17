@@ -6,7 +6,7 @@ A pure HTML, CSS, and JavaScript single-page application.
 
 ## About
 Welcome to [Cat Count!](https://sherpa-code.github.io/CatCount/)\
-Yawn... it's morning.\
+_Yaaaawn..._ it's morning.\
 You're ready to dash out the door and head to work but there's one more thing... your pesky kitties love to get into sticky situations at the worst times. Before you leave for the day check your apartment to ensure all your cats are accounted for.
 
 Click each area in the kitchen and bedroom where your cats may be hiding before the timer runs out, otherwise you might be late for work!
