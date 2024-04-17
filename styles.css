@@ -155,7 +155,7 @@ dialog {
 
 .finalDialog {
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 21%;
 }
 
@@ -1274,10 +1274,7 @@ section {
     }
 
     .finalDialog {
-        top: 28%;
-        /* height: 12rem; */
-        /* margin-left: 0;
-        margin-right: 0; */
+        top: 19%;
         align-items: center;
     }
 
