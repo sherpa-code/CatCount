@@ -6,12 +6,12 @@ A pure HTML, CSS, and JavaScript single-page application.
 
 ## About
 Welcome to [Cat Count!](https://sherpa-code.github.io/CatCount/)\
+\
 _Yaaaawn..._ it's morning.\
-You're ready to dash out the door and head to work but there's one more thing... your pesky kitties love to get into sticky situations at the worst times. Before you leave for the day check your apartment to ensure all your cats are accounted for.
+You're ready to dash out the door and head to work but there's one more thing... your pesky kitties love to get into sticky situations at the worst times. Before you leave for the day check your home to ensure all your cats are accounted for.
 
 Click each area in the kitchen and bedroom where your cats may be hiding before the timer runs out, otherwise you might be late for work!
 
-This project was motivated by my love of my three cats Butane, Big, and Squeak who love to get themselves trapped in silly places.
 This project was motivated by my love of my three cats [Butane](https://sherpa-code.github.io/CatCount/img/profile_butane.jpg), [Big](https://sherpa-code.github.io/CatCount/img/profile_big.jpg), and [Squeak](https://sherpa-code.github.io/CatCount/img/profile_squeak.jpg) who love to get themselves trapped in silly places.
 
 Play [Cat Count!](https://sherpa-code.github.io/CatCount/) on GitHub Pages.
@@ -30,3 +30,6 @@ Sound effects attributed to Pixabay.com at:\
 https://pixabay.com/sound-effects/cat-3-43850/\
 https://pixabay.com/sound-effects/cat-growl-96248/\
 https://pixabay.com/sound-effects/cat-meow-once-90564/
+
+### Thanks
+Great appreciation for the support and guidance from my GetCoding (Module 1 coach) [Adam Paul](https://github.com/adam-paul952).
