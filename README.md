@@ -12,6 +12,7 @@ You're ready to dash out the door and head to work but there's one more thing...
 Click each area in the kitchen and bedroom where your cats may be hiding before the timer runs out, otherwise you might be late for work!
 
 This project was motivated by my love of my three cats Butane, Big, and Squeak who love to get themselves trapped in silly places.
+This project was motivated by my love of my three cats [Butane](https://sherpa-code.github.io/CatCount/img/profile_butane.jpg), [Big](https://sherpa-code.github.io/CatCount/img/profile_big.jpg), and [Squeak](https://sherpa-code.github.io/CatCount/img/profile_squeak.jpg) who love to get themselves trapped in silly places.
 
 Play [Cat Count!](https://sherpa-code.github.io/CatCount/) on GitHub Pages.
 Best viewed on desktop and tablet.
