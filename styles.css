@@ -92,6 +92,7 @@ picture {
 .hidden {
     display: none;
 }
+/* UTILITY CLASSES ENDS */
 
 html,
 body {
@@ -101,10 +102,6 @@ body {
 img {
     height: auto;
     margin: auto;
-}
-
-.areaClickable {
-    border: 3px solid green;
 }
 
 body {
@@ -143,6 +140,10 @@ dialog {
     z-index: 2;
 }
 
+.areaClickable {
+    border: 3px solid green;
+}
+
 .catNotFoundDialog {
     border-radius: 0.5em;
     z-index: 3;
@@ -154,9 +155,8 @@ dialog {
 }
 
 .finalDialog {
-    position: absolute;
-    top: 50%;
-    left: 21%;
+    /* position: absolute; */
+    /* top: 35%; */
 }
 
 dialog.success {
@@ -169,6 +169,8 @@ dialog.success {
         hsl(270, 25%, 50%),
         hsl(330, 25%, 50%)
     );
+    left: 25%;
+    top: 35%;
 }
 
 dialog.failure {
@@ -183,6 +185,8 @@ dialog.failure {
     ); */
 
     background: lightyellow;
+    left: 32%;
+    top: 40%;
 }
 
 main .backgroundImage {
@@ -290,9 +294,9 @@ section {
     color: white;
     display: block;
     font-size: 150%;
-    margin-left: 1em;
+    /* margin-left: 1em; */
     opacity: 85%;
-    padding: 1em;
+    /* padding: 1em; */
     scale: 1.2;
     transform: skew(-3deg, -3deg);
     background: radial-gradient(
@@ -304,24 +308,6 @@ section {
         hsl(270, 25%, 50%),
         hsl(330, 25%, 50%)
     );
-}
-
-#instructions {
-    align-items: center;
-    animation: var(--animationFadeIn);
-    display: none;
-    opacity: 75%;
-    scale: 0.9;
-    background: radial-gradient(ellipse at top, #e66465, transparent),
-        radial-gradient(ellipse at bottom, #4d9f0c, transparent);
-}
-
-#instructions h1 {
-    margin-bottom: 0.5em;
-}
-
-#instructions p {
-    margin-bottom: 0.25em;
 }
 
 #letsGoButton {
@@ -341,6 +327,24 @@ section {
 
 #letsGoButtonContainer {
     margin-left: auto;
+}
+
+#instructions {
+    align-items: center;
+    animation: var(--animationFadeIn);
+    display: none;
+    opacity: 75%;
+    /* scale: 0.9; */
+    background: radial-gradient(ellipse at top, #e66465, transparent),
+        radial-gradient(ellipse at bottom, #4d9f0c, transparent);
+}
+
+#instructions h1 {
+    margin-bottom: 0.5em;
+}
+
+#instructions p {
+    margin-bottom: 0.25em;
 }
 
 #startGameButton {
@@ -649,6 +653,14 @@ section {
         font-size: 180%;
     }
 
+    dialog.success {
+        left: 37%;
+    }
+
+    dialog.failure {
+        left: 65%;
+    }
+
     /* KITCHEN */
     /* KITCHEN ROW UPPER */
     .kitchen .row__upper {
@@ -734,7 +746,7 @@ section {
     }
 
     .kitchen .cupboards.bottom-right {
-        width: 19rem;
+        width: 23rem;
     }
 
     /* BEDROOM */
@@ -1034,6 +1046,14 @@ section {
         font-size: 175%;
     }
 
+    dialog.success {
+        left: 12%;
+    }
+
+    dialog.failure {
+        left: 32%;
+    }
+
     #splashTitle {
         margin-top: 10rem;
     }
@@ -1049,7 +1069,7 @@ section {
     }
 
     .finalDialog {
-        margin-right: 8rem;
+        /* margin-right: 8rem; */
         /* scale: 0.8; */
     }
 
@@ -1266,6 +1286,7 @@ section {
     #instructions {
         scale: 0.7;
         /* margin-top: 15rem; */
+        top: 25%;
         position: absolute;
     }
 
@@ -1273,9 +1294,18 @@ section {
         top: 75%;
     }
 
-    .finalDialog {
+    /* .finalDialog {
         top: 19%;
         align-items: center;
+    } */
+
+    /* dialog.success {
+        left: 2%;
+    } */
+
+    dialog.failure {
+        left: 18%;
+        /* top: -10%; */
     }
 
     /* KITCHEN */
@@ -1505,7 +1535,7 @@ section {
 
     #instructions {
         scale: 0.65;
-        /* top: 6rem; */
+        top: 22%;
         position: absolute;
     }
 
@@ -1753,13 +1783,13 @@ section {
 
 @media screen and (max-width: 375px) {
     #splashTitle {
-        margin-top: 12.5rem;
+        margin-top: 16.5rem;
         margin-left: -2rem;
         scale: 0.55;
     }
 
     #letsGoButton {
-        margin-bottom: 10rem;
+        /* margin-bottom: 10rem; */
         scale: 0.65;
     }
 
@@ -1767,7 +1797,8 @@ section {
         font-size: 160%;
         position: absolute;
         scale: 0.65;
-        top: 3.5rem;
+        top: 25%;
+        /* margin-bottom: 0; */
     }
 
     .goToLocationButton {
@@ -2010,7 +2041,7 @@ section {
         scale: 0.6;
         margin-left: -3.5rem;
         margin-right: -3.5rem;
-        margin-top: 17rem;
+        margin-top: 16rem;
         align-items: center;
     }
 

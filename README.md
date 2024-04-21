@@ -5,6 +5,7 @@ A pure HTML, CSS, and JavaScript single-page application.
 ![Cat Count logo](https://raw.githubusercontent.com/sherpa-code/CatCount/main/img/readmeSplash.PNG)
 
 ## About
+
 Welcome to [Cat Count!](https://sherpa-code.github.io/CatCount/)\
 \
 _Yaaaawn..._ it's morning.\
@@ -18,6 +19,7 @@ Play [Cat Count!](https://sherpa-code.github.io/CatCount/) on GitHub Pages.
 Best viewed on desktop and tablet.
 
 ### Sources
+
 The background images were generated using the generative AI 'Stable Diffusion XL' courtesy of [NightCafe](https://nightcafe.studio)
 
 This version features 3 cats with accompanying gif images.
@@ -31,5 +33,9 @@ https://pixabay.com/sound-effects/cat-3-43850/\
 https://pixabay.com/sound-effects/cat-growl-96248/\
 https://pixabay.com/sound-effects/cat-meow-once-90564/
 
+Favicon attributed to icons8.com at:\
+https://icons8.com/icon/3LBj6pUvtKiK/cat
+
 ### Thanks
+
 Great appreciation for the support and guidance from my GetCoding (Module 1 coach) [Adam Paul](https://github.com/adam-paul952).

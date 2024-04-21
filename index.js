@@ -14,13 +14,17 @@ const fadeOut = "fadeOut 0.5s ease-out forwards";
 const fadeInOut = "fadeInOut 2s ease-in-out forwards";
 const fadeInOut4s = "fadeInOut 4s ease-in-out forwards";
 
+// Audio
+var currentCatSFX = 1;
+
 // Statistics
 let clickCounter = 0;
-let timer = 90;
-// let timer = 9999;
+// let timer = 2;
+let timer = 9999;
+const debugAllCatsFound = true;
 // let timer = 3;
-let catsFound = 0;
-let totalCats = 3;
+var catsFound = 0;
+var totalCats = 3;
 
 // Areas
 let clickedAreas = [];
@@ -54,17 +58,21 @@ document.addEventListener("DOMContentLoaded", function () {
 function addAreaToClickedAreas(e) {
     if (!clickedAreas.includes(e.target.id)) {
         clickedAreas.push(e.target.id);
-        checkForCat(e);
+        checkForCat(e, debugAllCatsFound);
     } else {
-        checkForCat(e);
+        checkForCat(e, debugAllCatsFound);
     }
 }
 
 // Checks if the area clicked is one of the randomized cat locations
 // Triggers visuals if an unfound cat was found or visually notifies if it was not
-function checkForCat(hidingPlace) {
+function checkForCat(hidingPlace, debugAllCatsFound) {
     if (catLocations.includes(hidingPlace.target.id)) {
-        catsFound++;
+        if (debugAllCatsFound) {
+            catsFound = totalCats;
+        } else {
+            catsFound++;
+        }
         document.getElementById("foundCounterValue").innerHTML =
             catsFound;
         hidingPlace.target.children[0].style.animation = fadeIn;
@@ -73,6 +81,7 @@ function checkForCat(hidingPlace) {
             hidingPlace.clientX,
             hidingPlace.clientY
         );
+        playNextCatSFX();
     } else {
         showNotification(
             "Darn, no cat here... 😟",
@@ -87,7 +96,17 @@ function checkForCat(hidingPlace) {
     }
 }
 
+function playNextCatSFX() {
+    var audio = new Audio(`./sfx/meow_${currentCatSFX}.mp3`);
+    audio.play();
+    currentCatSFX++;
+}
+
 function startGame() {
+    
+    var audio = new Audio('./sfx/meow_3.mp3');
+    audio.play();
+
     placeCatsRandomly();
 
     setTimeout(function () {
