@@ -14,7 +14,7 @@ picture {
     display: block;
     max-width: 100%;
 }
-/* CSS Reset ends */
+/* CSS RESET END */
 
 @keyframes fadeIn {
     from {
@@ -67,6 +67,20 @@ picture {
     }
 }
 
+@keyframes pulseBtnGold {
+    0% {
+        /* background-color: initial; */
+        background-color: #749bb6;
+    }
+    65% {
+        background-color: #b0b8ff;
+    }
+    100% {
+        /* background-color: initial; */
+        background-color: #749bb6;
+    }
+}
+
 /* UTILITY CLASSES */
 /* pseudoclasses for defining global scope CSS variables */
 :root {
@@ -75,6 +89,7 @@ picture {
     --animationFadeInOut: fadeInOut 2s ease-in-out forwards;
     --animationFadeInOut4s: fadeInOut 4s ease-in-out forwards;
     --transitionOpacity: opacity 0.5s ease-in-out;
+    --animationPulseBtnGold: pulseBtnGold 2.5s infinite;
 }
 
 .fadeIn {
@@ -89,19 +104,18 @@ picture {
     animation: var(--animationFadeInOut);
 }
 
+.pulseBtnGold {
+    animation: var(--animationPulseBtnGold);
+}
+
 .hidden {
     display: none;
 }
-/* UTILITY CLASSES ENDS */
+/* UTILITY CLASSES END */
 
 html,
 body {
     height: 100%;
-}
-
-img {
-    height: auto;
-    margin: auto;
 }
 
 body {
@@ -122,6 +136,11 @@ main {
     position: relative;
     transition: opacity 0.5s ease-in-out;
     flex-direction: column;
+}
+
+img {
+    height: auto;
+    margin: auto;
 }
 
 button {
@@ -169,21 +188,11 @@ dialog.success {
         hsl(270, 25%, 50%),
         hsl(330, 25%, 50%)
     );
-    left: 25%;
-    top: 35%;
+    left: 28%;
+    top: 80%;
 }
 
 dialog.failure {
-    /* background: radial-gradient(
-        circle,
-        hsl(0, 0%, 31%),
-        hsl(0, 0%, 73%),
-        hsl(0, 0%, 23%),
-        hsl(0, 0%, 51%),
-        hsl(0, 0%, 9%),
-        hsl(0, 0%, 0%)
-    ); */
-
     background: lightyellow;
     left: 32%;
     top: 40%;
@@ -199,14 +208,6 @@ section {
     flex-grow: 1;
 }
 
-.messageOverlay {
-    background-color: #ddd;
-}
-
-.thanksText {
-    font-size: 80%;
-}
-
 .areaClickable {
     cursor: pointer;
     justify-content: space-between;
@@ -215,7 +216,7 @@ section {
 }
 
 .goToLocationButton {
-    animation: var(--animationFadeIn);
+    animation: var(--animationFadeIn), var(--animationPulseBtnGold);
     background-color: #3498db;
     border-radius: 0.35rem;
     opacity: 0;
@@ -267,6 +268,28 @@ section {
     right: 2rem;
 }
 
+/* #splashPage {
+    animation: var(--animationFadeIn);
+    background-image: url(./img/splashPage.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 100%;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+    margin: auto;
+    max-width: 1000px;
+    position: relative;
+    padding: 0% 5%;
+    width: 100%;
+} */
+
 #splashPage {
     animation: var(--animationFadeIn);
     background-image: url(./img/splashPage.jpg);
@@ -296,7 +319,6 @@ section {
     font-size: 150%;
     /* margin-left: 1em; */
     opacity: 85%;
-    /* padding: 1em; */
     scale: 1.2;
     transform: skew(-3deg, -3deg);
     background: radial-gradient(
@@ -334,7 +356,7 @@ section {
     animation: var(--animationFadeIn);
     display: none;
     opacity: 75%;
-    /* scale: 0.9; */
+    scale: 1.2;
     background: radial-gradient(ellipse at top, #e66465, transparent),
         radial-gradient(ellipse at bottom, #4d9f0c, transparent);
 }
@@ -439,7 +461,7 @@ section {
 
 #area_kitchen_7 {
     height: 6.5rem;
-    padding-top: 1rem;
+    /* padding-top: 1rem; */
     width: 7rem;
 }
 
@@ -447,7 +469,7 @@ section {
 .kitchen .row__bottom {
     flex-grow: 1;
     flex-direction: row;
-    padding-top: 1.5rem;
+    /* padding-top: 1.5rem; */
     padding-left: 3.5rem;
     padding-right: 4rem;
 }
@@ -520,7 +542,7 @@ section {
     column-gap: 0.8rem;
     display: flex;
     flex: 1;
-    height: 17em;
+    height: 20.5rem;
     justify-content: left;
     padding-left: 10%;
 }
@@ -654,11 +676,17 @@ section {
     }
 
     dialog.success {
-        left: 37%;
+        top: 25%;
+        left: 25%;
     }
 
     dialog.failure {
-        left: 65%;
+        /* left: 65%; */
+        left: 25%;
+    }
+
+    #instructions {
+        scale: 1;
     }
 
     /* KITCHEN */
@@ -865,6 +893,15 @@ section {
         font-size: 175%;
     }
 
+    dialog.success {
+        left: 22%;
+        top: 10%;
+    }
+
+    dialog.failure {
+        top: 20%;
+    }
+
     #splashTitle {
         position: relative;
         margin-top: 5rem;
@@ -879,10 +916,6 @@ section {
     #instructions {
         margin-bottom: 10rem;
         position: relative;
-    }
-
-    .finalDialog {
-        margin-right: 8rem;
     }
 
     /* KITCHEN */
@@ -1047,11 +1080,12 @@ section {
     }
 
     dialog.success {
-        left: 12%;
+        left: 10%;
+        top: 50%;
     }
 
     dialog.failure {
-        left: 32%;
+        left: 15%;
     }
 
     #splashTitle {
@@ -2036,13 +2070,10 @@ section {
     }
 
     #instructions {
-        font-size: 160%;
+        font-size: 100%;
         position: absolute;
-        scale: 0.6;
-        margin-left: -3.5rem;
-        margin-right: -3.5rem;
-        margin-top: 16rem;
-        align-items: center;
+        scale: 0.8;
+        top: 35%;
     }
 
     .goToLocationButton {

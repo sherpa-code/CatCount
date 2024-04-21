@@ -21,6 +21,7 @@ var currentCatSFX = 1;
 let clickCounter = 0;
 // let timer = 2;
 let timer = 9999;
+// const debugAllCatsFound = false;
 const debugAllCatsFound = true;
 // let timer = 3;
 var catsFound = 0;
