@@ -24,14 +24,14 @@ The background images were generated using the generative AI 'Stable Diffusion X
 
 This version features 3 cats with accompanying gif images.
 Sources for the cat gifs are attributed to the following:
-https://www.pinterest.ca/pin/597501075532356734/
-https://www.pinterest.ca/pin/783767141416539350/
+https://www.pinterest.ca/pin/597501075532356734/\
+https://www.pinterest.ca/pin/783767141416539350/\
 https://www.pinterest.ca/pin/173599760628132380/
 
 Sound effects attributed to Pixabay.com at:\
-https://pixabay.com/sound-effects/cat-3-43850/ \
-https://pixabay.com/sound-effects/cat-growl-96248/ \
-https://pixabay.com/sound-effects/cat-meow-once-90564/ \
+https://pixabay.com/sound-effects/cat-3-43850/\
+https://pixabay.com/sound-effects/cat-growl-96248/\
+https://pixabay.com/sound-effects/cat-meow-once-90564/
 
 Favicon attributed to icons8.com at:\
 https://icons8.com/icon/3LBj6pUvtKiK/cat

@@ -73,7 +73,7 @@ picture {
         background-color: #749bb6;
     }
     65% {
-        background-color: #b4b7cc;
+        background-color: #b0b8ff;
     }
     100% {
         /* background-color: initial; */
@@ -86,6 +86,7 @@ picture {
 :root {
     --animationFadeIn: fadeIn 0.5s ease-in forwards;
     --animationFadeOut: fadeOut 0.5s ease-out forwards;
+    --animationFadeInOut05s: fadeInOut 0.5s ease-in-out forwards;
     --animationFadeInOut: fadeInOut 2s ease-in-out forwards;
     --animationFadeInOut4s: fadeInOut 4s ease-in-out forwards;
     --transitionOpacity: opacity 0.5s ease-in-out;
@@ -108,6 +109,10 @@ picture {
     animation: var(--animationPulseBtnGold);
 }
 
+.fadeInOut05s {
+    animation: var(--animationFadeInOut05s);
+}
+
 .hidden {
     display: none;
 }
@@ -119,23 +124,23 @@ body {
 }
 
 body {
-    line-height: 1.35;
-    -webkit-font-smoothing: antialiased;
-    font-family: Arial, sans-serif;
-    text-align: center;
+    animation: var(--animationFadeIn);
     background-color: #4d4d4d;
     background-image: linear-gradient(
         rgb(129, 84, 1),
         rgba(165, 42, 42, 0.171)
     );
-    animation: var(--animationFadeIn);
+    font-family: Arial, sans-serif;
+    line-height: 1.35;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
 }
 
 main {
+    animation: var(--animationFadeInOut05s);
+    flex-direction: column;
     margin: 0 auto;
     position: relative;
-    transition: opacity 0.5s ease-in-out;
-    flex-direction: column;
 }
 
 img {
@@ -146,8 +151,8 @@ img {
 button {
     border: none;
     border-radius: 1em;
-    font-size: 1rem;
     color: #fff;
+    font-size: 1rem;
     z-index: 1;
 }
 
@@ -171,6 +176,11 @@ dialog {
     pointer-events: none;
     padding: 0;
     opacity: 0.6;
+}
+
+.finalDialog {
+    /* position: absolute; */
+    /* top: 35%; */
 }
 
 dialog.success {
@@ -224,13 +234,7 @@ section {
 .row {
     display: flex;
     justify-content: center;
-    max-width: 2048px;
-    margin: auto;
-}
-
-.row__stats {
-    justify-content: right;
-    flex-grow: 0;
+    /* position: fixed; */
 }
 
 .emojiModal {
@@ -243,8 +247,7 @@ section {
 }
 
 .stats--display {
-    /* position: absolute; */
-    position: relative;
+    position: absolute;
     padding: 0.15rem 0.65rem;
     border-radius: 0.5rem;
     background-color: #3498db;
@@ -271,6 +274,18 @@ section {
     right: 2rem;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+    margin: auto;
+    max-width: 1000px;
+    position: relative;
+    padding: 0% 5%;
+    width: 100%;
+}
+
 #splashPage {
     animation: var(--animationFadeIn);
     background-image: url(./img/splashPage.jpg);
@@ -281,23 +296,11 @@ section {
     position: relative;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-around;
-    margin: auto;
-    max-width: 75%;
-    position: relative;
-    padding: 0% 5%;
-    width: 100%;
-}
-
 #splashTitle {
     border-radius: 1em;
     color: white;
     display: block;
-    font-size: 300%;
+    font-size: 150%;
     /* margin-left: 1em; */
     opacity: 85%;
     scale: 1.2;
@@ -320,29 +323,26 @@ section {
     border-radius: 1em;
     color: white;
     display: block;
-    font-size: 300%;
+    font-size: 200%;
     font-weight: bold;
     max-width: 350px;
     opacity: 90%;
     padding: 1.35em;
-    scale: 1.5;
     transform: skew(-3deg, -3deg);
 }
 
-#letsGoButtonContainer {
+/* #letsGoButtonContainer {
     margin-left: auto;
-}
+} */
 
 #instructions {
     align-items: center;
     animation: var(--animationFadeIn);
     display: none;
-    font-size: 300%;
-    margin: 0 auto;
-    opacity: 75%;
+    opacity: 90%;
     scale: 1.2;
-    background: radial-gradient(ellipse at top, #e66465, transparent),
-        radial-gradient(ellipse at bottom, #4d9f0c, transparent);
+    background: radial-gradient(ellipse at top, #e48080, transparent),
+        radial-gradient(ellipse at bottom, #95ca69, transparent);
 }
 
 #instructions h1 {
@@ -376,13 +376,13 @@ section {
 }
 
 #timer {
-    /* top: 1rem;
-    right: 2.5rem; */
+    top: 1rem;
+    right: 2.5rem;
 }
 
 #foundCounter {
-    /* top: 1rem;
-    right: 12rem; */
+    top: 1rem;
+    right: 12rem;
 }
 
 .row__upper {
@@ -472,9 +472,20 @@ section {
     width: 19rem;
 }
 
+#area_kitchen_1,
+#area_kitchen_2,
+#area_kitchen_3 {
+    height: 10rem;
+}
+
+#area_kitchen_4,
+#area_kitchen_5 {
+    height: 10rem;
+}
+
 #area_kitchen_8 {
-    height: 20rem;
-    width: 14rem;
+    height: 9rem;
+    width: 9rem;
 }
 
 #area_kitchen_9 {
@@ -492,7 +503,7 @@ section {
 
 #area_kitchen_10,
 #area_kitchen_11 {
-    height: 14rem;
+    height: 8rem;
 }
 
 #area_kitchen_12 {
@@ -501,7 +512,7 @@ section {
 }
 #area_kitchen_13 {
     width: 12rem;
-    height: 12rem;
+    height: 5rem;
 }
 #area_kitchen_14 {
     height: 3rem;
@@ -518,6 +529,164 @@ section {
 #area_kitchen_18 {
     height: 7rem;
 }
+
+/* KITCHEN ROW MIDDLE */
+.kitchen .row__middle {
+    column-gap: 8.2rem;
+    padding-top: 0.2rem;
+}
+
+#area_kitchen_6 {
+    width: 8rem;
+}
+
+#area_kitchen_7 {
+    width: 5.8rem;
+}
+
+/* KITCHEN ROW BOTTOM */
+.kitchen .row__bottom {
+    padding-right: 3rem;
+}
+
+#area_kitchen_8 {
+    height: 15rem;
+    width: 9rem;
+}
+
+.kitchen .bottom-second-left-top {
+    width: 15.5rem;
+}
+
+#area_kitchen_9 {
+    height: 3rem;
+    width: 100%;
+}
+
+#area_kitchen_10,
+#area_kitchen_11 {
+    height: 10.5rem;
+}
+
+#area_kitchen_12 {
+    height: 5rem;
+}
+
+#area_kitchen_13 {
+    height: 8.5rem;
+}
+
+#area_kitchen_12,
+#area_kitchen_13 {
+    width: 8rem;
+}
+
+#area_kitchen_14 {
+    height: 2.5rem;
+    width: 9rem;
+}
+
+#area_kitchen_15 {
+    height: 2.4rem;
+}
+
+#area_kitchen_16 {
+    height: 1.9rem;
+}
+
+#area_kitchen_17 {
+    height: 1.9rem;
+}
+
+#area_kitchen_18 {
+    height: 4.75rem;
+}
+
+/* //////// */
+#area_kitchen_1,
+#area_kitchen_2,
+#area_kitchen_3 {
+    height: 10rem;
+}
+
+#area_kitchen_4,
+#area_kitchen_5 {
+    height: 10rem;
+}
+
+/* KITCHEN ROW MIDDLE */
+.kitchen .row__middle {
+    column-gap: 8.2rem;
+    padding-top: 0.2rem;
+}
+
+#area_kitchen_6 {
+    width: 8rem;
+}
+
+#area_kitchen_7 {
+    width: 5.8rem;
+}
+
+/* KITCHEN ROW BOTTOM */
+.kitchen .row__bottom {
+    padding-right: 3rem;
+}
+
+#area_kitchen_8 {
+    height: 11rem;
+    width: 9rem;
+}
+
+.kitchen .bottom-second-left-top {
+    width: 15.5rem;
+}
+
+#area_kitchen_9 {
+    height: 3rem;
+    width: 100%;
+}
+
+#area_kitchen_10,
+#area_kitchen_11 {
+    height: 8rem;
+}
+
+#area_kitchen_12 {
+    height: 5rem;
+}
+
+#area_kitchen_13 {
+    height: 5.7rem;
+}
+
+#area_kitchen_12,
+#area_kitchen_13 {
+    width: 8rem;
+}
+
+#area_kitchen_14 {
+    height: 2.5rem;
+    width: 9rem;
+}
+
+#area_kitchen_15 {
+    height: 2.4rem;
+}
+
+#area_kitchen_16 {
+    height: 1.9rem;
+}
+
+#area_kitchen_17 {
+    height: 1.9rem;
+}
+
+#area_kitchen_18 {
+    height: 2.3rem;
+}
+
+/* //// */
 
 /* BEDROOM STYLES */
 /* BEDROOM ROW UPPER */
@@ -653,637 +822,110 @@ section {
     height: 18rem;
 }
 
+/* ///////// */
+
+/* BEDROOM */
+/* BEDROOM ROW UPPER */
+.bedroom .row__upper {
+    margin: 0;
+    height: 14.5rem;
+    column-gap: 0;
+}
+
+#area_bedroom_1 {
+    height: 10rem;
+    width: 10.5rem;
+}
+
+#area_bedroom_2,
+#area_bedroom_3 {
+    height: 4.5rem;
+    width: 5.5rem;
+}
+
+#area_bedroom_4 {
+    height: 4rem;
+}
+
+#area_bedroom_5 {
+    height: 2.5rem;
+}
+
+#area_bedroom_4,
+#area_bedroom_5 {
+    width: 3.5rem;
+}
+
+#area_bedroom_6 {
+    align-self: start;
+    height: 10rem;
+    width: 7.7rem;
+    margin-top: 2rem;
+}
+
+/* BEDROOM ROW MIDDLE */
+.bedroom .row__middle {
+    column-gap: 0;
+    height: 12.6rem;
+}
+
+#area_bedroom_7 {
+    height: 100%;
+}
+
+#area_bedroom_8 {
+    height: 22rem;
+    width: 6rem;
+}
+
+.bedroom .closet.closet.second-middle {
+    width: 3.6rem;
+}
+
+#area_bedroom_9 {
+    height: 4rem;
+    margin-top: 0;
+}
+
+/* BEDROOM ROW BOTTOM */
+.bedroom .row__bottom {
+    column-gap: 0;
+}
+
+#area_bedroom_7,
+#area_bedroom_13,
+#area_bedroom_14,
+#area_bedroom_15 {
+    width: 10.5rem;
+}
+
+#area_bedroom_12 {
+    height: 2.35rem;
+}
+
+#area_bedroom_13,
+#area_bedroom_14,
+#area_bedroom_15 {
+    height: 2.5rem;
+}
+
+#area_bedroom_20,
+#area_bedroom_21,
+#area_bedroom_22 {
+    height: 3rem;
+    margin-right: 0;
+    margin-left: 5rem;
+    width: 9.5rem;
+}
+
+#area_bedroom_23 {
+    height: 11rem;
+    width: 10rem;
+}
+
 /* MEDIA QUERIES BEGIN */
-@media screen and (max-width: 1440px) {
-    dialog {
-        font-size: 180%;
-    }
 
-    dialog.success {
-        top: 25%;
-        left: 25%;
-    }
-
-    dialog.failure {
-        /* left: 65%; */
-        left: 25%;
-    }
-
-    #instructions {
-        scale: 1;
-    }
-
-    /* KITCHEN */
-    /* KITCHEN ROW UPPER */
-    .kitchen .row__upper {
-        column-gap: 1.7rem;
-        padding-top: 5.5rem;
-    }
-
-    /* KITCHEN ROW MIDDLE */
-    .kitchen .row__middle {
-        column-gap: 13.5rem;
-        padding-top: 3.2rem;
-    }
-
-    #area_kitchen_8 {
-        height: 20.5rem;
-        width: 14.5rem;
-    }
-
-    #area_kitchen_9 {
-        width: auto;
-        height: 3rem;
-    }
-
-    #area_kitchen_10 {
-        width: 11rem;
-    }
-
-    #area_kitchen_10,
-    #area_kitchen_11 {
-        height: 15rem;
-    }
-
-    /* KITCHEN ROW BOTTOM */
-    .kitchen .row__bottom {
-        padding-top: 2.2rem;
-    }
-
-    #area_kitchen_12 {
-        height: 6.2rem;
-    }
-
-    #area_kitchen_13 {
-        height: 12.5em;
-    }
-
-    #area_kitchen_12,
-    #area_kitchen_13 {
-        width: 12.2rem;
-    }
-
-    #area_kitchen_14 {
-        height: 2.7rem;
-    }
-
-    #area_kitchen_15 {
-        height: 3.5rem;
-    }
-
-    #area_kitchen_16 {
-        height: 2.5rem;
-    }
-
-    #area_kitchen_17 {
-        height: 2.7rem;
-    }
-
-    #area_kitchen_18 {
-        height: 6.5rem;
-    }
-
-    .kitchen .cupboards.bottom-right {
-        width: 11.8rem;
-    }
-
-    .kitchen .bottom-second-left-top {
-        flex-direction: column;
-        width: 20.5rem;
-    }
-
-    .kitchen .bottom-second-left-bottom {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .kitchen .cupboards.bottom-right {
-        width: 23rem;
-    }
-
-    /* BEDROOM */
-    /* BEDROOM ROW UPPER */
-    .bedroom .row__upper {
-        height: 18rem;
-        margin-top: 3rem;
-        padding-top: 1.9rem;
-    }
-
-    .bedroom .shelves-stacked {
-        width: 7rem;
-    }
-
-    #area_bedroom_1 {
-        width: 14.5rem;
-    }
-
-    #area_bedroom_2,
-    #area_bedroom_3 {
-        height: 5.4rem;
-        width: 6.5rem;
-    }
-
-    #area_bedroom_4 {
-        height: 5rem;
-        margin-top: 1rem;
-    }
-
-    #area_bedroom_5 {
-        height: 3.5rem;
-    }
-
-    #area_bedroom_4,
-    #area_bedroom_5 {
-        width: 5.5rem;
-    }
-
-    #area_bedroom_6 {
-        align-self: flex-start;
-        height: 11rem;
-        margin-left: auto;
-        width: 10.5rem;
-    }
-
-    /* BEDROOM ROW MIDDLE */
-    .bedroom .row__middle {
-        column-gap: 1rem;
-        flex: 1;
-        height: 18.8rem;
-        justify-content: left;
-        overflow: visible;
-    }
-
-    #area_bedroom_7 {
-        height: 100%;
-        width: 14.5rem;
-    }
-
-    #area_bedroom_8 {
-        height: 30rem;
-        width: 6.5rem;
-    }
-
-    #area_bedroom_9 {
-        height: 3.5rem;
-        margin-top: 2.25rem;
-        width: 100%;
-    }
-
-    #area_bedroom_10 {
-        height: 130%;
-        width: 100%;
-    }
-
-    .bedroom .closet.second-middle {
-        width: 5.3rem;
-    }
-
-    /* BEDROOM ROW BOTTOM */
-    .bedroom .row__bottom {
-        column-gap: 0.6rem;
-        display: flex;
-        flex: 1;
-        justify-content: space-between;
-        padding-left: 10%;
-    }
-
-    .drawers {
-        margin-left: 16rem;
-        margin-top: 0.5rem;
-    }
-
-    #area_bedroom_13,
-    #area_bedroom_14,
-    #area_bedroom_15 {
-        width: 14rem;
-        height: 3.5rem;
-    }
-
-    .bedroom .drawers {
-        width: 16rem;
-    }
-
-    #area_bedroom_20,
-    #area_bedroom_21,
-    #area_bedroom_22 {
-        height: 8rem;
-        height: 4.25rem;
-        width: 75%;
-    }
-}
-
-@media screen and (max-width: 1024px) {
-    dialog {
-        font-size: 175%;
-    }
-
-    dialog.success {
-        left: 22%;
-        top: 10%;
-    }
-
-    dialog.failure {
-        top: 20%;
-    }
-
-    #splashTitle {
-        position: relative;
-        margin-top: 5rem;
-    }
-
-    #letsGoButton {
-        scale: 1.25;
-        /* margin-right: 3rem; */
-        margin-bottom: 2rem;
-    }
-
-    #instructions {
-        margin-bottom: 10rem;
-        position: relative;
-    }
-
-    /* KITCHEN */
-    /* KITCHEN ROW UPPER */
-    .kitchen .row__upper {
-        column-gap: 1rem;
-        padding-top: 3.4rem;
-        padding-left: 4.4rem;
-        padding-right: 4rem;
-    }
-
-    #area_kitchen_1,
-    #area_kitchen_2,
-    #area_kitchen_3 {
-        height: 19rem;
-    }
-
-    #area_kitchen_4,
-    #area_kitchen_5 {
-        height: 21rem;
-    }
-
-    /* KITCHEN ROW MIDDLE */
-    .kitchen .row__middle {
-        column-gap: 10.8rem;
-        padding-top: 1.9rem;
-    }
-
-    #area_kitchen_6 {
-        width: 12rem;
-    }
-
-    #area_kitchen_7 {
-        width: 7rem;
-    }
-
-    /* KITCHEN ROW BOTTOM */
-    .kitchen .row__bottom {
-        padding-top: 0;
-    }
-
-    .kitchen .bottom-second-left-top {
-        flex-direction: column;
-        width: 20rem;
-    }
-
-    .cupboards .bottom-second-right {
-        width: 17.3rem;
-    }
-
-    #area_kitchen_8 {
-        height: 20.5rem;
-        width: 13rem;
-    }
-
-    #area_kitchen_9 {
-        height: 4.2rem;
-        width: 20rem;
-    }
-
-    #area_kitchen_10,
-    #area_kitchen_11 {
-        height: 14rem;
-    }
-
-    #area_kitchen_12 {
-        height: 7rem;
-    }
-
-    #area_kitchen_13 {
-        height: 11.25rem;
-        width: 100%;
-    }
-
-    #area_kitchen_14 {
-        height: 3.9rem;
-        width: 100%;
-    }
-
-    #area_kitchen_16 {
-        width: 100%;
-        height: 2.65rem;
-    }
-
-    #area_kitchen_17 {
-        height: 2.45rem;
-        width: 100%;
-    }
-
-    #area_kitchen_18 {
-        height: 6.5rem;
-        width: 100%;
-    }
-
-    /* BEDROOM */
-    /* BEDROOM ROW UPPER */
-    .bedroom .row__upper {
-        margin-top: 6rem;
-        height: 15rem;
-    }
-
-    #area_bedroom_1 {
-        width: 13.5rem;
-    }
-
-    #area_bedroom_2 {
-        margin-bottom: 0;
-    }
-
-    .cupboards .shelves-stacked {
-        width: 6.5rem;
-    }
-
-    #area_bedroom_4,
-    #area_bedroom_5 {
-        width: 5.5rem;
-    }
-
-    #area_bedroom_6 {
-        align-self: flex-start;
-        height: 8rem;
-        margin-top: 0rem;
-    }
-
-    /* BEDROOM ROW MIDDLE */
-    .bedroom .row__middle {
-        height: 17.75rem;
-    }
-
-    #area_bedroom_7,
-    #area_bedroom_13,
-    #area_bedroom_14,
-    #area_bedroom_15 {
-        width: 13.5rem;
-    }
-
-    #area_bedroom_13,
-    #area_bedroom_14,
-    #area_bedroom_15 {
-        height: 3rem;
-    }
-
-    .cupboards.shelves-stacked,
-    .closet.second-left {
-        max-width: 6rem;
-    }
-
-    /* BEDROOM ROW BOTTOM */
-    .drawers {
-        margin-left: 15rem;
-        margin-top: 0;
-    }
-
-    #area_bedroom_23 {
-        width: 13rem;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    dialog {
-        font-size: 175%;
-    }
-
-    dialog.success {
-        left: 10%;
-        top: 50%;
-    }
-
-    dialog.failure {
-        left: 15%;
-    }
-
-    #splashTitle {
-        margin-top: 10rem;
-    }
-
-    #letsGoButton {
-        margin-bottom: 7rem;
-        /* margin-right: rem; */
-    }
-
-    #instructions {
-        position: relative;
-        top: 0;
-    }
-
-    /* KITCHEN */
-    /* KITCHEN ROW UPPER */
-    .kitchen .row__upper {
-        /* margin: 0;
-        padding-top: 0;
-        height: 115rem; */
-        /* height: 115rem; */
-        /* column-gap: 0; */
-    }
-
-    #area_kitchen_1,
-    #area_kitchen_2,
-    #area_kitchen_3 {
-        height: 14rem;
-    }
-
-    #area_kitchen_4,
-    #area_kitchen_5 {
-        height: 16rem;
-    }
-
-    /* KITCHEN ROW MIDDLE */
-    .kitchen .row__middle {
-        column-gap: 8.2rem;
-        padding-top: 0.2rem;
-    }
-
-    #area_kitchen_6 {
-        width: 8rem;
-    }
-
-    #area_kitchen_7 {
-        width: 5.8rem;
-    }
-
-    /* KITCHEN ROW BOTTOM */
-    .kitchen .row__bottom {
-        padding-right: 3rem;
-    }
-
-    #area_kitchen_8 {
-        height: 15rem;
-        width: 9rem;
-    }
-
-    .kitchen .bottom-second-left-top {
-        width: 15.5rem;
-    }
-
-    #area_kitchen_9 {
-        height: 3rem;
-        width: 100%;
-    }
-
-    #area_kitchen_10,
-    #area_kitchen_11 {
-        height: 10.5rem;
-    }
-
-    #area_kitchen_12 {
-        height: 5rem;
-    }
-
-    #area_kitchen_13 {
-        height: 8.5rem;
-    }
-
-    #area_kitchen_12,
-    #area_kitchen_13 {
-        width: 8rem;
-    }
-
-    #area_kitchen_14 {
-        height: 2.5rem;
-        width: 9rem;
-    }
-
-    #area_kitchen_15 {
-        height: 2.4rem;
-    }
-
-    #area_kitchen_16 {
-        height: 1.9rem;
-    }
-
-    #area_kitchen_17 {
-        height: 1.9rem;
-    }
-
-    #area_kitchen_18 {
-        height: 4.75rem;
-    }
-
-    /* BEDROOM */
-    /* BEDROOM ROW UPPER */
-    .bedroom .row__upper {
-        margin: 0;
-        height: 14.5rem;
-        column-gap: 0;
-    }
-
-    #area_bedroom_1 {
-        height: 10rem;
-        width: 10.5rem;
-    }
-
-    #area_bedroom_2,
-    #area_bedroom_3 {
-        height: 4.5rem;
-        width: 5.5rem;
-    }
-
-    #area_bedroom_4 {
-        height: 4rem;
-    }
-
-    #area_bedroom_5 {
-        height: 2.5rem;
-    }
-
-    #area_bedroom_4,
-    #area_bedroom_5 {
-        width: 3.5rem;
-    }
-
-    #area_bedroom_6 {
-        align-self: start;
-        height: 10rem;
-        width: 7.7rem;
-        margin-top: 2rem;
-    }
-
-    /* BEDROOM ROW MIDDLE */
-    .bedroom .row__middle {
-        column-gap: 0;
-        height: 12.6rem;
-    }
-
-    #area_bedroom_7 {
-        height: 100%;
-    }
-
-    #area_bedroom_8 {
-        height: 22rem;
-        width: 6rem;
-    }
-
-    .bedroom .closet.closet.second-middle {
-        width: 3.6rem;
-    }
-
-    #area_bedroom_9 {
-        height: 4rem;
-        margin-top: 0;
-    }
-
-    /* BEDROOM ROW BOTTOM */
-    .bedroom .row__bottom {
-        column-gap: 0;
-    }
-
-    #area_bedroom_7,
-    #area_bedroom_13,
-    #area_bedroom_14,
-    #area_bedroom_15 {
-        width: 10.5rem;
-    }
-
-    #area_bedroom_12 {
-        height: 2.35rem;
-    }
-
-    #area_bedroom_13,
-    #area_bedroom_14,
-    #area_bedroom_15 {
-        height: 2.5rem;
-    }
-
-    #area_bedroom_20,
-    #area_bedroom_21,
-    #area_bedroom_22 {
-        height: 3rem;
-        margin-right: 0;
-        margin-left: 5rem;
-        width: 9.5rem;
-    }
-
-    #area_bedroom_23 {
-        height: 11rem;
-        width: 10rem;
-    }
-
-    .drawers {
-        margin-left: 5rem;
-    }
-}
-
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 2560px) {
     #splashTitle {
         margin-top: 15rem;
         margin-left: -2rem;
@@ -1304,12 +946,24 @@ section {
     }
 
     .goToLocationButton {
-        top: 75%;
+        top: 79%;
     }
+
+    /* .finalDialog {
+        top: 19%;
+        align-items: center;
+    } */
 
     /* dialog.success {
         left: 2%;
     } */
+    #timer {
+        top: 10rem;
+    }
+
+    #foundCounter {
+        top: 10rem;
+    }
 
     dialog.failure {
         left: 18%;
@@ -1492,6 +1146,782 @@ section {
 
     #area_bedroom_10 {
         height: 10rem;
+
+        width: 2rem;
+    }
+
+    /* BEDROOM ROW BOTTOM */
+    .bedroom .row__bottom {
+        column-gap: 0;
+    }
+
+    #area_bedroom_12 {
+        height: 1.75rem;
+        width: 3rem;
+    }
+
+    #area_bedroom_13,
+    #area_bedroom_14,
+    #area_bedroom_15 {
+        height: 1.65rem;
+        width: 6.5rem;
+    }
+
+    #area_bedroom_20,
+    #area_bedroom_21,
+    #area_bedroom_22 {
+        margin-left: 7.5rem;
+        height: 2.25rem;
+        width: 7.5rem;
+    }
+
+    #area_bedroom_23 {
+        height: 7rem;
+        margin-top: 4rem;
+    }
+
+    .drawers {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    dialog {
+        font-size: 180%;
+    }
+
+    dialog.success {
+        top: 25%;
+        left: 25%;
+    }
+
+    dialog.failure {
+        /* left: 65%; */
+        left: 25%;
+    }
+
+    #instructions {
+        scale: 0.8;
+    }
+    #area_kitchen_1,
+    #area_kitchen_2,
+    #area_kitchen_3 {
+        height: 14rem;
+    }
+
+    #area_kitchen_4,
+    #area_kitchen_5 {
+        height: 16rem;
+    }
+
+    /* KITCHEN ROW MIDDLE */
+    .kitchen .row__middle {
+        column-gap: 8.2rem;
+        padding-top: 0.2rem;
+    }
+
+    #area_kitchen_6 {
+        width: 8rem;
+    }
+
+    #area_kitchen_7 {
+        width: 5.8rem;
+    }
+
+    /* KITCHEN ROW BOTTOM */
+    .kitchen .row__bottom {
+        padding-right: 0rem;
+    }
+
+    #area_kitchen_8 {
+        height: 15rem;
+        width: 12rem;
+    }
+
+    .kitchen .bottom-second-left-top {
+        width: 15.5rem;
+    }
+
+    #area_kitchen_9 {
+        height: 3rem;
+        width: 104%;
+    }
+
+    #area_kitchen_10,
+    #area_kitchen_11 {
+        height: 12.5rem;
+        width: 9rem;
+    }
+
+    #area_kitchen_12 {
+        height: 5rem;
+    }
+
+    #area_kitchen_13 {
+        height: 10.5rem;
+    }
+
+    #area_kitchen_12,
+    #area_kitchen_13 {
+        width: 12rem;
+    }
+
+    #area_kitchen_14 {
+        height: 2.5rem;
+        width: 11rem;
+    }
+
+    #area_kitchen_15 {
+        height: 2.4rem;
+    }
+
+    #area_kitchen_16 {
+        height: 1.9rem;
+    }
+
+    #area_kitchen_17 {
+        height: 1.9rem;
+    }
+
+    #area_kitchen_18 {
+        height: 4.75rem;
+    }
+
+    /* BEDROOM */
+    /* BEDROOM ROW UPPER */
+    .bedroom .row__upper {
+        margin: 0;
+        height: 7.5rem;
+        column-gap: 0;
+    }
+
+    #area_bedroom_1 {
+        height: 10rem;
+        width: 12.5rem;
+    }
+
+    #area_bedroom_2,
+    #area_bedroom_3 {
+        height: 4.5rem;
+        width: 5.5rem;
+    }
+
+    #area_bedroom_4 {
+        height: 4rem;
+    }
+
+    #area_bedroom_5 {
+        height: 2.5rem;
+    }
+
+    #area_bedroom_4,
+    #area_bedroom_5 {
+        width: 3.5rem;
+    }
+
+    #area_bedroom_6 {
+        align-self: start;
+        height: 10rem;
+        width: 8.7rem;
+        margin-top: -5rem;
+    }
+
+    /* BEDROOM ROW MIDDLE */
+    .bedroom .row__middle {
+        column-gap: 0;
+        height: 12.6rem;
+    }
+
+    #area_bedroom_7 {
+        height: 17rem;
+    }
+
+    #area_bedroom_8 {
+        height: 26rem;
+        width: 7rem;
+    }
+
+    .bedroom .closet.closet.second-middle {
+        width: 3.6rem;
+    }
+
+    #area_bedroom_9 {
+        height: 6rem;
+        margin-top: 0;
+        width: 5rem;
+    }
+
+    #area_bedroom_10 {
+        height: 20rem;
+        width: 4rem;
+    }
+    /* BEDROOM ROW BOTTOM */
+    .bedroom .row__bottom {
+        column-gap: 0;
+    }
+
+    #area_bedroom_7,
+    #area_bedroom_13,
+    #area_bedroom_14,
+    #area_bedroom_15 {
+        width: 12.5rem;
+    }
+    .closets {
+        padding-top: 4.5rem;
+    }
+    #area_bedroom_12 {
+        height: 2.35rem;
+    }
+
+    #area_bedroom_13,
+    #area_bedroom_14,
+    #area_bedroom_15 {
+        height: 2.5rem;
+    }
+
+    #area_bedroom_20,
+    #area_bedroom_21,
+    #area_bedroom_22 {
+        height: 3rem;
+        margin-right: 0;
+        margin-left: 5rem;
+        width: 9.5rem;
+    }
+
+    #area_bedroom_23 {
+        height: 11rem;
+        width: 10rem;
+        position: relative;
+        top: 8rem;
+        left: -1rem;
+    }
+
+    .drawers {
+        margin-left: -6rem;
+        margin-top: 5.5rem;
+    }
+    .kitchen .row__upper {
+        column-gap: 0.5rem;
+        padding-left: 3rem;
+        padding-right: 2rem;
+        padding-top: 4rem;
+        height: 24rem;
+    }
+    .cupboards.shelves-stacked {
+        max-width: 7rem;
+    }
+    /* #timer {
+        top: 6rem;
+    }
+
+    #foundCounter {
+        top: 6rem;
+    }
+    .goToLocationButton {
+        top: 95%;
+    } */
+}
+
+@media screen and (max-width: 1024px) {
+    dialog {
+        font-size: 175%;
+    }
+
+    dialog.success {
+        left: 22%;
+        top: 10%;
+    }
+
+    dialog.failure {
+        top: 20%;
+    }
+
+    #splashTitle {
+        position: relative;
+        margin-top: 5rem;
+    }
+
+    #letsGoButton {
+        scale: 1.25;
+        /* margin-right: 3rem; */
+        margin-bottom: 2rem;
+    }
+
+    #instructions {
+        margin-bottom: 36rem;
+        position: relative;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    dialog {
+        font-size: 175%;
+    }
+
+    dialog.success {
+        left: 10%;
+        top: 50%;
+    }
+
+    dialog.failure {
+        left: 15%;
+    }
+
+    #splashTitle {
+        margin-top: 10rem;
+    }
+
+    #letsGoButton {
+        margin-bottom: 7rem;
+        /* margin-right: rem; */
+    }
+
+    #instructions {
+        position: relative;
+        top: -109px;
+    }
+
+    .kitchen .row__upper {
+        column-gap: 0.5rem;
+        padding-left: 3rem;
+        padding-right: 2rem;
+        padding-top: 4rem;
+        height: 19rem;
+    }
+
+    #area_kitchen_1,
+    #area_kitchen_2,
+    #area_kitchen_3 {
+        height: 14rem;
+    }
+
+    #area_kitchen_4,
+    #area_kitchen_5 {
+        height: 16rem;
+    }
+
+    /* KITCHEN ROW MIDDLE */
+    .kitchen .row__middle {
+        column-gap: 8.2rem;
+        padding-top: 0.2rem;
+    }
+
+    #area_kitchen_6 {
+        width: 8rem;
+    }
+
+    #area_kitchen_7 {
+        width: 5.8rem;
+    }
+
+    /* KITCHEN ROW BOTTOM */
+    .kitchen .row__bottom {
+        padding-right: 3rem;
+    }
+
+    #area_kitchen_8 {
+        height: 15rem;
+        width: 9rem;
+    }
+
+    .kitchen .bottom-second-left-top {
+        width: 15.5rem;
+    }
+
+    #area_kitchen_9 {
+        height: 3rem;
+        width: 100%;
+    }
+
+    #area_kitchen_10,
+    #area_kitchen_11 {
+        height: 10.5rem;
+    }
+
+    #area_kitchen_12 {
+        height: 5rem;
+    }
+
+    #area_kitchen_13 {
+        height: 8.5rem;
+    }
+
+    #area_kitchen_12,
+    #area_kitchen_13 {
+        width: 8rem;
+    }
+
+    #area_kitchen_14 {
+        height: 2.5rem;
+        width: 9rem;
+    }
+
+    #area_kitchen_15 {
+        height: 2.4rem;
+    }
+
+    #area_kitchen_16 {
+        height: 1.9rem;
+    }
+
+    #area_kitchen_17 {
+        height: 1.9rem;
+    }
+
+    #area_kitchen_18 {
+        height: 4.75rem;
+    }
+
+    /* BEDROOM */
+    /* BEDROOM ROW UPPER */
+    .bedroom .row__upper {
+        margin: 0;
+        height: 14.5rem;
+        column-gap: 0;
+    }
+
+    #area_bedroom_1 {
+        height: 10rem;
+        width: 10.5rem;
+    }
+    .closets {
+        padding-top: 0rem;
+    }
+
+    #area_bedroom_2,
+    #area_bedroom_3 {
+        height: 4.5rem;
+        width: 5.5rem;
+    }
+
+    #area_bedroom_4 {
+        height: 4rem;
+    }
+
+    #area_bedroom_5 {
+        height: 2.5rem;
+    }
+
+    #area_bedroom_4,
+    #area_bedroom_5 {
+        width: 3.5rem;
+    }
+
+    #area_bedroom_6 {
+        align-self: start;
+        height: 10rem;
+        width: 7.7rem;
+        margin-top: 2rem;
+    }
+
+    /* BEDROOM ROW MIDDLE */
+    .bedroom .row__middle {
+        column-gap: 0;
+        height: 12.6rem;
+    }
+
+    #area_bedroom_7 {
+        height: 100%;
+    }
+
+    #area_bedroom_8 {
+        height: 20rem;
+        width: 6rem;
+    }
+
+    .bedroom .closet.closet.second-middle {
+        width: 3.6rem;
+    }
+
+    #area_bedroom_9 {
+        height: 4rem;
+        margin-top: 0;
+        width: 3.5rem;
+    }
+
+    #area_bedroom_10 {
+        height: 16rem;
+        width: 4rem;
+    }
+
+    /* BEDROOM ROW BOTTOM */
+    .bedroom .row__bottom {
+        column-gap: 0;
+    }
+
+    #area_bedroom_7,
+    #area_bedroom_13,
+    #area_bedroom_14,
+    #area_bedroom_15 {
+        width: 10.5rem;
+    }
+
+    #area_bedroom_12 {
+        height: 2.35rem;
+    }
+
+    #area_bedroom_13,
+    #area_bedroom_14,
+    #area_bedroom_15 {
+        height: 2.5rem;
+    }
+
+    #area_bedroom_20,
+    #area_bedroom_21,
+    #area_bedroom_22 {
+        height: 3rem;
+        margin-right: 0;
+        margin-left: 5rem;
+        width: 9.5rem;
+    }
+
+    #area_bedroom_23 {
+        height: 11rem;
+        width: 10rem;
+        position: relative;
+        top: 1rem;
+        left: 0rem;
+    }
+
+    .drawers {
+        margin-left: 1rem;
+        margin-top: -0.5rem;
+    }
+    #timer {
+        top: 6rem;
+    }
+
+    #foundCounter {
+        top: 6rem;
+    }
+    .goToLocationButton {
+        top: 95%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #splashTitle {
+        margin-top: 15rem;
+        margin-left: -2rem;
+        scale: 75%;
+    }
+
+    #letsGoButton {
+        margin-bottom: 17rem;
+        position: relative;
+        scale: 75%;
+    }
+
+    #instructions {
+        scale: 0.7;
+        /* margin-top: 15rem; */
+        top: 25%;
+        position: absolute;
+    }
+
+    .goToLocationButton {
+        top: 79%;
+    }
+
+    /* .finalDialog {
+        top: 19%;
+        align-items: center;
+    } */
+
+    /* dialog.success {
+        left: 2%;
+    } */
+    #timer {
+        top: 10rem;
+    }
+
+    #foundCounter {
+        top: 10rem;
+    }
+
+    dialog.failure {
+        left: 18%;
+        /* top: -10%; */
+    }
+
+    /* KITCHEN */
+    /* KITCHEN ROW UPPER */
+    .kitchen .row__upper {
+        column-gap: 0.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 2rem;
+        height: 10rem;
+    }
+
+    #area_kitchen_1,
+    #area_kitchen_2,
+    #area_kitchen_3 {
+        height: 9rem;
+    }
+
+    #area_kitchen_4,
+    #area_kitchen_5 {
+        height: 10rem;
+    }
+
+    /* KITCHEN ROW MIDDLE */
+    .kitchen .row__middle {
+        column-gap: 5rem;
+        height: 6rem;
+    }
+
+    #area_kitchen_6 {
+        height: 2.5rem;
+        width: 5rem;
+    }
+
+    #area_kitchen_7 {
+        height: 3.5rem;
+        width: 4.5rem;
+    }
+
+    /* KITCHEN ROW BOTTOM */
+    .kitchen .row__bottom {
+        padding-left: 1.75rem;
+        padding-right: 0.5rem;
+    }
+
+    .kitchen .bottom-second-left-top {
+        width: 19rem;
+    }
+
+    #area_kitchen_8 {
+        height: 10rem;
+        width: 7rem;
+    }
+
+    #area_kitchen_9 {
+        height: 2.5rem;
+        width: 100%;
+    }
+
+    #area_kitchen_10 {
+        width: 40%;
+    }
+
+    #area_kitchen_11 {
+        width: 60%;
+    }
+
+    #area_kitchen_10,
+    #area_kitchen_11 {
+        height: 7rem;
+    }
+
+    #area_kitchen_12 {
+        height: 4rem;
+    }
+
+    #area_kitchen_13 {
+        height: 5.5rem;
+    }
+
+    #area_kitchen_12,
+    #area_kitchen_13 {
+        width: 5.5rem;
+    }
+
+    #area_kitchen_14 {
+        height: 1.8rem;
+    }
+
+    #area_kitchen_15 {
+        height: 1.7rem;
+    }
+
+    #area_kitchen_16 {
+        height: 1.4rem;
+    }
+
+    #area_kitchen_17 {
+        height: 1.3rem;
+    }
+
+    #area_kitchen_18 {
+        height: 2.8rem;
+    }
+
+    #area_kitchen_14,
+    #area_kitchen_15,
+    #area_kitchen_16,
+    #area_kitchen_17,
+    #area_kitchen_18 {
+        width: 100%;
+    }
+
+    .kitchen .cupboards.bottom-right {
+        width: 14rem;
+    }
+
+    /* BEDROOM */
+    /* BEDROOM ROW UPPER */
+    .bedroom .row__upper {
+        column-gap: 0;
+        margin: 0;
+        padding-top: 0;
+        height: 9.5rem;
+    }
+
+    #area_bedroom_1 {
+        height: 7rem;
+        width: 6.5rem;
+    }
+
+    #area_bedroom_2 {
+        height: 3.5rem;
+        width: 4.5rem;
+    }
+
+    #area_bedroom_2,
+    #area_bedroom_3 {
+        height: 3.25rem;
+        width: 4rem;
+    }
+
+    #area_bedroom_5 {
+        height: 2rem;
+    }
+
+    #area_bedroom_6 {
+        height: 8rem;
+        /* margin-bottom: 32rem; */
+        margin-top: 0;
+    }
+
+    .cupboards.shelves-stacked {
+        max-width: 4rem;
+    }
+
+    /* BEDROOM ROW MIDDLE */
+    .bedroom .row__middle {
+        height: 7.8rem;
+    }
+
+    #area_bedroom_7 {
+        height: 8rem;
+        width: 6.5rem;
+    }
+
+    #area_bedroom_8 {
+        height: 14rem;
+        width: 4rem;
+    }
+
+    #area_bedroom_9 {
+        height: 2.5rem;
+        width: 100%;
+    }
+
+    #area_bedroom_10 {
+        height: 10rem;
+
+        width: 2rem;
     }
 
     /* BEDROOM ROW BOTTOM */
@@ -1535,6 +1965,13 @@ section {
         margin-left: -2rem;
         scale: 0.7;
     }
+    #timer {
+        top: 13rem;
+    }
+
+    #foundCounter {
+        top: 13rem;
+    }
 
     #letsGoButton {
         /* margin-bottom: 2rem; */
@@ -1543,7 +1980,7 @@ section {
 
     #instructions {
         scale: 0.65;
-        top: 22%;
+        top: 15%;
         position: absolute;
     }
 
@@ -1795,6 +2232,13 @@ section {
         margin-left: -2rem;
         scale: 0.55;
     }
+    #timer {
+        top: 15rem;
+    }
+
+    #foundCounter {
+        top: 15rem;
+    }
 
     #letsGoButton {
         /* margin-bottom: 10rem; */
@@ -1804,13 +2248,13 @@ section {
     #instructions {
         font-size: 160%;
         position: absolute;
-        scale: 0.65;
-        top: 25%;
+        scale: 0.5;
+        top: 17%;
         /* margin-bottom: 0; */
     }
 
     .goToLocationButton {
-        top: 70%;
+        top: 73%;
     }
 
     .finalDialog {
@@ -2030,24 +2474,42 @@ section {
 }
 
 @media screen and (max-width: 320px) {
+    #splashPage {
+        position: relative; /* Add this to make the splashPage a positioning context for #splashTitle */
+    }
+
     #splashTitle {
-        margin-top: 20rem;
+        /* margin-top: 20rem;
         margin-left: -4rem;
+        scale: 0.45; */
+        /* margin-left: -4rem; */
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         scale: 0.45;
+        /* margin-top: 0; */
     }
 
     #letsGoButton {
         align-items: end;
-        margin-bottom: 20rem;
-        margin-left: 2rem;
-        scale: 0.55;
+        /* margin-bottom: 20rem; */
+        margin-left: 25dvw;
+        scale: 0.5;
+        position: absolute;
+        top: 75;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        scale: 0.45;
     }
 
     #instructions {
         font-size: 100%;
         position: absolute;
         scale: 0.8;
-        top: 35%;
+        top: 35dvh;
     }
 
     .goToLocationButton {
@@ -2057,6 +2519,10 @@ section {
     .finalDialog {
         left: 0;
         align-items: center;
+    }
+
+    .catNotFoundDialog {
+        scale: 45%;
     }
 
     /* KITCHEN */
